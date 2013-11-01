@@ -1,0 +1,21 @@
+{
+    "name": "Jaguar/Jaguar",
+    "description": "Powerful Gd Framework For Drawing And Images And Filters Manipulation.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hyyan Abo Fakher",
+            "email": "tiribthea4hyyan@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.3.2",
+        "ext-gd": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Jaguar": "src/"
+        }
+    }
+}
