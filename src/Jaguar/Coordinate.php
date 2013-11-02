@@ -1,6 +1,6 @@
 <?php
 
-namespace Jaguar\Common;
+namespace Jaguar;
 
 /*
  * This file is part of the Jaguar package.
@@ -31,7 +31,7 @@ class Coordinate implements EqualsInterface {
      * 
      * @param integer $x
      * 
-     * @return \Jaguar\Common\Coordinate
+     * @return \Jaguar\Coordinate
      */
     public function setX($x) {
         $this->x = (integer) floor($x);
@@ -52,7 +52,7 @@ class Coordinate implements EqualsInterface {
      * 
      * @param integer $y
      * 
-     * @return \Jaguar\Common\Coordinate
+     * @return \Jaguar\Coordinate
      */
     public function setY($y) {
         $this->y = (integer) floor($y);
@@ -72,9 +72,9 @@ class Coordinate implements EqualsInterface {
      * Chage the current coordinate location to match the passed coordinate 
      * location
      * 
-     * @param \Jaguar\Common\Coordinate $coordinate 
+     * @param \Jaguar\Coordinate $coordinate 
      * 
-     * @return \Jaguar\Common\Coordinate
+     * @return \Jaguar\Coordinate
      */
     public function setLocation(Coordinate $coordinate) {
         return $this->setX($coordinate->getX())->setY($coordinate->getY());
@@ -83,7 +83,7 @@ class Coordinate implements EqualsInterface {
     /**
      * Get New Coordinate Object with same location of the current one
      * 
-     * @return \Jaguar\Common\Coordinate
+     * @return \Jaguar\Coordinate
      */
     public function getLocation() {
         return new Coordinate($this->getX(), $this->getY());
@@ -96,7 +96,7 @@ class Coordinate implements EqualsInterface {
      * @param integer $x
      * @param integer $y
      * 
-     * @return \Jaguar\Common\Coordinate
+     * @return \Jaguar\Coordinate
      */
     public function move($x, $y) {
         return $this->setX($x)->setY($y);
@@ -113,7 +113,7 @@ class Coordinate implements EqualsInterface {
      * @param integer $y the distance to move this coordinate
      *                   along the Y axis
      * 
-     * @return \Jaguar\Common\Coordinate
+     * @return \Jaguar\Coordinate
      */
     public function translate($dx, $dy) {
         return $this->setX($dx + $this->getX())->setY($dy + $this->getY());

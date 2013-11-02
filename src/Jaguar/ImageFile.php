@@ -1,8 +1,8 @@
 <?php
 
-namespace Jaguar\Common;
+namespace Jaguar;
 
-use Jaguar\Common\Dimension;
+use Jaguar\Dimension;
 
 /*
  * This file is part of the Jaguar package.
@@ -93,7 +93,7 @@ class ImageFile extends \SplFileInfo {
     /**
      * Get image's dimension object
      * 
-     * @return \Jaguar\Common\Dimension
+     * @return \Jaguar\Dimension
      */
     public function getDimension() {
         return new Dimension($this->getWidth(), $this->getHeight());

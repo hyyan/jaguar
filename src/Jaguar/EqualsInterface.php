@@ -1,6 +1,6 @@
 <?php
 
-namespace Jaguar\Common;
+namespace Jaguar;
 
 /**
  * This file is part of the Jaguar package.

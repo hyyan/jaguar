@@ -1,10 +1,9 @@
 <?php
 
-namespace Jaguar\Tests\Common;
+namespace Jaguar\Tests;
 
-use Jaguar\Tests\JaguarTestCase;
-use Jaguar\Common\ImageFile;
-use Jaguar\Common\Dimension;
+use Jaguar\ImageFile;
+use Jaguar\Dimension;
 
 /*
  * This file is part of the Jaguar package.
@@ -21,7 +20,7 @@ class ImageFileTest extends JaguarTestCase {
      * @dataProvider fixturesDataProvider
      * 
      * @param string $file fixture file
-     * @param \Jaguar\Common\Dimension $ed expected dimension
+     * @param \Jaguar\Dimension $ed expected dimension
      * @param type $em expected mime type
      * @param type $ee expected extension
      */

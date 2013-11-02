@@ -1,6 +1,6 @@
 <?php
 
-namespace Jaguar\Common;
+namespace Jaguar;
 
 /*
  * This file is part of the Jaguar package.
@@ -19,8 +19,8 @@ class Box implements EqualsInterface {
     /**
      * Construct New Box Object
      * 
-     * @param \Jaguar\Common\Dimension $dimension
-     * @param \Jaguar\Common\Coordinate $coordinate
+     * @param \Jaguar\Dimension $dimension
+     * @param \Jaguar\Coordinate $coordinate
      */
     public function __construct(Dimension $dimension = null, Coordinate $coordinate = null) {
         $this->setDimension(($dimension === null) ? new Dimension(0, 0) : $dimension);
@@ -32,9 +32,9 @@ class Box implements EqualsInterface {
      * 
      * The coordinate represent the (Top Left) position of the box
      * 
-     * @param \Jaguar\Common\Coordinate $coordinate
+     * @param \Jaguar\Coordinate $coordinate
      * 
-     * @return \Jaguar\Common\Box
+     * @return \Jaguar\Box
      */
     public function setCoordinate(Coordinate $coordinate) {
         $this->BoxCoordinateObject = $coordinate;
@@ -44,7 +44,7 @@ class Box implements EqualsInterface {
     /**
      * Get Box Coordinate
      * 
-     * @return \Jaguar\Common\Coordinate
+     * @return \Jaguar\Coordinate
      */
     public function getCoordinate() {
         return $this->BoxCoordinateObject;
@@ -53,9 +53,9 @@ class Box implements EqualsInterface {
     /**
      * Set Box Dimension 
      * 
-     * @param \Jaguar\Common\Dimension $dimension
+     * @param \Jaguar\Dimension $dimension
      * 
-     * @return \Jaguar\Common\Box
+     * @return \Jaguar\Box
      */
     public function setDimension(Dimension $dimension) {
         $this->BoxDimensionObject = $dimension;
@@ -65,7 +65,7 @@ class Box implements EqualsInterface {
     /**
      * Get Box Dimension
      * 
-     * @return \Jaguar\Common\Dimension
+     * @return \Jaguar\Dimension
      */
     public function getDimension() {
         return $this->BoxDimensionObject;
@@ -76,7 +76,7 @@ class Box implements EqualsInterface {
      * 
      * @param number $ratio
      * 
-     * @return \Jaguar\Common\Box
+     * @return \Jaguar\Box
      */
     public function scale($ratio) {
         $this->getDimension()
@@ -91,7 +91,7 @@ class Box implements EqualsInterface {
 
     /**
      * 
-     * @see \Jaguar\Common\Coordinate::getX
+     * @see \Jaguar\Coordinate::getX
      * 
      * @codeCoverageIgnore
      * @return integer
@@ -102,7 +102,7 @@ class Box implements EqualsInterface {
 
     /**
      * 
-     * @see \Jaguar\Common\Coordinate::getY
+     * @see \Jaguar\Coordinate::getY
      * 
      * @codeCoverageIgnore
      * @return integer
@@ -113,7 +113,7 @@ class Box implements EqualsInterface {
 
     /**
      * 
-     * @see \Jaguar\Common\Dimension::getWidth
+     * @see \Jaguar\Dimension::getWidth
      * 
      * @codeCoverageIgnore
      * @return integer
@@ -124,7 +124,7 @@ class Box implements EqualsInterface {
 
     /**
      * 
-     * @see \Jaguar\Common\Dimension::getHeight
+     * @see \Jaguar\Dimension::getHeight
      * 
      * @codeCoverageIgnore
      * @return integer
@@ -139,9 +139,9 @@ class Box implements EqualsInterface {
      * @param integer $width
      * @param integer $height
      * 
-     * @return \Jaguar\Common\Box
+     * @return \Jaguar\Box
      * 
-     * @see \Jaguar\Common\Dimension::resize
+     * @see \Jaguar\Dimension::resize
      * @codeCoverageIgnore
      */
     public function resize($width, $height) {
@@ -155,9 +155,9 @@ class Box implements EqualsInterface {
      * @param integer $dx
      * @param integer $dy
      * 
-     * @return \Jaguar\Common\Box 
+     * @return \Jaguar\Box 
      * 
-     * @see \Jaguar\Common\Dimension::translate
+     * @see \Jaguar\Dimension::translate
      * @codeCoverageIgnore
      */
     public function translateDimension($dx, $dy) {
@@ -171,9 +171,9 @@ class Box implements EqualsInterface {
      * @param integer $x
      * @param integer $y
      * 
-     * @return \Jaguar\Common\Box
+     * @return \Jaguar\Box
      * 
-     * @see \Jaguar\Common\Coordinate::move
+     * @see \Jaguar\Coordinate::move
      * @codeCoverageIgnore
      */
     public function move($x, $y) {
@@ -187,9 +187,9 @@ class Box implements EqualsInterface {
      * @param integer $dx
      * @param integer $dy
      * 
-     * @return \Jaguar\Common\Box
+     * @return \Jaguar\Box
      * 
-     * @see \Jaguar\Common\Coordinate::translate
+     * @see \Jaguar\Coordinate::translate
      * @codeCoverageIgnore
      */
     public function translateCoordinate($dx, $dy) {

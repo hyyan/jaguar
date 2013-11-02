@@ -1,9 +1,8 @@
 <?php
 
-namespace Jaguar\Tests\Common;
+namespace Jaguar\Tests;
 
-use Jaguar\Tests\JaguarTestCase;
-use Jaguar\Common\Box;
+use Jaguar\Box;
 
 /*
  * This file is part of the Jaguar package.

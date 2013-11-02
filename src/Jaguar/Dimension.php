@@ -1,6 +1,6 @@
 <?php
 
-namespace Jaguar\Common;
+namespace Jaguar;
 
 /*
  * This file is part of the Jaguar package.
@@ -31,7 +31,7 @@ class Dimension implements EqualsInterface {
      * 
      * @param integer $width
      * 
-     * @return \Jaguar\Common\Dimension 
+     * @return \Jaguar\Dimension 
      */
     public function setWidth($width) {
         $this->width = (integer) ceil($width);
@@ -43,7 +43,7 @@ class Dimension implements EqualsInterface {
      * 
      * @param integer $height
      * 
-     * @return \Jaguar\Common\Dimension 
+     * @return \Jaguar\Dimension 
      */
     public function setHeight($height) {
         $this->height = (integer) ceil($height);
@@ -74,9 +74,9 @@ class Dimension implements EqualsInterface {
      * set new width and height for the current dimension using the width and 
      * the hight of the passed dimension
      * 
-     * @param \Jaguar\Common\Dimension $dimension
+     * @param \Jaguar\Dimension $dimension
      * 
-     * @return \Jaguar\Common\Dimension 
+     * @return \Jaguar\Dimension 
      */
     public function setSize(Dimension $dimension) {
         return $this->setWidth($dimension->getWidth())
@@ -86,7 +86,7 @@ class Dimension implements EqualsInterface {
     /**
      * Get new Dimension object with same width and height
      * 
-     * @return \Jaguar\Common\Dimension
+     * @return \Jaguar\Dimension
      */
     public function getSize() {
         return new self($this->getWidth(), $this->getHeight());
@@ -100,7 +100,7 @@ class Dimension implements EqualsInterface {
      * @param integer $width
      * @param integer $height
      * 
-     * @return \Jaguar\Common\Dimension
+     * @return \Jaguar\Dimension
      */
     public function resize($width, $height) {
         return $this->setWidth($width)->setHeight($height);
@@ -114,7 +114,7 @@ class Dimension implements EqualsInterface {
      * @param integer $dx 
      * @param integer $dy 
      * 
-     * @return \Jaguar\Common\Dimension 
+     * @return \Jaguar\Dimension 
      */
     public function translate($dx, $dy) {
         return $this->setWidth($dx + $this->getWidth())
