@@ -79,10 +79,19 @@ class Color implements EqualsInterface {
     /**
      * Checks if the current color is opaque
      *
-     * @return Boolean
+     * @return boolean true if opaque , false otherwise
      */
     public function isOpaque() {
-        return 0 === $this->getAlpha();
+        return 0 == $this->getAlpha();
+    }
+
+    /**
+     * Checks if the current color is transparent
+     * 
+     * @return boolean true if transparent , false otherwise
+     */
+    public function isTransparent() {
+        return 127 == $this->getAlpha();
     }
 
     /**
@@ -323,10 +332,10 @@ class Color implements EqualsInterface {
     public function __toString() {
         return get_called_class()
                 . "["
-                    . "r={$this->getRed()},"
-                    . "g={$this->getGreen()},"
-                    . "b={$this->getBlue()},"
-                    . "alpha={$this->getAlpha()}"
+                . "r={$this->getRed()},"
+                . "g={$this->getGreen()},"
+                . "b={$this->getBlue()},"
+                . "alpha={$this->getAlpha()}"
                 . "]";
     }
 
@@ -363,7 +372,7 @@ class Color implements EqualsInterface {
      * @throws InvalidArgumentException
      */
     public static function fromHex($hex, $alpha = 0) {
-        
+
         if (!preg_match(self::$HexRegex, $hex)) {
             throw new \InvalidArgumentException(sprintf(
                     'Inavlid Hex Color "%s"', $hex

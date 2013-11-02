@@ -89,6 +89,15 @@ class ColorTest extends JaguarTestCase {
         $this->assertFalse($c->isOpaque());
     }
 
+    public function testIsTransparent() {
+
+        $c = new Color();
+        $this->assertFalse($c->isTransparent());
+
+        $c->setAlpha(127);
+        $this->assertTrue($c->isTransparent());
+    }
+
     /**
      * @expectedException \InvalidArgumentException
      */
