@@ -4,7 +4,7 @@ namespace Jaguar\Color;
 
 use Jaguar\EqualsInterface;
 
-/*
+/**
  * This file is part of the Jaguar package.
  *
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
