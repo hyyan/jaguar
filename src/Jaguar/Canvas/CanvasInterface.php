@@ -106,7 +106,7 @@ interface CanvasInterface {
      * 
      * @return \Jaguar\Canvas\CanvasInterface self
      * 
-     * @throws \Jaguar\Exception\InvalidDimensionException
+     * @throws \Jaguar\Execption\InvalidDimensionException
      * @throws \Jaguar\Exception\
      */
     public function create(Dimension $dimension);
