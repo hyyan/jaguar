@@ -11,7 +11,7 @@ namespace Jaguar\Execption;
  * file that was distributed with this source code.
  */
 
-class InvalidDimesnionException extends JaguarException {
+class InvalidDimensionException extends JaguarException {
     
 }
 
