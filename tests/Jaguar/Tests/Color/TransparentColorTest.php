@@ -13,14 +13,10 @@ use Jaguar\Color\TransparentColor;
  * file that was distributed with this source code.
  */
 
-class TransparentColorTest extends AbstractColorTest {
+class TransparentColorTest extends SpecialColorTest {
 
     public function getColor() {
         return new TransparentColor();
-    }
-
-    public function testEquals() {
-        $this->assertTrue($this->getColor()->equals($this->getColor()));
     }
 
 }

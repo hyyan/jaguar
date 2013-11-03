@@ -2,8 +2,6 @@
 
 namespace Jaguar\Tests\Color;
 
-use Jaguar\Color\StyledBrushedColor;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -13,10 +11,10 @@ use Jaguar\Color\StyledBrushedColor;
  * file that was distributed with this source code.
  */
 
-class StyledBrushedColorTest extends SpecialColorTest {
+abstract class SpecialColorTest extends AbstractColorTest {
 
-    public function getColor() {
-        return new StyledBrushedColor();
+    public function testEquals() {
+        $this->assertTrue($this->getColor()->equals($this->getColor()));
     }
 
 }

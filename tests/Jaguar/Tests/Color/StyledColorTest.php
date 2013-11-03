@@ -13,14 +13,10 @@ use Jaguar\Color\StyledColor;
  * file that was distributed with this source code.
  */
 
-class StyledColorTest extends AbstractColorTest {
+class StyledColorTest extends SpecialColorTest {
 
     public function getColor() {
         return new StyledColor();
-    }
-
-    public function testEquals() {
-        $this->assertTrue($this->getColor()->equals($this->getColor()));
     }
 
 }

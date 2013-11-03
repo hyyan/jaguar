@@ -13,14 +13,10 @@ use Jaguar\Color\BrushedColor;
  * file that was distributed with this source code.
  */
 
-class BrushedColorTest extends AbstractColorTest {
+class BrushedColorTest extends SpecialColorTest {
 
     public function getColor() {
         return new BrushedColor();
-    }
-
-    public function testEquals() {
-        $this->assertTrue($this->getColor()->equals($this->getColor()));
     }
 
 }

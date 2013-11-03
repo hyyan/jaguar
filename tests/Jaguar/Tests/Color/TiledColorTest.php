@@ -13,14 +13,10 @@ use Jaguar\Color\TiledColor;
  * file that was distributed with this source code.
  */
 
-class TiledColorTest extends AbstractColorTest {
+class TiledColorTest extends SpecialColorTest {
 
     public function getColor() {
         return new TiledColor();
-    }
-
-    public function testEquals() {
-        $this->assertTrue($this->getColor()->equals($this->getColor()));
     }
 
 }
