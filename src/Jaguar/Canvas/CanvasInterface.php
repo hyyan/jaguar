@@ -5,6 +5,7 @@ namespace Jaguar\Canvas;
 use Jaguar\Box;
 use Jaguar\Coordinate;
 use Jaguar\Color\ColorInterface;
+use Jaguar\Dimension;
 
 /*
  * This file is part of the Jaguar package.
@@ -97,8 +98,21 @@ interface CanvasInterface {
      */
     public function getCopy();
 
+
     /**
-     * Replace this canvas handler with a new one loaded from another one
+     * Create canvas (true colors only)
+     * 
+     * @param \Jaguar\Dimension $dimension
+     * 
+     * @return \Jaguar\Canvas\CanvasInterface self
+     * 
+     * @throws \Jaguar\Exception\InvalidDimensionException
+     * @throws \Jaguar\Exception\
+     */
+    public function create(Dimension $dimension);
+
+    /**
+     * Create new canvas from another one
      * 
      * <b>Note :</b>
      * 
@@ -114,7 +128,7 @@ interface CanvasInterface {
      * 
      * @param \Jaguar\Canvas\CanvasInterface $canvas
      * 
-     * @return \Jaguar\Canvas\CanvasInterface instance for self
+     * @return \Jaguar\Canvas\CanvasInterface self
      * 
      * @throws \Jaguar\Exception\Canvas\CanvasException
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
@@ -126,12 +140,12 @@ interface CanvasInterface {
      * 
      * @param string $image
      * 
-     * @return \Jaguar\Canvas\CanvasInterface instance for self
+     * @return \Jaguar\Canvas\CanvasInterface self
      */
     public function fromFile($file);
 
     /**
-     * Returns a canvas representing the canvas obtained from the given string
+     * Create new canvas representing the canvas obtained from the given string
      * 
      * <b>Note : </b>
      * the current canvas handler will be destroy before creating the new one
@@ -139,7 +153,7 @@ interface CanvasInterface {
      * 
      * @param string $string canvas as string
      * 
-     * @return \Jaguar\Canvas\CanvasInterface instance for self
+     * @return \Jaguar\Canvas\CanvasInterface self
      * 
      * @throws \Jaguar\Exception\Canvas\CanvasException
      */
@@ -150,7 +164,7 @@ interface CanvasInterface {
      * 
      * @param \Jaguar\Canvas\Drawable $drawable
      * 
-     * @return \Jaguar\Canvas\CanvasInterface instance for self
+     * @return \Jaguar\Canvas\CanvasInterface self
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
      */
     public function draw(Drawable $drawable);
@@ -170,12 +184,12 @@ interface CanvasInterface {
      * @param \Jaguar\Box $srcBox Box from src canvas
      * @param \Jaguar\Box $destBox Box for the current canvas 
      * 
-     * @return \Jaguar\Canvas\CanvasInterface instance for self
+     * @return \Jaguar\Canvas\CanvasInterface self
      * 
      * @throws \Jaguar\Exception\Canvas\CanvasException
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
      */
-    public function paste(Resource $src, Box $srcBox = null, Box $destBox = null);
+    public function paste(CanvasInterface $src, Box $srcBox = null, Box $destBox = null);
 
     /**
      * Fill canvas with color
@@ -183,7 +197,7 @@ interface CanvasInterface {
      * @param \Jaguar\Color\ColorInterface $color
      * @param \Jaguar\Coordinate $coordinate start point
      * 
-     * @return \Jaguar\Canvas\CanvasInterface instance for self
+     * @return \Jaguar\Canvas\CanvasInterface self
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
      */
     public function fill(ColorInterface $color, Coordinate $coordinate = null);
@@ -194,7 +208,7 @@ interface CanvasInterface {
      * @param \Jaguar\Canvas\CanvasInterface $pattern 
      * @param \Jaguar\Coordinate $coordinate start point
      * 
-     * @return \Jaguar\Canvas\CanvasInterface instance for self
+     * @return \Jaguar\Canvas\CanvasInterface self
      * 
      * @throws \Jaguar\Exception\Canvas\CanvasException
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
@@ -207,7 +221,7 @@ interface CanvasInterface {
      * @param string $path The path to save the canvas to. If not set or NULL,
      *                     the raw canvas stream will be outputted directly.
      * 
-     * @return \Jaguar\Canvas\CanvasInterface instance for self
+     * @return \Jaguar\Canvas\CanvasInterface self
      * 
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
      * @throws \Jaguar\Exception\Canvas\CanvasOutputException
@@ -219,7 +233,7 @@ interface CanvasInterface {
      * 
      * Destroy gd resource handler
      * 
-     * @return \Jaguar\Canvas\CanvasInterface instance for self
+     * @return \Jaguar\Canvas\CanvasInterface self
      * @throws \Jaguar\Execption\Canvas\CanvasDestroyException 
      */
     public function destroy();
