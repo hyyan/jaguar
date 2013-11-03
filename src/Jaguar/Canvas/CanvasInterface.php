@@ -132,7 +132,7 @@ interface CanvasInterface {
      * @throws \Jaguar\Exception\Canvas\CanvasException
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
      */
-    public function fromResource(CanvasInterface $canvas);
+    public function fromCanvas(CanvasInterface $canvas);
 
     /**
      * Create new canvas from file
