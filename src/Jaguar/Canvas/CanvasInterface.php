@@ -98,7 +98,6 @@ interface CanvasInterface {
      */
     public function getCopy();
 
-
     /**
      * Create canvas (true colors only)
      * 
@@ -107,6 +106,7 @@ interface CanvasInterface {
      * @return \Jaguar\Canvas\CanvasInterface self
      * 
      * @throws \Jaguar\Execption\InvalidDimensionException
+     * @throws \Jaguar\Execption\Canvas\CanvasCreationException
      */
     public function create(Dimension $dimension);
 
