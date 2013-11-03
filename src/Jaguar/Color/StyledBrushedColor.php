@@ -12,14 +12,6 @@ namespace Jaguar\Color;
  */
 
 class StyledBrushedColor extends AbstractColor{
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function doEquals(ColorInterface $color) {
-        return $color->getValue() === IMG_COLOR_STYLEDBRUSHED;
-    }
-
     /**
      * {@inheritdoc}
      */

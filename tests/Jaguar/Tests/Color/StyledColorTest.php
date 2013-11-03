@@ -13,7 +13,7 @@ use Jaguar\Color\StyledColor;
  * file that was distributed with this source code.
  */
 
-class StyledColorTest extends SpecialColorTest {
+class StyledColorTest extends AbstractColorTest {
 
     public function getColor() {
         return new StyledColor();

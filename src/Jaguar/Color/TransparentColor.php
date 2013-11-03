@@ -16,13 +16,6 @@ class TransparentColor extends AbstractColor {
     /**
      * {@inheritdoc}
      */
-    protected function doEquals(ColorInterface $color) {
-        return $color->getValue() === IMG_COLOR_TRANSPARENT;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getValue() {
         return IMG_COLOR_TRANSPARENT;
     }

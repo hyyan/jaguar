@@ -13,7 +13,7 @@ use Jaguar\Color\TransparentColor;
  * file that was distributed with this source code.
  */
 
-class TransparentColorTest extends SpecialColorTest {
+class TransparentColorTest extends AbstractColorTest {
 
     public function getColor() {
         return new TransparentColor();

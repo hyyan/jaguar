@@ -13,7 +13,7 @@ use Jaguar\Color\BrushedColor;
  * file that was distributed with this source code.
  */
 
-class BrushedColorTest extends SpecialColorTest {
+class BrushedColorTest extends AbstractColorTest {
 
     public function getColor() {
         return new BrushedColor();

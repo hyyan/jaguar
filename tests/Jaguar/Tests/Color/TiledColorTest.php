@@ -13,7 +13,7 @@ use Jaguar\Color\TiledColor;
  * file that was distributed with this source code.
  */
 
-class TiledColorTest extends SpecialColorTest {
+class TiledColorTest extends AbstractColorTest {
 
     public function getColor() {
         return new TiledColor();

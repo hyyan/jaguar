@@ -22,7 +22,7 @@ abstract class AbstractColor implements ColorInterface {
             throw new \InvalidArgumentException('Invalid Color Object');
         }
 
-        return $this->doEquals($other);
+        return $other->getValue() === $this->getValue() ? true : false;
     }
 
     /**
@@ -33,6 +33,5 @@ abstract class AbstractColor implements ColorInterface {
                 '[' . (string) $this->getValue() . ']';
     }
 
-    abstract protected function doEquals(ColorInterface $color);
 }
 

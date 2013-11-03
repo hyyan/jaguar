@@ -22,6 +22,10 @@ abstract class AbstractColorTest extends JaguarTestCase {
         $this->getColor()->equals('Invalid Color Object');
     }
 
+    public function testEquals() {
+        $this->assertTrue($this->getColor()->equals($this->getColor()));
+    }
+
     public function testToString() {
         $this->assertInternalType('string', (string) $this->getColor());
     }
