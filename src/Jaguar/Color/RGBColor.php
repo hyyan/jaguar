@@ -1,6 +1,6 @@
 <?php
 
-namespace Jaguar;
+namespace Jaguar\Color;
 
 /*
  * This file is part of the Jaguar package.
@@ -11,7 +11,7 @@ namespace Jaguar;
  * file that was distributed with this source code.
  */
 
-class RGB implements EqualsInterface {
+class RGBColor extends AbstractColor {
 
     const CHANNEL_RED = 'red';
     const CHANNEL_GREEN = 'green';
@@ -49,10 +49,10 @@ class RGB implements EqualsInterface {
      * 
      * @param integer $value 
      * @param string $channel on of the following :
-     *                             - RGB::CHANNEL_RED
-     *                             - RGB::CHANNEL_GREEN,
-     *                             - RGB::CHANNEL_BLUE,
-     *                             - RGB::CHANNEL_ALPHA,
+     *                             - RGBColor::CHANNEL_RED
+     *                             - RGBColor::CHANNEL_GREEN,
+     *                             - RGBColor::CHANNEL_BLUE,
+     *                             - RGBColor::CHANNEL_ALPHA,
      * 
      * @return boolean
      * @throws \InvalidArgumentException if the channel name is not supported
@@ -99,7 +99,7 @@ class RGB implements EqualsInterface {
      * 
      * @param integer $alpha in range (0,255)
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      * @throws \InvalidArgumentException
      */
     public function setAlpha($alpha) {
@@ -122,7 +122,7 @@ class RGB implements EqualsInterface {
      * 
      * @param integer $value in range (0,255)
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      * @throws \InvalidArgumentException
      */
     public function setRed($value) {
@@ -145,7 +145,7 @@ class RGB implements EqualsInterface {
      * 
      * @param integer $value in range (0,255)
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      * @throws \InvalidArgumentException
      */
     public function setGreen($value) {
@@ -168,7 +168,7 @@ class RGB implements EqualsInterface {
      * 
      * @param integer $value in range (0,255)
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      * @throws \InvalidArgumentException
      */
     public function setBlue($value) {
@@ -201,11 +201,11 @@ class RGB implements EqualsInterface {
     /**
      * Set new color 
      * 
-     * @param \Jaguar\Color\RGB $color
+     * @param \Jaguar\Color\RGBColor $color
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      */
-    public function setRGB(RGB $color) {
+    public function setRGBColor(RGBColor $color) {
         return $this->setRed($color->getRed())
                         ->setGreen($color->getGreen())
                         ->setBlue($color->getBlue())
@@ -215,9 +215,9 @@ class RGB implements EqualsInterface {
     /**
      * Get new color object which equals to the current one
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      */
-    public function getRGB() {
+    public function getRGBColor() {
         return new self(
                 $this->getRed()
                 , $this->getGreen()
@@ -232,7 +232,7 @@ class RGB implements EqualsInterface {
      *
      * @param integer $alpha
      *
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      * @throws \InvalidArgumentException
      */
     public function dissolve($alpha) {
@@ -250,7 +250,7 @@ class RGB implements EqualsInterface {
      * 
      * @param float shade default 0.7
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      */
     public function brighter($shade = 0.7) {
 
@@ -286,7 +286,7 @@ class RGB implements EqualsInterface {
      * 
      * @param float shade default 0.7
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      */
     public function darker($shade = 0.7) {
         return new self(
@@ -300,7 +300,7 @@ class RGB implements EqualsInterface {
     /**
      * Returns a gray related to the current color
      *
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      */
     public function grayscale() {
         $gray = min(
@@ -315,24 +315,20 @@ class RGB implements EqualsInterface {
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function doEquals($other) {
-        return ($other->getValue() == $this->getValue()) ? true : false;
-    }
-
-    /**
      * Get string representation for the current color object
      * 
      * @return string 
      */
     public function __toString() {
         return get_called_class()
+                . "("
+                    . $this->getValue()
+                . ")"
                 . "["
-                . "r={$this->getRed()},"
-                . "g={$this->getGreen()},"
-                . "b={$this->getBlue()},"
-                . "alpha={$this->getAlpha()}"
+                    . "r={$this->getRed()},"
+                    . "g={$this->getGreen()},"
+                    . "b={$this->getBlue()},"
+                    . "alpha={$this->getAlpha()}"
                 . "]";
     }
 
@@ -343,10 +339,10 @@ class RGB implements EqualsInterface {
      * @param boolean $hasalpha true if the rgb contains the alpha and false 
      *                          if not 
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      * @throws InvalidArgumentException
      */
-    public static function fromRGB($rgb, $hasalpha = true) {
+    public static function fromValue($rgb, $hasalpha = true) {
         $r = ($rgb >> 16) & 0xFF;
         $g = ($rgb >> 8) & 0xFF;
         $b = ($rgb >> 0) & 0xFF;
@@ -365,14 +361,14 @@ class RGB implements EqualsInterface {
      * @param string $hex color int hex format
      * @param integer $alpha alpha value
      * 
-     * @return \Jaguar\Color\RGB
+     * @return \Jaguar\Color\RGBColor
      * @throws InvalidArgumentException
      */
     public static function fromHex($hex, $alpha = 0) {
 
         if (!preg_match(self::$HexRegex, $hex)) {
             throw new \InvalidArgumentException(sprintf(
-                    'Inavlid Hex RGB "%s"', $hex
+                    'Inavlid Hex Color "%s"', $hex
             ));
         }
 
@@ -395,7 +391,7 @@ class RGB implements EqualsInterface {
      * @param integer $value
      * @param string $channel
      * 
-     * @return \Jaguar\Color\RGB\RGB
+     * @return \Jaguar\Color\RGBColor
      * @throws \InvalidArgumentException
      */
     protected function assertChannelValue($value, $channel) {
