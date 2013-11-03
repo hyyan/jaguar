@@ -64,6 +64,15 @@ interface CanvasInterface {
     public function getDimension();
 
     /**
+     * Check if the canvas represents a truecolor canvas
+     * 
+     * @return boolean true if true color false otherwise
+     * 
+     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
+     */
+    public function isTrueColor();
+
+    /**
      * Set alpha blending
      * 
      * @param boolean $bool default true
