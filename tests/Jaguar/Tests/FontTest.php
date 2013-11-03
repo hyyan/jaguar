@@ -3,7 +3,7 @@
 namespace Jaguar\Tests;
 
 use Jaguar\Font;
-use Jaguar\Color;
+use Jaguar\Color\RGBColor;
 
 /*
  * This file is part of the Jaguar package.
@@ -36,7 +36,7 @@ class FontTest extends JaguarTestCase {
         $this->assertFalse($font->equals($fontClone));
 
         $fontClone->setSize(8);
-        $fontClone->setColor(new Color(255));
+        $fontClone->setColor(new RGBColor(255));
 
         $this->assertFalse($font->equals($fontClone));
     }

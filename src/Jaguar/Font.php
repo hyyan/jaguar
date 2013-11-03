@@ -2,6 +2,9 @@
 
 namespace Jaguar;
 
+use Jaguar\Color\ColorInterface;
+use Jaguar\Color\RGBColor;
+
 /*
  * This file is part of the Jaguar package.
  *
@@ -22,14 +25,14 @@ class Font implements EqualsInterface {
      * 
      * @param string $font font path
      * @param integer $size font size
-     * @param \Jaguar\Color $color font color
+     * @param \Jaguar\Color\ColorInterface $color font color
      * 
      * @throws \InvalidArgumentException
      */
-    public function __construct($font, $size = 8, Color $color = null) {
+    public function __construct($font, $size = 8, ColorInterface $color = null) {
         $this->setFont($font);
         $this->setSize($size);
-        $this->setColor(null === $color ? new Color() : $color);
+        $this->setColor(null === $color ? new RGBColor() : $color);
     }
 
     /**
@@ -82,10 +85,10 @@ class Font implements EqualsInterface {
     /**
      * Set font color
      * 
-     * @param \Jaguar\Color $color
+     * @param \Jaguar\Color\ColorInterface $color
      * @return \Jaguar\Font
      */
-    public function setColor(Color $color) {
+    public function setColor(ColorInterface $color) {
         $this->color = $color;
         return $this;
     }
@@ -93,7 +96,7 @@ class Font implements EqualsInterface {
     /**
      * Get font color
      * 
-     * @return \Jaguar\Color
+     * @return \Jaguar\Color\ColorInterface
      */
     public function getColor() {
         return $this->color;
