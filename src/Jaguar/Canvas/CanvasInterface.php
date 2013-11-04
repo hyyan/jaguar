@@ -163,7 +163,7 @@ interface CanvasInterface {
      * 
      * @return \Jaguar\Canvas\CanvasInterface self
      * 
-     * @throws \Jaguar\Exception\Canvas\CanvasException
+     * @throws \Jaguar\Execption\Canvas\CanvasCreationException
      */
     public function fromString($string);
 
