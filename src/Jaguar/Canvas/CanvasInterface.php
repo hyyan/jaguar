@@ -149,6 +149,7 @@ interface CanvasInterface {
      * @param string $image
      * 
      * @return \Jaguar\Canvas\CanvasInterface self
+     * @throws \InvalidArgumentException
      */
     public function fromFile($file);
 
