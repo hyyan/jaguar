@@ -1,6 +1,6 @@
 <?php
 
-namespace Jaguar\Execption\Canvas;
+namespace Jaguar\Exception\Canvas;
 
 /*
  * This file is part of the Jaguar package.

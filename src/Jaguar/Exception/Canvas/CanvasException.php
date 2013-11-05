@@ -1,8 +1,8 @@
 <?php
 
-namespace Jaguar\Execption\Canvas;
+namespace Jaguar\Exception\Canvas;
 
-use Jaguar\Execption\JaguarException;
+use Jaguar\Exception\JaguarException;
 
 /*
  * This file is part of the Jaguar package.

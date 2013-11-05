@@ -114,8 +114,8 @@ interface CanvasInterface {
      * 
      * @return \Jaguar\Canvas\CanvasInterface self
      * 
-     * @throws \Jaguar\Execption\InvalidDimensionException
-     * @throws \Jaguar\Execption\Canvas\CanvasCreationException
+     * @throws \Jaguar\Exception\InvalidDimensionException
+     * @throws \Jaguar\Exception\Canvas\CanvasCreationException
      */
     public function create(Dimension $dimension);
 
@@ -164,7 +164,7 @@ interface CanvasInterface {
      * 
      * @return \Jaguar\Canvas\CanvasInterface self
      * 
-     * @throws \Jaguar\Execption\Canvas\CanvasCreationException
+     * @throws \Jaguar\Exception\Canvas\CanvasCreationException
      */
     public function fromString($string);
 
@@ -230,7 +230,7 @@ interface CanvasInterface {
      * Destroy gd resource handler
      * 
      * @return \Jaguar\Canvas\CanvasInterface self
-     * @throws \Jaguar\Execption\Canvas\CanvasDestroyException 
+     * @throws \Jaguar\Exception\Canvas\CanvasDestroyException 
      */
     public function destroy();
 

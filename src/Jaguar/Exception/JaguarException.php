@@ -1,6 +1,6 @@
 <?php
 
-namespace Jaguar\Execption;
+namespace Jaguar\Exception;
 
 /*
  * This file is part of the Jaguar package.
