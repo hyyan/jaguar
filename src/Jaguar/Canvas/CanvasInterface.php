@@ -230,6 +230,8 @@ interface CanvasInterface {
      * Destroy gd resource handler
      * 
      * @return \Jaguar\Canvas\CanvasInterface self
+     * 
+     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
      * @throws \Jaguar\Exception\Canvas\CanvasDestroyException 
      */
     public function destroy();
