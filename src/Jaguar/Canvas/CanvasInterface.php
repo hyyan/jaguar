@@ -212,19 +212,6 @@ interface CanvasInterface {
     public function fill(ColorInterface $color, Coordinate $coordinate = null);
 
     /**
-     * Fill canvas with pattern
-     * 
-     * @param \Jaguar\Canvas\CanvasInterface $pattern 
-     * @param \Jaguar\Coordinate $coordinate start point
-     * 
-     * @return \Jaguar\Canvas\CanvasInterface self
-     * 
-     * @throws \Jaguar\Exception\Canvas\CanvasException
-     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
-     */
-    public function fillPattern(CanvasInterface $pattern, Coordinate $coordinate = null);
-
-    /**
      * Save canvas 
      * 
      * @param string $path The path to save the canvas to. If not set or NULL,
