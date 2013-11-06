@@ -110,7 +110,7 @@ class Font implements EqualsInterface {
             throw new \InvalidArgumentException('Invalid Font Object');
         }
 
-        if ($this->getFont() !== $other->getFont()) {
+        if (md5(file_get_contents($this->getFont())) !== md5(file_get_contents($other->getFont()))) {
             return false;
         }
 
