@@ -59,7 +59,7 @@ class Png extends CompressableCanvas {
      *
      * @param boolean $bool  
      * 
-     * @return \Jaguar\Canvas\Png 
+     * @return \Jaguar\Canvas\Type\Png 
      */
     public function setSaveAlpha($bool) {
         $this->PNGIsSaveAlpha = (boolean) $bool;
@@ -83,7 +83,7 @@ class Png extends CompressableCanvas {
      *
      * @param integer $filter
      * 
-     * @return \Jaguar\Canvas\Png
+     * @return \Jaguar\Canvas\Type\Png
      */
     public function setFilter($filter) {
         $validFilters =
@@ -171,7 +171,7 @@ class Png extends CompressableCanvas {
      * @param \Jaguar\Canvas\Png $png
      * @param boolean $flag true to save false to ignore
      * 
-     * @return \Jaguar\Canvas\Png 
+     * @return \Jaguar\Canvas\Type\Png 
      * @throws \Jaguar\Exception\Canvas\CanvasException
      */
     protected function saveAlpha(Png $png, $flag) {
