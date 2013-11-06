@@ -85,19 +85,6 @@ interface CanvasInterface {
     public function alphaBlending($bool);
 
     /**
-     * Turns the interlace bit on or off
-     * 
-     * @param boolean $boolean True to enable or false to disable
-     * 
-     * @return \Jaguar\Canvas\CanvasInterface
-     * 
-     * @throws \InvalidArgumentException 
-     * @throws \Jaguar\Exception\Canvas\CanvasException 
-     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
-     */
-    public function interlace($boolean);
-
-    /**
      * Get Copy of the current canvas
      * 
      * @return \Jaguar\Canvas\CanvasInterface return a canvas with a completey 
