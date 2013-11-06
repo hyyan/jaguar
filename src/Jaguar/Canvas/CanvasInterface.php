@@ -91,6 +91,7 @@ interface CanvasInterface {
      *                                        different gd resource
      * 
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException 
+     * @throws \Jaguar\Exception\Canvas\CanvasException
      */
     public function getCopy();
 
