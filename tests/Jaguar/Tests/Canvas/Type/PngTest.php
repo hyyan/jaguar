@@ -1,9 +1,10 @@
 <?php
 
-namespace Jaguar\Tests\Canvas;
+namespace Jaguar\Tests\Canvas\Type;
 
-use Jaguar\Canvas\Png;
+use Jaguar\Canvas\Type\Png;
 use Jaguar\Dimension;
+use Jaguar\Tests\Canvas\CompressableCanvasTest;
 
 /*
  * This file is part of the Jaguar package.
@@ -44,7 +45,7 @@ class PngTest extends CompressableCanvasTest {
      * @expectedException \Jaguar\Exception\Canvas\CanvasOutputException
      */
     public function testFromFileThrowCanvasCreationExceptionWhenAlphaSavingFails() {
-        $c = new Mock\PngMock();
+        $c = new \Jaguar\Tests\Canvas\Mock\PngMock();
         $c->setSaveAlpha(true);
         $c->save();
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Jaguar\Canvas;
+namespace Jaguar\Canvas\Type;
 
 use Jaguar\ImageFile;
 use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\Canvas\CanvasOutputException;
-
+use Jaguar\Canvas\CompressableCanvas;
 /*
  * This file is part of the Jaguar package.
  *

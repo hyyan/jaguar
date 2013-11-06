@@ -2,7 +2,7 @@
 
 namespace Jaguar\Tests\Canvas\Mock;
 
-use Jaguar\Canvas\Png;
+use Jaguar\Canvas\Type\Png;
 
 /*
  * This file is part of the Jaguar package.

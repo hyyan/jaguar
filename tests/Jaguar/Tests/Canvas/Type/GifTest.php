@@ -1,10 +1,10 @@
 <?php
 
-namespace Jaguar\Tests\Canvas;
+namespace Jaguar\Tests\Canvas\Type;
 
-use Jaguar\Canvas\Jpeg;
+use Jaguar\Canvas\Type\Gif;
 use Jaguar\Dimension;
-
+use Jaguar\Tests\Canvas\AbstractCanvasTest;
 /*
  * This file is part of the Jaguar package.
  *
@@ -14,30 +14,30 @@ use Jaguar\Dimension;
  * file that was distributed with this source code.
  */
 
-class JpegTest extends CompressableCanvasTest {
+class GifTest extends AbstractCanvasTest {
 
     protected function getCanvas() {
-        return new Jpeg(new Dimension(300, 300));
+        return new Gif(new Dimension(300, 300));
     }
 
     protected function getPalleteFile() {
-        return $this->getFixture('pallete/pallete.jpeg');
+        return $this->getFixture('pallete/pallete.gif');
     }
 
     protected function getInvalidCanvasFile() {
-        return $this->getFixture('invalid/invalid-sky.jpg');
+        return $this->getFixture('invalid/invalid-linux.gif');
         ;
     }
 
     protected function getCanvasFile() {
-        return $this->getFixture('sky.jpg');
+        return $this->getFixture('linux.gif');
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testFromFileThrowInvalidArgumentExceptionOnNonJpeg() {
-        $this->getCanvas()->fromFile($this->getFixture('google.png'));
+    public function testFromFileThrowInvalidArgumentExceptionOnNonGif() {
+        $this->getCanvas()->fromFile($this->getFixture('sky.jpg'));
     }
 
 }
