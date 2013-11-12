@@ -75,6 +75,7 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
         $c = $this->getCanvas();
         $copy = $c->getCopy();
 
+        $this->assertInstanceOf(get_class($c),$copy);
         $this->assertNotSame($c, $copy);
         $this->assertNotSame($c->getHandler(), $copy->getHandler());
         $this->assertTrue($c->getDimension()->equals($copy->getDimension()));
