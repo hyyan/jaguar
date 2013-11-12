@@ -11,7 +11,7 @@ namespace Jaguar\Tests;
  * file that was distributed with this source code.
  */
 
-class JaguarTestCase extends \PHPUnit_Framework_TestCase {
+abstract class JaguarTestCase extends \PHPUnit_Framework_TestCase {
 
     /**
      * Get fixture from fixtures folder

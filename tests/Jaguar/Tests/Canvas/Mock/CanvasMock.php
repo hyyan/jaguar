@@ -43,6 +43,10 @@ class CanvasMock extends AbstractCanvas {
         return null;
     }
 
+    protected function getToStringProperties() {
+        return array();
+    }
+
 
 }
 

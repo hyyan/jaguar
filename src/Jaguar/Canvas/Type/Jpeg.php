@@ -6,6 +6,7 @@ use Jaguar\ImageFile;
 use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\Canvas\CanvasOutputException;
 use Jaguar\Canvas\CompressableCanvas;
+
 /*
  * This file is part of the Jaguar package.
  *
@@ -21,14 +22,18 @@ class Jpeg extends CompressableCanvas {
      * Check if the given file is jpeg file
      * 
      * @param string $filename
-     * @return boolean true if hpeg false othewise
+     * @return boolean true if jpeg false othewise
      */
-    public function isJpegFile($filename) {
-        $image = new ImageFile($filename);
-        if (strtolower($image->getMime()) !== @image_type_to_mime_type(IMAGETYPE_JPEG)) {
+    public static function isJpegFile($filename) {
+        try {
+            $image = new ImageFile($filename);
+            if (strtolower($image->getMime()) !== @image_type_to_mime_type(IMAGETYPE_JPEG)) {
+                return false;
+            }
+            return true;
+        } catch (\RuntimeException $ex) {
             return false;
         }
-        return true;
     }
 
     /**
@@ -66,6 +71,16 @@ class Jpeg extends CompressableCanvas {
     }
 
     /**
+     * {@inheritdoc}
+     */
+    protected function getToStringProperties() {
+        return array(
+            'Type' => 'Jpeg',
+            'Dimension' => (string) $this->getDimension()
+        );
+    }
+
+    /**
      * Check If The File Is valid jpeg file
      * 
      * @param string $filename
@@ -73,7 +88,7 @@ class Jpeg extends CompressableCanvas {
      * @throws \InvalidArgumentException
      */
     protected function assertJpegFile($filename) {
-        if (!$this->isJpegFile($filename)) {
+        if (!self::isJpegFile($filename)) {
             throw new \InvalidArgumentException(
             sprintf("(%s) Is Not valid Jpeg File", $filename)
             );

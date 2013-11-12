@@ -25,7 +25,7 @@ use Jaguar\Exception\Canvas\CanvasException;
 
 abstract class AbstractCanvas implements CanvasInterface {
 
-    private $handler;
+    protected $handler;
 
     /**
      * Constrcut new canvas
@@ -128,7 +128,6 @@ abstract class AbstractCanvas implements CanvasInterface {
         return $this;
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -189,9 +188,7 @@ abstract class AbstractCanvas implements CanvasInterface {
      * {@inheritdoc}
      */
     public function fromFile($file) {
-        if (!is_file($file) || !is_readable($file)) {
-            throw new \InvalidArgumentException('File Is Not Readable');
-        }
+        $this->isValidFile($file);
         $this->doLoadFromFile($file);
         return $this;
     }
@@ -294,9 +291,27 @@ abstract class AbstractCanvas implements CanvasInterface {
         $result = get_called_class();
         $suffix = "[Empty Canvas]";
         if ($this->isHandlerSet()) {
-            $suffix = "[dimension={$this->getDimension()},trueColor=true]";
+            $properties = $this->getToStringProperties();
+            $propertiesAsString = '';
+            foreach ($properties as $key => $value) {
+                $propertiesAsString.="$key=$value,";
+            }
+            $suffix = "[" . rtrim($propertiesAsString,',') . "]";
         }
         return ($result . $suffix);
+    }
+
+    /**
+     * Check if the given string represents a path to a readable file
+     * 
+     * @param string $file
+     * 
+     * @throws \InvalidArgumentException
+     */
+    protected function isValidFile($file) {
+        if (!is_file($file) || !is_readable($file)) {
+            throw new \InvalidArgumentException('File Is Not Readable');
+        }
     }
 
     /**
@@ -348,5 +363,6 @@ abstract class AbstractCanvas implements CanvasInterface {
     abstract protected function doGetCopy();
     abstract protected function doLoadFromFile($file);
     abstract protected function doSave($path);
+    abstract protected function getToStringProperties();
 }
 

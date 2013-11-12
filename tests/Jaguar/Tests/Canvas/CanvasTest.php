@@ -1,0 +1,200 @@
+<?php
+
+namespace Jaguar\Tests\Canvas;
+
+use Jaguar\Canvas\Canvas;
+use Jaguar\Tests\JaguarTestCase;
+use Jaguar\Dimension;
+
+/*
+ * This file is part of the Jaguar package.
+ *
+ * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+class CanvasTest extends JaguarTestCase {
+
+    /**
+     * Canvas  provider
+     * 
+     * @return array
+     */
+    public function canvasProvider() {
+        return array(
+            array(new Canvas(new Dimension(100, 100), Canvas::TYPE_JPEG)),
+            array(new Canvas(new Dimension(100, 100), Canvas::TYPE_GIF)),
+            array(new Canvas(new Dimension(100, 100), Canvas::TYPE_PNG)),
+            array(new Canvas(new Dimension(100, 100), Canvas::TYPE_GD)),
+        );
+    }
+
+    /**
+     * Canvas and files provider
+     * 
+     * @return array
+     */
+    public function canvasFilesProvider() {
+        return array(
+            array(
+                new Canvas(new Dimension(100, 100), Canvas::TYPE_JPEG),
+                $this->getFixture('sky.jpg')
+            ),
+            array(
+                new Canvas(new Dimension(100, 100), Canvas::TYPE_GIF),
+                $this->getFixture('linux.gif')
+            ),
+            array(
+                new Canvas(new Dimension(100, 100), Canvas::TYPE_PNG),
+                $this->getFixture('google.png')
+            ),
+            array(
+                new Canvas(new Dimension(100, 100), Canvas::TYPE_GD),
+                $this->getFixture('gd.gd2')
+            )
+        );
+    }
+
+    /**
+     * Different canvas and files provider
+     * 
+     * @return array
+     */
+    public function differentCanvasFilesProvider() {
+        return array(
+            array(
+                new Canvas(new Dimension(100, 100), Canvas::TYPE_JPEG),
+                $this->getFixture('linux.gif'),
+                Canvas::TYPE_GIF
+            ),
+            array(new Canvas(new Dimension(100, 100), Canvas::TYPE_GIF),
+                $this->getFixture('sky.jpg'),
+                Canvas::TYPE_JPEG
+            ),
+            array(
+                new Canvas(new Dimension(100, 100), Canvas::TYPE_JPEG),
+                $this->getFixture('google.png'),
+                Canvas::TYPE_PNG
+            ),
+            array(
+                new Canvas(new Dimension(100, 100), Canvas::TYPE_JPEG),
+                $this->getFixture('gd.gd2'),
+                Canvas::TYPE_GD
+            )
+        );
+    }
+
+    /**
+     * @dataProvider canvasFilesProvider
+     * 
+     * @param \Jaguar\Canvas\Canvas $canvas
+     * @param string $file 
+     */
+    public function testFromFile(Canvas $canvas, $file) {
+        $result = $canvas->fromFile($file);
+        $this->assertTrue($canvas->isHandlerSet());
+        $this->assertSame($canvas, $result);
+    }
+
+    /**
+     * @dataProvider differentCanvasFilesProvider
+     * 
+     * @param \Jaguar\Canvas\Canvas $canvas
+     * @param string $file
+     * @param string $expectedType
+     */
+    public function testFromFileCanLoadDifferentFiles(Canvas $canvas, $file, $expectedType) {
+        $result = $canvas->fromFile($file);
+        $this->assertTrue($canvas->isHandlerSet());
+        $this->assertSame($canvas, $result);
+        $this->assertSame($canvas->getActiveFactoryName(), $expectedType);
+    }
+
+    /**
+     * @expectedException \Jaguar\Exception\Canvas\CanvasCreationException
+     */
+    public function testLoadFromFileThrowCanvasCreationExceptionOnUnsupportedType() {
+        $canvas = new Canvas();
+        $canvas->fromFile($this->getFixture('icon.ico'));
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetTypeThrowInvalidArgumentException() {
+        $canvas = new Canvas();
+        $canvas->setType('unknown type');
+    }
+
+    /**
+     * @dataProvider canvasProvider
+     * 
+     * @param \Jaguar\Canvas\Canvas $canvas
+     */
+    public function testSetGetHandler(Canvas $canvas) {
+        $new = new Canvas(new Dimension(100, 100));
+
+        $this->assertSame($canvas, $canvas->setHandler($new->getHandler()));
+        $this->assertSame($canvas->getHandler(), $new->getHandler());
+    }
+
+    /**
+     * @dataProvider canvasProvider
+     * 
+     * @param \Jaguar\Canvas\Canvas $canvas
+     */
+    public function testGetCopy(Canvas $canvas) {
+        $copy = $canvas->getCopy();
+
+        $this->assertNotSame($canvas, $copy);
+        $this->assertNotSame($canvas->getHandler(), $copy->getHandler());
+        $this->assertTrue($canvas->getDimension()->equals($copy->getDimension()));
+    }
+
+    /**
+     * @dataProvider canvasProvider
+     * 
+     * @param \Jaguar\Canvas\Canvas $canvas
+     */
+    public function testSave(Canvas $canvas) {
+
+        $path = sys_get_temp_dir() . '/tesSave.canvas';
+
+        if (file_exists($path)) {
+            unlink($path);
+        }
+
+        $canvas->save($path);
+
+        $this->assertFileExists($path);
+
+        unlink($path);
+    }
+
+    /**
+     * @dataProvider canvasProvider
+     * 
+     * @param \Jaguar\Canvas\Canvas $canvas
+     */
+    public function testToString(Canvas $canvas) {
+        $this->assertInternalType('string', (string) $canvas);
+    }
+
+    public function testTypeManipulationMethods() {
+        $canvas = new Canvas();
+        $name = 'My-JPG';
+        $type = '\Jaguar\Canvas\Factory\JpegFactory';
+
+        $canvas->addFactory($name, new $type);
+
+        $this->assertTrue($canvas->hasFactory($name));
+        $this->assertInstanceOf($type, $canvas->getFactory($name));
+        $this->assertTrue($canvas->removeFactory($name));
+        $this->assertFalse($canvas->getFactory($name));
+        $this->assertFalse($canvas->removeFactory('No Found Type'));
+    }
+
+}
+

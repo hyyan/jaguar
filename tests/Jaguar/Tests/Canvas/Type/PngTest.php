@@ -45,9 +45,17 @@ class PngTest extends CompressableCanvasTest {
      * @expectedException \Jaguar\Exception\Canvas\CanvasOutputException
      */
     public function testFromFileThrowCanvasCreationExceptionWhenAlphaSavingFails() {
-        $c = new \Jaguar\Tests\Canvas\Mock\PngMock();
+        $c = new \Jaguar\Tests\Canvas\Mock\PngCanvasMock();
         $c->setSaveAlpha(true);
         $c->save();
+    }
+
+    public function testGetCopySavePngAlphaAndFilters() {
+        $c = $this->getCanvas();
+        $copy = $c->getCopy();
+        
+        $this->assertEquals($c->getSaveAlpha(),$copy->getSaveAlpha());
+        $this->assertEquals($c->getFilter(),$copy->getFilter());
     }
 
 }

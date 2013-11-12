@@ -6,6 +6,7 @@ use Jaguar\ImageFile;
 use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\Canvas\CanvasOutputException;
 use Jaguar\Canvas\AbstractCanvas;
+
 /*
  * This file is part of the Jaguar package.
  *
@@ -23,12 +24,16 @@ class Gif extends AbstractCanvas {
      * @param string $filename
      * @return boolean true if gif file,false otherwise
      */
-    public function isGifFile($filename) {
-        $image = new ImageFile($filename);
-        if (strtolower($image->getMime()) !== @image_type_to_mime_type(IMAGETYPE_GIF)) {
+    public static function isGifFile($filename) {
+        try {
+            $image = new ImageFile($filename);
+            if (strtolower($image->getMime()) !== @image_type_to_mime_type(IMAGETYPE_GIF)) {
+                return false;
+            }
+            return true;
+        } catch (\RuntimeException $ex) {
             return false;
         }
-        return true;
     }
 
     /**
@@ -67,6 +72,16 @@ class Gif extends AbstractCanvas {
     }
 
     /**
+     * {@inheritdoc}
+     */
+    protected function getToStringProperties() {
+        return array(
+            'Type' => 'Gif',
+            'Dimension' => (string) $this->getDimension()
+        );
+    }
+
+    /**
      * Check If The File Is valid gif file
      * 
      * @param string $filename
@@ -74,7 +89,7 @@ class Gif extends AbstractCanvas {
      * @throws \InvalidArgumentException
      */
     protected function assertGifFile($filename) {
-        if (!$this->isGifFile($filename)) {
+        if (!self::isGifFile($filename)) {
             throw new \InvalidArgumentException(
             sprintf("(%s) Is Not valid Gif File", $filename)
             );

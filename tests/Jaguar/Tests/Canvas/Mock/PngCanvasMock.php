@@ -13,7 +13,7 @@ use Jaguar\Canvas\Type\Png;
  * file that was distributed with this source code.
  */
 
-class PngMock extends Png {
+class PngCanvasMock extends Png {
 
     public function isHandlerSet() {
         return true;
@@ -41,6 +41,10 @@ class PngMock extends Png {
 
     protected function doLoadFromFile($file) {
         return null;
+    }
+
+    protected function getToStringProperties() {
+        return array();
     }
 
 }

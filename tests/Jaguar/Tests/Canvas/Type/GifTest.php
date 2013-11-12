@@ -5,6 +5,7 @@ namespace Jaguar\Tests\Canvas\Type;
 use Jaguar\Canvas\Type\Gif;
 use Jaguar\Dimension;
 use Jaguar\Tests\Canvas\AbstractCanvasTest;
+
 /*
  * This file is part of the Jaguar package.
  *
@@ -26,7 +27,6 @@ class GifTest extends AbstractCanvasTest {
 
     protected function getInvalidCanvasFile() {
         return $this->getFixture('invalid/invalid-linux.gif');
-        ;
     }
 
     protected function getCanvasFile() {

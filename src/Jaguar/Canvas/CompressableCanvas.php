@@ -15,6 +15,12 @@ use Jaguar\Dimension;
 
 abstract class CompressableCanvas extends AbstractCanvas {
 
+    const QUALITY_MAX = 100;
+    const QUALITY_HIGH = 90;
+    const QUALITY_MED = 60;
+    const QUALITY_LOW = 40;
+    const QUALITY_DRAFT = 30;
+
     private $quality;
 
     /**
