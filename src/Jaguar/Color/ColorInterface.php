@@ -1,10 +1,6 @@
 <?php
 
-namespace Jaguar\Color;
-
-use Jaguar\EqualsInterface;
-
-/**
+/*
  * This file is part of the Jaguar package.
  *
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
@@ -12,6 +8,10 @@ use Jaguar\EqualsInterface;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Color;
+
+use Jaguar\EqualsInterface;
 
 interface ColorInterface extends EqualsInterface {
 

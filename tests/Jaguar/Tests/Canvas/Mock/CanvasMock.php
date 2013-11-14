@@ -1,9 +1,5 @@
 <?php
 
-namespace Jaguar\Tests\Canvas\Mock;
-
-use Jaguar\Canvas\AbstractCanvas;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -12,6 +8,10 @@ use Jaguar\Canvas\AbstractCanvas;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Tests\Canvas\Mock;
+
+use Jaguar\Canvas\AbstractCanvas;
 
 class CanvasMock extends AbstractCanvas {
 
@@ -46,7 +46,6 @@ class CanvasMock extends AbstractCanvas {
     protected function getToStringProperties() {
         return array();
     }
-
 
 }
 

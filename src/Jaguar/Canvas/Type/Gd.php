@@ -1,13 +1,5 @@
 <?php
 
-namespace Jaguar\Canvas\Type;
-
-use Jaguar\Exception\Canvas\CanvasCreationException;
-use Jaguar\Exception\Canvas\CanvasOutputException;
-use Jaguar\Canvas\AbstractCanvas;
-use Jaguar\Dimension;
-use Jaguar\Box;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -16,6 +8,14 @@ use Jaguar\Box;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Canvas\Type;
+
+use Jaguar\Exception\Canvas\CanvasCreationException;
+use Jaguar\Exception\Canvas\CanvasOutputException;
+use Jaguar\Canvas\AbstractCanvas;
+use Jaguar\Dimension;
+use Jaguar\Box;
 
 class Gd extends AbstractCanvas {
 
@@ -167,17 +167,6 @@ class Gd extends AbstractCanvas {
                     , (string) $this, $filename
             ));
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function doGetCopy() {
-        $clone = new self($this->getDimension());
-        $clone->setCompressed($this->getCompressed());
-        $clone->setChunkSize($this->getChunkSize());
-        $clone->paste($this);
-        return $clone;
     }
 
     /**

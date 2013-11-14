@@ -1,7 +1,5 @@
 <?php
 
-namespace Jaguar\Color;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -11,7 +9,10 @@ namespace Jaguar\Color;
  * file that was distributed with this source code.
  */
 
-class StyledBrushedColor extends AbstractColor{
+namespace Jaguar\Color;
+
+class StyledBrushedColor extends AbstractColor {
+
     /**
      * {@inheritdoc}
      */

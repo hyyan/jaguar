@@ -1,11 +1,5 @@
 <?php
 
-namespace Jaguar\Tests\Canvas\Type;
-
-use Jaguar\Canvas\Type\Png;
-use Jaguar\Dimension;
-use Jaguar\Tests\Canvas\CompressableCanvasTest;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -14,6 +8,12 @@ use Jaguar\Tests\Canvas\CompressableCanvasTest;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Tests\Canvas\Type;
+
+use Jaguar\Canvas\Type\Png;
+use Jaguar\Dimension;
+use Jaguar\Tests\Canvas\CompressableCanvasTest;
 
 class PngTest extends CompressableCanvasTest {
 
@@ -53,9 +53,9 @@ class PngTest extends CompressableCanvasTest {
     public function testGetCopySavePngAlphaAndFilters() {
         $c = $this->getCanvas();
         $copy = $c->getCopy();
-        
-        $this->assertEquals($c->getSaveAlpha(),$copy->getSaveAlpha());
-        $this->assertEquals($c->getFilter(),$copy->getFilter());
+
+        $this->assertEquals($c->getSaveAlpha(), $copy->getSaveAlpha());
+        $this->assertEquals($c->getFilter(), $copy->getFilter());
     }
 
 }

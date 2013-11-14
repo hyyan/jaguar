@@ -1,12 +1,5 @@
 <?php
 
-namespace Jaguar\Canvas\Type;
-
-use Jaguar\ImageFile;
-use Jaguar\Exception\Canvas\CanvasCreationException;
-use Jaguar\Exception\Canvas\CanvasOutputException;
-use Jaguar\Canvas\CompressableCanvas;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -15,6 +8,13 @@ use Jaguar\Canvas\CompressableCanvas;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Canvas\Type;
+
+use Jaguar\ImageFile;
+use Jaguar\Exception\Canvas\CanvasCreationException;
+use Jaguar\Exception\Canvas\CanvasOutputException;
+use Jaguar\Canvas\CompressableCanvas;
 
 class Jpeg extends CompressableCanvas {
 
@@ -59,15 +59,6 @@ class Jpeg extends CompressableCanvas {
             ));
         }
         $this->setHandler($handler);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function doGetCopy() {
-        $clone = new self($this->getDimension());
-        $clone->paste($this);
-        return $clone;
     }
 
     /**

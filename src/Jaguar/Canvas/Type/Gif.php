@@ -1,12 +1,5 @@
 <?php
 
-namespace Jaguar\Canvas\Type;
-
-use Jaguar\ImageFile;
-use Jaguar\Exception\Canvas\CanvasCreationException;
-use Jaguar\Exception\Canvas\CanvasOutputException;
-use Jaguar\Canvas\AbstractCanvas;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -15,6 +8,13 @@ use Jaguar\Canvas\AbstractCanvas;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Canvas\Type;
+
+use Jaguar\ImageFile;
+use Jaguar\Exception\Canvas\CanvasCreationException;
+use Jaguar\Exception\Canvas\CanvasOutputException;
+use Jaguar\Canvas\AbstractCanvas;
 
 class Gif extends AbstractCanvas {
 
@@ -60,15 +60,6 @@ class Gif extends AbstractCanvas {
             ));
         }
         $this->setHandler($handler);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function doGetCopy() {
-        $clone = new self($this->getDimension());
-        $clone->paste($this);
-        return $clone;
     }
 
     /**

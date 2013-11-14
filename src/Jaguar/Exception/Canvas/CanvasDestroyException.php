@@ -1,7 +1,5 @@
 <?php
 
-namespace Jaguar\Exception\Canvas;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -11,7 +9,9 @@ namespace Jaguar\Exception\Canvas;
  * file that was distributed with this source code.
  */
 
-class CanvasDestroyException extends CanvasException{
-  
+namespace Jaguar\Exception\Canvas;
+
+class CanvasDestroyException extends CanvasException {
+    
 }
 

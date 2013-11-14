@@ -1,9 +1,5 @@
 <?php
 
-namespace Jaguar\Tests;
-
-use Jaguar\Box;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -12,6 +8,10 @@ use Jaguar\Box;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Tests;
+
+use Jaguar\Box;
 
 class BoxTest extends JaguarTestCase {
 

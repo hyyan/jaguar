@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Jaguar package.
+ *
+ * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 function includeIfExists($file) {
     if (file_exists($file)) {
         return include $file;

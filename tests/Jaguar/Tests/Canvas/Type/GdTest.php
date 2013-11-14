@@ -1,12 +1,5 @@
 <?php
 
-namespace Jaguar\Tests\Canvas\Type;
-
-use Jaguar\Canvas\Type\Gd;
-use Jaguar\Dimension;
-use Jaguar\Box;
-use Jaguar\Tests\Canvas\AbstractCanvasTest;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -15,6 +8,13 @@ use Jaguar\Tests\Canvas\AbstractCanvasTest;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Tests\Canvas\Type;
+
+use Jaguar\Canvas\Type\Gd;
+use Jaguar\Dimension;
+use Jaguar\Box;
+use Jaguar\Tests\Canvas\AbstractCanvasTest;
 
 class GdTest extends AbstractCanvasTest {
 
@@ -77,7 +77,7 @@ class GdTest extends AbstractCanvasTest {
                 , new Box(new Dimension(50, 50))
         );
         $this->assertTrue($c->isHandlerSet());
-        $this->assertTrue($c->getDimension()->equals(new Dimension(50,50)));
+        $this->assertTrue($c->getDimension()->equals(new Dimension(50, 50)));
     }
 
 }

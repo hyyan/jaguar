@@ -1,10 +1,5 @@
 <?php
 
-namespace Jaguar\Canvas\Factory;
-
-use Jaguar\Canvas\Type\Png;
-use Jaguar\Canvas\CanvasFactory;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -13,6 +8,11 @@ use Jaguar\Canvas\CanvasFactory;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Canvas\Factory;
+
+use Jaguar\Canvas\Type\Png;
+use Jaguar\Canvas\CanvasFactory;
 
 class PngFactory implements CanvasFactory {
 

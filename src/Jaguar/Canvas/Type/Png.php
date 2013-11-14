@@ -1,14 +1,5 @@
 <?php
 
-namespace Jaguar\Canvas\Type;
-
-use Jaguar\ImageFile;
-use Jaguar\Dimension;
-use Jaguar\Exception\Canvas\CanvasCreationException;
-use Jaguar\Exception\Canvas\CanvasOutputException;
-use Jaguar\Exception\Canvas\CanvasException;
-use Jaguar\Canvas\CompressableCanvas;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -17,6 +8,15 @@ use Jaguar\Canvas\CompressableCanvas;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Canvas\Type;
+
+use Jaguar\ImageFile;
+use Jaguar\Dimension;
+use Jaguar\Exception\Canvas\CanvasCreationException;
+use Jaguar\Exception\Canvas\CanvasOutputException;
+use Jaguar\Exception\Canvas\CanvasException;
+use Jaguar\Canvas\CompressableCanvas;
 
 class Png extends CompressableCanvas {
 
@@ -155,24 +155,6 @@ class Png extends CompressableCanvas {
             ));
         }
         $this->setHandler($handler);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function doGetCopy() {
-        $clone = new self($this->getDimension());
-
-        $alpha = $this->getSaveAlpha();
-        $filter = $this->getFilter();
-
-        $clone->setSaveAlpha($alpha);
-        $clone->setFilter($filter);
-
-        $this->saveAlpha($clone, $alpha);
-
-        $clone->paste($this);
-        return $clone;
     }
 
     /**

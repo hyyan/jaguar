@@ -1,13 +1,6 @@
 <?php
 
-namespace Jaguar\Canvas;
-
-use Jaguar\Box;
-use Jaguar\Coordinate;
-use Jaguar\Color\ColorInterface;
-use Jaguar\Dimension;
-
-/**
+/*
  * This file is part of the Jaguar package.
  *
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
@@ -15,6 +8,13 @@ use Jaguar\Dimension;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Canvas;
+
+use Jaguar\Box;
+use Jaguar\Coordinate;
+use Jaguar\Color\ColorInterface;
+use Jaguar\Dimension;
 
 interface CanvasInterface {
 
@@ -90,7 +90,6 @@ interface CanvasInterface {
      * @return \Jaguar\Canvas\CanvasInterface return a canvas with a completey 
      *                                        different gd resource
      * 
-     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException 
      * @throws \Jaguar\Exception\Canvas\CanvasException
      */
     public function getCopy();

@@ -1,11 +1,5 @@
 <?php
 
-namespace Jaguar\Tests\Canvas\Type;
-
-use Jaguar\Canvas\Type\Gif;
-use Jaguar\Dimension;
-use Jaguar\Tests\Canvas\AbstractCanvasTest;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -14,6 +8,12 @@ use Jaguar\Tests\Canvas\AbstractCanvasTest;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Tests\Canvas\Type;
+
+use Jaguar\Canvas\Type\Gif;
+use Jaguar\Dimension;
+use Jaguar\Tests\Canvas\AbstractCanvasTest;
 
 class GifTest extends AbstractCanvasTest {
 

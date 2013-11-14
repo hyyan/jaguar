@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Jaguar package.
+ *
+ * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jaguar\Canvas;
 
 use Jaguar\Box;
@@ -14,16 +23,7 @@ use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\InvalidDimensionException;
 use Jaguar\Exception\Canvas\CanvasException;
 
-/*
- * This file is part of the Jaguar package.
- *
- * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-abstract class AbstractCanvas implements CanvasInterface {
+class AbstractCanvas implements CanvasInterface {
 
     protected $handler;
 
@@ -132,8 +132,7 @@ abstract class AbstractCanvas implements CanvasInterface {
      * {@inheritdoc}
      */
     public function getCopy() {
-        $this->assertEmpty();
-        return $this->doGetCopy();
+        return (clone $this);
     }
 
     /**
@@ -296,9 +295,21 @@ abstract class AbstractCanvas implements CanvasInterface {
             foreach ($properties as $key => $value) {
                 $propertiesAsString.="$key=$value,";
             }
-            $suffix = "[" . rtrim($propertiesAsString,',') . "]";
+            $suffix = "[" . rtrim($propertiesAsString, ',') . "]";
         }
         return ($result . $suffix);
+    }
+
+    /**
+     * Create a copy of the current canvas
+     */
+    public function __clone() {
+        if ($this->isHandlerSet()) {
+            $clone = new self();
+            $clone->create($this->getDimension());
+            $clone->paste($this);
+            $this->handler = $clone->getHandler();
+        }
     }
 
     /**
@@ -360,9 +371,29 @@ abstract class AbstractCanvas implements CanvasInterface {
         $resource = $dst;
     }
 
-    abstract protected function doGetCopy();
-    abstract protected function doLoadFromFile($file);
-    abstract protected function doSave($path);
-    abstract protected function getToStringProperties();
+    /**
+     * @see Canvas::fromFile
+     */
+    protected function doLoadFromFile($file) {
+        throw new \LogicException(sprintf('%s Must Be Implemented', __METHOD__));
+    }
+
+    /**
+     * @see Canvas::save
+     */
+    protected function doSave($path) {
+        throw new \LogicException(sprintf('%s Must Be Implemented', __METHOD__));
+    }
+
+    /**
+     * Get string properties that must be displayed when the canvas is converted
+     * to string
+     * 
+     * @return array array of properties as key/value
+     */
+    protected function getToStringProperties() {
+        throw new \LogicException(sprintf('%s Must Be Implemented', __METHOD__));
+    }
+
 }
 

@@ -1,10 +1,5 @@
 <?php
 
-namespace Jaguar;
-
-use Jaguar\Color\ColorInterface;
-use Jaguar\Color\RGBColor;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -13,6 +8,11 @@ use Jaguar\Color\RGBColor;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar;
+
+use Jaguar\Color\ColorInterface;
+use Jaguar\Color\RGBColor;
 
 class Font implements EqualsInterface {
 

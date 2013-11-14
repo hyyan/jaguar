@@ -1,9 +1,5 @@
 <?php
 
-namespace Jaguar\Exception\Canvas;
-
-use Jaguar\Exception\JaguarException;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -12,6 +8,10 @@ use Jaguar\Exception\JaguarException;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Exception\Canvas;
+
+use Jaguar\Exception\JaguarException;
 
 class CanvasException extends JaguarException {
     

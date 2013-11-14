@@ -1,7 +1,5 @@
 <?php
 
-namespace Jaguar;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -10,6 +8,8 @@ namespace Jaguar;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar;
 
 class Dimension implements EqualsInterface {
 
@@ -147,8 +147,8 @@ class Dimension implements EqualsInterface {
     public function __toString() {
         return get_called_class()
                 . "["
-                    . "width={$this->getWidth()},"
-                    . "height={$this->getHeight()}"
+                . "width={$this->getWidth()},"
+                . "height={$this->getHeight()}"
                 . "]";
     }
 

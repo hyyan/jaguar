@@ -1,12 +1,5 @@
 <?php
 
-namespace Jaguar\Tests\Canvas;
-
-use Jaguar\Tests\JaguarTestCase;
-use Jaguar\Tests\Canvas\Mock\CanvasMock;
-use Jaguar\Dimension;
-use Jaguar\Color\RGBColor;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -15,6 +8,13 @@ use Jaguar\Color\RGBColor;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Tests\Canvas;
+
+use Jaguar\Tests\JaguarTestCase;
+use Jaguar\Tests\Canvas\Mock\CanvasMock;
+use Jaguar\Dimension;
+use Jaguar\Color\RGBColor;
 
 abstract class AbstractCanvasTest extends JaguarTestCase {
 
@@ -75,7 +75,7 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
         $c = $this->getCanvas();
         $copy = $c->getCopy();
 
-        $this->assertInstanceOf(get_class($c),$copy);
+        $this->assertInstanceOf(get_class($c), $copy);
         $this->assertNotSame($c, $copy);
         $this->assertNotSame($c->getHandler(), $copy->getHandler());
         $this->assertTrue($c->getDimension()->equals($copy->getDimension()));

@@ -1,14 +1,5 @@
 <?php
 
-namespace Jaguar\Canvas;
-
-use Jaguar\Dimension;
-use Jaguar\Exception\Canvas\CanvasCreationException;
-use Jaguar\Canvas\Factory\JpegFactory;
-use Jaguar\Canvas\Factory\GifFactory;
-use Jaguar\Canvas\Factory\PngFactory;
-use Jaguar\Canvas\Factory\GdFactory;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -17,6 +8,14 @@ use Jaguar\Canvas\Factory\GdFactory;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Jaguar\Canvas;
+
+use Jaguar\Dimension;
+use Jaguar\Exception\Canvas\CanvasCreationException;
+use Jaguar\Canvas\Factory\JpegFactory;
+use Jaguar\Canvas\Factory\GifFactory;
+use Jaguar\Canvas\Factory\PngFactory;
+use Jaguar\Canvas\Factory\GdFactory;
 
 class Canvas extends AbstractCanvas {
 
@@ -112,6 +111,20 @@ class Canvas extends AbstractCanvas {
     }
 
     /**
+     * Add array of factories
+     * 
+     * @param array $factories
+     * 
+     * @return \Jaguar\Canvas\Canvas
+     */
+    public function setFactory(array $factories) {
+        foreach ($factories as $name => $factory) {
+            $this->addFactory($name, $factory);
+        }
+        return $this;
+    }
+
+    /**
      * Get factory by its name
      * 
      * @param string $name factory name
@@ -160,6 +173,46 @@ class Canvas extends AbstractCanvas {
     }
 
     /**
+     * Get canvas mime type
+     * 
+     * @return string
+     */
+    public function getMimeType() {
+        return $this->getActiveFactory()->getMimeType();
+    }
+
+    /**
+     * Get canvas extension
+     * 
+     * @param boolean $includeDot true to inlcude dot false to ignore it
+     * 
+     * @return string
+     */
+    public function getExtension($includeDot = true) {
+        return $this->getActiveFactory()->getExtension($includeDot);
+    }
+
+    /**
+     * Output raw canvas directly to the browser
+     * 
+     * <b>Note : </b>
+     * The write header for every canvas type will be send also
+     * 
+     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
+     */
+    public function show() {
+        $this->assertEmpty();
+        try {
+            header(sprintf('Content-Type: %s', $this->getMimeType(), true));
+            $this->save(null);
+        } catch (\Exception $ex) {
+            header(sprintf('Content-Type: text/html'), true);
+            /* rethrow it */
+            throw $ex;
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setHandler($handler) {
@@ -177,15 +230,30 @@ class Canvas extends AbstractCanvas {
     /**
      * {@inheritdoc}
      */
-    public function isHandlerSet() {
-        return $this->getActiveCanvas()->isHandlerSet();
+    public function fromCanvas(CanvasInterface $canvas) {
+        if (!($canvas instanceof self)) {
+            throw new \InvalidArgumentException(
+            'FromCanvas Accepts Only Instance OF "\Jaguar\Canvas\Canvas"'
+            );
+        }
+        $this->setType($canvas->getActiveFactoryName());
+        $this->setHandler($canvas->getHandler());
+        return $this;
     }
 
+    public function __clone() {
+        
+    }
     /**
      * {@inheritdoc}
      */
     protected function doGetCopy() {
-        return $this->getActiveCanvas()->getCopy();
+        $clone = new self();
+        $clone->setFactory($this->getFactories());
+        $clone->setType($this->getActiveFactoryName());
+        $clone->create($this->getDimension());
+        $clone->paste($this);
+        return $clone;
     }
 
     /**
@@ -202,6 +270,13 @@ class Canvas extends AbstractCanvas {
      */
     protected function getToStringProperties() {
         return array();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function destroy() {
+        $this->getActiveCanvas()->destroy();
     }
 
     /**

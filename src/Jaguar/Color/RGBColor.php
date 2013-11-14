@@ -1,7 +1,5 @@
 <?php
 
-namespace Jaguar\Color;
-
 /*
  * This file is part of the Jaguar package.
  *
@@ -10,6 +8,8 @@ namespace Jaguar\Color;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Jaguar\Color;
 
 class RGBColor extends AbstractColor {
 
@@ -322,13 +322,13 @@ class RGBColor extends AbstractColor {
     public function __toString() {
         return get_called_class()
                 . "("
-                    . $this->getValue()
+                . $this->getValue()
                 . ")"
                 . "["
-                    . "r={$this->getRed()},"
-                    . "g={$this->getGreen()},"
-                    . "b={$this->getBlue()},"
-                    . "alpha={$this->getAlpha()}"
+                . "r={$this->getRed()},"
+                . "g={$this->getGreen()},"
+                . "b={$this->getBlue()},"
+                . "alpha={$this->getAlpha()}"
                 . "]";
     }
 
