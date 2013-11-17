@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Canvas\Type;
+namespace Jaguar\Canvas\Format;
 
 use Jaguar\ImageFile;
 use Jaguar\Dimension;
@@ -59,7 +59,7 @@ class Png extends CompressableCanvas {
      *
      * @param boolean $bool  
      * 
-     * @return Jaguar\Canvas\Type\Png
+     * @return Jaguar\Canvas\Format\Png
      */
     public function setSaveAlpha($bool) {
         $this->PNGIsSaveAlpha = (boolean) $bool;
@@ -83,7 +83,7 @@ class Png extends CompressableCanvas {
      *
      * @param integer $filter
      * 
-     * @return Jaguar\Canvas\Type\Png
+     * @return Jaguar\Canvas\Format\Png
      */
     public function setFilter($filter) {
         $validFilters =
@@ -160,10 +160,10 @@ class Png extends CompressableCanvas {
     /**
      * Save The Alpha Channel Information For Png Resource
      * 
-     * @param Jaguar\Canvas\Type\Png\PngCanvas $png
+     * @param Jaguar\Canvas\Format\Png $png
      * @param boolean $flag true to save false to ignore
      * 
-     * @return \Jaguar\Canvas\Type\Png
+     * @return \Jaguar\Canvas\Format\Png
      * @throws \Jaguar\Exception\Canvas\CanvasException
      */
     protected function saveAlpha(Png $png, $flag) {
@@ -184,7 +184,7 @@ class Png extends CompressableCanvas {
      */
     protected function getToStringProperties() {
         return array(
-            'Type' => 'Png',
+            'Format' => 'Png',
             'Dimension' => (string) $this->getDimension(),
             'Alpha' => (string) $this->getSaveAlpha()
         );

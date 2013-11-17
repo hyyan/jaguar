@@ -8,10 +8,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Jaguar\Canvas;
 
 use Jaguar\Dimension;
 use Jaguar\Exception\Canvas\CanvasCreationException;
+use Jaguar\Exception\Canvas\CanvasException;
 use Jaguar\Canvas\Factory\JpegFactory;
 use Jaguar\Canvas\Factory\GifFactory;
 use Jaguar\Canvas\Factory\PngFactory;
@@ -19,14 +21,14 @@ use Jaguar\Canvas\Factory\GdFactory;
 
 class Canvas extends AbstractCanvas {
 
-    const TYPE_PNG = 'factory.png';
-    const TYPE_JPEG = 'factory.jpeg';
-    const TYPE_GIF = 'factory.gif';
-    const TYPE_GD = 'factory.gd2';
+    const Format_PNG = 'factory.png';
+    const Format_JPEG = 'factory.jpeg';
+    const Format_GIF = 'factory.gif';
+    const Format_GD = 'factory.gd2';
 
     private $factories = array();
-    private $activeFactoryName = null;
     private $activeCanvas = null;
+    private $activeFactoryName = null;
 
     /**
      * Constrcut new canvas
@@ -37,18 +39,20 @@ class Canvas extends AbstractCanvas {
      * @throws \Jaguar\Exception\InvalidDimensionException
      * @throws \Jaguar\Exception\Canvas\CanvasCreationException
      */
-    public function __construct(Dimension $dimension = null, $factoryName = self::TYPE_PNG) {
+    public function __construct(Dimension $dimension = null, $factoryName = self::Format_PNG) {
         $this->__initFactories__();
-        $this->setType($factoryName);
+        $this->setFormat($factoryName);
         parent::__construct($dimension);
     }
 
-    /** i factories */
+    /** init factories */
     protected function __initFactories__() {
-        $this->addFactory(self::TYPE_JPEG, new JpegFactory())
-                ->addFactory(self::TYPE_GIF, new GifFactory())
-                ->addFactory(self::TYPE_PNG, new PngFactory())
-                ->addFactory(self::TYPE_GD, new GdFactory());
+        $this->setFactory(array(
+            self::Format_JPEG => new JpegFactory()
+            , self::Format_GIF => new GifFactory()
+            , self::Format_PNG => new PngFactory()
+            , self::Format_GD => new GdFactory()
+        ));
     }
 
     /**
@@ -59,7 +63,7 @@ class Canvas extends AbstractCanvas {
      * @return \Jaguar\Canvas\Canvas
      * @throws \InvalidArgumentException
      */
-    public function setType($name) {
+    public function setFormat($name) {
         if (!$this->hasFactory($name)) {
             throw new \InvalidArgumentException(sprintf(
                     'Invalid Canvas Factory "%s"', $name
@@ -196,12 +200,9 @@ class Canvas extends AbstractCanvas {
      * Output raw canvas directly to the browser
      * 
      * <b>Note : </b>
-     * The write header for every canvas type will be send also
-     * 
-     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
+     * The write header for every canvas Format will be send also
      */
     public function show() {
-        $this->assertEmpty();
         try {
             header(sprintf('Content-Type: %s', $this->getMimeType(), true));
             $this->save(null);
@@ -230,30 +231,20 @@ class Canvas extends AbstractCanvas {
     /**
      * {@inheritdoc}
      */
-    public function fromCanvas(CanvasInterface $canvas) {
-        if (!($canvas instanceof self)) {
-            throw new \InvalidArgumentException(
-            'FromCanvas Accepts Only Instance OF "\Jaguar\Canvas\Canvas"'
-            );
-        }
-        $this->setType($canvas->getActiveFactoryName());
-        $this->setHandler($canvas->getHandler());
-        return $this;
+    public function isHandlerSet() {
+        return $this->getActiveCanvas()->isHandlerSet();
     }
 
-    public function __clone() {
-        
-    }
     /**
      * {@inheritdoc}
      */
-    protected function doGetCopy() {
-        $clone = new self();
-        $clone->setFactory($this->getFactories());
-        $clone->setType($this->getActiveFactoryName());
-        $clone->create($this->getDimension());
-        $clone->paste($this);
-        return $clone;
+    public function __clone() {
+        if ($this->isHandlerSet()) {
+            $clone = new self();
+            $this->activeCanvas = $this->getActiveCanvas()->getCopy();
+            $clone->create($this->getDimension());
+            $clone->paste($this);
+        }
     }
 
     /**
@@ -297,7 +288,7 @@ class Canvas extends AbstractCanvas {
             $found = false;
             foreach ($this->getFactories() as $name => $factory) {
                 if ($factory->isSupported($file)) {
-                    $this->setType($name);
+                    $this->setFormat($name);
                     $this->getActiveCanvas()->fromFile($file);
                     $found = true;
                     break;

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Jaguar package.
  *
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
@@ -90,6 +90,7 @@ interface CanvasInterface {
      * @return \Jaguar\Canvas\CanvasInterface return a canvas with a completey 
      *                                        different gd resource
      * 
+     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
      * @throws \Jaguar\Exception\Canvas\CanvasException
      */
     public function getCopy();

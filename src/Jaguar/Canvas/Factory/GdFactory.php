@@ -11,7 +11,7 @@
 
 namespace Jaguar\Canvas\Factory;
 
-use Jaguar\Canvas\Type\Gd;
+use Jaguar\Canvas\Format\Gd;
 use Jaguar\Canvas\CanvasFactory;
 
 class GdFactory implements CanvasFactory {

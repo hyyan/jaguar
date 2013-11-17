@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Tests\Canvas\Type;
+namespace Jaguar\Tests\Canvas\Format;
 
-use Jaguar\Canvas\Type\Gd;
+use Jaguar\Canvas\Format\Gd;
 use Jaguar\Dimension;
 use Jaguar\Box;
 use Jaguar\Tests\Canvas\AbstractCanvasTest;

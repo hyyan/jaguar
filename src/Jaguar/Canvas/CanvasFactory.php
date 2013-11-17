@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Jaguar package.
  *
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
@@ -14,7 +14,7 @@ namespace Jaguar\Canvas;
 interface CanvasFactory {
 
     /**
-     * Checkif the given file can be loaded by this type
+     * Checkif the given file can be loaded by this Format
      * 
      * @param string $file file's path
      * 
@@ -23,14 +23,14 @@ interface CanvasFactory {
     public function isSupported($file);
 
     /**
-     * Get mime type for the canvas type which this factory handle
+     * Get mime type for the canvas Format which this factory handle
      * 
      * @return string 
      */
     public function getMimeType();
 
     /**
-     * Get extension for the canvas type which this factory handle
+     * Get extension for the canvas Format which this factory handle
      * 
      * @param boolean $includeDot true to include dot in the extension,false to ignore
      * @return string 

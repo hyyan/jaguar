@@ -11,7 +11,7 @@
 
 namespace Jaguar\Canvas\Factory;
 
-use Jaguar\Canvas\Type\Jpeg;
+use Jaguar\Canvas\Format\Jpeg;
 use Jaguar\Canvas\CanvasFactory;
 
 class JpegFactory implements CanvasFactory {

@@ -11,7 +11,7 @@
 
 namespace Jaguar\Tests\Canvas\Mock;
 
-use Jaguar\Canvas\Type\Png;
+use Jaguar\Canvas\Format\Png;
 
 class PngCanvasMock extends Png {
 
@@ -29,10 +29,6 @@ class PngCanvasMock extends Png {
 
     public function getHeight() {
         return 100;
-    }
-
-    protected function doGetCopy() {
-        return null;
     }
 
     public function alphaBlending($bool) {

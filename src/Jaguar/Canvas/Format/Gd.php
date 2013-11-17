@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Canvas\Type;
+namespace Jaguar\Canvas\Format;
 
 use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\Canvas\CanvasOutputException;
@@ -39,7 +39,7 @@ class Gd extends AbstractCanvas {
      * 
      * @param boolean $bool true to compresse the resource
      * 
-     * @return \Jaguar\Canvas\Type\Gd 
+     * @return \Jaguar\Canvas\Format\Gd 
      */
     public function setCompressed($bool) {
         $this->GD2Compressed = $bool;
@@ -62,7 +62,7 @@ class Gd extends AbstractCanvas {
      * 
      * @param integer $size
      * 
-     * @return \Jaguar\Canvas\Type\Gd
+     * @return \Jaguar\Canvas\Format\Gd
      */
     public function setChunkSize($size) {
         $this->GD2chunkSize = (integer) $size;
@@ -113,7 +113,7 @@ class Gd extends AbstractCanvas {
      * @param string $file
      * @param \Jaguar\Box $box 
      * 
-     * @return \Jaguar\Canvas\Type\Gd 
+     * @return \Jaguar\Canvas\Format\Gd 
      * 
      * @throws \InvalidArgumentException
      * @throws \Jaguar\Exception\Canvas\CanvasCreationException
@@ -174,7 +174,7 @@ class Gd extends AbstractCanvas {
      */
     protected function getToStringProperties() {
         return array(
-            'Type' => 'Gd',
+            'Format' => 'Gd',
             'Dimension' => (string) $this->getDimension(),
             'Compressed' => (string) $this->getCompressed(),
             'ChunkSize' => (string) $this->getChunkSize()

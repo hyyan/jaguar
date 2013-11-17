@@ -11,7 +11,7 @@
 
 namespace Jaguar\Canvas\Factory;
 
-use Jaguar\Canvas\Type\Gif;
+use Jaguar\Canvas\Format\Gif;
 use Jaguar\Canvas\CanvasFactory;
 
 class GifFactory implements CanvasFactory {

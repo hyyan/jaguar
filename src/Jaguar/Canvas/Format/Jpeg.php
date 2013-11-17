@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Canvas\Type;
+namespace Jaguar\Canvas\Format;
 
 use Jaguar\ImageFile;
 use Jaguar\Exception\Canvas\CanvasCreationException;
@@ -66,7 +66,7 @@ class Jpeg extends CompressableCanvas {
      */
     protected function getToStringProperties() {
         return array(
-            'Type' => 'Jpeg',
+            'Format' => 'Jpeg',
             'Dimension' => (string) $this->getDimension()
         );
     }

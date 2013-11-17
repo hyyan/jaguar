@@ -19,32 +19,6 @@ use Jaguar\Color\RGBColor;
 abstract class AbstractCanvasTest extends JaguarTestCase {
 
     /**
-     * Get canvas
-     * @return \Jaguar\Canvas\CanvasInterface 
-     */
-    abstract protected function getCanvas();
-
-    /**
-     * Get pallete file to test if pallete can be converted to truecolor
-     * @return string file's path 
-     */
-    abstract protected function getPalleteFile();
-
-    /**
-     * Get normal canvas file to test <tt>fromFile</tt> method 
-     * @return string file's path 
-     */
-    abstract protected function getCanvasFile();
-
-    /**
-     * Get invalid(damaged) file to test that fromFile can fail on this kind
-     * of files
-     * 
-     * @return string file's path 
-     */
-    abstract protected function getInvalidCanvasFile();
-
-    /**
      * @expectedException \InvalidArgumentException
      */
     public function testSetHandlerThrowInvalidArgumentException() {
@@ -186,7 +160,7 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasEmptyException
      */
-    public function testSaveAnddCanvasEmptyException() {
+    public function testSaveAndCanvasEmptyException() {
         $c = $this->getCanvas();
         $c->destroy();
         $c->save('will no be saved');
@@ -219,5 +193,30 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
         $c->destroy();
     }
 
+    /**
+     * Get canvas
+     * @return \Jaguar\Canvas\CanvasInterface 
+     */
+    abstract protected function getCanvas();
+
+    /**
+     * Get pallete file to test if pallete can be converted to truecolor
+     * @return string file's path 
+     */
+    abstract protected function getPalleteFile();
+
+    /**
+     * Get normal canvas file to test <tt>fromFile</tt> method 
+     * @return string file's path 
+     */
+    abstract protected function getCanvasFile();
+
+    /**
+     * Get invalid(damaged) file to test that fromFile can fail on this kind
+     * of files
+     * 
+     * @return string file's path 
+     */
+    abstract protected function getInvalidCanvasFile();
 }
 

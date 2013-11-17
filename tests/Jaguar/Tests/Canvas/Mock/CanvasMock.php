@@ -31,10 +31,6 @@ class CanvasMock extends AbstractCanvas {
         return 100;
     }
 
-    protected function doGetCopy() {
-        return null;
-    }
-
     protected function doLoadFromFile($file) {
         return null;
     }

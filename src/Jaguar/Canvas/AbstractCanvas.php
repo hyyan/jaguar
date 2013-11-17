@@ -23,7 +23,7 @@ use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\InvalidDimensionException;
 use Jaguar\Exception\Canvas\CanvasException;
 
-class AbstractCanvas implements CanvasInterface {
+abstract class AbstractCanvas implements CanvasInterface {
 
     protected $handler;
 
@@ -80,7 +80,6 @@ class AbstractCanvas implements CanvasInterface {
         if ($this->isHandlerSet()) {
             $this->destroy();
         }
-
         $this->handler = $handler;
         return $this;
     }
@@ -89,14 +88,14 @@ class AbstractCanvas implements CanvasInterface {
      * {@inheritdoc}
      */
     public function getWidth() {
-        return $this->isHandlerSet() ? imagesx($this->getHandler()) : 0;
+        return $this->isHandlerSet() ? @imagesx($this->getHandler()) : 0;
     }
 
     /**
      * {@inheritdoc}
      */
     public function getHeight() {
-        return $this->isHandlerSet() ? imagesy($this->getHandler()) : 0;
+        return $this->isHandlerSet() ? @imagesy($this->getHandler()) : 0;
     }
 
     /**
@@ -132,6 +131,7 @@ class AbstractCanvas implements CanvasInterface {
      * {@inheritdoc}
      */
     public function getCopy() {
+        $this->assertEmpty();
         return (clone $this);
     }
 
@@ -196,7 +196,6 @@ class AbstractCanvas implements CanvasInterface {
      * {@inheritdoc}
      */
     public function draw(Drawable $drawable) {
-        $this->assertEmpty();
         $drawable->draw($this);
         return $this;
     }
@@ -279,7 +278,7 @@ class AbstractCanvas implements CanvasInterface {
                     'Could Not Destroy The Canvas "%s"', (string) $this
             ));
         }
-        $this->releaseHandler();
+        $this->handler = null;
         return $this;
     }
 
@@ -305,7 +304,8 @@ class AbstractCanvas implements CanvasInterface {
      */
     public function __clone() {
         if ($this->isHandlerSet()) {
-            $clone = new self();
+            $class = get_called_class();
+            $clone = new $class;
             $clone->create($this->getDimension());
             $clone->paste($this);
             $this->handler = $clone->getHandler();
@@ -323,13 +323,6 @@ class AbstractCanvas implements CanvasInterface {
         if (!is_file($file) || !is_readable($file)) {
             throw new \InvalidArgumentException('File Is Not Readable');
         }
-    }
-
-    /**
-     * Reslease the gd resource 
-     */
-    protected function releaseHandler() {
-        $this->handler = null;
     }
 
     /**
@@ -367,23 +360,19 @@ class AbstractCanvas implements CanvasInterface {
         );
         @imagealphablending($dst, true);
         @imagesavealpha($dst, false);
-        imagedestroy($resource);
+        @imagedestroy($resource);
         $resource = $dst;
     }
 
     /**
      * @see Canvas::fromFile
      */
-    protected function doLoadFromFile($file) {
-        throw new \LogicException(sprintf('%s Must Be Implemented', __METHOD__));
-    }
+    abstract protected function doLoadFromFile($file);
 
     /**
      * @see Canvas::save
      */
-    protected function doSave($path) {
-        throw new \LogicException(sprintf('%s Must Be Implemented', __METHOD__));
-    }
+    abstract protected function doSave($path);
 
     /**
      * Get string properties that must be displayed when the canvas is converted
@@ -391,9 +380,6 @@ class AbstractCanvas implements CanvasInterface {
      * 
      * @return array array of properties as key/value
      */
-    protected function getToStringProperties() {
-        throw new \LogicException(sprintf('%s Must Be Implemented', __METHOD__));
-    }
-
+    abstract protected function getToStringProperties();
 }
 

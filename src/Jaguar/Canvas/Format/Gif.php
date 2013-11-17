@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Canvas\Type;
+namespace Jaguar\Canvas\Format;
 
 use Jaguar\ImageFile;
 use Jaguar\Exception\Canvas\CanvasCreationException;
@@ -67,7 +67,7 @@ class Gif extends AbstractCanvas {
      */
     protected function getToStringProperties() {
         return array(
-            'Type' => 'Gif',
+            'Format' => 'Gif',
             'Dimension' => (string) $this->getDimension()
         );
     }
