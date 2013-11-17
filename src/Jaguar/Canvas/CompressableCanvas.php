@@ -29,7 +29,7 @@ abstract class CompressableCanvas extends AbstractCanvas {
      * @param \Jaguar\Dimension $dimension
      * @param integer $quality default 75
      */
-    public function __construct(Dimension $dimension = null, $quality = 75) {
+    public function __construct(Dimension $dimension = null, $quality = self::QUALITY_HIGH) {
         parent::__construct($dimension);
         $this->setQuality($quality);
     }
