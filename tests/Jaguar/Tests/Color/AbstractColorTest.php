@@ -24,6 +24,7 @@ abstract class AbstractColorTest extends JaguarTestCase {
 
     public function testEquals() {
         $this->assertTrue($this->getColor()->equals($this->getColor()));
+        $this->assertFalse($this->getColor()->equals(\Jaguar\Color\RGBColor::fromValue(16711680)));
     }
 
     public function testToString() {
