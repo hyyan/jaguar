@@ -219,23 +219,21 @@ class Canvas extends AbstractCanvas {
      * @param mixed $arguments 
      */
     public function __call($name, $arguments) {
-        if ($this->getActiveCanvas()) {
-            if (!method_exists($this->getActiveCanvas(), $name)) {
-                throw new \RuntimeException(sprintf(
-                        'Call To Undefined Method "%s" From "%s"'
-                        , get_class($this->getActiveCanvas()) . '::' . $name
-                        , __METHOD__
-                ));
-            }
-            $return = call_user_func_array(
-                    array($this->getActiveCanvas(), $name)
-                    , $arguments
-            );
-            if ($return instanceof CanvasInterface) {
-                return $this;
-            }
-            return $return;
+        if (!method_exists($this->getActiveCanvas(), $name)) {
+            throw new \RuntimeException(sprintf(
+                    'Call To Undefined Method "%s" From "%s"'
+                    , get_class($this->getActiveCanvas()) . '::' . $name
+                    , __METHOD__
+            ));
         }
+        $return = call_user_func_array(
+                array($this->getActiveCanvas(), $name)
+                , $arguments
+        );
+        if ($return instanceof CanvasInterface) {
+            return $this;
+        }
+        return $return;
     }
 
     /**
