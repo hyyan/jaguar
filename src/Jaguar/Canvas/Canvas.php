@@ -13,7 +13,6 @@ namespace Jaguar\Canvas;
 
 use Jaguar\Dimension;
 use Jaguar\Exception\Canvas\CanvasCreationException;
-use Jaguar\Exception\Canvas\CanvasException;
 use Jaguar\Canvas\Factory\JpegFactory;
 use Jaguar\Canvas\Factory\GifFactory;
 use Jaguar\Canvas\Factory\PngFactory;
@@ -210,6 +209,32 @@ class Canvas extends AbstractCanvas {
             header(sprintf('Content-Type: text/html'), true);
             /* rethrow it */
             throw $ex;
+        }
+    }
+
+    /**
+     * Call metgod from the current active canvas
+     * 
+     * @param string $name 
+     * @param mixed $arguments 
+     */
+    public function __call($name, $arguments) {
+        if ($this->getActiveCanvas()) {
+            if (!method_exists($this->getActiveCanvas(), $name)) {
+                throw new \RuntimeException(sprintf(
+                        'Call To Undefined Method "%s" From "%s"'
+                        , get_class($this->getActiveCanvas()) . '::' . $name
+                        , __METHOD__
+                ));
+            }
+            $return = call_user_func_array(
+                    array($this->getActiveCanvas(), $name)
+                    , $arguments
+            );
+            if ($return instanceof CanvasInterface) {
+                return $this;
+            }
+            return $return;
         }
     }
 

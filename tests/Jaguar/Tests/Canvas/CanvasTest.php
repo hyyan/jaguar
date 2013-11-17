@@ -14,7 +14,6 @@ namespace Jaguar\Tests\Canvas;
 use Jaguar\Canvas\Canvas;
 use Jaguar\Tests\JaguarTestCase;
 use Jaguar\Dimension;
-use Jaguar\Exception\Canvas\CanvasOutputException;
 
 class CanvasTest extends JaguarTestCase {
 
