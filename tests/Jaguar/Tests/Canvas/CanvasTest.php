@@ -87,6 +87,32 @@ class CanvasTest extends JaguarTestCase {
     }
 
     /**
+     * Canvas And Special Methods Provider
+     * 
+     * @return array
+     */
+    public function canvasAndSpecialMethodsProvider() {
+        return array(
+            array(
+                $gd = new Canvas(new Dimension(100, 100), Canvas::Format_GD),
+                array(
+                    array('setCompressed', array(false), $gd),
+                    array('getCompressed', array(), false),
+                    array('getChunkSize', array(), 0)
+                )
+            ),
+            array(
+                $png = new Canvas(new Dimension(100, 100), Canvas::Format_PNG),
+                array(
+                    array('setSaveAlpha', array(false), $png),
+                    array('getSaveAlpha', array(), false),
+                    array('getFilter', array(), \Jaguar\Canvas\Format\Png::ALL_FILTERS)
+                )
+            )
+        );
+    }
+
+    /**
      * @dataProvider canvasFilesProvider
      * 
      * @param \Jaguar\Canvas\Canvas $canvas
@@ -254,6 +280,33 @@ class CanvasTest extends JaguarTestCase {
      */
     public function testCallThorwRuntimeException(Canvas $canvas) {
         $canvas->noopeMethod();
+    }
+
+    /**
+     * @dataProvider canvasAndSpecialMethodsProvider
+     * 
+     * @param \Jaguar\Canvas\Canvas $canvas
+     * @param array $data
+     */
+    public function testCall(Canvas $canvas, array $data) {
+
+        foreach ($data as $test) {
+
+            $method = $test[0];
+            $arguments = $test[1];
+            $return = $test[2];
+
+            $this->assertTrue(is_callable(array($canvas->getActiveCanvas(), $method)));
+
+            if ($return) {
+                $this->assertEquals(
+                        call_user_func_array(
+                                array($canvas, $method)
+                                , $arguments
+                        ), $return
+                );
+            }
+        }
     }
 
 }
