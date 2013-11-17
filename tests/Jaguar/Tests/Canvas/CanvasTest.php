@@ -244,5 +244,17 @@ class CanvasTest extends JaguarTestCase {
         $this->assertFalse($canvas->isHandlerSet());
         $this->assertInstanceOf('\Jaguar\Canvas\CanvasInterface', $canvas->getActiveCanvas());
     }
+
+    /**
+     * @expectedException \RuntimeException
+     * 
+     * @dataProvider canvasProvider
+     * 
+     * @param \Jaguar\Canvas\Canvas $canvas
+     */
+    public function testCallThorwRuntimeException(Canvas $canvas) {
+        $canvas->noopeMethod();
+    }
+
 }
 
