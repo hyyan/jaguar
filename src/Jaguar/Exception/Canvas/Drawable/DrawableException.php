@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Exception\Shape;
+namespace Jaguar\Exception\Drawable;
 
 use Jaguar\Exception\JaguarException;
 
-class ShapeException extends JaguarException {
+class DrawableException extends JaguarException {
     
 }
