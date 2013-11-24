@@ -48,5 +48,17 @@ abstract class AbstractDrawable implements DrawableInterface {
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function equals($other) {
+
+        if ($other instanceof DrawableInterface) {
+            throw new \InvalidArgumentException('Invalid Drawable Object');
+        }
+
+        return $this->getColor()->equals($other->getColor());
+    }
+
 }
 
