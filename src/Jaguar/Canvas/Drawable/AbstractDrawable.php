@@ -60,5 +60,10 @@ abstract class AbstractDrawable implements DrawableInterface {
         return $this->getColor()->equals($other->getColor());
     }
 
+    /** clone the drawable*/
+    public function __clone() {
+        $this->color = clone $this->color;
+    }
+
 }
 
