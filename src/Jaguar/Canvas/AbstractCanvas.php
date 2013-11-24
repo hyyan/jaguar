@@ -15,7 +15,6 @@ use Jaguar\Box;
 use Jaguar\Dimension;
 use Jaguar\Coordinate;
 use Jaguar\Color\ColorInterface;
-use Jaguar\Canvas\Drawable;
 use Jaguar\Color\RGBColor;
 use Jaguar\Exception\Canvas\CanvasDestroyException;
 use Jaguar\Exception\Canvas\CanvasEmptyException;
