@@ -11,7 +11,24 @@
 
 namespace Jaguar\Canvas;
 
-interface Drawable {
+use Jaguar\Color\ColorInterface;
+use Jaguar\EqualsInterface;
+
+interface Drawable extends EqualsInterface {
+
+    /**
+     * Set drawable color
+     * 
+     * @param \Jaguar\Color\ColorInterface $color
+     */
+    public function setColor(ColorInterface $color);
+
+    /**
+     * Get drawable's Color
+     * 
+     * @return \Jaguar\Color\ColorInterface
+     */
+    public function getColor();
 
     /**
      * Draw the drawable object on the given canvas using the given style
