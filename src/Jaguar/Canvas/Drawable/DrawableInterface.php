@@ -9,12 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Canvas;
+namespace Jaguar\Canvas\Drawable;
 
+use Jaguar\Canvas\CanvasInterface;
 use Jaguar\Color\ColorInterface;
 use Jaguar\EqualsInterface;
 
-interface Drawable extends EqualsInterface {
+interface DrawableInterface extends EqualsInterface {
 
     /**
      * Set drawable color
