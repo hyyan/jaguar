@@ -14,8 +14,11 @@ namespace Jaguar\Canvas;
 interface Drawable {
 
     /**
+     * Draw the drawable object on the given canvas using the given style
+     * 
      * @param \Jaguar\Canvas\CanvasInterface $canvas
+     * @param \Jaguar\Shape\StyleInterface $style
      */
-    public function draw(CanvasInterface $canvas);
+    public function draw(CanvasInterface $canvas, StyleInterface $style = null);
 }
 
