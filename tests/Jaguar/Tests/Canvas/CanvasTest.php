@@ -260,18 +260,6 @@ class CanvasTest extends JaguarTestCase {
     }
 
     /**
-     * @dataProvider canvasProvider
-     * 
-     * @param \Jaguar\Canvas\Canvas $canvas
-     */
-    public function testDestroy(Canvas $canvas) {
-        $canvas->destroy();
-
-        $this->assertFalse($canvas->isHandlerSet());
-        $this->assertInstanceOf('\Jaguar\Canvas\CanvasInterface', $canvas->getActiveCanvas());
-    }
-
-    /**
      * @expectedException \RuntimeException
      * 
      * @dataProvider canvasProvider

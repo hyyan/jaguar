@@ -72,17 +72,6 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
         ));
     }
 
-    public function testFromCanvas() {
-
-        $c = $this->getCanvas();
-        $c2 = $this->getCanvas();
-
-        $c->fromCanvas($c2); // will copy $c
-
-        $this->assertNotEquals($c->getHandler(), $c2->getHandler());
-        $this->assertTrue($c->getDimension()->equals($c2->getDimension()));
-    }
-
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasCreationException
      */
@@ -161,8 +150,7 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
      * @expectedException \Jaguar\Exception\Canvas\CanvasEmptyException
      */
     public function testSaveAndCanvasEmptyException() {
-        $c = $this->getCanvas();
-        $c->destroy();
+        $c = new Mock\EmptyCanvasMock();
         $c->save('will no be saved');
     }
 
@@ -183,14 +171,6 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
 
     public function testToString() {
         $this->assertInternalType('string', (string) $this->getCanvas());
-    }
-
-    /**
-     * @expectedException \Jaguar\Exception\Canvas\CanvasDestroyException
-     */
-    public function testDestroyThrowCanvasDestroyException() {
-        $c = new CanvasMock();
-        $c->destroy();
     }
 
     /**
