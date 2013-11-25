@@ -108,30 +108,6 @@ interface CanvasInterface {
     public function create(Dimension $dimension);
 
     /**
-     * Create new canvas from another one
-     * 
-     * <b>Note :</b>
-     * 
-     * New canvas Object will be created and any changes to the loaded canvas
-     * will not affect the current one.
-     * 
-     * Also you must note that the current canvas handler will be destroyed 
-     * before assigning the new one . and even if you have assigned the handler 
-     * to a variable.
-     * 
-     * This behaviour will not allow to create canvas and depend 
-     * on php garbage collection to clean it
-     * 
-     * @param \Jaguar\Canvas\CanvasInterface $canvas
-     * 
-     * @return \Jaguar\Canvas\CanvasInterface self
-     * 
-     * @throws \Jaguar\Exception\Canvas\CanvasException
-     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
-     */
-    public function fromCanvas(CanvasInterface $canvas);
-
-    /**
      * Create new canvas from file
      * 
      * @param string $image
@@ -213,18 +189,6 @@ interface CanvasInterface {
      * @throws \Jaguar\Exception\Canvas\CanvasOutputException
      */
     public function save($path = null);
-
-    /**
-     * Destroy canvas
-     * 
-     * Destroy gd resource handler
-     * 
-     * @return \Jaguar\Canvas\CanvasInterface self
-     * 
-     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
-     * @throws \Jaguar\Exception\Canvas\CanvasDestroyException 
-     */
-    public function destroy();
 
     /**
      * Get a string representation of the current canvas object

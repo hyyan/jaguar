@@ -17,7 +17,6 @@ use Jaguar\Coordinate;
 use Jaguar\Color\ColorInterface;
 use Jaguar\Canvas\Drawable;
 use Jaguar\Color\RGBColor;
-use Jaguar\Exception\Canvas\CanvasDestroyException;
 use Jaguar\Exception\Canvas\CanvasEmptyException;
 use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\InvalidDimensionException;
@@ -75,11 +74,7 @@ abstract class AbstractCanvas implements CanvasInterface {
         if (!$this->isGdResource($handler)) {
             throw new \InvalidArgumentException('Invalid Gd Handler');
         }
-
         $this->convertPaletteToTrueColor($handler);
-        if ($this->isHandlerSet()) {
-            $this->destroy();
-        }
         $this->handler = $handler;
         return $this;
     }
@@ -130,14 +125,6 @@ abstract class AbstractCanvas implements CanvasInterface {
     /**
      * {@inheritdoc}
      */
-    public function getCopy() {
-        $this->assertEmpty();
-        return (clone $this);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function create(Dimension $dimension) {
 
         $x = $dimension->getWidth();
@@ -151,7 +138,7 @@ abstract class AbstractCanvas implements CanvasInterface {
 
         $handler = @imagecreatetruecolor($x, $y);
 
-        if (false === $handler) {
+        if (false == $handler) {
             throw new CanvasCreationException(sprintf(
                     'Unable To Create The Canvas "%s"', (string) $this
             ));
@@ -159,15 +146,6 @@ abstract class AbstractCanvas implements CanvasInterface {
 
         $this->setHandler($handler);
         $this->fill(new RGBColor(255, 255, 255));
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function fromCanvas(CanvasInterface $canvas) {
-        $copy = $canvas->getCopy();
-        $this->setHandler($copy->getHandler());
         return $this;
     }
 
@@ -271,15 +249,24 @@ abstract class AbstractCanvas implements CanvasInterface {
     /**
      * {@inheritdoc}
      */
-    public function destroy() {
+    public function getCopy() {
         $this->assertEmpty();
-        if (!@imagedestroy($this->getHandler())) {
-            throw new CanvasDestroyException(sprintf(
-                    'Could Not Destroy The Canvas "%s"', (string) $this
-            ));
-        }
+        $clone = clone $this;
+        $clone->create($this->getDimension());
+        $clone->paste($this);
+        return $clone;
+    }
+
+    public function __clone() {
         $this->handler = null;
-        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __destruct() {
+        @imagedestroy($this->handler);
+        $this->handler = null;
     }
 
     /**
@@ -297,19 +284,6 @@ abstract class AbstractCanvas implements CanvasInterface {
             $suffix = "[" . rtrim($propertiesAsString, ',') . "]";
         }
         return ($result . $suffix);
-    }
-
-    /**
-     * Create a copy of the current canvas
-     */
-    public function __clone() {
-        if ($this->isHandlerSet()) {
-            $class = get_called_class();
-            $clone = new $class;
-            $clone->create($this->getDimension());
-            $clone->paste($this);
-            $this->handler = $clone->getHandler();
-        }
     }
 
     /**
