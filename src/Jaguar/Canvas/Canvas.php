@@ -289,13 +289,6 @@ class Canvas extends AbstractCanvas {
     /**
      * {@inheritdoc}
      */
-    public function destroy() {
-        $this->getActiveCanvas()->destroy();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function __toString() {
         return (string) $this->getActiveCanvas();
     }
