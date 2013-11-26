@@ -20,6 +20,8 @@ interface StyleInterface {
      * 
      * @param \Jaguar\Canvas\CanvasInterface $canvas
      * @param \Jaguar\Canvas\DrawableInterface $drawable
+     * 
+     * @throws \Jaguar\Exception\Canvas\Drawable\DrawableException
      */
     public function apply(CanvasInterface $canvas, DrawableInterface $drawable);
 }
