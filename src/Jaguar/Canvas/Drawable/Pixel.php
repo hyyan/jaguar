@@ -55,7 +55,7 @@ class Pixel extends AbstractDrawable {
     /**
      * {@inheritdoc}
      */
-    public function doDraw(CanvasInterface $canvas, StyleInterface $style = null) {
+    protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null) {
 
         $x = $this->getCoordinate()->getX();
         $y = $this->getCoordinate()->getY();
