@@ -21,6 +21,7 @@ use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\InvalidDimensionException;
 use Jaguar\Exception\Canvas\CanvasException;
 use Jaguar\Canvas\Drawable\DrawableInterface;
+use Jaguar\Canvas\Drawable\StyleInterface;
 
 abstract class AbstractCanvas implements CanvasInterface {
 
@@ -173,8 +174,8 @@ abstract class AbstractCanvas implements CanvasInterface {
     /**
      * {@inheritdoc}
      */
-    public function draw(DrawableInterface $drawable) {
-        $drawable->draw($this);
+    public function draw(DrawableInterface $drawable, StyleInterface $style = null) {
+        $drawable->draw($this, $style);
         return $this;
     }
 
