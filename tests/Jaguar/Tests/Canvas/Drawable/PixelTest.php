@@ -19,13 +19,6 @@ class PixelTest extends AbstractDrawableTest {
         return new Pixel();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testEqualsThrowInvalidArgumnetException() {
-        $this->getDrawable()->equals('invalid');
-    }
-
     public function testEquals() {
         $pixel = $this->getDrawable();
         $clone = clone $pixel;

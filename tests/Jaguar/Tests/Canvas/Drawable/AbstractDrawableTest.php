@@ -49,6 +49,13 @@ abstract class AbstractDrawableTest extends JaguarTestCase {
         $canvas->draw($this->getDrawable());
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testEqualsThrowInvalidArgumnetException() {
+        $this->getDrawable()->equals('invalid');
+    }
+
     public function testDraw() {
         $canvas = $this->getCanvas();
         $drawable = $this->getDrawable();
