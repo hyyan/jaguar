@@ -12,6 +12,8 @@
 namespace Jaguar\Tests\Canvas\Drawable;
 
 use Jaguar\Tests\JaguarTestCase;
+use Jaguar\Canvas\Canvas;
+use Jaguar\Dimension;
 
 abstract class AbstractDrawableTest extends JaguarTestCase {
 
@@ -21,6 +23,15 @@ abstract class AbstractDrawableTest extends JaguarTestCase {
      * @return \Jaguar\Canvas\Drawable\DrawableInterface 
      */
     abstract public function getDrawable();
+
+    /**
+     * Get canvas object
+     * 
+     * @return \Jaguar\Canvas\Drawable\DrawableInterface 
+     */
+    public function getCanvas() {
+        return new Canvas(new Dimension(100, 100));
+    }
 
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasEmptyException
@@ -36,6 +47,13 @@ abstract class AbstractDrawableTest extends JaguarTestCase {
     public function testDrawThrowDrawableException() {
         $canvas = new \Jaguar\Tests\Canvas\Mock\CanvasMock();
         $canvas->draw($this->getDrawable());
+    }
+
+    public function testDraw() {
+        $canvas = $this->getCanvas();
+        $drawable = $this->getDrawable();
+        $this->assertSame($canvas, $canvas->draw($drawable));
+        $this->assertSame($drawable, $drawable->draw($canvas));
     }
 
 }
