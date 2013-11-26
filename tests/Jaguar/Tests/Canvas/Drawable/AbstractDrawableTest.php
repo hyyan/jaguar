@@ -63,5 +63,9 @@ abstract class AbstractDrawableTest extends JaguarTestCase {
         $this->assertSame($drawable, $drawable->draw($canvas));
     }
 
+    public function testToString() {
+        $this->assertInternalType('string', (string) $this->getDrawable());
+    }
+
 }
 

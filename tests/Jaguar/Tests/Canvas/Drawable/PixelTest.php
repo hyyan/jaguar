@@ -32,10 +32,5 @@ class PixelTest extends AbstractDrawableTest {
         $clone->getColor()->setRed(255);
         $this->assertFalse($pixel->equals($clone));
     }
-
-    public function testToString() {
-        $this->assertInternalType('string', (string) $this->getDrawable());
-    }
-
 }
 
