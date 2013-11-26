@@ -36,6 +36,9 @@ interface DrawableInterface extends EqualsInterface {
      * 
      * @param \Jaguar\Canvas\CanvasInterface $canvas
      * @param \Jaguar\Shape\StyleInterface $style
+     * 
+     * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
+     * @throws \Jaguar\Exception\Drawable\DrawableException
      */
     public function draw(CanvasInterface $canvas, StyleInterface $style = null);
 }
