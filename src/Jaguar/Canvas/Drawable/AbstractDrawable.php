@@ -14,6 +14,7 @@ namespace Jaguar\Canvas\Drawable;
 use Jaguar\Canvas\CanvasInterface;
 use Jaguar\Color\ColorInterface;
 use Jaguar\Color\RGBColor;
+use Jaguar\Exception\Canvas\CanvasEmptyException;
 
 abstract class AbstractDrawable implements DrawableInterface {
 
@@ -54,7 +55,7 @@ abstract class AbstractDrawable implements DrawableInterface {
      */
     public function equals($other) {
 
-        if ($other instanceof DrawableInterface) {
+        if (!($other instanceof DrawableInterface)) {
             throw new \InvalidArgumentException('Invalid Drawable Object');
         }
 
