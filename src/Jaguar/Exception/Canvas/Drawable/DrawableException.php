@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Exception\Drawable;
+namespace Jaguar\Exception\Canvas\Drawable;
 
 use Jaguar\Exception\JaguarException;
 
