@@ -15,10 +15,12 @@ use Jaguar\Canvas\CanvasInterface;
 use Jaguar\Color\ColorInterface;
 use Jaguar\Color\RGBColor;
 use Jaguar\Exception\Canvas\CanvasEmptyException;
+use Jaguar\Exception\Canvas\Drawable\LineThicknessException;
 
 abstract class AbstractDrawable implements DrawableInterface
 {
     private $color;
+    private $thickness;
 
     /**
      * Constrcut new drawable object
@@ -28,12 +30,11 @@ abstract class AbstractDrawable implements DrawableInterface
     public function __construct(ColorInterface $color = null)
     {
         $this->setColor($color !== null ? $color : new RGBColor());
+        $this->setLineThickness(1);
     }
 
     /**
-     * Get color
-     *
-     * @return \Jaguar\Color\ColorInterface
+     * {@inheritdoc}
      */
     public function getColor()
     {
@@ -41,17 +42,35 @@ abstract class AbstractDrawable implements DrawableInterface
     }
 
     /**
-     * Set Color
-     *
-     * @param \Jaguar\Color\ColorInterface $color
-     *
-     * @return \Jaguar\Canvas\Drawable\AbstractDrawable
+     * {@inheritdoc}
      */
     public function setColor(ColorInterface $color)
     {
         $this->color = $color;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLineThickness($thickness)
+    {
+        if ($thickness <= 0) {
+            throw new \InvalidArgumentException(
+            'Thickness Value Must Be Greater Than Zero'
+            );
+        }
+        $this->thickness = $thickness;
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLineThickness()
+    {
+        return $this->thickness;
     }
 
     /**
@@ -73,6 +92,8 @@ abstract class AbstractDrawable implements DrawableInterface
                     , (string) $this
             ));
         }
+
+        @imagesetthickness($canvas->getHandler(), $this->getLineThickness());
         $this->doDraw($canvas, $style);
 
         return $this;

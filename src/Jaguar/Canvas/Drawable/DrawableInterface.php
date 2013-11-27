@@ -17,10 +17,13 @@ use Jaguar\EqualsInterface;
 
 interface DrawableInterface extends EqualsInterface
 {
+
     /**
      * Set drawable color
      *
      * @param \Jaguar\Color\ColorInterface $color
+     * 
+     * @return \Jaguar\Canvas\Drawable\DrawableInterface
      */
     public function setColor(ColorInterface $color);
 
@@ -32,13 +35,31 @@ interface DrawableInterface extends EqualsInterface
     public function getColor();
 
     /**
+     * Set line thickness
+     * 
+     * @param integer $thickness 
+     * 
+     * @return \Jaguar\Canvas\Drawable\DrawableInterface
+     * 
+     * @throws \InvalidArgumentException if thickness <=0
+     */
+    public function setLineThickness($thickness);
+
+    /**
+     * Get line thickness
+     * 
+     * @return integer 
+     */
+    public function getLineThickness();
+
+    /**
      * Draw the drawable object on the given canvas using the given style
      *
      * @param \Jaguar\Canvas\CanvasInterface $canvas
      * @param \Jaguar\Shape\StyleInterface   $style
      *
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
-     * @throws \\Jaguar\Exception\Canvas\Drawable\DrawableException
+     * @throws \Jaguar\Exception\Canvas\Drawable\DrawableException
      */
     public function draw(CanvasInterface $canvas, StyleInterface $style = null);
 }
