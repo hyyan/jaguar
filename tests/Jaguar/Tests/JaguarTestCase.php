@@ -11,17 +11,17 @@
 
 namespace Jaguar\Tests;
 
-abstract class JaguarTestCase extends \PHPUnit_Framework_TestCase {
-
+abstract class JaguarTestCase extends \PHPUnit_Framework_TestCase
+{
     /**
      * Get fixture from fixtures folder
-     * 
-     * @param string $file
+     *
+     * @param  string $file
      * @return string the full path for the fixture file
      */
-    public function getFixture($file) {
+    public function getFixture($file)
+    {
         return __DIR__ . '/../Fixtures/' . $file;
     }
 
 }
-

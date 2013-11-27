@@ -11,94 +11,104 @@
 
 namespace Jaguar;
 
-class Coordinate implements EqualsInterface {
-
+class Coordinate implements EqualsInterface
+{
     private $x;
     private $y;
 
     /**
      * Construct New Coordinate Object
-     * 
+     *
      * @param integer $x x pos
      * @param integer $y y pos
      */
-    public function __construct($x = 0, $y = 0) {
+    public function __construct($x = 0, $y = 0)
+    {
         $this->move($x, $y);
     }
 
     /**
      * Set X Position
-     * 
+     *
      * @param integer $x
-     * 
+     *
      * @return \Jaguar\Coordinate
      */
-    public function setX($x) {
+    public function setX($x)
+    {
         $this->x = (integer) floor($x);
+
         return $this;
     }
 
     /**
      * Get X Position
-     * 
+     *
      * @return integer
      */
-    public function getX() {
+    public function getX()
+    {
         return $this->x;
     }
 
     /**
      * Set Y Position
-     * 
+     *
      * @param integer $y
-     * 
+     *
      * @return \Jaguar\Coordinate
      */
-    public function setY($y) {
+    public function setY($y)
+    {
         $this->y = (integer) floor($y);
+
         return $this;
     }
 
     /**
      * Get Y position
-     * 
+     *
      * @return integer
      */
-    public function getY() {
+    public function getY()
+    {
         return $this->y;
     }
 
     /**
-     * Chage the current coordinate location to match the passed coordinate 
+     * Chage the current coordinate location to match the passed coordinate
      * location
-     * 
-     * @param \Jaguar\Coordinate $coordinate 
-     * 
+     *
+     * @param \Jaguar\Coordinate $coordinate
+     *
      * @return \Jaguar\Coordinate
      */
-    public function setLocation(Coordinate $coordinate) {
+    public function setLocation(Coordinate $coordinate)
+    {
         return $this->setX($coordinate->getX())->setY($coordinate->getY());
     }
 
     /**
      * Get New Coordinate Object with same location of the current one
-     * 
+     *
      * @return \Jaguar\Coordinate
      */
-    public function getLocation() {
+    public function getLocation()
+    {
         return new Coordinate($this->getX(), $this->getY());
     }
 
     /**
-     * Moves this coordinate to the specified location in the (x,y) 
+     * Moves this coordinate to the specified location in the (x,y)
      * coordinate plane.
-     *  
+     *
      * @param integer $x
      * @param integer $y
-     * 
+     *
      * @return \Jaguar\Coordinate
      */
-    public function move($x, $y) {
+    public function move($x, $y)
+    {
         return $this->setX($x)->setY($y);
     }
 
@@ -107,23 +117,24 @@ class Coordinate implements EqualsInterface {
      * by {dx} along the {x} axis and {dy}
      * along the {y} axis so that it now represents the coordinate
      * {x+dx,y+dy)}.
-     * 
+     *
      * @param integer $x the distance to move this coordinate
      *                   along the X axis
      * @param integer $y the distance to move this coordinate
      *                   along the Y axis
-     * 
+     *
      * @return \Jaguar\Coordinate
      */
-    public function translate($dx, $dy) {
+    public function translate($dx, $dy)
+    {
         return $this->setX($dx + $this->getX())->setY($dy + $this->getY());
     }
 
     /**
      * {@inheritdoc}
      */
-    public function equals($other) {
-
+    public function equals($other)
+    {
         if (!($other instanceof self)) {
             throw new \InvalidArgumentException('Invalid Coordinate Object');
         }
@@ -140,10 +151,11 @@ class Coordinate implements EqualsInterface {
 
     /**
      * Returns a string representation of the current coordinate object
-     * 
+     *
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return get_called_class()
                 . "["
                 . "x={$this->getX()},"
@@ -152,4 +164,3 @@ class Coordinate implements EqualsInterface {
     }
 
 }
-

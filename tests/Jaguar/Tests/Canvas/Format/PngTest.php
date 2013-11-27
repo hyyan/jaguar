@@ -15,42 +15,49 @@ use Jaguar\Canvas\Format\Png;
 use Jaguar\Dimension;
 use Jaguar\Tests\Canvas\CompressableCanvasTest;
 
-class PngTest extends CompressableCanvasTest {
-
-    protected function getCanvas() {
+class PngTest extends CompressableCanvasTest
+{
+    protected function getCanvas()
+    {
         return new Png(new Dimension(300, 300));
     }
 
-    protected function getPalleteFile() {
+    protected function getPalleteFile()
+    {
         return $this->getFixture('pallete/pallete.png');
     }
 
-    protected function getInvalidCanvasFile() {
+    protected function getInvalidCanvasFile()
+    {
         return $this->getFixture('invalid/invalid-google.png');
         ;
     }
 
-    protected function getCanvasFile() {
+    protected function getCanvasFile()
+    {
         return $this->getFixture('google.png');
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testFromFileThrowInvalidArgumentExceptionOnNonPng() {
+    public function testFromFileThrowInvalidArgumentExceptionOnNonPng()
+    {
         $this->getCanvas()->fromFile($this->getFixture('sky.jpg'));
     }
 
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasOutputException
      */
-    public function testFromFileThrowCanvasCreationExceptionWhenAlphaSavingFails() {
+    public function testFromFileThrowCanvasCreationExceptionWhenAlphaSavingFails()
+    {
         $c = new \Jaguar\Tests\Canvas\Mock\PngCanvasMock();
         $c->setSaveAlpha(true);
         $c->save();
     }
 
-    public function testGetCopySavePngAlphaAndFilters() {
+    public function testGetCopySavePngAlphaAndFilters()
+    {
         $c = $this->getCanvas();
         $copy = $c->getCopy();
 
@@ -59,4 +66,3 @@ class PngTest extends CompressableCanvasTest {
     }
 
 }
-

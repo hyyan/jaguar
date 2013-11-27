@@ -14,14 +14,15 @@ namespace Jaguar\Tests\Canvas\Drawable;
 use Jaguar\Canvas\Drawable\Line;
 use Jaguar\Coordinate;
 
-class LineTest extends AbstractDrawableTest {
-
-    public function getDrawable() {
+class LineTest extends AbstractDrawableTest
+{
+    public function getDrawable()
+    {
         return new Line();
     }
 
-    public function testEquals() {
-
+    public function testEquals()
+    {
         $line = new Line(new Coordinate(0, 0), new Coordinate(100, 100));
         $clone = clone $line;
 
@@ -43,4 +44,3 @@ class LineTest extends AbstractDrawableTest {
     }
 
 }
-

@@ -13,35 +13,41 @@ namespace Jaguar\Tests\Canvas\Mock;
 
 use Jaguar\Canvas\AbstractCanvas;
 
-class CanvasMock extends AbstractCanvas {
-
-    public function isHandlerSet() {
+class CanvasMock extends AbstractCanvas
+{
+    public function isHandlerSet()
+    {
         return true;
     }
 
-    public function getHandler() {
+    public function getHandler()
+    {
         return true;
     }
 
-    public function getWidth() {
+    public function getWidth()
+    {
         return 100;
     }
 
-    public function getHeight() {
+    public function getHeight()
+    {
         return 100;
     }
 
-    protected function doLoadFromFile($file) {
+    protected function doLoadFromFile($file)
+    {
         return null;
     }
 
-    protected function doSave($filename) {
+    protected function doSave($filename)
+    {
         return null;
     }
 
-    protected function getToStringProperties() {
+    protected function getToStringProperties()
+    {
         return array();
     }
 
 }
-

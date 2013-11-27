@@ -14,17 +14,19 @@ namespace Jaguar\Tests;
 use Jaguar\Font;
 use Jaguar\Color\RGBColor;
 
-class FontTest extends JaguarTestCase {
-
+class FontTest extends JaguarTestCase
+{
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testEqualsThrowInvalidArgumentException() {
+    public function testEqualsThrowInvalidArgumentException()
+    {
         $font = new Font($this->getFixture('fonts/arial.ttf'));
         $font->equals('invalid');
     }
 
-    public function testEquals() {
+    public function testEquals()
+    {
         $font = new Font($this->getFixture('fonts/arial.ttf'));
         $fontClone = clone $font;
         $font2 = new Font($this->getFixture('fonts/arialbi.ttf'));
@@ -44,11 +46,13 @@ class FontTest extends JaguarTestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testFontConstrcutorThrowInvalidArgumentException() {
+    public function testFontConstrcutorThrowInvalidArgumentException()
+    {
         new Font('non readable file');
     }
 
-    public function testToString() {
+    public function testToString()
+    {
         $this->assertInternalType(
                 'string'
                 , (string) new Font($this->getFixture('fonts/arial.ttf'))
@@ -56,4 +60,3 @@ class FontTest extends JaguarTestCase {
     }
 
 }
-

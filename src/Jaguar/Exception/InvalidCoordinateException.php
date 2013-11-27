@@ -11,7 +11,6 @@
 
 namespace Jaguar\Exception;
 
-class InvalidCoordinateException extends JaguarException {
-    
+class InvalidCoordinateException extends JaguarException
+{
 }
-

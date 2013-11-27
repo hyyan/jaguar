@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of the Jaguar package.
  *
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
@@ -15,31 +15,30 @@ use Jaguar\Canvas\CanvasInterface;
 use Jaguar\Color\ColorInterface;
 use Jaguar\EqualsInterface;
 
-interface DrawableInterface extends EqualsInterface {
-
+interface DrawableInterface extends EqualsInterface
+{
     /**
      * Set drawable color
-     * 
+     *
      * @param \Jaguar\Color\ColorInterface $color
      */
     public function setColor(ColorInterface $color);
 
     /**
      * Get drawable's Color
-     * 
+     *
      * @return \Jaguar\Color\ColorInterface
      */
     public function getColor();
 
     /**
      * Draw the drawable object on the given canvas using the given style
-     * 
+     *
      * @param \Jaguar\Canvas\CanvasInterface $canvas
-     * @param \Jaguar\Shape\StyleInterface $style
-     * 
+     * @param \Jaguar\Shape\StyleInterface   $style
+     *
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
      * @throws \\Jaguar\Exception\Canvas\Drawable\DrawableException
      */
     public function draw(CanvasInterface $canvas, StyleInterface $style = null);
 }
-

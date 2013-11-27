@@ -15,30 +15,34 @@ use Jaguar\Canvas\Format\Gif;
 use Jaguar\Dimension;
 use Jaguar\Tests\Canvas\AbstractCanvasTest;
 
-class GifTest extends AbstractCanvasTest {
-
-    protected function getCanvas() {
+class GifTest extends AbstractCanvasTest
+{
+    protected function getCanvas()
+    {
         return new Gif(new Dimension(300, 300));
     }
 
-    protected function getPalleteFile() {
+    protected function getPalleteFile()
+    {
         return $this->getFixture('pallete/pallete.gif');
     }
 
-    protected function getInvalidCanvasFile() {
+    protected function getInvalidCanvasFile()
+    {
         return $this->getFixture('invalid/invalid-linux.gif');
     }
 
-    protected function getCanvasFile() {
+    protected function getCanvasFile()
+    {
         return $this->getFixture('linux.gif');
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testFromFileThrowInvalidArgumentExceptionOnNonGif() {
+    public function testFromFileThrowInvalidArgumentExceptionOnNonGif()
+    {
         $this->getCanvas()->fromFile($this->getFixture('sky.jpg'));
     }
 
 }
-

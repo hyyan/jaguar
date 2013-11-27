@@ -13,8 +13,8 @@ namespace Jaguar;
 
 use Jaguar\Dimension;
 
-class ImageFile extends \SplFileInfo {
-
+class ImageFile extends \SplFileInfo
+{
     private $imageExtension;
     private $toString = '';
     protected $imageMime = null;
@@ -23,13 +23,14 @@ class ImageFile extends \SplFileInfo {
 
     /**
      * Construct new Image File Object
-     * 
+     *
      * @param string $file
-     * 
+     *
      * @throws \InvalidArgumentException
-     * @throws \RuntimeException 
+     * @throws \RuntimeException
      */
-    public function __construct($file) {
+    public function __construct($file)
+    {
         parent::__construct($file);
 
         if (!$this->isFile() || !$this->isReadable()) {
@@ -56,59 +57,65 @@ class ImageFile extends \SplFileInfo {
 
     /**
      * Get Image File Extension
-     * 
+     *
      * @return string
      */
-    public function getExtension() {
+    public function getExtension()
+    {
         return $this->imageExtension;
     }
 
     /**
      * Get Image Mime Type
-     * 
+     *
      * @return string
      */
-    public function getMime() {
+    public function getMime()
+    {
         return $this->imageMime;
     }
 
     /**
      * Get Image Width
-     * 
+     *
      * @return int
      */
-    public function getWidth() {
+    public function getWidth()
+    {
         return $this->imageX;
     }
 
     /**
      * Get Image Height
-     * 
+     *
      * @return int
      */
-    public function getHeight() {
+    public function getHeight()
+    {
         return $this->imageY;
     }
 
     /**
      * Get image's dimension object
-     * 
+     *
      * @return \Jaguar\Dimension
      */
-    public function getDimension() {
+    public function getDimension()
+    {
         return new Dimension($this->getWidth(), $this->getHeight());
     }
 
     /**
-     * Get text string with the correct height="yyy" width="xxx" string that 
+     * Get text string with the correct height="yyy" width="xxx" string that
      * can be used directly in an IMG tag
-     * 
+     *
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         parent::__toString();
+
         return $this->toString;
     }
 
 }
-

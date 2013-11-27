@@ -13,6 +13,6 @@ namespace Jaguar\Exception\Canvas\Drawable;
 
 use Jaguar\Exception\JaguarException;
 
-class DrawableException extends JaguarException {
-    
+class DrawableException extends JaguarException
+{
 }

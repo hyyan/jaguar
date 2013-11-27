@@ -11,14 +11,14 @@
 
 namespace Jaguar\Color;
 
-class StyledColor extends AbstractColor {
-
+class StyledColor extends AbstractColor
+{
     /**
      * {@inheritdoc}
      */
-    public function getValue() {
+    public function getValue()
+    {
         return IMG_COLOR_STYLED;
     }
 
 }
-

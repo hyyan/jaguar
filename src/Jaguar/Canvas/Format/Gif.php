@@ -16,20 +16,22 @@ use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\Canvas\CanvasOutputException;
 use Jaguar\Canvas\AbstractCanvas;
 
-class Gif extends AbstractCanvas {
-
+class Gif extends AbstractCanvas
+{
     /**
      * Check if the given file is gif file
-     * 
-     * @param string $filename
+     *
+     * @param  string  $filename
      * @return boolean true if gif file,false otherwise
      */
-    public static function isGifFile($filename) {
+    public static function isGifFile($filename)
+    {
         try {
             $image = new ImageFile($filename);
             if (strtolower($image->getMime()) !== @image_type_to_mime_type(IMAGETYPE_GIF)) {
                 return false;
             }
+
             return true;
         } catch (\RuntimeException $ex) {
             return false;
@@ -39,7 +41,8 @@ class Gif extends AbstractCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function doSave($filename) {
+    protected function doSave($filename)
+    {
         if (false == @imagegif($this->getHandler(), $filename)) {
             throw new CanvasOutputException(sprintf(
                     'Faild Outputting The Gif Canvas "%s" To "%s"'
@@ -51,7 +54,8 @@ class Gif extends AbstractCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function doLoadFromFile($filename) {
+    protected function doLoadFromFile($filename)
+    {
         $this->assertGifFile($filename);
         $handler = @imagecreatefromgif($filename);
         if (false == $handler) {
@@ -65,7 +69,8 @@ class Gif extends AbstractCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function getToStringProperties() {
+    protected function getToStringProperties()
+    {
         return array(
             'Format' => 'Gif',
             'Dimension' => (string) $this->getDimension()
@@ -74,12 +79,13 @@ class Gif extends AbstractCanvas {
 
     /**
      * Check If The File Is valid gif file
-     * 
+     *
      * @param string $filename
-     * 
+     *
      * @throws \InvalidArgumentException
      */
-    protected function assertGifFile($filename) {
+    protected function assertGifFile($filename)
+    {
         if (!self::isGifFile($filename)) {
             throw new \InvalidArgumentException(
             sprintf("(%s) Is Not valid Gif File", $filename)
@@ -88,4 +94,3 @@ class Gif extends AbstractCanvas {
     }
 
 }
-

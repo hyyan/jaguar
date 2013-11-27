@@ -11,7 +11,6 @@
 
 namespace Jaguar\Exception;
 
-class JaguarException extends \Exception {
-    
+class JaguarException extends \Exception
+{
 }
-

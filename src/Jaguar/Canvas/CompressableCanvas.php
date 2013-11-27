@@ -13,8 +13,8 @@ namespace Jaguar\Canvas;
 
 use Jaguar\Dimension;
 
-abstract class CompressableCanvas extends AbstractCanvas {
-
+abstract class CompressableCanvas extends AbstractCanvas
+{
     const QUALITY_MAX = 100;
     const QUALITY_HIGH = 90;
     const QUALITY_MED = 60;
@@ -25,24 +25,26 @@ abstract class CompressableCanvas extends AbstractCanvas {
 
     /**
      * Constrcut new compressed canvas
-     * 
+     *
      * @param \Jaguar\Dimension $dimension
-     * @param integer $quality default 75
+     * @param integer           $quality   default 75
      */
-    public function __construct(Dimension $dimension = null, $quality = self::QUALITY_HIGH) {
+    public function __construct(Dimension $dimension = null, $quality = self::QUALITY_HIGH)
+    {
         parent::__construct($dimension);
         $this->setQuality($quality);
     }
 
     /**
      * Set Canvas Output Quality
-     * 
-     * @param integer $quality ranges from 0 (worst quality, smaller file) to 100 
+     *
+     * @param integer $quality ranges from 0 (worst quality, smaller file) to 100
      *                         (best quality, biggest file)
-     * 
+     *
      * @throws \InvalidArgumentException
      */
-    public function setQuality($quality) {
+    public function setQuality($quality)
+    {
         if ($quality >= 0 && $quality <= 100) {
             $this->quality = $quality;
         } else {
@@ -54,12 +56,12 @@ abstract class CompressableCanvas extends AbstractCanvas {
 
     /**
      * Get Canvas Output Quality
-     * 
+     *
      * @return integer
      */
-    public function getQuality() {
+    public function getQuality()
+    {
         return $this->quality;
     }
 
 }
-

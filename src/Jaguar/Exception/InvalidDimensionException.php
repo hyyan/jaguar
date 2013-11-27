@@ -11,7 +11,6 @@
 
 namespace Jaguar\Exception;
 
-class InvalidDimensionException extends JaguarException {
-    
+class InvalidDimensionException extends JaguarException
+{
 }
-

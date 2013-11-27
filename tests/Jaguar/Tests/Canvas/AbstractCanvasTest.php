@@ -16,16 +16,18 @@ use Jaguar\Tests\Canvas\Mock\CanvasMock;
 use Jaguar\Dimension;
 use Jaguar\Color\RGBColor;
 
-abstract class AbstractCanvasTest extends JaguarTestCase {
-
+abstract class AbstractCanvasTest extends JaguarTestCase
+{
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testSetHandlerThrowInvalidArgumentException() {
+    public function testSetHandlerThrowInvalidArgumentException()
+    {
         $this->getCanvas()->setHandler('invalid gd resource');
     }
 
-    public function testSetHandlerCanConvertPallete() {
+    public function testSetHandlerCanConvertPallete()
+    {
         $c = $this->getCanvas()->fromFile($this->getPalleteFile());
         $this->assertTrue($c->isTrueColor());
     }
@@ -33,19 +35,21 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasException
      */
-    public function testAlphaBlendingThrowCanvasException() {
+    public function testAlphaBlendingThrowCanvasException()
+    {
         $c = new CanvasMock();
         $c->alphaBlending(true);
     }
 
-    public function testAlphaBlending() {
+    public function testAlphaBlending()
+    {
         $c = $this->getCanvas();
         $this->assertSame($c, $c->alphaBlending(true));
         $this->assertSame($c, $c->alphaBlending(false));
     }
 
-    public function testGetCopy() {
-
+    public function testGetCopy()
+    {
         $c = $this->getCanvas();
         $copy = $c->getCopy();
 
@@ -58,14 +62,16 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
     /**
      * @expectedException \Jaguar\Exception\InvalidDimensionException
      */
-    public function testCreateInvalidDimensionException() {
+    public function testCreateInvalidDimensionException()
+    {
         $this->getCanvas()->create(new Dimension(0, 0));
     }
 
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasCreationException
      */
-    public function testCreateThrowCanvasCreationException() {
+    public function testCreateThrowCanvasCreationException()
+    {
         $this->getCanvas()->create(new Dimension(
                 500000000000
                 , 5000000000000
@@ -75,18 +81,19 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasCreationException
      */
-    public function testFromStringThrowCanvasException() {
+    public function testFromStringThrowCanvasException()
+    {
         $this->getCanvas()->fromString('Invalid Canvas String');
     }
 
-    public function testFromString() {
+    public function testFromString()
+    {
         $phpRules = base64_decode(
                 'iVBORw0KGgoAAAANSUhEUgAAABwAAAASCAMAAAB/2U7WAAAABl'
                 . 'BMVEUAAAD///+l2Z/dAAAASUlEQVR4XqWQUQoAIAxC2/0vXZDr'
                 . 'EX4IJTRkb7lobNUStXsB0jIXIAMSsQnWlsV+wULF4Avk9fLq2r'
                 . '8a5HSE35Q3eO2XP1A1wQkZSgETvDtKdQAAAABJRU5ErkJggg=='
         );
-
 
         $c = $this->getCanvas()->fromString($phpRules);
 
@@ -98,18 +105,21 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testFromFileThrowInvalidArgumentException() {
+    public function testFromFileThrowInvalidArgumentException()
+    {
         $this->getCanvas()->fromFile('non readable file');
     }
 
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasCreationException
      */
-    public function testFromFileThrowCanvasCreationException() {
+    public function testFromFileThrowCanvasCreationException()
+    {
         $this->getCanvas()->fromFile($this->getInvalidCanvasFile());
     }
 
-    public function testFromFile() {
+    public function testFromFile()
+    {
         $c = $this->getCanvas()->fromFile($this->getCanvasFile());
         $this->assertTrue($c->isHandlerSet());
     }
@@ -117,7 +127,8 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasException
      */
-    public function testFillThrowCanvasException() {
+    public function testFillThrowCanvasException()
+    {
         $c = new CanvasMock();
         $c->fill(new RGBColor());
     }
@@ -125,7 +136,8 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasException
      */
-    public function testPasteThrowCanvasException() {
+    public function testPasteThrowCanvasException()
+    {
         $c = new CanvasMock();
         $c2 = new CanvasMock();
 
@@ -135,27 +147,30 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasEmptyException
      */
-    public function testPasteThrowCanvasEmptyExceptionWhenSrcHandlerEmpty() {
+    public function testPasteThrowCanvasEmptyExceptionWhenSrcHandlerEmpty()
+    {
         $this->getCanvas()->paste(new Mock\EmptyCanvasMock());
     }
 
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasOutputException
      */
-    public function testSaveThrowResourceOutputException() {
+    public function testSaveThrowResourceOutputException()
+    {
         $this->getCanvas()->save('"////\\\\"');
     }
 
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasEmptyException
      */
-    public function testSaveAndCanvasEmptyException() {
+    public function testSaveAndCanvasEmptyException()
+    {
         $c = new Mock\EmptyCanvasMock();
         $c->save('will no be saved');
     }
 
-    public function testSave() {
-
+    public function testSave()
+    {
         $path = sys_get_temp_dir() . '/tesSave.canvas';
 
         if (file_exists($path)) {
@@ -169,34 +184,34 @@ abstract class AbstractCanvasTest extends JaguarTestCase {
         unlink($path);
     }
 
-    public function testToString() {
+    public function testToString()
+    {
         $this->assertInternalType('string', (string) $this->getCanvas());
     }
 
     /**
      * Get canvas
-     * @return \Jaguar\Canvas\CanvasInterface 
+     * @return \Jaguar\Canvas\CanvasInterface
      */
     abstract protected function getCanvas();
 
     /**
      * Get pallete file to test if pallete can be converted to truecolor
-     * @return string file's path 
+     * @return string file's path
      */
     abstract protected function getPalleteFile();
 
     /**
-     * Get normal canvas file to test <tt>fromFile</tt> method 
-     * @return string file's path 
+     * Get normal canvas file to test <tt>fromFile</tt> method
+     * @return string file's path
      */
     abstract protected function getCanvasFile();
 
     /**
      * Get invalid(damaged) file to test that fromFile can fail on this kind
      * of files
-     * 
-     * @return string file's path 
+     *
+     * @return string file's path
      */
     abstract protected function getInvalidCanvasFile();
 }
-

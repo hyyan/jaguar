@@ -13,11 +13,11 @@ namespace Jaguar\Tests\Color;
 
 use Jaguar\Color\TransparentColor;
 
-class TransparentColorTest extends AbstractColorTest {
-
-    public function getColor() {
+class TransparentColorTest extends AbstractColorTest
+{
+    public function getColor()
+    {
         return new TransparentColor();
     }
 
 }
-

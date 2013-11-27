@@ -14,35 +14,38 @@ namespace Jaguar\Canvas\Factory;
 use Jaguar\Canvas\Format\Gif;
 use Jaguar\Canvas\CanvasFactory;
 
-class GifFactory implements CanvasFactory {
-
+class GifFactory implements CanvasFactory
+{
     /**
      * {@inheritdoc}
      */
-    public function getCanvas() {
+    public function getCanvas()
+    {
         return new Gif();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isSupported($file) {
+    public function isSupported($file)
+    {
         return Gif::isGifFile($file);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getExtension($includeDot = true) {
+    public function getExtension($includeDot = true)
+    {
         return image_type_to_extension(IMAGETYPE_GIF, $includeDot);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getMimeType() {
+    public function getMimeType()
+    {
         return image_type_to_mime_type(IMAGETYPE_GIF);
     }
 
 }
-

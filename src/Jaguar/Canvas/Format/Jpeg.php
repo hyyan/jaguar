@@ -16,20 +16,22 @@ use Jaguar\Exception\Canvas\CanvasCreationException;
 use Jaguar\Exception\Canvas\CanvasOutputException;
 use Jaguar\Canvas\CompressableCanvas;
 
-class Jpeg extends CompressableCanvas {
-
+class Jpeg extends CompressableCanvas
+{
     /**
      * Check if the given file is jpeg file
-     * 
-     * @param string $filename
+     *
+     * @param  string  $filename
      * @return boolean true if jpeg false othewise
      */
-    public static function isJpegFile($filename) {
+    public static function isJpegFile($filename)
+    {
         try {
             $image = new ImageFile($filename);
             if (strtolower($image->getMime()) !== @image_type_to_mime_type(IMAGETYPE_JPEG)) {
                 return false;
             }
+
             return true;
         } catch (\RuntimeException $ex) {
             return false;
@@ -39,7 +41,8 @@ class Jpeg extends CompressableCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function doSave($filename) {
+    protected function doSave($filename)
+    {
         if (false == @imagejpeg($this->getHandler(), $filename, $this->getQuality())) {
             throw new CanvasOutputException(sprintf(
                     'Faild Outputting The Jpeg Canvas "%s" To "%s"'
@@ -51,7 +54,8 @@ class Jpeg extends CompressableCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function doLoadFromFile($filename) {
+    protected function doLoadFromFile($filename)
+    {
         $this->assertJpegFile($filename);
         if (false == ($handler = @imagecreatefromjpeg($filename))) {
             throw new CanvasCreationException(sprintf(
@@ -64,7 +68,8 @@ class Jpeg extends CompressableCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function getToStringProperties() {
+    protected function getToStringProperties()
+    {
         return array(
             'Format' => 'Jpeg',
             'Dimension' => (string) $this->getDimension()
@@ -73,12 +78,13 @@ class Jpeg extends CompressableCanvas {
 
     /**
      * Check If The File Is valid jpeg file
-     * 
+     *
      * @param string $filename
-     * 
+     *
      * @throws \InvalidArgumentException
      */
-    protected function assertJpegFile($filename) {
+    protected function assertJpegFile($filename)
+    {
         if (!self::isJpegFile($filename)) {
             throw new \InvalidArgumentException(
             sprintf("(%s) Is Not valid Jpeg File", $filename)
@@ -87,4 +93,3 @@ class Jpeg extends CompressableCanvas {
     }
 
 }
-

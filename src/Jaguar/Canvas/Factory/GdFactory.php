@@ -14,39 +14,43 @@ namespace Jaguar\Canvas\Factory;
 use Jaguar\Canvas\Format\Gd;
 use Jaguar\Canvas\CanvasFactory;
 
-class GdFactory implements CanvasFactory {
-
+class GdFactory implements CanvasFactory
+{
     /**
      * {@inheritdoc}
      */
-    public function getCanvas() {
+    public function getCanvas()
+    {
         return new Gd();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isSupported($file) {
+    public function isSupported($file)
+    {
         return Gd::isGdFile($file);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getExtension($includeDot = true) {
+    public function getExtension($includeDot = true)
+    {
         $result = "gd2";
         if (true == $includeDot) {
             $result = '.' . $result;
         }
+
         return $result;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getMimeType() {
+    public function getMimeType()
+    {
         return '';
     }
 
 }
-

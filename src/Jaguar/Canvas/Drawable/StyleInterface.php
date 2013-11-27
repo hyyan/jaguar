@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of the Jaguar package.
  *
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
@@ -13,16 +13,15 @@ namespace Jaguar\Canvas\Drawable;
 
 use Jaguar\Canvas\CanvasInterface;
 
-interface StyleInterface {
-
+interface StyleInterface
+{
     /**
      * Apply the style on the drawable object
-     * 
-     * @param \Jaguar\Canvas\CanvasInterface $canvas
+     *
+     * @param \Jaguar\Canvas\CanvasInterface   $canvas
      * @param \Jaguar\Canvas\DrawableInterface $drawable
-     * 
+     *
      * @throws \Jaguar\Exception\Canvas\Drawable\DrawableException
      */
     public function apply(CanvasInterface $canvas, DrawableInterface $drawable);
 }
-

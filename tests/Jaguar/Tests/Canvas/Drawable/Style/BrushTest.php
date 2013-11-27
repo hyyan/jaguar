@@ -14,9 +14,10 @@ namespace Jaguar\Tests\Canvas\Drawable\Style;
 use Jaguar\Canvas\Drawable\Style\Brush;
 use Jaguar\Tests\Canvas\Drawable\AbstractStyleTest;
 
-class BrushTest extends AbstractStyleTest {
-
-    public function testApply() {
+class BrushTest extends AbstractStyleTest
+{
+    public function testApply()
+    {
         $brush = new Brush($this->getCanvas());
         $this->assertInstanceOf(
                 '\Jaguar\Color\StyledBrushedColor'
@@ -27,7 +28,8 @@ class BrushTest extends AbstractStyleTest {
     /**
      * @expectedException \Jaguar\Exception\Canvas\Drawable\DrawableException
      */
-    public function testApplyThrowDrawableException() {
+    public function testApplyThrowDrawableException()
+    {
         $brush = new Brush(new \Jaguar\Tests\Canvas\Mock\CanvasMock());
         $brush->apply($this->getCanvas(), $this->getDrawable());
     }
@@ -35,10 +37,10 @@ class BrushTest extends AbstractStyleTest {
     /**
      * @expectedException \RuntimeException
      */
-    public function testCloneThrowRuntimeException() {
+    public function testCloneThrowRuntimeException()
+    {
         $brush = new Brush($this->getCanvas());
         clone $brush;
     }
 
 }
-

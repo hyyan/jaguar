@@ -13,11 +13,11 @@ namespace Jaguar\Tests\Color;
 
 use Jaguar\Color\BrushedColor;
 
-class BrushedColorTest extends AbstractColorTest {
-
-    public function getColor() {
+class BrushedColorTest extends AbstractColorTest
+{
+    public function getColor()
+    {
         return new BrushedColor();
     }
 
 }
-

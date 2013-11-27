@@ -11,14 +11,14 @@
 
 namespace Jaguar\Color;
 
-class TransparentColor extends AbstractColor {
-
+class TransparentColor extends AbstractColor
+{
     /**
      * {@inheritdoc}
      */
-    public function getValue() {
+    public function getValue()
+    {
         return IMG_COLOR_TRANSPARENT;
     }
 
 }
-

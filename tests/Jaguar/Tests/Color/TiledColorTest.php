@@ -13,11 +13,11 @@ namespace Jaguar\Tests\Color;
 
 use Jaguar\Color\TiledColor;
 
-class TiledColorTest extends AbstractColorTest {
-
-    public function getColor() {
+class TiledColorTest extends AbstractColorTest
+{
+    public function getColor()
+    {
         return new TiledColor();
     }
 
 }
-

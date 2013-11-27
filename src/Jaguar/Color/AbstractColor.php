@@ -11,13 +11,13 @@
 
 namespace Jaguar\Color;
 
-abstract class AbstractColor implements ColorInterface {
-
+abstract class AbstractColor implements ColorInterface
+{
     /**
      * {@inheritdoc}
      */
-    public function equals($other) {
-
+    public function equals($other)
+    {
         if (!($other instanceof ColorInterface)) {
             throw new \InvalidArgumentException('Invalid Color Object');
         }
@@ -28,10 +28,10 @@ abstract class AbstractColor implements ColorInterface {
     /**
      * {@inheritdoc}
      */
-    public function __toString() {
+    public function __toString()
+    {
         return get_called_class() .
                 '[' . (string) $this->getValue() . ']';
     }
 
 }
-

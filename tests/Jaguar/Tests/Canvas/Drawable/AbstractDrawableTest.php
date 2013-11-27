@@ -15,28 +15,30 @@ use Jaguar\Tests\JaguarTestCase;
 use Jaguar\Canvas\Canvas;
 use Jaguar\Dimension;
 
-abstract class AbstractDrawableTest extends JaguarTestCase {
-
+abstract class AbstractDrawableTest extends JaguarTestCase
+{
     /**
      * Get drawabale object
-     * 
-     * @return \Jaguar\Canvas\Drawable\DrawableInterface 
+     *
+     * @return \Jaguar\Canvas\Drawable\DrawableInterface
      */
     abstract public function getDrawable();
 
     /**
      * Get canvas object
-     * 
-     * @return \Jaguar\Canvas\Drawable\DrawableInterface 
+     *
+     * @return \Jaguar\Canvas\Drawable\DrawableInterface
      */
-    public function getCanvas() {
+    public function getCanvas()
+    {
         return new Canvas(new Dimension(100, 100));
     }
 
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasEmptyException
      */
-    public function testDrawThrowCanvasEmptyException() {
+    public function testDrawThrowCanvasEmptyException()
+    {
         $canvas = new \Jaguar\Tests\Canvas\Mock\EmptyCanvasMock();
         $canvas->draw($this->getDrawable());
     }
@@ -44,7 +46,8 @@ abstract class AbstractDrawableTest extends JaguarTestCase {
     /**
      * @expectedException \Jaguar\Exception\Canvas\Drawable\DrawableException
      */
-    public function testDrawThrowDrawableException() {
+    public function testDrawThrowDrawableException()
+    {
         $canvas = new \Jaguar\Tests\Canvas\Mock\CanvasMock();
         $canvas->draw($this->getDrawable());
     }
@@ -52,20 +55,22 @@ abstract class AbstractDrawableTest extends JaguarTestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testEqualsThrowInvalidArgumnetException() {
+    public function testEqualsThrowInvalidArgumnetException()
+    {
         $this->getDrawable()->equals('invalid');
     }
 
-    public function testDraw() {
+    public function testDraw()
+    {
         $canvas = $this->getCanvas();
         $drawable = $this->getDrawable();
         $this->assertSame($canvas, $canvas->draw($drawable));
         $this->assertSame($drawable, $drawable->draw($canvas));
     }
 
-    public function testToString() {
+    public function testToString()
+    {
         $this->assertInternalType('string', (string) $this->getDrawable());
     }
 
 }
-

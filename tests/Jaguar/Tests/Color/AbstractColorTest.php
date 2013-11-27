@@ -13,24 +13,26 @@ namespace Jaguar\Tests\Color;
 
 use Jaguar\Tests\JaguarTestCase;
 
-abstract class AbstractColorTest extends JaguarTestCase {
-
+abstract class AbstractColorTest extends JaguarTestCase
+{
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testEqualsThrowInvalidArgumentException() {
+    public function testEqualsThrowInvalidArgumentException()
+    {
         $this->getColor()->equals('Invalid Color Object');
     }
 
-    public function testEquals() {
+    public function testEquals()
+    {
         $this->assertTrue($this->getColor()->equals($this->getColor()));
         $this->assertFalse($this->getColor()->equals(\Jaguar\Color\RGBColor::fromValue(16711680)));
     }
 
-    public function testToString() {
+    public function testToString()
+    {
         $this->assertInternalType('string', (string) $this->getColor());
     }
 
     abstract public function getColor();
 }
-

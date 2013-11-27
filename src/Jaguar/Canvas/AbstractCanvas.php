@@ -23,19 +23,20 @@ use Jaguar\Exception\Canvas\CanvasException;
 use Jaguar\Canvas\Drawable\DrawableInterface;
 use Jaguar\Canvas\Drawable\StyleInterface;
 
-abstract class AbstractCanvas implements CanvasInterface {
-
+abstract class AbstractCanvas implements CanvasInterface
+{
     protected $handler;
 
     /**
      * Constrcut new canvas
-     * 
+     *
      * @param \Jaguar\Dimension $dimension
-     * 
+     *
      * @throws \Jaguar\Exception\InvalidDimensionException
      * @throws \Jaguar\Exception\Canvas\CanvasCreationException
      */
-    public function __construct(Dimension $dimension = null) {
+    public function __construct(Dimension $dimension = null)
+    {
         if (null !== $dimension) {
             $this->create($dimension);
         }
@@ -43,10 +44,11 @@ abstract class AbstractCanvas implements CanvasInterface {
 
     /**
      * Check if the given resource is gd resource
-     * 
+     *
      * @return boolean
      */
-    public function isGdResource($resource) {
+    public function isGdResource($resource)
+    {
         return (
                 @is_resource($resource) &&
                 @get_resource_type($resource) === "gd"
@@ -57,62 +59,72 @@ abstract class AbstractCanvas implements CanvasInterface {
     /**
      * {@inheritdoc}
      */
-    public function isHandlerSet() {
+    public function isHandlerSet()
+    {
         return $this->getHandler() ? true : false;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getHandler() {
+    public function getHandler()
+    {
         return $this->handler;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setHandler($handler) {
+    public function setHandler($handler)
+    {
         if (!$this->isGdResource($handler)) {
             throw new \InvalidArgumentException('Invalid Gd Handler');
         }
         $this->convertPaletteToTrueColor($handler);
         $this->handler = $handler;
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getWidth() {
+    public function getWidth()
+    {
         return $this->isHandlerSet() ? @imagesx($this->getHandler()) : 0;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getHeight() {
+    public function getHeight()
+    {
         return $this->isHandlerSet() ? @imagesy($this->getHandler()) : 0;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getDimension() {
+    public function getDimension()
+    {
         return new Dimension($this->getWidth(), $this->getHeight());
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isTrueColor() {
+    public function isTrueColor()
+    {
         $this->assertEmpty();
+
         return @imageistruecolor($this->getHandler()) ? true : false;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function alphaBlending($bool) {
+    public function alphaBlending($bool)
+    {
         $this->assertEmpty();
         if (false == @imagealphablending($this->getHandler(), $bool)) {
             throw new CanvasException(sprintf(
@@ -120,14 +132,15 @@ abstract class AbstractCanvas implements CanvasInterface {
                     , (string) $this
             ));
         };
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function create(Dimension $dimension) {
-
+    public function create(Dimension $dimension)
+    {
         $x = $dimension->getWidth();
         $y = $dimension->getHeight();
 
@@ -147,43 +160,50 @@ abstract class AbstractCanvas implements CanvasInterface {
 
         $this->setHandler($handler);
         $this->fill(new RGBColor(255, 255, 255));
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function fromString($string) {
+    public function fromString($string)
+    {
         $handler = @imagecreatefromstring($string);
         if (!$this->isGdResource($handler)) {
             throw new CanvasCreationException("Invalid Canvas String");
         }
         $this->setHandler($handler);
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function fromFile($file) {
+    public function fromFile($file)
+    {
         $this->isValidFile($file);
         $this->doLoadFromFile($file);
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function draw(DrawableInterface $drawable, StyleInterface $style = null) {
+    public function draw(DrawableInterface $drawable, StyleInterface $style = null)
+    {
         $drawable->draw($this, $style);
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function paste(CanvasInterface $src, Box $srcBox = null, Box $destBox = null) {
-
+    public function paste(CanvasInterface $src, Box $srcBox = null, Box $destBox = null)
+    {
         $this->assertEmpty();
         if (!$src->isHandlerSet()) {
             throw new CanvasEmptyException(
@@ -219,7 +239,8 @@ abstract class AbstractCanvas implements CanvasInterface {
     /**
      * {@inheritdoc}
      */
-    public function fill(ColorInterface $color, Coordinate $coordinate = null) {
+    public function fill(ColorInterface $color, Coordinate $coordinate = null)
+    {
         $this->assertEmpty();
         $coordinate = ($coordinate === null) ? new Coordinate() : $coordinate;
         if (
@@ -235,37 +256,44 @@ abstract class AbstractCanvas implements CanvasInterface {
                     , (string) $this, (string) $color
             ));
         }
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function save($path = null) {
+    public function save($path = null)
+    {
         $this->assertEmpty();
         $this->doSave($path);
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCopy() {
+    public function getCopy()
+    {
         $this->assertEmpty();
         $clone = clone $this;
         $clone->create($this->getDimension());
         $clone->paste($this);
+
         return $clone;
     }
 
-    public function __clone() {
+    public function __clone()
+    {
         $this->handler = null;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function __destruct() {
+    public function __destruct()
+    {
         @imagedestroy($this->handler);
         $this->handler = null;
     }
@@ -273,7 +301,8 @@ abstract class AbstractCanvas implements CanvasInterface {
     /**
      * {@inheritdoc}
      */
-    public function __toString() {
+    public function __toString()
+    {
         $result = get_called_class();
         $suffix = "[Empty Canvas]";
         if ($this->isHandlerSet()) {
@@ -284,40 +313,43 @@ abstract class AbstractCanvas implements CanvasInterface {
             }
             $suffix = "[" . rtrim($propertiesAsString, ',') . "]";
         }
+
         return ($result . $suffix);
     }
 
     /**
      * Check if the given string represents a path to a readable file
-     * 
+     *
      * @param string $file
-     * 
+     *
      * @throws \InvalidArgumentException
      */
-    protected function isValidFile($file) {
+    protected function isValidFile($file)
+    {
         if (!is_file($file) || !is_readable($file)) {
             throw new \InvalidArgumentException('File Is Not Readable');
         }
     }
 
     /**
-     * Check if the canvas is empty 
-     * 
+     * Check if the canvas is empty
+     *
      * @throws \Jaguar\Exception\Canvas\CanvasEmptyException
      */
-    protected function assertEmpty() {
+    protected function assertEmpty()
+    {
         if (false === $this->isHandlerSet()) {
             throw new CanvasEmptyException();
         }
     }
 
     /**
-     * Convert pallete to true color 
-     * 
+     * Convert pallete to true color
+     *
      * @param resource $resource gd reource
      */
-    protected function convertPaletteToTrueColor(&$resource) {
-
+    protected function convertPaletteToTrueColor(&$resource)
+    {
         // we are ignoring imagepalettetotruecolor function in php5.5
 
         if (@imageistruecolor($resource)) {
@@ -352,9 +384,8 @@ abstract class AbstractCanvas implements CanvasInterface {
     /**
      * Get string properties that must be displayed when the canvas is converted
      * to string
-     * 
+     *
      * @return array array of properties as key/value
      */
     abstract protected function getToStringProperties();
 }
-

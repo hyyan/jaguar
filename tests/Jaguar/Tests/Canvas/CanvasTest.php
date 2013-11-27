@@ -15,14 +15,15 @@ use Jaguar\Canvas\Canvas;
 use Jaguar\Tests\JaguarTestCase;
 use Jaguar\Dimension;
 
-class CanvasTest extends JaguarTestCase {
-
+class CanvasTest extends JaguarTestCase
+{
     /**
      * Canvas  provider
-     * 
+     *
      * @return array
      */
-    public function canvasProvider() {
+    public function canvasProvider()
+    {
         return array(
             array(new Canvas(new Dimension(100, 100), Canvas::Format_JPEG)),
             array(new Canvas(new Dimension(100, 100), Canvas::Format_GIF)),
@@ -33,10 +34,11 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * Canvas and files provider
-     * 
+     *
      * @return array
      */
-    public function canvasFilesProvider() {
+    public function canvasFilesProvider()
+    {
         return array(
             array(
                 new Canvas(new Dimension(100, 100), Canvas::Format_JPEG),
@@ -59,10 +61,11 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * Different canvas and files provider
-     * 
+     *
      * @return array
      */
-    public function differentCanvasFilesProvider() {
+    public function differentCanvasFilesProvider()
+    {
         return array(
             array(
                 new Canvas(new Dimension(100, 100), Canvas::Format_JPEG),
@@ -88,10 +91,11 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * Canvas And Special Methods Provider
-     * 
+     *
      * @return array
      */
-    public function canvasAndSpecialMethodsProvider() {
+    public function canvasAndSpecialMethodsProvider()
+    {
         return array(
             array(
                 $gd = new Canvas(new Dimension(100, 100), Canvas::Format_GD),
@@ -114,11 +118,12 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * @dataProvider canvasFilesProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
-     * @param string $file 
+     * @param string                $file
      */
-    public function testFromFile(Canvas $canvas, $file) {
+    public function testFromFile(Canvas $canvas, $file)
+    {
         $result = $canvas->fromFile($file);
         $this->assertTrue($canvas->isHandlerSet());
         $this->assertSame($canvas, $result);
@@ -126,12 +131,13 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * @dataProvider differentCanvasFilesProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
-     * @param string $file
-     * @param string $expectedType
+     * @param string                $file
+     * @param string                $expectedType
      */
-    public function testFromFileCanLoadDifferentFiles(Canvas $canvas, $file, $expectedType) {
+    public function testFromFileCanLoadDifferentFiles(Canvas $canvas, $file, $expectedType)
+    {
         $result = $canvas->fromFile($file);
         $this->assertTrue($canvas->isHandlerSet());
         $this->assertSame($canvas, $result);
@@ -141,7 +147,8 @@ class CanvasTest extends JaguarTestCase {
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasCreationException
      */
-    public function testLoadFromFileThrowCanvasCreationExceptionOnUnsupportedType() {
+    public function testLoadFromFileThrowCanvasCreationExceptionOnUnsupportedType()
+    {
         $canvas = new Canvas();
         $canvas->fromFile($this->getFixture('icon.ico'));
     }
@@ -149,17 +156,19 @@ class CanvasTest extends JaguarTestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testSetFormatThrowInvalidArgumentException() {
+    public function testSetFormatThrowInvalidArgumentException()
+    {
         $canvas = new Canvas();
         $canvas->setFormat('unknown Format');
     }
 
     /**
      * @dataProvider canvasProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
      */
-    public function testSetGetHandler(Canvas $canvas) {
+    public function testSetGetHandler(Canvas $canvas)
+    {
         $new = new Canvas(new Dimension(100, 100));
 
         $this->assertSame($canvas, $canvas->setHandler($new->getHandler()));
@@ -168,10 +177,11 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * @dataProvider canvasProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
      */
-    public function testGetCopy(Canvas $canvas) {
+    public function testGetCopy(Canvas $canvas)
+    {
         $copy = $canvas->getCopy();
 
         $this->assertInstanceOf(get_class($canvas), $copy);
@@ -182,11 +192,11 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * @dataProvider canvasProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
      */
-    public function testSave(Canvas $canvas) {
-
+    public function testSave(Canvas $canvas)
+    {
         $path = sys_get_temp_dir() . '/tesSave.canvas';
 
         if (file_exists($path)) {
@@ -202,21 +212,23 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * @dataProvider canvasProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
      */
-    public function testToString(Canvas $canvas) {
+    public function testToString(Canvas $canvas)
+    {
         $this->assertInternalType('string', (string) $canvas);
     }
 
     /**
      * @requires function xdebug_get_headers
-     * 
+     *
      * @dataProvider canvasProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
      */
-    public function testShow(Canvas $canvas) {
+    public function testShow(Canvas $canvas)
+    {
         ob_start();
         $key = trim(sprintf('Content-Type: %s', $canvas->getMimeType()));
         $canvas->show();
@@ -235,17 +247,19 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasEmptyException
-     * 
+     *
      * @dataProvider canvasProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
      */
-    public function testShowCanCatchExceptionsAndRethrowThem(Canvas $canvas) {
+    public function testShowCanCatchExceptionsAndRethrowThem(Canvas $canvas)
+    {
         $canvas = new Canvas();
         $canvas->show();
     }
 
-    public function testFactoryManipulationMethods() {
+    public function testFactoryManipulationMethods()
+    {
         $canvas = new Canvas();
         $name = 'My-JPG';
         $Format = '\Jaguar\Canvas\Factory\JpegFactory';
@@ -261,23 +275,24 @@ class CanvasTest extends JaguarTestCase {
 
     /**
      * @expectedException \RuntimeException
-     * 
+     *
      * @dataProvider canvasProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
      */
-    public function testCallThorwRuntimeException(Canvas $canvas) {
+    public function testCallThorwRuntimeException(Canvas $canvas)
+    {
         $canvas->noopeMethod();
     }
 
     /**
      * @dataProvider canvasAndSpecialMethodsProvider
-     * 
+     *
      * @param \Jaguar\Canvas\Canvas $canvas
-     * @param array $data
+     * @param array                 $data
      */
-    public function testCall(Canvas $canvas, array $data) {
-
+    public function testCall(Canvas $canvas, array $data)
+    {
         foreach ($data as $test) {
 
             $method = $test[0];
@@ -298,4 +313,3 @@ class CanvasTest extends JaguarTestCase {
     }
 
 }
-

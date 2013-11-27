@@ -11,14 +11,14 @@
 
 namespace Jaguar\Color;
 
-class TiledColor extends AbstractColor {
-
+class TiledColor extends AbstractColor
+{
     /**
      * {@inheritdoc}
      */
-    public function getValue() {
+    public function getValue()
+    {
         return IMG_COLOR_TILED;
     }
 
 }
-

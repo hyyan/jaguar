@@ -16,37 +16,43 @@ use Jaguar\Dimension;
 use Jaguar\Box;
 use Jaguar\Tests\Canvas\AbstractCanvasTest;
 
-class GdTest extends AbstractCanvasTest {
-
-    protected function getCanvas() {
+class GdTest extends AbstractCanvasTest
+{
+    protected function getCanvas()
+    {
         return new Gd(new Dimension(300, 300));
     }
 
-    protected function getPalleteFile() {
+    protected function getPalleteFile()
+    {
         return $this->getFixture('pallete/pallete.gd2');
         ;
     }
 
-    protected function getInvalidCanvasFile() {
+    protected function getInvalidCanvasFile()
+    {
         return $this->getFixture('invalid/invalid-gd.gd2');
         ;
     }
 
-    protected function getCanvasFile() {
+    protected function getCanvasFile()
+    {
         return $this->getFixture('gd.gd2');
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testFromFileThrowInvalidArgumentExceptionOnNonGd() {
+    public function testFromFileThrowInvalidArgumentExceptionOnNonGd()
+    {
         $this->getCanvas()->fromFile($this->getFixture('sky.jpg'));
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testIsGdFileThrowInvalidArgumentException() {
+    public function testIsGdFileThrowInvalidArgumentException()
+    {
         $c = $this->getCanvas();
         $c::isGdFile('not found');
     }
@@ -54,7 +60,8 @@ class GdTest extends AbstractCanvasTest {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testPartFromFileThrowInvalidArgumentException() {
+    public function testPartFromFileThrowInvalidArgumentException()
+    {
         $this->getCanvas()->partFromFile(
                 'non readable file'
                 , new Box(new Dimension(50, 50))
@@ -64,14 +71,16 @@ class GdTest extends AbstractCanvasTest {
     /**
      * @expectedException \Jaguar\Exception\Canvas\CanvasCreationException
      */
-    public function testPartFromFileThrowCanvasCreationException() {
+    public function testPartFromFileThrowCanvasCreationException()
+    {
         $this->getCanvas()->partFromFile(
                 $this->getInvalidCanvasFile()
                 , new Box(new Dimension(50, 50))
         );
     }
 
-    public function testPartFromFile() {
+    public function testPartFromFile()
+    {
         $c = $this->getCanvas()->partFromFile(
                 $this->getCanvasFile()
                 , new Box(new Dimension(50, 50))
@@ -81,4 +90,3 @@ class GdTest extends AbstractCanvasTest {
     }
 
 }
-

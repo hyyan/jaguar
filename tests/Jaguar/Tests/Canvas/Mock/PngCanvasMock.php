@@ -13,35 +13,41 @@ namespace Jaguar\Tests\Canvas\Mock;
 
 use Jaguar\Canvas\Format\Png;
 
-class PngCanvasMock extends Png {
-
-    public function isHandlerSet() {
+class PngCanvasMock extends Png
+{
+    public function isHandlerSet()
+    {
         return true;
     }
 
-    public function getHandler() {
+    public function getHandler()
+    {
         return true;
     }
 
-    public function getWidth() {
+    public function getWidth()
+    {
         return 100;
     }
 
-    public function getHeight() {
+    public function getHeight()
+    {
         return 100;
     }
 
-    public function alphaBlending($bool) {
+    public function alphaBlending($bool)
+    {
         return $this;
     }
 
-    protected function doLoadFromFile($file) {
+    protected function doLoadFromFile($file)
+    {
         return null;
     }
 
-    protected function getToStringProperties() {
+    protected function getToStringProperties()
+    {
         return array();
     }
 
 }
-

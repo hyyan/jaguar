@@ -13,15 +13,17 @@ namespace Jaguar\Tests;
 
 use Jaguar\Box;
 
-class BoxTest extends JaguarTestCase {
-
-    public function testEqualsThrowInvalidArgumentException() {
+class BoxTest extends JaguarTestCase
+{
+    public function testEqualsThrowInvalidArgumentException()
+    {
         $this->setExpectedException('\InvalidArgumentException');
         $box = new Box();
         $box->equals('invalid');
     }
 
-    public function testEquals() {
+    public function testEquals()
+    {
         $box = new Box();
         $clone = clone $box;
 
@@ -36,16 +38,18 @@ class BoxTest extends JaguarTestCase {
         $this->assertFalse($box->equals($clone));
     }
 
-    public function testToString() {
+    public function testToString()
+    {
         $this->assertInternalType('string', (string) new Box());
     }
 
     /**
      * @dataProvider getRatios
-     * 
+     *
      * @param integer $ratio
      */
-    public function testScale($ratio) {
+    public function testScale($ratio)
+    {
         $box = new Box();
 
         $dw = $box->getWidth();
@@ -59,10 +63,11 @@ class BoxTest extends JaguarTestCase {
 
     /**
      * Ratios Dataprovider
-     * 
+     *
      * @return array
      */
-    public function getRatios() {
+    public function getRatios()
+    {
         return array(
             array(5),
             array(2),
@@ -71,4 +76,3 @@ class BoxTest extends JaguarTestCase {
     }
 
 }
-

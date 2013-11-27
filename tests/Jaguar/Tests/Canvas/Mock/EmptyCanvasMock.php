@@ -11,15 +11,16 @@
 
 namespace Jaguar\Tests\Canvas\Mock;
 
-class EmptyCanvasMock extends CanvasMock {
-
-    public function isHandlerSet() {
+class EmptyCanvasMock extends CanvasMock
+{
+    public function isHandlerSet()
+    {
         return false;
     }
 
-    public function getHandler() {
+    public function getHandler()
+    {
         return false;
     }
 
 }
-

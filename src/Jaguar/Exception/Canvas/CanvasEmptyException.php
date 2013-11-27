@@ -11,11 +11,11 @@
 
 namespace Jaguar\Exception\Canvas;
 
-class CanvasEmptyException extends CanvasException {
-
-    public function __construct($message = 'Canvas Handler Is Not Set', $code = null, $previous = null) {
+class CanvasEmptyException extends CanvasException
+{
+    public function __construct($message = 'Canvas Handler Is Not Set', $code = null, $previous = null)
+    {
         parent::__construct($message, $code, $previous);
     }
 
 }
-

@@ -13,26 +13,27 @@ namespace Jaguar\Tests\Canvas\Drawable;
 
 use Jaguar\Tests\JaguarTestCase;
 
-abstract class AbstractStyleTest extends JaguarTestCase {
-
+abstract class AbstractStyleTest extends JaguarTestCase
+{
     /**
      * Get drawable object
-     * 
-     * @return \Jaguar\Canvas\Drawable\DrawableInterface 
+     *
+     * @return \Jaguar\Canvas\Drawable\DrawableInterface
      */
-    public function getDrawable() {
+    public function getDrawable()
+    {
         return new \Jaguar\Canvas\Drawable\Pixel();
     }
 
     /**
      * Get canvas object
-     * 
-     * @return \Jaguar\Canvas\Drawable\DrawableInterface 
+     *
+     * @return \Jaguar\Canvas\Drawable\DrawableInterface
      */
-    public function getCanvas() {
+    public function getCanvas()
+    {
         return new \Jaguar\Canvas\Canvas(new \Jaguar\Dimension(200, 200));
     }
 
     abstract public function testApply();
 }
-

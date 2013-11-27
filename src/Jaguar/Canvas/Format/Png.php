@@ -18,8 +18,8 @@ use Jaguar\Exception\Canvas\CanvasOutputException;
 use Jaguar\Exception\Canvas\CanvasException;
 use Jaguar\Canvas\CompressableCanvas;
 
-class Png extends CompressableCanvas {
-
+class Png extends CompressableCanvas
+{
     const NO_FILTER = PNG_NO_FILTER;
     const FILTER_NONE = PNG_FILTER_NONE;
     const FILTER_SUB = PNG_FILTER_SUB;
@@ -33,10 +33,10 @@ class Png extends CompressableCanvas {
 
     /**
      * Constrcut new png canvas
-     * 
+     *
      * @param \Jaguar\Dimension $dimension
-     * @param integer $quality default 40
-     * @param boolean $saveAlpha default true
+     * @param integer           $quality   default 40
+     * @param boolean           $saveAlpha default true
      */
     public function __construct(
     Dimension $dimension = null, $quality = 40, $saveAlpha = true, $filter = self::ALL_FILTERS) {
@@ -47,34 +47,37 @@ class Png extends CompressableCanvas {
 
     /**
      * Save Alpha Channel Information
-     * 
-     * Sets the flag to attempt to save full alpha channel information 
-     * (as opposed to single-color transparency) when <b>saving</b> PNG images. 
-     * 
-     * Also Note that the alphaBelnding will be set to false in order to enable 
+     *
+     * Sets the flag to attempt to save full alpha channel information
+     * (as opposed to single-color transparency) when <b>saving</b> PNG images.
+     *
+     * Also Note that the alphaBelnding will be set to false in order to enable
      * this option.
      *
      * <b>Note </b>
      * Alpha channel is not supported by all browsers.
      *
-     * @param boolean $bool  
-     * 
+     * @param boolean $bool
+     *
      * @return Jaguar\Canvas\Format\Png
      */
-    public function setSaveAlpha($bool) {
+    public function setSaveAlpha($bool)
+    {
         $this->PNGIsSaveAlpha = (boolean) $bool;
+
         return $this;
     }
 
     /**
-     * Get Save Alpha 
-     * 
+     * Get Save Alpha
+     *
      * Check if the channel information will be saved with canvas or not
-     * 
+     *
      * @return boolean
-     * 
+     *
      */
-    public function getSaveAlpha() {
+    public function getSaveAlpha()
+    {
         return $this->PNGIsSaveAlpha;
     }
 
@@ -82,10 +85,11 @@ class Png extends CompressableCanvas {
      * Set the png filter constant
      *
      * @param integer $filter
-     * 
+     *
      * @return Jaguar\Canvas\Format\Png
      */
-    public function setFilter($filter) {
+    public function setFilter($filter)
+    {
         $validFilters =
                 self::NO_FILTER |
                 self::FILTER_NONE | self::FILTER_SUB |
@@ -95,6 +99,7 @@ class Png extends CompressableCanvas {
         $filter = $filter & $validFilters;
 
         $this->filter = (integer) $filter;
+
         return $this;
     }
 
@@ -103,22 +108,25 @@ class Png extends CompressableCanvas {
      *
      * @return integer
      */
-    public function getFilter() {
+    public function getFilter()
+    {
         return $this->filter;
     }
 
     /**
      * Check if the given file is png file
-     * 
-     * @param string $filename
+     *
+     * @param  string  $filename
      * @return boolean true if png file,false otherwise
      */
-    public static function isPngFile($filename) {
+    public static function isPngFile($filename)
+    {
         try {
             $image = new ImageFile($filename);
             if (strtolower($image->getMime()) !== @image_type_to_mime_type(IMAGETYPE_PNG)) {
                 return false;
             }
+
             return true;
         } catch (\RuntimeException $ex) {
             return false;
@@ -128,7 +136,8 @@ class Png extends CompressableCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function doSave($filename) {
+    protected function doSave($filename)
+    {
         try {
             $this->saveAlpha($this, $this->getSaveAlpha());
         } catch (CanvasException $e) {
@@ -146,7 +155,8 @@ class Png extends CompressableCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function doLoadFromFile($filename) {
+    protected function doLoadFromFile($filename)
+    {
         $this->assertPngFile($filename);
         $handler = @imagecreatefrompng($filename);
         if (false == $handler) {
@@ -159,14 +169,15 @@ class Png extends CompressableCanvas {
 
     /**
      * Save The Alpha Channel Information For Png Resource
-     * 
+     *
      * @param Jaguar\Canvas\Format\Png $png
-     * @param boolean $flag true to save false to ignore
-     * 
+     * @param boolean                  $flag true to save false to ignore
+     *
      * @return \Jaguar\Canvas\Format\Png
      * @throws \Jaguar\Exception\Canvas\CanvasException
      */
-    protected function saveAlpha(Png $png, $flag) {
+    protected function saveAlpha(Png $png, $flag)
+    {
         if ($flag) {
             $png->alphaBlending(false);
             if (false == @imagesavealpha($png->getHandler(), $flag)) {
@@ -176,13 +187,15 @@ class Png extends CompressableCanvas {
                 ));
             }
         }
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function getToStringProperties() {
+    protected function getToStringProperties()
+    {
         return array(
             'Format' => 'Png',
             'Dimension' => (string) $this->getDimension(),
@@ -193,10 +206,11 @@ class Png extends CompressableCanvas {
     /**
      * Check If The File Is valid png file
      * @param string $filename
-     * 
+     *
      * @throws \InvalidArgumentException
      */
-    protected function assertPngFile($filename) {
+    protected function assertPngFile($filename)
+    {
         if (!self::isPngFile($filename)) {
             throw new \InvalidArgumentException(sprintf(
                     '(%s) Is Not valid Png File', $filename
@@ -205,4 +219,3 @@ class Png extends CompressableCanvas {
     }
 
 }
-

@@ -13,19 +13,18 @@ namespace Jaguar\Color;
 
 use Jaguar\EqualsInterface;
 
-interface ColorInterface extends EqualsInterface {
-
+interface ColorInterface extends EqualsInterface
+{
     /**
      * Get color value
-     * 
-     * @return integer 
+     *
+     * @return integer
      */
     public function getValue();
 
     /**
      * Get string representation for the current color object
-     * @return string 
+     * @return string
      */
     public function __toString();
 }
-

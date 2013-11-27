@@ -17,76 +17,84 @@ use Jaguar\Canvas\AbstractCanvas;
 use Jaguar\Dimension;
 use Jaguar\Box;
 
-class Gd extends AbstractCanvas {
-
+class Gd extends AbstractCanvas
+{
     private $GD2Compressed = true;
     private $GD2chunkSize = 0;
 
     /**
      * Constrcut new gd canvas
-     * 
+     *
      * @param \Jaguar\Dimension $dimension
-     * @param boolean $compressed
-     * @param integer $size
+     * @param boolean           $compressed
+     * @param integer           $size
      */
-    public function __construct(Dimension $dimension = null, $compressed = true, $size = 0) {
+    public function __construct(Dimension $dimension = null, $compressed = true, $size = 0)
+    {
         parent::__construct($dimension);
         $this->setCompressed($compressed)->setChunkSize($size);
     }
 
     /**
      * Set Compressed
-     * 
+     *
      * @param boolean $bool true to compresse the resource
-     * 
-     * @return \Jaguar\Canvas\Format\Gd 
+     *
+     * @return \Jaguar\Canvas\Format\Gd
      */
-    public function setCompressed($bool) {
+    public function setCompressed($bool)
+    {
         $this->GD2Compressed = $bool;
+
         return $this;
     }
 
     /**
      * Get Compressed
-     * 
+     *
      * @return boolean
-     * 
+     *
      * @codeCoverageIgnore
      */
-    public function getCompressed() {
+    public function getCompressed()
+    {
         return $this->GD2Compressed;
     }
 
     /**
      * Set Chunk Size
-     * 
+     *
      * @param integer $size
-     * 
+     *
      * @return \Jaguar\Canvas\Format\Gd
      */
-    public function setChunkSize($size) {
+    public function setChunkSize($size)
+    {
         $this->GD2chunkSize = (integer) $size;
+
         return $this;
     }
 
     /**
      * Get Chunk Size
-     * 
+     *
      * @return integer
      */
-    public function getChunkSize() {
+    public function getChunkSize()
+    {
         return $this->GD2chunkSize;
     }
 
     /**
      * Check if the given file is gd file
-     * 
+     *
      * @param string $filename
-     * 
-     * @return boolean true if gd file,false otherwise
+     *
+     * @return boolean                   true if gd file,false otherwise
      * @throws \InvalidArgumentException
      */
-    public static function isGdFile($filename) {
+    public static function isGdFile($filename)
+    {
         if (!is_file($filename) || !is_readable($filename)) {
             throw new \InvalidArgumentException(sprintf(
                     '"%s" Is Not A Readable File', $filename
@@ -100,25 +108,27 @@ class Gd extends AbstractCanvas {
             }
         }
         @fclose($f);
+
         return $result;
     }
 
     /**
      * Load Part Of gd canvas from file
-     * 
+     *
      * <b>Note :</b>
-     * This method will not check if the coordinat is valid coordinate for the 
+     * This method will not check if the coordinat is valid coordinate for the
      * resource and it won't check the Dimension either.
-     * 
-     * @param string $file
-     * @param \Jaguar\Box $box 
-     * 
-     * @return \Jaguar\Canvas\Format\Gd 
-     * 
+     *
+     * @param string      $file
+     * @param \Jaguar\Box $box
+     *
+     * @return \Jaguar\Canvas\Format\Gd
+     *
      * @throws \InvalidArgumentException
      * @throws \Jaguar\Exception\Canvas\CanvasCreationException
      */
-    public function partFromFile($file, Box $box) {
+    public function partFromFile($file, Box $box)
+    {
         $this->isValidFile($file);
         $this->assertGdFile($file);
         $x = $box->getX();
@@ -133,13 +143,15 @@ class Gd extends AbstractCanvas {
             ));
         }
         $this->setHandler($result);
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function doLoadFromFile($filename) {
+    protected function doLoadFromFile($filename)
+    {
         $this->assertGdFile($filename);
         $result = @imagecreatefromgd2($filename);
         if (false == $result) {
@@ -153,7 +165,8 @@ class Gd extends AbstractCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function doSave($filename) {
+    protected function doSave($filename)
+    {
         if (
                 false == @imagegd2(
                         $this->getHandler()
@@ -172,7 +185,8 @@ class Gd extends AbstractCanvas {
     /**
      * {@inheritdoc}
      */
-    protected function getToStringProperties() {
+    protected function getToStringProperties()
+    {
         return array(
             'Format' => 'Gd',
             'Dimension' => (string) $this->getDimension(),
@@ -183,12 +197,13 @@ class Gd extends AbstractCanvas {
 
     /**
      * Check If The File Is valid gd file
-     * 
+     *
      * @param string $filename
-     * 
+     *
      * @throws \InvalidArgumentException
      */
-    protected function assertGdFile($filename) {
+    protected function assertGdFile($filename)
+    {
         if (!self::isGdFile($filename)) {
             throw new \InvalidArgumentException(
             sprintf("(%s) Is Not valid Gd File", $filename)
@@ -197,4 +212,3 @@ class Gd extends AbstractCanvas {
     }
 
 }
-

@@ -13,13 +13,15 @@ namespace Jaguar\Tests\Canvas\Drawable;
 
 use Jaguar\Canvas\Drawable\Pixel;
 
-class PixelTest extends AbstractDrawableTest {
-
-    public function getDrawable() {
+class PixelTest extends AbstractDrawableTest
+{
+    public function getDrawable()
+    {
         return new Pixel();
     }
 
-    public function testEquals() {
+    public function testEquals()
+    {
         $pixel = $this->getDrawable();
         $clone = clone $pixel;
 
@@ -33,4 +35,3 @@ class PixelTest extends AbstractDrawableTest {
         $this->assertFalse($pixel->equals($clone));
     }
 }
-

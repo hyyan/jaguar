@@ -14,9 +14,10 @@ namespace Jaguar\Tests\Canvas\Drawable\Style;
 use Jaguar\Tests\Canvas\Drawable\AbstractStyleTest;
 use Jaguar\Canvas\Drawable\Style\FillStyle;
 
-class FillStyleTest extends AbstractStyleTest {
-
-    public function testApply() {
+class FillStyleTest extends AbstractStyleTest
+{
+    public function testApply()
+    {
         $style = new FillStyle($this->getCanvas());
         $this->assertInstanceOf(
                 '\Jaguar\Color\TiledColor'
@@ -27,7 +28,8 @@ class FillStyleTest extends AbstractStyleTest {
     /**
      * @expectedException \Jaguar\Exception\Canvas\Drawable\DrawableException
      */
-    public function testApplyThrowDrawableException() {
+    public function testApplyThrowDrawableException()
+    {
         $style = new FillStyle(new \Jaguar\Tests\Canvas\Mock\CanvasMock());
         $style->apply($this->getCanvas(), $this->getDrawable());
     }
@@ -35,10 +37,10 @@ class FillStyleTest extends AbstractStyleTest {
     /**
      * @expectedException \RuntimeException
      */
-    public function testCloneThrowRuntimeException() {
+    public function testCloneThrowRuntimeException()
+    {
         $style = new FillStyle($this->getCanvas());
         clone $style;
     }
 
 }
-

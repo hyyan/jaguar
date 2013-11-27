@@ -14,18 +14,18 @@ namespace Jaguar\Tests;
 use Jaguar\ImageFile;
 use Jaguar\Dimension;
 
-class ImageFileTest extends JaguarTestCase {
-
+class ImageFileTest extends JaguarTestCase
+{
     /**
      * @dataProvider fixturesDataProvider
-     * 
-     * @param string $file fixture file
-     * @param \Jaguar\Dimension $ed expected dimension
-     * @param type $em expected mime type
-     * @param type $ee expected extension
+     *
+     * @param string            $file fixture file
+     * @param \Jaguar\Dimension $ed   expected dimension
+     * @param type              $em   expected mime type
+     * @param type              $ee   expected extension
      */
-    public function testAllImageGets($file, Dimension $ed, $em, $ee) {
-
+    public function testAllImageGets($file, Dimension $ed, $em, $ee)
+    {
         $if = new ImageFile($file);
 
         $this->assertTrue($if->getDimension()->equals($ed));
@@ -39,10 +39,11 @@ class ImageFileTest extends JaguarTestCase {
 
     /**
      * Fixtures Data Provider
-     * 
+     *
      * @return array
      */
-    public function fixturesDataProvider() {
+    public function fixturesDataProvider()
+    {
         return array(
             array(
                 $this->getFixture('google.png'),
@@ -65,15 +66,16 @@ class ImageFileTest extends JaguarTestCase {
         );
     }
 
-    public function testConstrcutorThrowInvalidArgumentException() {
+    public function testConstrcutorThrowInvalidArgumentException()
+    {
         $this->setExpectedException('\InvalidArgumentException');
         new ImageFile('invalid');
     }
 
-    public function testConstrcutorThrowRuntimeException() {
+    public function testConstrcutorThrowRuntimeException()
+    {
         $this->setExpectedException('\RuntimeException');
         new ImageFile($this->getFixture('fonts/arial.ttf'));
     }
 
 }
-

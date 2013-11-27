@@ -11,7 +11,6 @@
 
 namespace Jaguar\Exception\Canvas;
 
-class CanvasCreationException extends CanvasException {
-    
+class CanvasCreationException extends CanvasException
+{
 }
-

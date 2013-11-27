@@ -16,14 +16,14 @@ use Jaguar\Canvas\CanvasInterface;
 use Jaguar\Canvas\Drawable\StyleInterface;
 use Jaguar\Exception\Canvas\Drawable\DrawableException;
 
-class Line extends AbstractDrawable {
-
+class Line extends AbstractDrawable
+{
     private $startCoordinate;
     private $endCoordinate;
 
     /**
      * Construct new line object
-     * 
+     *
      * @param \Jaguar\Coordinate $sc
      * @param \Jaguar\Coordinate $ec
      */
@@ -37,64 +37,71 @@ class Line extends AbstractDrawable {
 
     /**
      * Set Start Coordinate
-     * 
+     *
      * @param \Jaguar\Coordinate $sc start coordinate
-     * 
-     * @return \Jaguar\Canvas\Drawable\Line 
+     *
+     * @return \Jaguar\Canvas\Drawable\Line
      */
-    public function setStart(Coordinate $sc) {
+    public function setStart(Coordinate $sc)
+    {
         $this->startCoordinate = $sc;
+
         return $this;
     }
 
     /**
      * Get Start Coordinate
-     * 
+     *
      * @return \Jaguar\Coordinate
      */
-    public function getStart() {
+    public function getStart()
+    {
         return $this->startCoordinate;
     }
 
     /**
      * Set End Coordinate
-     * 
+     *
      * @param \Jaguar\Coordinate $ec end coordinate
-     * 
-     * @return \Jaguar\Canvas\Drawable\Line 
+     *
+     * @return \Jaguar\Canvas\Drawable\Line
      */
-    public function setEnd(Coordinate $ec) {
+    public function setEnd(Coordinate $ec)
+    {
         $this->endCoordinate = $ec;
+
         return $this;
     }
 
     /**
      * Get End Coordinate
-     * 
+     *
      * @return \Jaguar\Coordinate
-     * 
+     *
      */
-    public function getEnd() {
+    public function getEnd()
+    {
         return $this->endCoordinate;
     }
 
     /**
      * Set Line Start And End Coordinate
-     * 
+     *
      * @param \Jaguar\Coordinate $start
      * @param \Jaguar\Coordinate $end
-     * 
-     * @return \Jaguar\Canvas\Drawable\Line 
+     *
+     * @return \Jaguar\Canvas\Drawable\Line
      */
-    public function setLocation(Coordinate $start, Coordinate $end) {
+    public function setLocation(Coordinate $start, Coordinate $end)
+    {
         return $this->setStart($start)->setEnd($end);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function equals($other) {
-
+    public function equals($other)
+    {
         if (!($other instanceof self)) {
             throw new \InvalidArgumentException('Invalid Line Object');
         }
@@ -117,8 +124,8 @@ class Line extends AbstractDrawable {
     /**
      * {@inheritdoc}
      */
-    protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null) {
-
+    protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
+    {
         $sx = $this->getStart()->getX();
         $sy = $this->getStart()->getY();
         $ex = $this->getEnd()->getX();
@@ -145,10 +152,11 @@ class Line extends AbstractDrawable {
 
     /**
      * Returns a string representation for the line object
-     * 
+     *
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return get_called_class()
                 . "["
                 . "start={$this->getStart()},"
@@ -157,11 +165,11 @@ class Line extends AbstractDrawable {
     }
 
     /** Clone Line */
-    public function __clone() {
+    public function __clone()
+    {
         parent::__clone();
         $this->startCoordinate = clone $this->startCoordinate;
         $this->endCoordinate = clone $this->endCoordinate;
     }
 
 }
-

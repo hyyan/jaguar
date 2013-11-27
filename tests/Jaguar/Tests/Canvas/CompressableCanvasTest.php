@@ -11,14 +11,14 @@
 
 namespace Jaguar\Tests\Canvas;
 
-abstract class CompressableCanvasTest extends AbstractCanvasTest {
-
+abstract class CompressableCanvasTest extends AbstractCanvasTest
+{
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testSetQualityThrowInvalidArgumentException() {
+    public function testSetQualityThrowInvalidArgumentException()
+    {
         $this->getCanvas()->setQuality(500);
     }
 
 }
-

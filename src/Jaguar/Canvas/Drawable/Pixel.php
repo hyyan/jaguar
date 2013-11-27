@@ -16,47 +16,51 @@ use Jaguar\Color\ColorInterface;
 use Jaguar\Canvas\CanvasInterface;
 use Jaguar\Exception\Canvas\Drawable\DrawableException;
 
-class Pixel extends AbstractDrawable {
-
+class Pixel extends AbstractDrawable
+{
     private $coordinate;
 
     /**
      * Construct new pixel object
-     * 
-     * @param \Jaguar\Coordinate $coordinate
+     *
+     * @param \Jaguar\Coordinate           $coordinate
      * @param \Jaguar\Color\ColorInterface $color
      */
-    public function __construct(Coordinate $coordinate = null, ColorInterface $color = null) {
+    public function __construct(Coordinate $coordinate = null, ColorInterface $color = null)
+    {
         parent::__construct($color);
         $this->setCoordinate($coordinate !== null ? $coordinate : new Coordinate());
     }
 
     /**
      * Set the pixel's coordinate
-     * 
+     *
      * @param \Jaguar\Coordinate $coordinate
-     * 
+     *
      * @return \Jaguar\Canvas\Drawable\Pixel
      */
-    public function setCoordinate(Coordinate $coordinate) {
+    public function setCoordinate(Coordinate $coordinate)
+    {
         $this->coordinate = $coordinate;
+
         return $this;
     }
 
     /**
      * Get pixel's coordinate
-     * 
+     *
      * @return \Jaguar\Coordinate
      */
-    public function getCoordinate() {
+    public function getCoordinate()
+    {
         return $this->coordinate;
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null) {
-
+    protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
+    {
         $x = $this->getCoordinate()->getX();
         $y = $this->getCoordinate()->getY();
         $isStyle = ($style === null) ? false : true;
@@ -83,8 +87,8 @@ class Pixel extends AbstractDrawable {
     /**
      * {@inheritdoc}
      */
-    public function equals($other) {
-
+    public function equals($other)
+    {
         if (!($other instanceof self)) {
             throw new \InvalidArgumentException('Invalid Pixel Object');
         }
@@ -102,22 +106,23 @@ class Pixel extends AbstractDrawable {
 
     /**
      * Returns a string representation for this pixel object
-     * 
+     *
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return get_called_class() .
                 "(x={$this->getCoordinate()->getX()},y={$this->getCoordinate()->getY()})"
                 . (string) $this->getColor();
     }
 
     /**
-     * Clone Pixel 
+     * Clone Pixel
      */
-    public function __clone() {
+    public function __clone()
+    {
         parent::__clone();
         $this->coordinate = clone $this->coordinate;
     }
 
 }
-

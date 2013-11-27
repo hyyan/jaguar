@@ -14,35 +14,38 @@ namespace Jaguar\Canvas\Factory;
 use Jaguar\Canvas\Format\Png;
 use Jaguar\Canvas\CanvasFactory;
 
-class PngFactory implements CanvasFactory {
-
+class PngFactory implements CanvasFactory
+{
     /**
      * {@inheritdoc}
      */
-    public function getCanvas() {
+    public function getCanvas()
+    {
         return new Png();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isSupported($file) {
+    public function isSupported($file)
+    {
         return Png::isPngFile($file);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getExtension($includeDot = true) {
+    public function getExtension($includeDot = true)
+    {
         return image_type_to_extension(IMAGETYPE_PNG, $includeDot);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getMimeType() {
+    public function getMimeType()
+    {
         return image_type_to_mime_type(IMAGETYPE_PNG);
     }
 
 }
-

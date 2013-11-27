@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of the Jaguar package.
  *
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
@@ -16,51 +16,57 @@ use Jaguar\Color\ColorInterface;
 use Jaguar\Color\RGBColor;
 use Jaguar\Exception\Canvas\CanvasEmptyException;
 
-abstract class AbstractDrawable implements DrawableInterface {
-
+abstract class AbstractDrawable implements DrawableInterface
+{
     private $color;
 
     /**
      * Constrcut new drawable object
-     * 
+     *
      * @param \Jaguar\Color\ColorInterface $color
      */
-    public function __construct(ColorInterface $color = null) {
+    public function __construct(ColorInterface $color = null)
+    {
         $this->setColor($color !== null ? $color : new RGBColor());
     }
 
     /**
      * Get color
-     * 
+     *
      * @return \Jaguar\Color\ColorInterface
      */
-    public function getColor() {
+    public function getColor()
+    {
         return $this->color;
     }
 
     /**
-     * Set Color 
-     * 
+     * Set Color
+     *
      * @param \Jaguar\Color\ColorInterface $color
-     * 
-     * @return \Jaguar\Canvas\Drawable\AbstractDrawable 
+     *
+     * @return \Jaguar\Canvas\Drawable\AbstractDrawable
      */
-    public function setColor(ColorInterface $color) {
+    public function setColor(ColorInterface $color)
+    {
         $this->color = $color;
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function equals($other) {
+    public function equals($other)
+    {
         return $this->getColor()->equals($other->getColor());
     }
 
     /**
      * {@inheritdoc}
      */
-    public function draw(CanvasInterface $canvas, StyleInterface $style = null) {
+    public function draw(CanvasInterface $canvas, StyleInterface $style = null)
+    {
         if (!$canvas->isHandlerSet()) {
             throw new CanvasEmptyException(sprintf(
                     'Can Not Draw Drawable (%s) - Canvas Is Empty'
@@ -68,6 +74,7 @@ abstract class AbstractDrawable implements DrawableInterface {
             ));
         }
         $this->doDraw($canvas, $style);
+
         return $this;
     }
 
@@ -77,9 +84,9 @@ abstract class AbstractDrawable implements DrawableInterface {
     abstract protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null);
 
     /** clone the drawable */
-    public function __clone() {
+    public function __clone()
+    {
         $this->color = clone $this->color;
     }
 
 }
-

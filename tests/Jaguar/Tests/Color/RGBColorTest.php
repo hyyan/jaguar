@@ -13,13 +13,15 @@ namespace Jaguar\Tests\Color;
 
 use Jaguar\Color\RGBColor;
 
-class RGBColorTest extends AbstractColorTest {
-
-    public function getColor() {
+class RGBColorTest extends AbstractColorTest
+{
+    public function getColor()
+    {
         return new RGBColor();
     }
 
-    public function testEquals() {
+    public function testEquals()
+    {
         $c = $this->getColor();
         $clone = clone $c;
 
@@ -32,13 +34,14 @@ class RGBColorTest extends AbstractColorTest {
     /**
      * @dataProvider invalidRGBColorsDataProvider
      * @expectedException \InvalidArgumentException
-     * 
+     *
      * @param integer $r
      * @param integer $g
      * @param integer $b
      * @param integer $a
      */
-    public function testSetChannelsThrowException($r, $g, $b, $a) {
+    public function testSetChannelsThrowException($r, $g, $b, $a)
+    {
         new RGBColor($r, $g, $b, $a);
     }
 
@@ -46,7 +49,8 @@ class RGBColorTest extends AbstractColorTest {
      * Invalid RGBColors Data Provider
      * @return array
      */
-    public function invalidRGBColorsDataProvider() {
+    public function invalidRGBColorsDataProvider()
+    {
         return array(
             array(1000, 0, 0, 0),
             array(-1000, 0, 0, 0),
@@ -55,7 +59,8 @@ class RGBColorTest extends AbstractColorTest {
         );
     }
 
-    public function testChannels() {
+    public function testChannels()
+    {
         $c = new RGBColor(255, 150, 0, 50);
 
         $this->assertEquals($c->getRed(), 255);
@@ -64,20 +69,20 @@ class RGBColorTest extends AbstractColorTest {
         $this->assertEquals($c->getAlpha(), 50);
     }
 
-    public function testSetGetRGBColor() {
-
+    public function testSetGetRGBColor()
+    {
         $c = new RGBColor();
         $nc = new RGBColor(255, 0, 0);
 
         $c->setRGBColor($nc);
         $getNc = $c->getRGBColor();
 
-
         $this->assertNotSame($getNc, $nc);
         $this->assertTrue($getNc->equals($nc));
     }
 
-    public function testIsOpaque() {
+    public function testIsOpaque()
+    {
         $c = $this->getColor();
         $this->assertTrue($c->isOpaque());
 
@@ -85,8 +90,8 @@ class RGBColorTest extends AbstractColorTest {
         $this->assertFalse($c->isOpaque());
     }
 
-    public function testIsTransparent() {
-
+    public function testIsTransparent()
+    {
         $c = $this->getColor();
         $this->assertFalse($c->isTransparent());
 
@@ -97,7 +102,8 @@ class RGBColorTest extends AbstractColorTest {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testIsValidChannelValueThrowInvalidArgumentException() {
+    public function testIsValidChannelValueThrowInvalidArgumentException()
+    {
         $c = $this->getColor();
         $c->isValidChannelValue(255, 'Unknown Channel');
     }
@@ -105,12 +111,14 @@ class RGBColorTest extends AbstractColorTest {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testDissloveThrowInvalidArgumentException() {
+    public function testDissloveThrowInvalidArgumentException()
+    {
         $color = new RGBColor(0, 0, 0, 127);
         $color->dissolve(1);
     }
 
-    public function testDissolve() {
+    public function testDissolve()
+    {
         $color = $this->getColor();
         $alpha = $color->getAlpha();
         $string = (string) $color;
@@ -124,13 +132,13 @@ class RGBColorTest extends AbstractColorTest {
 
     /**
      * @dataProvider getRGBColorsDataProvider
-     * 
+     *
      * @param integer $r
      * @param integer $g
      * @param integer $b
      */
-    public function testBrighter($r, $g, $b) {
-
+    public function testBrighter($r, $g, $b)
+    {
         $c = new RGBColor($r, $g, $b);
         $bc = $c->brighter();
 
@@ -155,12 +163,13 @@ class RGBColorTest extends AbstractColorTest {
 
     /**
      * @dataProvider getRGBColorsDataProvider
-     * 
+     *
      * @param integer $r
      * @param integer $g
      * @param integer $b
      */
-    public function testDarker($r, $g, $b) {
+    public function testDarker($r, $g, $b)
+    {
         $c = new RGBColor($r, $g, $b);
         $dc = $c->darker();
 
@@ -183,9 +192,10 @@ class RGBColorTest extends AbstractColorTest {
         }
     }
 
-    public function getRGBColorsDataProvider() {
+    public function getRGBColorsDataProvider()
+    {
         return array(
-            array(200, 0, 0), // red 
+            array(200, 0, 0), // red
             array(0, 0, 0, 0), // black (should return gray on bright)
             array(0, 0, 255), // blue (no bright color)
         );
@@ -193,11 +203,12 @@ class RGBColorTest extends AbstractColorTest {
 
     /**
      * @dataProvider getGrayscaleRGBColorsDataProvider
-     * 
+     *
      * @param \Jaguar\Color\RGBColor $color
      * @param \Jaguar\Color\RGBColor $expected
      */
-    public function testGrayscale(RGBColor $color, RGBColor $expected) {
+    public function testGrayscale(RGBColor $color, RGBColor $expected)
+    {
         $this->assertTrue($color->grayscale()->equals($expected));
     }
 
@@ -205,7 +216,8 @@ class RGBColorTest extends AbstractColorTest {
      * gGrayscale RGBColors DataProvider
      * @return array
      */
-    public function getGrayscaleRGBColorsDataProvider() {
+    public function getGrayscaleRGBColorsDataProvider()
+    {
         return array(
             array(new RGBColor(50, 50, 100), new RGBColor(56, 56, 56)),
             array(new RGBColor(255, 0, 0), new RGBColor(76, 76, 76)),
@@ -215,12 +227,13 @@ class RGBColorTest extends AbstractColorTest {
 
     /**
      * @dataProvider getRGBValuesDataProvider
-     * 
-     * @param integer $rgb
-     * @param boolean $hasalpha
+     *
+     * @param integer                $rgb
+     * @param boolean                $hasalpha
      * @param \Jaguar\Color\RGBColor $expected
      */
-    public function testfromValue($rgb, $hasalpha, RGBColor $expected) {
+    public function testfromValue($rgb, $hasalpha, RGBColor $expected)
+    {
         $this->assertTrue(RGBColor::fromValue($rgb, $hasalpha)->equals($expected));
     }
 
@@ -228,7 +241,8 @@ class RGBColorTest extends AbstractColorTest {
      * RGB Values DataProvider
      * @return array
      */
-    public function getRGBValuesDataProvider() {
+    public function getRGBValuesDataProvider()
+    {
         return array(
             array(16711680, false, new RGBColor(255, 0, 0)),
             array(838861055, true, new RGBColor(0, 0, 255, 50))
@@ -236,13 +250,14 @@ class RGBColorTest extends AbstractColorTest {
     }
 
     /**
-     * 
+     *
      * @dataProvider getInvalidHexRGBColorsDataProvider
      * @expectedException \InvalidArgumentException
-     * 
+     *
      * @param string $hex
      */
-    public function testFromHexThrowInvalidArgumentException($hex) {
+    public function testFromHexThrowInvalidArgumentException($hex)
+    {
         RGBColor::fromHex($hex);
     }
 
@@ -250,7 +265,8 @@ class RGBColorTest extends AbstractColorTest {
      * Invalid HexRGBColors DataProvider
      * @return type
      */
-    public function getInvalidHexRGBColorsDataProvider() {
+    public function getInvalidHexRGBColorsDataProvider()
+    {
         return array(
             array('#0000000'),
             array('#ff'),
@@ -260,20 +276,22 @@ class RGBColorTest extends AbstractColorTest {
 
     /**
      * @dataProvider getHexRGBColorsDataProvider
-     * 
-     * @param string $hex color in hex format
-     * @param \Jaguar\Color\RGBColor $expected 
+     *
+     * @param string                 $hex      color in hex format
+     * @param \Jaguar\Color\RGBColor $expected
      */
-    public function testFromHex($hex, RGBColor $expected) {
+    public function testFromHex($hex, RGBColor $expected)
+    {
         $this->assertTrue(RGBColor::fromHex($hex)->equals($expected));
     }
 
     /**
      * Hex RGBColors DataProvider
-     * 
+     *
      * @return array
      */
-    public function getHexRGBColorsDataProvider() {
+    public function getHexRGBColorsDataProvider()
+    {
         return array(
             array('#ff0000', new RGBColor(255, 0, 0)),
             array('#fff', new RGBColor(255, 255, 255)),
@@ -282,4 +300,3 @@ class RGBColorTest extends AbstractColorTest {
     }
 
 }
-

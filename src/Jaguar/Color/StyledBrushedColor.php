@@ -11,14 +11,14 @@
 
 namespace Jaguar\Color;
 
-class StyledBrushedColor extends AbstractColor {
-
+class StyledBrushedColor extends AbstractColor
+{
     /**
      * {@inheritdoc}
      */
-    public function getValue() {
+    public function getValue()
+    {
         return IMG_COLOR_STYLEDBRUSHED;
     }
 
 }
-
