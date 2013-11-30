@@ -12,6 +12,7 @@ namespace Jaguar\Canvas\Drawable;
 
 use Jaguar\Exception\Canvas\Drawable\DrawableException;
 use Jaguar\Canvas\CanvasInterface;
+use Jaguar\Color\ColorInterface;
 use Jaguar\Dimension;
 use Jaguar\Coordinate;
 
@@ -20,9 +21,16 @@ class Rectangle extends FilledDrawable
     private $dimension;
     private $coordinate;
 
-    public function __construct(Dimension $size = null, Coordinate $start = null)
+    /**
+     * Constrcut new rectangle
+     * 
+     * @param \Jaguar\Dimension $size
+     * @param \Jaguar\Coordinate $start
+     * @param \Jaguar\Canvas\Drawable\ColorInterface $color
+     */
+    public function __construct(Dimension $size = null, Coordinate $start = null, ColorInterface $color = null)
     {
-        parent::__construct();
+        parent::__construct($color);
         $this->setStart($start === null ? new Coordinate() : $start);
         $this->setDimension($size === null ? new Dimension() : $size);
     }

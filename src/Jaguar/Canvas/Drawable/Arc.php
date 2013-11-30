@@ -14,6 +14,7 @@ use Jaguar\Exception\Canvas\Drawable\DrawableException;
 use Jaguar\Canvas\CanvasInterface;
 use Jaguar\Dimension;
 use Jaguar\Coordinate;
+use Jaguar\Color\ColorInterface;
 
 class Arc extends FilledDrawable
 {
@@ -30,10 +31,11 @@ class Arc extends FilledDrawable
      * 
      * @param \Jaguar\Dimension $dimension
      * @param \Jaguar\Coordinate $center
+     * @param \Jaguar\Color\ColorInterface $color
      */
-    public function __construct(Dimension $dimension = null, Coordinate $center = null)
+    public function __construct(Dimension $dimension = null, Coordinate $center = null, ColorInterface $color = null)
     {
-        parent::__construct();
+        parent::__construct($color);
         $this->setDimension($dimension === null ? new Dimension() : $dimension)
                 ->setCenter($center === null ? new Coordinate() : $center)
                 ->setDegree(0, 360)
