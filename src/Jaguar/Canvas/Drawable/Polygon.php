@@ -23,10 +23,10 @@ class Polygon extends FilledDrawable
     /**
      * Constrcut new polygon 
      * 
-     * @param array $coordinates
+     * @param \ArrayObject $coordinates
      * @param \Jaguar\Color\ColorInterface $color
      */
-    public function __construct(array $coordinates = null, ColorInterface $color = null)
+    public function __construct(\ArrayObject $coordinates = null, ColorInterface $color = null)
     {
         parent::__construct($color);
         $this->coordinates = new \ArrayObject();
@@ -36,7 +36,7 @@ class Polygon extends FilledDrawable
     }
 
     /**
-     * Add new coordinate
+     * Add new coordinate 
      * 
      * @param \Jaguar\Coordinate $coordinate
      * 
@@ -45,25 +45,21 @@ class Polygon extends FilledDrawable
     public function addCoordinate(Coordinate $coordinate)
     {
         $this->coordinates[] = $coordinate;
-        $num = $this->getNumber() + 1;
-        $this->setNumber($num);
+        $this->setNumber(count($this->coordinates));
         return $this;
     }
 
     /**
      * Add an array of coordinates
      * 
-     * @param array $coordinates
+     * @param \ArrayObject $coordinates
      * 
      * @return \Jaguar\Canvas\Drawable\Polygon 
-     * 
-     * @throws \InvalidArgumentException
      */
-    public function setCoordinate(array $coordinates)
+    public function setCoordinate(\ArrayObject $coordinates)
     {
-        foreach ($coordinates as $coordinate) {
-            $this->addCoordinate($coordinate);
-        }
+        $this->coordinates = $coordinates;
+        $this->setNumber(count($coordinates));
         return $this;
     }
 
@@ -80,7 +76,7 @@ class Polygon extends FilledDrawable
     /**
      * Set Polygon coordinates number
      * 
-     * @param integer $num the number of coordinate which will be drawn
+     * @param integer $num the number of coordinates which will be drawn
      * 
      * @return \Jaguar\Canvas\Drawable\Polygon 
      * 

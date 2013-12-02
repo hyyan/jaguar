@@ -46,6 +46,14 @@ class PolygonTest extends FilledDrawableTest
         $poly->draw($this->getCanvas());
     }
 
+    public function testAddCooridnateRaiseTheNumber()
+    {
+        $poly = $this->getDrawable();
+        $poly->addCoordinate(new Coordinate(200, 200));
+
+        $this->assertEquals(4, count($poly->getCoordinates()));
+    }
+
     public function testEquals()
     {
         $poly = $this->getDrawable();
@@ -53,20 +61,22 @@ class PolygonTest extends FilledDrawableTest
 
         $this->assertTrue($poly->equals($clone));
 
-//        $coordinates = $clone->getCoordinates();
-//        unset($coordinates[0]);
-//
-//        $this->assertFalse($poly->equals($clone));
-//
-//        $coordinates[] = new Coordinate(1000, 1000);
-//        $clone->setCoordinate($coordinates);
-//
-//        $this->assertFalse($poly->equals($clone));
-//
-//        $clone->setCoordinate($this->getCoordinates());
-//        $clone->getColor()->setRed(255);
-//
-//        $this->assertFalse($poly->equals($clone));
+        $coordinates = $clone->getCoordinates();
+        unset($coordinates[0]);
+
+        $this->assertFalse($poly->equals($clone));
+
+        $clone->setCoordinate($this->getCoordinates());
+
+        $coordinates = $clone->getCoordinates();
+        $coordinates[0]->move(50, 100);
+
+        $this->assertFalse($poly->equals($clone));
+
+        $clone->setCoordinate($this->getCoordinates());
+        $clone->getColor()->setRed(255);
+
+        $this->assertFalse($poly->equals($clone));
     }
 
     /**
@@ -76,11 +86,11 @@ class PolygonTest extends FilledDrawableTest
      */
     public function getCoordinates()
     {
-        return array(
+        return new \ArrayObject(array(
             new Coordinate(0, 0),
             new Coordinate(50, 100),
             new Coordinate(200, 100),
-        );
+        ));
     }
 
 }
