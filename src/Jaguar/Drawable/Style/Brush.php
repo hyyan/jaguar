@@ -12,7 +12,7 @@
 namespace Jaguar\Drawable\Style;
 
 use Jaguar\CanvasInterface;
-use Jaguar\Drawable\DrawableInterface;
+use Jaguar\Drawable\AbstractStyledDrawable;
 use Jaguar\Drawable\StyleInterface;
 use Jaguar\Color\StyledBrushedColor;
 use Jaguar\Exception\DrawableException;
@@ -60,7 +60,7 @@ class Brush implements StyleInterface
     /**
      * {@inheritdoc}
      */
-    public function apply(CanvasInterface $canvas, DrawableInterface $drawable)
+    public function apply(CanvasInterface $canvas, AbstractStyledDrawable $drawable)
     {
         if (
                 false == @imagesetbrush(

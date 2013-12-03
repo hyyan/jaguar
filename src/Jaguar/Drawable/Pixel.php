@@ -16,7 +16,7 @@ use Jaguar\Color\ColorInterface;
 use Jaguar\CanvasInterface;
 use Jaguar\Exception\DrawableException;
 
-class Pixel extends AbstractDrawable
+class Pixel extends AbstractStyledDrawable
 {
     private $coordinate;
 
@@ -61,6 +61,8 @@ class Pixel extends AbstractDrawable
      */
     protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
+        parent::doDraw($canvas, $style);
+        
         $x = $this->getCoordinate()->getX();
         $y = $this->getCoordinate()->getY();
         $isStyle = ($style === null) ? false : true;

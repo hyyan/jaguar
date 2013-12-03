@@ -16,7 +16,7 @@ use Jaguar\CanvasInterface;
 use Jaguar\Drawable\StyleInterface;
 use Jaguar\Exception\DrawableException;
 
-class Line extends AbstractDrawable
+class Line extends AbstractStyledDrawable
 {
     private $startCoordinate;
     private $endCoordinate;
@@ -28,7 +28,8 @@ class Line extends AbstractDrawable
      * @param \Jaguar\Coordinate $ec
      */
     public function __construct(
-    Coordinate $sc = null, Coordinate $ec = null, ColorInterface $color = null) {
+    Coordinate $sc = null, Coordinate $ec = null, ColorInterface $color = null)
+    {
         parent::__construct($color);
         $start = $sc === null ? new Coordinate() : $sc;
         $end = $ec === null ? new Coordinate() : $ec;
@@ -126,6 +127,9 @@ class Line extends AbstractDrawable
      */
     protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
+
+        parent::doDraw($canvas, $style);
+
         $sx = $this->getStart()->getX();
         $sy = $this->getStart()->getY();
         $ex = $this->getEnd()->getX();

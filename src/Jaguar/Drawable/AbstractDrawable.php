@@ -20,7 +20,6 @@ use Jaguar\Exception\LineThicknessException;
 abstract class AbstractDrawable implements DrawableInterface
 {
     private $color;
-    private $thickness;
 
     /**
      * Constrcut new drawable object
@@ -30,7 +29,6 @@ abstract class AbstractDrawable implements DrawableInterface
     public function __construct(ColorInterface $color = null)
     {
         $this->setColor($color !== null ? $color : new RGBColor());
-        $this->setLineThickness(1);
     }
 
     /**
@@ -54,28 +52,6 @@ abstract class AbstractDrawable implements DrawableInterface
     /**
      * {@inheritdoc}
      */
-    public function setLineThickness($thickness)
-    {
-        if ($thickness <= 0) {
-            throw new \InvalidArgumentException(
-            'Thickness Value Must Be Greater Than Zero'
-            );
-        }
-        $this->thickness = $thickness;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getLineThickness()
-    {
-        return $this->thickness;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function equals($other)
     {
         return $this->getColor()->equals($other->getColor());
@@ -84,7 +60,7 @@ abstract class AbstractDrawable implements DrawableInterface
     /**
      * {@inheritdoc}
      */
-    public function draw(CanvasInterface $canvas, StyleInterface $style = null)
+    final public function draw(CanvasInterface $canvas)
     {
         if (!$canvas->isHandlerSet()) {
             throw new CanvasEmptyException(sprintf(
@@ -92,17 +68,14 @@ abstract class AbstractDrawable implements DrawableInterface
                     , (string) $this
             ));
         }
-
-        @imagesetthickness($canvas->getHandler(), $this->getLineThickness());
-        $this->doDraw($canvas, $style);
-
+        $this->doDraw($canvas);
         return $this;
     }
 
     /**
      * @see \Jaguar\Drawable\AbstractDrawable::draw
      */
-    abstract protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null);
+    abstract protected function doDraw(CanvasInterface $canvas);
 
     /** clone the drawable */
     public function __clone()

@@ -12,7 +12,7 @@ namespace Jaguar\Drawable;
 
 use Jaguar\CanvasInterface;
 
-abstract class FilledDrawable extends AbstractDrawable
+abstract class FilledDrawable extends AbstractStyledDrawable
 {
     private $filled;
 
@@ -44,6 +44,8 @@ abstract class FilledDrawable extends AbstractDrawable
      */
     public function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
+        parent::doDraw($canvas, $style);
+
         if ($this->isFilled()) {
             $this->drawFilled($canvas, $style);
         }

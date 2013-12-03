@@ -11,7 +11,7 @@
 namespace Jaguar\Drawable\Style;
 
 use Jaguar\Drawable\StyleInterface;
-use Jaguar\Drawable\DrawableInterface;
+use Jaguar\Drawable\AbstractStyledDrawable;
 use Jaguar\CanvasInterface;
 use Jaguar\Color\ColorInterface;
 use Jaguar\Color\StyledColor;
@@ -127,7 +127,7 @@ class DashedlineStyle implements StyleInterface
     /**
      * {@inheritdoc}
      */
-    public function apply(CanvasInterface $canvas, DrawableInterface $drawable)
+    public function apply(CanvasInterface $canvas, AbstractStyledDrawable $drawable)
     {
         $fv = $drawable->getColor()->getValue();
         $sv = $this->getSecondColor()->getValue();

@@ -15,13 +15,14 @@ use Jaguar\CanvasInterface;
 
 interface StyleInterface
 {
+
     /**
      * Apply the style on the drawable object
      *
      * @param \Jaguar\CanvasInterface   $canvas
-     * @param \Jaguar\DrawableInterface $drawable
+     * @param \Jaguar\Drawable\AbstractStyledDrawable $drawable
      *
      * @throws \Jaguar\Exception\DrawableException
      */
-    public function apply(CanvasInterface $canvas, DrawableInterface $drawable);
+    public function apply(CanvasInterface $canvas, AbstractStyledDrawable $drawable);
 }
