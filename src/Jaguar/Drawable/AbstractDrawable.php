@@ -15,7 +15,6 @@ use Jaguar\CanvasInterface;
 use Jaguar\Color\ColorInterface;
 use Jaguar\Color\RGBColor;
 use Jaguar\Exception\CanvasEmptyException;
-use Jaguar\Exception\LineThicknessException;
 
 abstract class AbstractDrawable implements DrawableInterface
 {
