@@ -11,86 +11,53 @@
 
 namespace Jaguar;
 
-class Font implements EqualsInterface
+class Font extends \SplFileInfo implements EqualsInterface
 {
     private $font;
-    private $size;
+    private $fontsize;
 
     /**
-     * Creat new font object
+     * Create new font object
      *
      * @param string  $font  font path
-     * @param integer $size  font size
+     * @param integer $fontsize  font fontsize
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($font, $size = 8)
+    public function __construct($font, $fontsize = 9)
     {
-        $this->setFile($font);
-        $this->setSize($size);
-    }
+        parent::__construct($font);
 
-    /**
-     * Set font file
-     *
-     * @param string $font font path
-     *
-     * @return \Jaguar\Font
-     * @throws \InvalidArgumentException
-     */
-    protected function setFile($font)
-    {
-        if (is_file($font) && is_readable($font)) {
-            $this->font = (string) $font;
-
-            return $this;
+        if (!$this->isFile() || !$this->isReadable()) {
+            throw new \InvalidArgumentException(sprintf(
+                    'Font File "%s" Is Not Readable', $font
+            ));
         }
-        throw new \InvalidArgumentException(sprintf(
-                'Font File "%s" Is Not Readable', $font
-        ));
+        $this->font = (string) $font;
+        $this->setFontSize($fontsize);
     }
 
     /**
-     * Get the font file
+     * Set font fontsize
      *
-     * @return string font's path
-     */
-    public function getFile()
-    {
-        return $this->font;
-    }
-
-    /**
-     * Get file object
-     * 
-     * @return \SplFileInfo
-     */
-    public function getFileObject()
-    {
-        return new \SplFileInfo($this->getFile());
-    }
-
-    /**
-     * Set font size
-     *
-     * @param  integer      $size
+     * @param  integer      $fontsize
      * @return \Jaguar\Font
      */
-    public function setSize($size)
+    public function setFontSize($fontsize)
     {
-        $this->size = (int) $size;
+        $this->fontsize = (int) $fontsize;
 
         return $this;
     }
 
     /**
-     * Get font size
+     * Get font fontsize
      *
      * @return string
      */
-    public function getSize()
+    public function getFontSize()
     {
-        return $this->size;
+        return $this->fontsize;
     }
 
     /**
@@ -102,25 +69,15 @@ class Font implements EqualsInterface
             throw new \InvalidArgumentException('Invalid Font Object');
         }
 
-        if (md5(file_get_contents($this->getFile())) !== md5(file_get_contents($other->getFile()))) {
+        if (md5(file_get_contents($this->getPathname())) !== md5(file_get_contents($other->getPathname()))) {
             return false;
         }
 
-        if ($this->getSize() !== $other->getSize()) {
+        if ($this->getFontSize() !== $other->getFontSize()) {
             return false;
         }
 
         return true;
-    }
-
-    /**
-     * Get string representation for the current font object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->getFile();
     }
 
 }

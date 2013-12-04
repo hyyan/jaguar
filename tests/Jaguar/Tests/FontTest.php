@@ -16,14 +16,6 @@ use Jaguar\Font;
 class FontTest extends JaguarTestCase
 {
 
-    public function testGetFileObject()
-    {
-        $font = $this->getFont();
-        $splfo = $font->getFileObject();
-        $this->assertInstanceOf('\SplFileInfo', $splfo);
-        $this->assertSame($splfo->getPathname(), $font->getFile());
-    }
-
     /**
      * @expectedException \InvalidArgumentException
      */
@@ -39,16 +31,17 @@ class FontTest extends JaguarTestCase
         $font2 = new Font($this->getFixture('fonts/arialbi.ttf'));
 
         $this->assertTrue($font->equals($fontClone));
+        
         $this->assertFalse($font->equals($font2));
 
-        $fontClone->setSize(15);
+        $fontClone->setFontSize(15);
         $this->assertFalse($font->equals($fontClone));
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testFontConstrcutorThrowInvalidArgumentException()
+    public function testFontConstrcutorThrowInvalidArgumentExceptionOnNonReadableFiles()
     {
         new Font('non readable file');
     }
