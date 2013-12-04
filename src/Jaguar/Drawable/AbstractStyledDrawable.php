@@ -47,12 +47,28 @@ abstract class AbstractStyledDrawable extends AbstractDrawable
     }
 
     /**
+     * {@inheritdoc}
+     */
+    final public function draw(CanvasInterface $canvas, StyleInterface $style = null)
+    {
+        if (!$canvas->isHandlerSet()) {
+            throw new CanvasEmptyException(sprintf(
+                    'Can Not Draw Drawable (%s) - Canvas Is Empty'
+                    , (string) $this
+            ));
+        }
+        @imagesetthickness($canvas->getHandler(), $this->getLineThickness());
+        $this->doDraw($canvas, $style);
+        return $this;
+    }
+
+    /**
      * @param \Jaguar\Drawable\CanvasInterface $canvas
      * @param \Jaguar\Drawable\StyleInterface $style
      */
     protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
-        @imagesetthickness($canvas->getHandler(), $this->getLineThickness());
+        
     }
 
 }

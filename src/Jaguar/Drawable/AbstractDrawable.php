@@ -59,7 +59,7 @@ abstract class AbstractDrawable implements DrawableInterface
     /**
      * {@inheritdoc}
      */
-    final public function draw(CanvasInterface $canvas)
+    public function draw(CanvasInterface $canvas)
     {
         if (!$canvas->isHandlerSet()) {
             throw new CanvasEmptyException(sprintf(
