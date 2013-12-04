@@ -13,7 +13,7 @@ namespace Jaguar\Tests\Drawable;
 
 use Jaguar\Drawable\Pixel;
 
-class PixelTest extends AbstractDrawableTest
+class PixelTest extends AbstractStyledDrawableTest
 {
     public function getDrawable()
     {

@@ -10,7 +10,7 @@
 
 namespace Jaguar\Tests\Drawable;
 
-abstract class FilledDrawableTest extends AbstractDrawableTest
+abstract class FilledDrawableTest extends AbstractStyledDrawableTest
 {
 
     public function testDrawWithFill()

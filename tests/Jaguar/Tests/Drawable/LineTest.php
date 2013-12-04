@@ -14,7 +14,7 @@ namespace Jaguar\Tests\Drawable;
 use Jaguar\Drawable\Line;
 use Jaguar\Coordinate;
 
-class LineTest extends AbstractDrawableTest
+class LineTest extends AbstractStyledDrawableTest
 {
     public function getDrawable()
     {

@@ -68,13 +68,6 @@ abstract class AbstractDrawableTest extends JaguarTestCase
         $this->assertSame($drawable, $drawable->draw($canvas));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testSetLineThicknessThrowInvalidArgumentException(){
-        $this->getDrawable()->setLineThickness(0);
-    }
-
     public function testToString()
     {
         $this->assertInternalType('string', (string) $this->getDrawable());
