@@ -16,9 +16,10 @@ use Jaguar\Tests\Drawable\AbstractStyleTest;
 
 class BrushTest extends AbstractStyleTest
 {
+
     public function testApply()
     {
-        $brush = new Brush($this->getCanvas());
+        $brush = new Brush($this->getCanvas(),5,9);
         $this->assertInstanceOf(
                 '\Jaguar\Color\StyledBrushedColor'
                 , $brush->apply($this->getCanvas(), $this->getDrawable())
@@ -41,6 +42,22 @@ class BrushTest extends AbstractStyleTest
     {
         $brush = new Brush($this->getCanvas());
         clone $brush;
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetShowTimeThrowInvalidArgumentException()
+    {
+        new Brush($this->getCanvas(), -5);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetHideTimeThrowInvalidArgumentException()
+    {
+        new Brush($this->getCanvas(), 1, -5);
     }
 
 }

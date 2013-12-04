@@ -19,42 +19,98 @@ use Jaguar\Exception\DrawableException;
 
 class Brush implements StyleInterface
 {
-    private $interval;
+    private $st;
+    private $ht;
     private $brush;
 
     /**
      * Constrcut new brush
-     *
+     * 
      * @param \Jaguar\CanvasInterface $canvas
-     * @param array                          $interval
+     * @param integer $show
+     * @param integer $hide
+     * 
+     * @throws \InvalidArgumentException
      */
-    public function __construct(CanvasInterface $canvas, array $interval = null)
+    public function __construct(CanvasInterface $canvas, $show = 1, $hide = 0)
     {
         $this->brush = $canvas;
-        $this->setInterval($interval !== null ? $interval : array(1));
+        $this->setInterval($show, $hide);
     }
 
     /**
-     * Set brush interval
-     *
-     * Interval is an array which contains 0's and 1's values where 1's indicate
-     * when brush will be drawn and 0's indicate no drawing of the brush.
-     *
-     * @param array $interval
+     * Set show time
+     * 
+     * @param integer $time 
+     * 
+     * @return \Jaguar\Drawable\Style\Brush
+     * 
+     * @throws \InvalidArgumentException if the time <=0
      */
-    public function setInterval(array $interval)
+    public function setShowTime($time)
     {
-        $this->interval = $interval;
+        if ($time <= 0) {
+            throw new \InvalidArgumentException(
+            'Show Time Must Be Greater Than Zero'
+            );
+        }
+        $this->st = (int) $time;
+        return $this;
     }
 
     /**
-     * Get brush interval
-     *
-     * @return array
+     * Get show time
+     * 
+     * @return integer
      */
-    public function getInterval()
+    public function getShowTime()
     {
-        return $this->interval;
+        return $this->st;
+    }
+
+    /**
+     * Set hide time
+     * 
+     * @param integer $time
+     * 
+     * @return \Jaguar\Drawable\Style\Brush
+     * 
+     * @throws \InvalidArgumentException if the time <0
+     */
+    public function setHideTime($time)
+    {
+        if ($time < 0) {
+            throw new \InvalidArgumentException(
+            'Hide Time Must Be Zero Or Greater Than Zero'
+            );
+        }
+        $this->ht = (int) $time;
+        return $this;
+    }
+
+    /**
+     * Get hide time
+     * 
+     * @return integer
+     */
+    public function getHideTime()
+    {
+        return $this->ht;
+    }
+
+    /**
+     * Set show hide interval
+     * 
+     * @param integer $show
+     * @param integer $hide
+     * 
+     * @return \Jaguar\Drawable\Style\Brush
+     * 
+     * @throws \InvalidArgumentException
+     */
+    public function setInterval($show, $hide)
+    {
+        return $this->setShowTime($show)->setHideTime($hide);
     }
 
     /**
@@ -62,14 +118,21 @@ class Brush implements StyleInterface
      */
     public function apply(CanvasInterface $canvas, AbstractStyledDrawable $drawable)
     {
+        $interval = array_merge(
+                array_fill(0, $this->getShowTime(),1)
+                , $this->getHideTime() == 0 ?
+                        array() :
+                        array_fill(0, $this->getHideTime(), 0)
+        );
+
         if (
+                false == @imagesetstyle(
+                        $canvas->getHandler()
+                        , $interval
+                ) ||
                 false == @imagesetbrush(
                         $canvas->getHandler()
                         , $this->brush->getHandler()
-                ) ||
-                false == @imagesetstyle(
-                        $canvas->getHandler()
-                        , $this->getInterval()
                 )
         ) {
             throw new DrawableException('Could Not Set The Brush And Interval');
