@@ -11,29 +11,23 @@
 
 namespace Jaguar;
 
-use Jaguar\Color\ColorInterface;
-use Jaguar\Color\RGBColor;
-
 class Font implements EqualsInterface
 {
     private $font;
     private $size;
-    private $color;
 
     /**
      * Creat new font object
      *
-     * @param string                       $font  font path
-     * @param integer                      $size  font size
-     * @param \Jaguar\Color\ColorInterface $color font color
+     * @param string  $font  font path
+     * @param integer $size  font size
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($font, $size = 8, ColorInterface $color = null)
+    public function __construct($font, $size = 8)
     {
-        $this->setFont($font);
+        $this->setFile($font);
         $this->setSize($size);
-        $this->setColor(null === $color ? new RGBColor() : $color);
     }
 
     /**
@@ -44,7 +38,7 @@ class Font implements EqualsInterface
      * @return \Jaguar\Font
      * @throws \InvalidArgumentException
      */
-    protected function setFont($font)
+    protected function setFile($font)
     {
         if (is_file($font) && is_readable($font)) {
             $this->font = (string) $font;
@@ -61,9 +55,19 @@ class Font implements EqualsInterface
      *
      * @return string font's path
      */
-    public function getFont()
+    public function getFile()
     {
         return $this->font;
+    }
+
+    /**
+     * Get file object
+     * 
+     * @return \SplFileInfo
+     */
+    public function getFileObject()
+    {
+        return new \SplFileInfo($this->getFile());
     }
 
     /**
@@ -90,29 +94,6 @@ class Font implements EqualsInterface
     }
 
     /**
-     * Set font color
-     *
-     * @param  \Jaguar\Color\ColorInterface $color
-     * @return \Jaguar\Font
-     */
-    public function setColor(ColorInterface $color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get font color
-     *
-     * @return \Jaguar\Color\ColorInterface
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function equals($other)
@@ -121,15 +102,11 @@ class Font implements EqualsInterface
             throw new \InvalidArgumentException('Invalid Font Object');
         }
 
-        if (md5(file_get_contents($this->getFont())) !== md5(file_get_contents($other->getFont()))) {
+        if (md5(file_get_contents($this->getFile())) !== md5(file_get_contents($other->getFile()))) {
             return false;
         }
 
         if ($this->getSize() !== $other->getSize()) {
-            return false;
-        }
-
-        if (!$this->getColor()->equals($other->getColor())) {
             return false;
         }
 
@@ -143,15 +120,7 @@ class Font implements EqualsInterface
      */
     public function __toString()
     {
-        return $this->getFont();
-    }
-
-    /**
-     * Clone the font
-     */
-    public function __clone()
-    {
-        $this->color = clone $this->color;
+        return (string) $this->getFile();
     }
 
 }

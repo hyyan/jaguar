@@ -12,22 +12,29 @@
 namespace Jaguar\Tests;
 
 use Jaguar\Font;
-use Jaguar\Color\RGBColor;
 
 class FontTest extends JaguarTestCase
 {
+
+    public function testGetFileObject()
+    {
+        $font = $this->getFont();
+        $splfo = $font->getFileObject();
+        $this->assertInstanceOf('\SplFileInfo', $splfo);
+        $this->assertSame($splfo->getPathname(), $font->getFile());
+    }
+
     /**
      * @expectedException \InvalidArgumentException
      */
     public function testEqualsThrowInvalidArgumentException()
     {
-        $font = new Font($this->getFixture('fonts/arial.ttf'));
-        $font->equals('invalid');
+        $this->getFont()->equals('invalid');
     }
 
     public function testEquals()
     {
-        $font = new Font($this->getFixture('fonts/arial.ttf'));
+        $font = $this->getFont();
         $fontClone = clone $font;
         $font2 = new Font($this->getFixture('fonts/arialbi.ttf'));
 
@@ -35,11 +42,6 @@ class FontTest extends JaguarTestCase
         $this->assertFalse($font->equals($font2));
 
         $fontClone->setSize(15);
-        $this->assertFalse($font->equals($fontClone));
-
-        $fontClone->setSize(8);
-        $fontClone->setColor(new RGBColor(255));
-
         $this->assertFalse($font->equals($fontClone));
     }
 
@@ -55,8 +57,13 @@ class FontTest extends JaguarTestCase
     {
         $this->assertInternalType(
                 'string'
-                , (string) new Font($this->getFixture('fonts/arial.ttf'))
+                , (string) $this->getFont()
         );
+    }
+
+    public function getFont()
+    {
+        return new Font($this->getFixture('fonts/arial.ttf'));
     }
 
 }
