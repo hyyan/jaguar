@@ -138,6 +138,26 @@ interface CanvasInterface
     public function fromString($string);
 
     /**
+     * Replace this canvas handler with a new one loaded from another canvas
+     * 
+     * <b>Note :</b>
+     * 
+     * note that the current canvas handler will be destroyed 
+     * before assigning the new one.
+     * 
+     * This behaviour will not allow to create canvas and depend 
+     * on php garbage collection to clean it
+     * 
+     * @param \Jaguar\CanvasInterface $canvas
+     * 
+     * @return \Jaguar\CanvasInterface self
+     * 
+     * @throws \Jaguar\Exception\CanvasEmptyException
+     * @throws \Jaguar\Exception\CanvasException;
+     */
+    public function fromCanvas(CanvasInterface $canvas);
+
+    /**
      * Get Pixel at specific coordinate
      * 
      * @param \Jaguar\Coordinatee $coordinate
@@ -205,6 +225,17 @@ interface CanvasInterface
      * @throws \Jaguar\Exception\CanvasOutputException
      */
     public function save($path = null);
+
+    /**
+     * Destroy the canvas
+     * 
+     * destroy the canvas handler
+     * 
+     * @return \Jaguar\CanvasInterface self
+     * 
+     * @throws \Jaguar\Exception\CanvasDestroyingException
+     */
+    public function destroy();
 
     /**
      * Get a string representation of the current canvas object

@@ -24,6 +24,7 @@ use Jaguar\Drawable\DrawableInterface;
 use Jaguar\Drawable\StyleInterface;
 use Jaguar\Exception\InvalidCoordinateException;
 use Jaguar\Drawable\Pixel;
+use Jaguar\Exception\CanvasDestroyingException;
 
 abstract class AbstractCanvas implements CanvasInterface
 {
@@ -82,8 +83,36 @@ abstract class AbstractCanvas implements CanvasInterface
         if (!$this->isGdResource($handler)) {
             throw new \InvalidArgumentException('Invalid Gd Handler');
         }
-        $this->convertPaletteToTrueColor($handler);
-        $this->handler = $handler;
+
+        $this->forceDestory();
+
+        // we are ignoring imagepalettetotruecolor function in php5.5
+        if (@imageistruecolor($handler)) {
+            $this->handler = $handler;
+            return $this;
+        }
+
+
+        $dst = @imagecreatetruecolor(
+                        @imagesx($handler)
+                        , @imagesy($handler)
+        );
+
+        @imagealphablending($dst, false);
+        @imagesavealpha($dst, true);
+
+        @imagecopy(
+                        $dst
+                        , $handler
+                        , 0, 0, 0, 0
+                        , @imagesx($handler)
+                        , @imagesy($handler)
+        );
+
+        @imagealphablending($dst, true);
+        @imagesavealpha($dst, false);
+
+        $this->handler = $dst;
 
         return $this;
     }
@@ -133,7 +162,7 @@ abstract class AbstractCanvas implements CanvasInterface
                     'Faild To Set Alpha Blending Mode On The Canvas "%s"'
                     , (string) $this
             ));
-        };
+        }
 
         return $this;
     }
@@ -159,10 +188,8 @@ abstract class AbstractCanvas implements CanvasInterface
                     'Unable To Create The Canvas "%s"', (string) $this
             ));
         }
-
         $this->setHandler($handler);
         $this->fill(new RGBColor(255, 255, 255));
-
         return $this;
     }
 
@@ -176,7 +203,6 @@ abstract class AbstractCanvas implements CanvasInterface
             throw new CanvasCreationException("Invalid Canvas String");
         }
         $this->setHandler($handler);
-
         return $this;
     }
 
@@ -187,7 +213,16 @@ abstract class AbstractCanvas implements CanvasInterface
     {
         $this->isValidFile($file);
         $this->doLoadFromFile($file);
+        return $this;
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function fromCanvas(CanvasInterface $canvas)
+    {
+        $copy = $canvas->getCopy();
+        $this->setHandler($copy->getHandler());
         return $this;
     }
 
@@ -221,7 +256,6 @@ abstract class AbstractCanvas implements CanvasInterface
     public function draw(DrawableInterface $drawable, StyleInterface $style = null)
     {
         $drawable->draw($this, $style);
-
         return $this;
     }
 
@@ -306,10 +340,12 @@ abstract class AbstractCanvas implements CanvasInterface
         $clone = clone $this;
         $clone->create($this->getDimension());
         $clone->paste($this);
-
         return $clone;
     }
 
+    /**
+     * Clone canvas
+     */
     public function __clone()
     {
         $this->handler = null;
@@ -318,10 +354,13 @@ abstract class AbstractCanvas implements CanvasInterface
     /**
      * {@inheritdoc}
      */
-    public function __destruct()
+    public function destroy()
     {
-        @imagedestroy($this->handler);
+        if (false == @imagedestroy($this->getHandler())) {
+            throw new CanvasDestroyingException();
+        }
         $this->handler = null;
+        return $this;
     }
 
     /**
@@ -370,31 +409,13 @@ abstract class AbstractCanvas implements CanvasInterface
     }
 
     /**
-     * Convert pallete to true color
-     *
-     * @param resource $resource gd reource
+     * Destroy the canvas's handler if set
      */
-    protected function convertPaletteToTrueColor(&$resource)
+    protected function forceDestory()
     {
-        // we are ignoring imagepalettetotruecolor function in php5.5
-
-        if (@imageistruecolor($resource)) {
-            return true;
+        if ($this->isGdResource($this->getHandler())) {
+            $this->destroy();
         }
-        $dst = @imagecreatetruecolor(@imagesx($resource), @imagesy($resource));
-        @imagealphablending($dst, false);
-        @imagesavealpha($dst, true);
-        @imagecopy(
-                        $dst
-                        , $resource
-                        , 0, 0, 0, 0
-                        , @imagesx($resource)
-                        , @imagesy($resource)
-        );
-        @imagealphablending($dst, true);
-        @imagesavealpha($dst, false);
-        @imagedestroy($resource);
-        $resource = $dst;
     }
 
     /**

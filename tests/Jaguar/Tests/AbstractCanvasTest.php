@@ -125,6 +125,21 @@ abstract class AbstractCanvasTest extends JaguarTestCase
         $this->assertTrue($c->isHandlerSet());
     }
 
+    public function testFromCanvas()
+    {
+        $canvas = $this->getCanvas();
+        $copy = $canvas->getCopy();
+        
+        $canvas->fromCanvas($copy);
+ 
+        $this->assertTrue($canvas->isHandlerSet());
+        $this->assertTrue($copy->isHandlerSet());
+        $this->assertNotSame($canvas->getHandler(),$copy->getHandler());
+        
+        $copy->destroy();
+        $this->assertNull($copy->getHandler());
+    }
+
     /**
      * @expectedException \Jaguar\Exception\CanvasException
      */
@@ -188,6 +203,23 @@ abstract class AbstractCanvasTest extends JaguarTestCase
     public function testToString()
     {
         $this->assertInternalType('string', (string) $this->getCanvas());
+    }
+
+    /**
+     * @expectedException \Jaguar\Exception\CanvasDestroyingException
+     */
+    public function testDestroyThrowCanvasDestroyingException()
+    {
+        $canvas = new CanvasMock();
+        $canvas->destroy();
+    }
+
+    public function testDestory()
+    {
+        $canvas = $this->getCanvas();
+        $canvas->destroy();
+
+        $this->assertFalse($canvas->isHandlerSet());
     }
 
     /**
