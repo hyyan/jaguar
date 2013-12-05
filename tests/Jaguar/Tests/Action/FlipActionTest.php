@@ -11,17 +11,14 @@
 namespace Jaguar\Tests\Action;
 
 use Jaguar\Action\FlipAction;
+use Jaguar\Action\ActionInterface;
 
 class FlipActionTest extends AbstractActionTest
 {
 
-    public function actionProvider()
+    public function getAction()
     {
-        return array(
-            array(new FlipAction(FlipAction::FLIP_HORIZONTAL)),
-            array(new FlipAction(FlipAction::FLIP_VERTICAL)),
-            array(new FlipAction(FlipAction::FLIP_BOTH))
-        );
+        return new FlipAction();
     }
 
     /**
@@ -31,6 +28,26 @@ class FlipActionTest extends AbstractActionTest
     {
         $flip = new FlipAction();
         $flip->setFlipDirection('unsupported direction');
+    }
+
+    /**
+     * @dataProvider actionProvider
+     * 
+     * @param \Jaguar\Action\ActionInterface $action
+     */
+    public function testApply(ActionInterface $action)
+    {
+        $canvas = $this->getCanvas();
+        $this->assertInstanceOf('\Jaguar\Action\ActionInterface', $action->apply($canvas));
+    }
+
+    public function actionProvider()
+    {
+        return array(
+            array(new FlipAction(FlipAction::FLIP_HORIZONTAL)),
+            array(new FlipAction(FlipAction::FLIP_VERTICAL)),
+            array(new FlipAction(FlipAction::FLIP_BOTH))
+        );
     }
 
 }

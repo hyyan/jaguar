@@ -17,11 +17,11 @@ abstract class AbstractActionTest extends JaguarTestCase
 {
 
     /**
-     * Action Provider
+     * Get action instance
      * 
      * @return array
      */
-    abstract public function actionProvider();
+    abstract public function getAction();
 
     /**
      * Get canvas instance
@@ -40,20 +40,6 @@ abstract class AbstractActionTest extends JaguarTestCase
      */
     public function testApplyThrowCanvasEmptyException(ActionInterface $action)
     {
-       $action->apply(new \Jaguar\Tests\Mock\EmptyCanvasMock());
+        $this->getAction()->apply(new \Jaguar\Tests\Mock\EmptyCanvasMock());
     }
-
-    /**
-     * @dataProvider actionProvider
-     * 
-     * @param \Jaguar\Action\ActionInterface $action
-     */
-    public function testApply(ActionInterface $action)
-    {
-        $this->assertInstanceOf(
-                '\Jaguar\Action\ActionInterface'
-                , $action->apply($this->getCanvas())
-        );
-    }
-
 }

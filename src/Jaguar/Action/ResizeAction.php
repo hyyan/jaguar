@@ -27,9 +27,9 @@ class ResizeAction extends AbstractAction
      * 
      * @param \Jaguar\Dimension $dimension
      */
-    public function __construct(Dimension $dimension)
+    public function __construct(Dimension $dimension = null)
     {
-        $this->setDimension($dimension);
+        $this->setDimension($dimension === null ? new Dimension(1, 1) : $dimension);
     }
 
     /**

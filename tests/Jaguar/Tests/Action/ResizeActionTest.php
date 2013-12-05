@@ -12,22 +12,44 @@ namespace Jaguar\Tests\Action;
 
 use Jaguar\Action\ResizeAction;
 use Jaguar\Dimension;
+use Jaguar\Action\ActionInterface;
 
 class ResizeActionTest extends AbstractActionTest
 {
 
+    public function getAction()
+    {
+        return new ResizeAction();
+    }
+
     public function actionProvider()
     {
         return array(
-            array(new ResizeAction(new Dimension(200, 200)), new Dimension(200, 200)),
-            array(new ResizeAction(new Dimension(200, 200)), new Dimension(50, 50))
+            array(
+                new ResizeAction(new Dimension(200, 200))
+                , new Dimension(200, 200)
+            ),
+            array(
+                new ResizeAction(new Dimension(50, 50))
+                , new Dimension(50, 50)
+            )
         );
     }
 
-    public function testSetGetDimension()
+    /**
+     * @dataProvider actionProvider
+     * 
+     * @param \Jaguar\Action\ActionInterface $action
+     * @param \Jaguar\Dimension $dimension
+     */
+    public function testApply(ActionInterface $action, Dimension $dimension)
     {
-        $action = new ResizeAction(new Dimension(200, 200));
-        $this->assertInstanceOf('\Jaguar\Dimension', $action->getDimension());
+        $canvas = $this->getCanvas();
+        $this->assertInstanceOf(
+                '\Jaguar\Action\ActionInterface'
+                , $action->apply($canvas)
+        );
+        $this->assertTrue($canvas->getDimension()->equals($dimension));
     }
 
 }

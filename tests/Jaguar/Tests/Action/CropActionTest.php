@@ -10,6 +10,7 @@
 
 namespace Jaguar\Tests\Action;
 
+use Jaguar\Action\ActionInterface;
 use Jaguar\Action\CropAction;
 use Jaguar\Dimension;
 use Jaguar\Box;
@@ -17,19 +18,39 @@ use Jaguar\Box;
 class CropActionTest extends AbstractActionTest
 {
 
+    public function getAction()
+    {
+        return new CropAction(new Box(new Dimension(50, 50)));
+    }
+
+    /**
+     * @dataProvider actionProvider
+     * 
+     * @param \Jaguar\Action\ActionInterface $action
+     * @param \Jaguar\Dimension $dimension
+     */
+    public function testApply(ActionInterface $action, Dimension $dimension)
+    {
+        $canvas = $this->getCanvas();
+        $this->assertInstanceOf(
+                '\Jaguar\Action\ActionInterface'
+                , $action->apply($canvas)
+        );
+        $this->assertTrue($canvas->getDimension()->equals($dimension));
+    }
+
     public function actionProvider()
     {
         return array(
-            array(new CropAction()),
-            array(new CropAction(new Box(new Dimension(500, 500))))
+            array(
+                new CropAction(new Box(new Dimension(50, 50)))
+                , new Dimension(50, 50)
+            ),
+            array(
+                new CropAction(new Box(new Dimension(500, 500)))
+                , new Dimension(500, 500)
+            )
         );
-    }
-
-    public function testSetGetBox()
-    {
-        $action = new CropAction();
-        $this->assertSame($action, $action->setBox(new Box()));
-        $this->assertInstanceOf('\Jaguar\Box', $action->getBox());
     }
 
 }
