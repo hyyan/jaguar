@@ -11,13 +11,18 @@
 namespace Jaguar\Tests\Action;
 
 use Jaguar\Action\CropAction;
+use Jaguar\Dimension;
+use Jaguar\Box;
 
 class CropActionTest extends AbstractActionTest
 {
 
-    public function getAction()
+    public function actionProvider()
     {
-        return new CropAction();
+        return array(
+            array(new CropAction()),
+            array(new CropAction(new Box(new Dimension(500, 500))))
+        );
     }
 
 }
