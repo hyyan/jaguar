@@ -291,10 +291,7 @@ class Canvas extends AbstractCanvas
     public function __clone()
     {
         if ($this->isHandlerSet()) {
-            $clone = new self();
             $this->activeCanvas = $this->getActiveCanvas()->getCopy();
-            $clone->create($this->getDimension());
-            $clone->paste($this);
         }
     }
 
