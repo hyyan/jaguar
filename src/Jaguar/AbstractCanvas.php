@@ -275,6 +275,9 @@ abstract class AbstractCanvas implements CanvasInterface
         $srcBox = ($srcBox === null) ? new Box($srcDimension) : $srcBox;
         $destBox = ($destBox === null) ? new Box($srcDimension) : $destBox;
 
+        @imagealphablending($this->getHandler(), false);
+        @imagesavealpha($this->getHandler(), true);
+
         if (false == @imagecopyresampled(
                         $this->getHandler()
                         , $src->getHandler()
@@ -292,6 +295,9 @@ abstract class AbstractCanvas implements CanvasInterface
                     , (string) $src, (string) $this
             ));
         }
+
+        @imagealphablending($this->getHandler(), true);
+        @imagesavealpha($this->getHandler(), false);
 
         return $this;
     }
