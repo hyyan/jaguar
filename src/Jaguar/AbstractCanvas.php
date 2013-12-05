@@ -22,6 +22,8 @@ use Jaguar\Exception\InvalidDimensionException;
 use Jaguar\Exception\CanvasException;
 use Jaguar\Drawable\DrawableInterface;
 use Jaguar\Drawable\StyleInterface;
+use Jaguar\Exception\InvalidCoordinateException;
+use Jaguar\Drawable\Pixel;
 
 abstract class AbstractCanvas implements CanvasInterface
 {
@@ -187,6 +189,30 @@ abstract class AbstractCanvas implements CanvasInterface
         $this->doLoadFromFile($file);
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPixel(Coordinate $coordinate)
+    {
+        $x = $coordinate->getX();
+        $y = $coordinate->getY();
+        if (($x < 0 || $x > $this->getWidth()) || ($y < 0 || $y > $this->getHeight())) {
+            throw new InvalidCoordinateException(sprintf(
+                    'OutOfBounds - Invalid Coordinate "%s"', (string) $coordinate
+            ));
+        }
+
+        if (!($value = @imagecolorat($this->getHandler(), $x, $y))) {
+            throw new CanvasException(sprintf(
+                    'Faild To Retive The Pixel Color At "%s"', (string) $coordinate
+            ));
+        }
+
+        $pixel = new Pixel($coordinate);
+        $pixel->setColor(RGBColor::fromValue($value, true));
+        return $pixel;
     }
 
     /**

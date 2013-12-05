@@ -20,6 +20,7 @@ use Jaguar\Drawable\StyleInterface;
 
 interface CanvasInterface
 {
+
     /**
      * Set canvas handler
      *
@@ -135,6 +136,18 @@ interface CanvasInterface
      * @throws \Jaguar\Exception\CanvasCreationException
      */
     public function fromString($string);
+
+    /**
+     * Get Pixel at specific coordinate
+     * 
+     * @param \Jaguar\Coordinatee $coordinate
+     * 
+     * @return \Jaguar\Drawable\Pixel 
+     * 
+     * @throws \Jaguar\Exception\InvalidCoordinateException
+     * @throws \Jaguar\Exception\CanvasException
+     */
+    public function getPixel(Coordinate $coordinate);
 
     /**
      * Draw drawable object on the current canvas

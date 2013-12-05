@@ -18,6 +18,7 @@ use Jaguar\Color\RGBColor;
 
 abstract class AbstractCanvasTest extends JaguarTestCase
 {
+
     /**
      * @expectedException \InvalidArgumentException
      */
@@ -187,6 +188,46 @@ abstract class AbstractCanvasTest extends JaguarTestCase
     public function testToString()
     {
         $this->assertInternalType('string', (string) $this->getCanvas());
+    }
+
+    /**
+     * @dataProvider getPixelCoordinatesProvider
+     * @expectedException \Jaguar\Exception\InvalidCoordinateException
+     */
+    public function testGetPixelThrowInvalidCoordinateException(\Jaguar\Coordinate $coordinate)
+    {
+        $canvas = new CanvasMock();
+        $canvas->getPixel($coordinate);
+    }
+
+    /**
+     * Coordinate provider for testGetPixelThrowInvalidCoordinateException
+     * @return type
+     */
+    public function getPixelCoordinatesProvider()
+    {
+        return array(
+            array(new \Jaguar\Coordinate(1000, 1000)),
+            array(new \Jaguar\Coordinate(-1000, -1000))
+        );
+    }
+
+    /**
+     * @expectedException \Jaguar\Exception\CanvasException
+     */
+    public function testGetPixelThrowCanvasException()
+    {
+        $canvas = new CanvasMock();
+        $canvas->getPixel(new \Jaguar\Coordinate());
+    }
+
+    public function testGetPixel()
+    {
+        $canvas = $this->getCanvas();
+        $this->assertInstanceOf(
+                '\Jaguar\Drawable\Pixel'
+                , $canvas->getPixel(new \Jaguar\Coordinate)
+        );
     }
 
     /**
