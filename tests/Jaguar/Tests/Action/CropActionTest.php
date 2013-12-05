@@ -25,4 +25,11 @@ class CropActionTest extends AbstractActionTest
         );
     }
 
+    public function testSetGetBox()
+    {
+        $action = new CropAction();
+        $this->assertSame($action, $action->setBox(new Box()));
+        $this->assertInstanceOf('\Jaguar\Box', $action->getBox());
+    }
+
 }
