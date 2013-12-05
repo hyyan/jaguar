@@ -60,8 +60,7 @@ class CropAction extends AbstractAction
         $dimension = $this->getBox()->getDimension();
         $coordinate = $this->getBox()->getCoordinate();
 
-        $new = new Canvas($dimension, Canvas::Format_PNG);
-        $new->create($dimension);
+        $new = new Canvas($dimension);
         $new->paste($canvas, new Box($dimension, $coordinate), new Box($dimension));
         $canvas->fromCanvas($new);
         $new->destroy();
