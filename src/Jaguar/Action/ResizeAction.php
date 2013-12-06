@@ -55,6 +55,9 @@ class ResizeAction extends AbstractAction
         return $this->dimension;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function doApply(CanvasInterface $canvas)
     {
         $copy = new \Jaguar\Canvas($this->getDimension());
