@@ -189,7 +189,7 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
         $this->setHandler($handler);
-        $this->fill(new RGBColor(255, 255, 255));
+        $this->fill(new Color\TransparentColor());
         return $this;
     }
 
@@ -275,8 +275,8 @@ abstract class AbstractCanvas implements CanvasInterface
         $srcBox = ($srcBox === null) ? new Box($srcDimension) : $srcBox;
         $destBox = ($destBox === null) ? new Box($srcDimension) : $destBox;
 
-        @imagealphablending($this->getHandler(), false);
-        @imagesavealpha($this->getHandler(), true);
+//        @imagealphablending($this->getHandler(), false);
+//        @imagesavealpha($this->getHandler(), true);
 
         if (false == @imagecopyresampled(
                         $this->getHandler()
@@ -296,8 +296,8 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
 
-        @imagealphablending($this->getHandler(), true);
-        @imagesavealpha($this->getHandler(), false);
+//        @imagealphablending($this->getHandler(), true);
+//        @imagesavealpha($this->getHandler(), false);
 
         return $this;
     }
