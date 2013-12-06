@@ -189,7 +189,7 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
         $this->setHandler($handler);
-        $this->fill(new Color\TransparentColor());
+        $this->fill(new RGBColor(0, 0, 0, 127));
         return $this;
     }
 
