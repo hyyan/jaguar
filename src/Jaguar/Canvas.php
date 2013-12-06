@@ -262,6 +262,15 @@ class Canvas extends AbstractCanvas
     /**
      * {@inheritdoc}
      */
+    public function fromCanvas(CanvasInterface $canvas)
+    {
+        $this->getActiveCanvas()->fromCanvas($canvas);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setHandler($handler)
     {
         $this->getActiveCanvas()->setHandler($handler);
