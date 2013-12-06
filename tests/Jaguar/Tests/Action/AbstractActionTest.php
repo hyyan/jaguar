@@ -34,11 +34,9 @@ abstract class AbstractActionTest extends JaguarTestCase
     }
 
     /**
-     * @dataProvider actionProvider
-     * 
      * @expectedException \Jaguar\Exception\CanvasEmptyException
      */
-    public function testApplyThrowCanvasEmptyException(ActionInterface $action)
+    public function testApplyThrowCanvasEmptyException()
     {
         $this->getAction()->apply(new \Jaguar\Tests\Mock\EmptyCanvasMock());
     }
