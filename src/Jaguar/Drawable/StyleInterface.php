@@ -19,7 +19,7 @@ interface StyleInterface
     /**
      * Apply the style on the drawable object
      *
-     * @param \Jaguar\CanvasInterface   $canvas
+     * @param \Jaguar\CanvasInterface                 $canvas
      * @param \Jaguar\Drawable\AbstractStyledDrawable $drawable
      *
      * @throws \Jaguar\Exception\DrawableException

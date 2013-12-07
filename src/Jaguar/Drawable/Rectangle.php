@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -23,9 +23,9 @@ class Rectangle extends FilledDrawable
 
     /**
      * Constrcut new rectangle
-     * 
-     * @param \Jaguar\Dimension $size
-     * @param \Jaguar\Coordinate $start
+     *
+     * @param \Jaguar\Dimension               $size
+     * @param \Jaguar\Coordinate              $start
      * @param \Jaguar\Drawable\ColorInterface $color
      */
     public function __construct(Dimension $size = null, Coordinate $start = null, ColorInterface $color = null)
@@ -37,20 +37,21 @@ class Rectangle extends FilledDrawable
 
     /**
      * Set dimension
-     * 
+     *
      * @param \Jaguar\Dimension $dimension
-     * 
+     *
      * @return \Jaguar\Drawable\Rectangle
      */
     public function setDimension(Dimension $dimension)
     {
         $this->dimension = $dimension;
+
         return $this;
     }
 
     /**
      * Get dimension
-     * 
+     *
      * @return \Jaguar\Dimension
      */
     public function getDimension()
@@ -59,21 +60,22 @@ class Rectangle extends FilledDrawable
     }
 
     /**
-     * Set Start Coordinate 
-     * 
+     * Set Start Coordinate
+     *
      * @param \Jaguar\Coordinate $coordinate
-     * 
-     * @return \Jaguar\Drawable\Rectangle 
+     *
+     * @return \Jaguar\Drawable\Rectangle
      */
     public function setStart(Coordinate $coordinate)
     {
         $this->coordinate = $coordinate;
+
         return $this;
     }
 
     /**
      * Get Start Coordinate
-     * 
+     *
      * @return \Jaguar\Coordinate
      */
     public function getStart()
@@ -108,7 +110,7 @@ class Rectangle extends FilledDrawable
 
     /**
      * Returns a string representation for the current rectangle object
-     * 
+     *
      * @return string
      */
     public function __toString()
@@ -148,11 +150,11 @@ class Rectangle extends FilledDrawable
 
     /**
      * Draw rectangle
-     * 
-     * @param \Jaguar\CanvasInterface $canvas
+     *
+     * @param \Jaguar\CanvasInterface         $canvas
      * @param \Jaguar\Drawable\StyleInterface $style
-     * @param boolean $filled
-     * 
+     * @param boolean                         $filled
+     *
      * @throws \Jaguar\Exception\DrawableException
      */
     private function drawRectangle(
@@ -186,7 +188,6 @@ class Rectangle extends FilledDrawable
                             , $color
             );
         }
-
 
         if (false == $result) {
             throw new DrawableException(sprintf(

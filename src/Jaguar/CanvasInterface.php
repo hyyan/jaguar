@@ -139,19 +139,19 @@ interface CanvasInterface
 
     /**
      * Replace this canvas handler with a new one loaded from another canvas
-     * 
+     *
      * <b>Note :</b>
-     * 
-     * note that the current canvas handler will be destroyed 
+     *
+     * note that the current canvas handler will be destroyed
      * before assigning the new one.
-     * 
-     * This behaviour will not allow to create canvas and depend 
+     *
+     * This behaviour will not allow to create canvas and depend
      * on php garbage collection to clean it
-     * 
+     *
      * @param \Jaguar\CanvasInterface $canvas
-     * 
+     *
      * @return \Jaguar\CanvasInterface self
-     * 
+     *
      * @throws \Jaguar\Exception\CanvasEmptyException
      * @throws \Jaguar\Exception\CanvasException;
      */
@@ -159,11 +159,11 @@ interface CanvasInterface
 
     /**
      * Get Pixel at specific coordinate
-     * 
+     *
      * @param \Jaguar\Coordinatee $coordinate
-     * 
-     * @return \Jaguar\Drawable\Pixel 
-     * 
+     *
+     * @return \Jaguar\Drawable\Pixel
+     *
      * @throws \Jaguar\Exception\InvalidCoordinateException
      * @throws \Jaguar\Exception\CanvasException
      */
@@ -228,11 +228,11 @@ interface CanvasInterface
 
     /**
      * Destroy the canvas
-     * 
+     *
      * destroy the canvas handler
-     * 
+     *
      * @return \Jaguar\CanvasInterface self
-     * 
+     *
      * @throws \Jaguar\Exception\CanvasDestroyingException
      */
     public function destroy();

@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -28,9 +28,9 @@ class Arc extends FilledDrawable
 
     /**
      * Constrcut new arc
-     * 
-     * @param \Jaguar\Dimension $dimension
-     * @param \Jaguar\Coordinate $center
+     *
+     * @param \Jaguar\Dimension            $dimension
+     * @param \Jaguar\Coordinate           $center
      * @param \Jaguar\Color\ColorInterface $color
      */
     public function __construct(Dimension $dimension = null, Coordinate $center = null, ColorInterface $color = null)
@@ -46,20 +46,21 @@ class Arc extends FilledDrawable
 
     /**
      * Set dimension
-     * 
+     *
      * @param \Jaguar\Dimension $dimension
-     * 
+     *
      * @return \Jaguar\Drawable\Arc
      */
     public function setDimension(Dimension $dimension)
     {
         $this->dimension = $dimension;
+
         return $this;
     }
 
     /**
      * Get dimension
-     * 
+     *
      * @return \Jaguar\Dimension
      */
     public function getDimension()
@@ -69,21 +70,22 @@ class Arc extends FilledDrawable
 
     /**
      * Set center
-     * 
+     *
      * @param \Jaguar\Coordinate $coordinate
-     * 
+     *
      * @return \Jaguar\Drawable\Arc
      */
     public function setCenter(Coordinate $coordinate)
     {
         $this->center = $coordinate;
+
         return $this;
     }
 
     /**
      * Get center
-     * 
-     * @return \Jaguar\Coordinate 
+     *
+     * @return \Jaguar\Coordinate
      */
     public function getCenter()
     {
@@ -92,20 +94,21 @@ class Arc extends FilledDrawable
 
     /**
      * Set Start Degree
-     * 
+     *
      * @param integer $degree
-     * 
+     *
      * @return \Jaguar\Drawable\Arc
      */
     public function setStartDegree($degree)
     {
         $this->sd = $degree;
+
         return $this;
     }
 
     /**
      * Get Start Degree
-     * 
+     *
      * @return integer
      */
     public function getStartDegree()
@@ -115,20 +118,21 @@ class Arc extends FilledDrawable
 
     /**
      * Set End Degree
-     * 
+     *
      * @param integer $degree
-     * 
-     * @return \Jaguar\Drawable\Arc 
+     *
+     * @return \Jaguar\Drawable\Arc
      */
     public function setEndDegree($degree)
     {
         $this->ed = $degree;
+
         return $this;
     }
 
     /**
      * get End Degree
-     * 
+     *
      * @return integer
      */
     public function getEndDegree()
@@ -138,11 +142,11 @@ class Arc extends FilledDrawable
 
     /**
      * Set Start And End Degree
-     * 
+     *
      * @param integer $start start degree
-     * @param integer $end end degree
-     * 
-     * @return \Jaguar\Drawable\Arc 
+     * @param integer $end   end degree
+     *
+     * @return \Jaguar\Drawable\Arc
      */
     public function setDegree($start, $end)
     {
@@ -151,22 +155,23 @@ class Arc extends FilledDrawable
 
     /**
      * Connect Angles
-     * 
+     *
      * Connet the starting and ending angles with a straight line
-     * 
+     *
      * @param boolean $boolean True To Connect Angles togther
-     * 
-     * @return \Jaguar\Drawable\Arc 
+     *
+     * @return \Jaguar\Drawable\Arc
      */
     public function connectAngles($boolean)
     {
         $this->anglesConnected = (boolean) $boolean;
+
         return $this;
     }
 
     /**
-     * Check If Angles are connected 
-     * 
+     * Check If Angles are connected
+     *
      * @return boolean
      */
     public function isAnglesConnected()
@@ -176,20 +181,21 @@ class Arc extends FilledDrawable
 
     /**
      * Set Roundded Edge
-     * 
+     *
      * @param boolean $boolean true fo rounded edge
-     * 
-     * @return \Jaguar\Drawable\Arc 
+     *
+     * @return \Jaguar\Drawable\Arc
      */
     public function setRounded($boolean)
     {
         $this->roundedEdge = $boolean;
+
         return $this;
     }
 
     /**
      * Get is rounded
-     * 
+     *
      * @return boolean
      */
     public function isRounded()
@@ -199,21 +205,22 @@ class Arc extends FilledDrawable
 
     /**
      * Connect Angles To The Center Of Arc
-     * 
+     *
      * @param boolean $boolean true indicates that the beginning and ending angles
-     *                         should be connected to the center 
-     * 
-     * @return \Jaguar\Drawable\Arc 
+     *                         should be connected to the center
+     *
+     * @return \Jaguar\Drawable\Arc
      */
     public function connectAnglesToCenter($boolean)
     {
         $this->anglesConnectedToCenter = $boolean;
+
         return $this;
     }
 
     /**
      * Check if angles are connected to center
-     * 
+     *
      * @return boolean
      */
     public function isAnglesConnectedToCenter()
@@ -266,7 +273,7 @@ class Arc extends FilledDrawable
 
     /**
      * Returns a string representation of the current arc Object
-     * 
+     *
      * @return string
      */
     public function __toString()
@@ -308,11 +315,11 @@ class Arc extends FilledDrawable
 
     /**
      * Draw Arc
-     * 
-     * @param \Jaguar\CanvasInterface $canvas
+     *
+     * @param \Jaguar\CanvasInterface         $canvas
      * @param \Jaguar\Drawable\StyleInterface $style
-     * @param boolean $filled
-     * 
+     * @param boolean                         $filled
+     *
      * @throws \Jaguar\Exception\DrawableException
      */
     private function drawArc(
@@ -359,9 +366,9 @@ class Arc extends FilledDrawable
 
     /**
      * Get Bitflags
-     * 
+     *
      * @param array $flags
-     * 
+     *
      * @return integer
      */
     private function getBitflags(array $flags)
@@ -370,6 +377,7 @@ class Arc extends FilledDrawable
         foreach ($flags as $flag) {
             $val = $val | $flag;
         }
+
         return $val;
     }
 

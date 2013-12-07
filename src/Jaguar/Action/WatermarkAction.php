@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -22,9 +22,9 @@ class WatermarkAction extends AbstractAction
 
     /**
      * Constrcut new watermark action
-     * 
+     *
      * @param \Jaguar\CanvasInterface $watermark
-     * @param \Jaguar\Coordinate $coordinate
+     * @param \Jaguar\Coordinate      $coordinate
      */
     public function __construct(CanvasInterface $watermark, Coordinate $coordinate = null)
     {
@@ -34,11 +34,11 @@ class WatermarkAction extends AbstractAction
 
     /**
      * Set watermark
-     * 
+     *
      * @param \Jaguar\CanvasInterface $watermark
-     * 
+     *
      * @return \Jaguar\Action\WatermarkAction
-     * 
+     *
      * @throws \Jaguar\Exception\CanvasEmptyException
      */
     public function setWatermark(CanvasInterface $watermark)
@@ -47,12 +47,13 @@ class WatermarkAction extends AbstractAction
             throw new CanvasEmptyException();
         }
         $this->watermark = $watermark;
+
         return $this;
     }
 
     /**
      * Get watermark
-     * 
+     *
      * @return \Jaguar\Exception\CanvasEmptyException
      */
     public function getWatermark()
@@ -62,20 +63,21 @@ class WatermarkAction extends AbstractAction
 
     /**
      * Set watermark position
-     * 
+     *
      * @param \Jaguar\Coordinate $coordinate
-     * 
+     *
      * @return \Jaguar\Action\WatermarkAction
      */
     public function setCoordinate(Coordinate $coordinate)
     {
         $this->coordinate = $coordinate;
+
         return $this;
     }
 
     /**
      * Get watermark position
-     * 
+     *
      * @return \Jaguar\Action\WatermarkAction
      */
     public function getCoordinate()
@@ -85,7 +87,7 @@ class WatermarkAction extends AbstractAction
 
     /**
      * Disable clone for watermark
-     * 
+     *
      * @throws \RuntimeException
      */
     public function __clone()
@@ -98,7 +100,7 @@ class WatermarkAction extends AbstractAction
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        $dimension = $this->getWatermark()->getDimension();       
+        $dimension = $this->getWatermark()->getDimension();
         $canvas->paste(
                 $this->getWatermark()
                 , new Box($dimension)

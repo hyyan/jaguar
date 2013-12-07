@@ -89,9 +89,9 @@ abstract class AbstractCanvas implements CanvasInterface
         // we are ignoring imagepalettetotruecolor function in php5.5
         if (@imageistruecolor($handler)) {
             $this->handler = $handler;
+
             return $this;
         }
-
 
         $dst = @imagecreatetruecolor(
                         @imagesx($handler)
@@ -190,6 +190,7 @@ abstract class AbstractCanvas implements CanvasInterface
         }
         $this->setHandler($handler);
         $this->fill(new RGBColor(0, 0, 0, 127));
+
         return $this;
     }
 
@@ -203,6 +204,7 @@ abstract class AbstractCanvas implements CanvasInterface
             throw new CanvasCreationException("Invalid Canvas String");
         }
         $this->setHandler($handler);
+
         return $this;
     }
 
@@ -213,6 +215,7 @@ abstract class AbstractCanvas implements CanvasInterface
     {
         $this->isValidFile($file);
         $this->doLoadFromFile($file);
+
         return $this;
     }
 
@@ -223,6 +226,7 @@ abstract class AbstractCanvas implements CanvasInterface
     {
         $copy = $canvas->getCopy();
         $this->setHandler($copy->getHandler());
+
         return $this;
     }
 
@@ -247,6 +251,7 @@ abstract class AbstractCanvas implements CanvasInterface
 
         $pixel = new Pixel($coordinate);
         $pixel->setColor(RGBColor::fromValue($value, true));
+
         return $pixel;
     }
 
@@ -256,6 +261,7 @@ abstract class AbstractCanvas implements CanvasInterface
     public function draw(DrawableInterface $drawable, StyleInterface $style = null)
     {
         $drawable->draw($this, $style);
+
         return $this;
     }
 
@@ -298,7 +304,6 @@ abstract class AbstractCanvas implements CanvasInterface
 
 //        @imagealphablending($this->getHandler(), true);
 //        @imagesavealpha($this->getHandler(), false);
-
         return $this;
     }
 
@@ -346,6 +351,7 @@ abstract class AbstractCanvas implements CanvasInterface
         $clone = clone $this;
         $clone->create($this->getDimension());
         $clone->paste($this);
+
         return $clone;
     }
 
@@ -366,6 +372,7 @@ abstract class AbstractCanvas implements CanvasInterface
             throw new CanvasDestroyingException();
         }
         $this->handler = null;
+
         return $this;
     }
 

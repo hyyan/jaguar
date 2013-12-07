@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -20,7 +20,7 @@ class ConvolutionAction extends AbstractAction
 
     /**
      * Constrcut new convolution action
-     * 
+     *
      * @param array $matrix
      * @param float $offset
      * @param float $divisor
@@ -32,20 +32,21 @@ class ConvolutionAction extends AbstractAction
 
     /**
      * Set color offeset
-     * 
+     *
      * @param float $offset
-     * 
+     *
      * @return \Jaguar\Action\ConvolutionAction
      */
     public function setOffset($offset)
     {
         $this->offset = (float) $offset;
+
         return $this;
     }
 
     /**
      * Get color offset
-     * 
+     *
      * @return float
      */
     public function getOffset()
@@ -55,20 +56,21 @@ class ConvolutionAction extends AbstractAction
 
     /**
      * Set The divisor of the result of the convolution
-     * 
+     *
      * @param float $divisor
-     * 
+     *
      * @return \Jaguar\Action\ConvolutionAction
      */
     public function setDivisor($divisor)
     {
         $this->divisor = (float) $divisor;
+
         return $this;
     }
 
     /**
      * Get divisor
-     * 
+     *
      * @return float
      */
     public function getDivisor()
@@ -78,25 +80,26 @@ class ConvolutionAction extends AbstractAction
 
     /**
      * Set matrix
-     * 
-     * A 3x3 matrix: an array of three arrays of three floats. 
-     * 
+     *
+     * A 3x3 matrix: an array of three arrays of three floats.
+     *
      * @param array $matrix
-     * 
+     *
      * @return \Jaguar\Action\ConvolutionAction
-     * 
+     *
      * @throws \RuntimeException if not valid matrix
      */
     public function setMatrix(array $matrix)
     {
         $this->assertValidMatrix($matrix);
         $this->matrix = $matrix;
+
         return $this;
     }
 
     /**
      * Get matrix
-     * 
+     *
      * @return array
      */
     protected function getMatrix()
@@ -119,9 +122,9 @@ class ConvolutionAction extends AbstractAction
 
     /**
      * Assert that the given matrix is valid convolution matrix
-     * 
+     *
      * @param array $matrix
-     * 
+     *
      * @throws \RuntimeException
      */
     private function assertValidMatrix(array $matrix)

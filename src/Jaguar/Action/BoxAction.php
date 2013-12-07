@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -15,11 +15,11 @@ use Jaguar\Box;
 
 /**
  * Box Action
- * 
- * box action is a speical action which can execute actions on a canvas 
+ *
+ * box action is a speical action which can execute actions on a canvas
  * given area defined by a box  or on the whole canvas except an
  * selected area defined by a box.
- * 
+ *
  */
 class BoxAction extends AbstractAction
 {
@@ -29,10 +29,10 @@ class BoxAction extends AbstractAction
 
     /**
      * Constrcut an new box action
-     * 
+     *
      * @param \Jaguar\Action\ActionInterface $action
-     * @param \Jaguar\Box $box
-     * @param type $invert
+     * @param \Jaguar\Box                    $box
+     * @param type                           $invert
      */
     public function __construct(ActionInterface $action, Box $box, $invert = false)
     {
@@ -43,19 +43,20 @@ class BoxAction extends AbstractAction
 
     /**
      * Set action
-     * 
-     * @param \Jaguar\Action\ActionInterface $action
+     *
+     * @param  \Jaguar\Action\ActionInterface $action
      * @return \Jaguar\Action\BoxAction
      */
     public function setAction(ActionInterface $action)
     {
         $this->action = $action;
+
         return $this;
     }
 
     /**
      * Get action
-     * 
+     *
      * @return \Jaguar\Action\ActionInterface
      */
     public function getAction()
@@ -65,20 +66,21 @@ class BoxAction extends AbstractAction
 
     /**
      * Set box to apply the action inside it
-     * 
+     *
      * @param \Jaguar\Box $box
-     * 
+     *
      * @return \Jaguar\Action\BoxAction
      */
     public function setBox(Box $box)
     {
         $this->box = $box;
+
         return $this;
     }
 
     /**
      * Get box
-     * 
+     *
      * @return \Jaguar\Box
      */
     public function getBox()
@@ -88,21 +90,22 @@ class BoxAction extends AbstractAction
 
     /**
      * Invert the selection box
-     * 
-     * @param string $boolean true to invert the selection box , false to keep 
+     *
+     * @param string $boolean true to invert the selection box , false to keep
      *                         the selection box
-     * 
+     *
      * @return \Jaguar\Action\BoxAction
      */
     public function invertSelection($boolean)
     {
         $this->invert = (boolean) $boolean;
+
         return $this;
     }
 
     /**
      * Check if invert option is enabled
-     * 
+     *
      * @return boolean true if invert selection is enabled , false otherwise
      */
     public function isInvert()

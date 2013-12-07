@@ -22,7 +22,7 @@ interface DrawableInterface extends EqualsInterface
      * Set drawable color
      *
      * @param \Jaguar\Color\ColorInterface $color
-     * 
+     *
      * @return \Jaguar\Drawable\DrawableInterface
      */
     public function setColor(ColorInterface $color);

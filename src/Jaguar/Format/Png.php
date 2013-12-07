@@ -171,7 +171,7 @@ class Png extends CompressableCanvas
      * Save The Alpha Channel Information For Png Resource
      *
      * @param Jaguar\Format\Png $png
-     * @param boolean                  $flag true to save false to ignore
+     * @param boolean           $flag true to save false to ignore
      *
      * @return \Jaguar\Format\Png
      * @throws \Jaguar\Exception\CanvasException

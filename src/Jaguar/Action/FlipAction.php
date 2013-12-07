@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -28,7 +28,7 @@ class FlipAction extends AbstractAction
 
     /**
      * Constrcut new flip action
-     * 
+     *
      * @param type $direction
      */
     public function __construct($direction = null)
@@ -38,11 +38,11 @@ class FlipAction extends AbstractAction
 
     /**
      * Set flip direction
-     * 
+     *
      * @param string $direction any of FlipAction::FLIP_*
-     * 
+     *
      * @return \Jaguar\Action\FlipAction
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function setFlipDirection($direction)
@@ -53,12 +53,13 @@ class FlipAction extends AbstractAction
             ));
         }
         $this->flipDirection = $direction;
+
         return $this;
     }
 
     /**
      * Get flip direction
-     * 
+     *
      * @return string
      */
     public function getFlipDirection()

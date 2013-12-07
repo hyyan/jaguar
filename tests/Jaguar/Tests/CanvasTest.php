@@ -120,7 +120,7 @@ class CanvasTest extends JaguarTestCase
      * @dataProvider canvasFilesProvider
      *
      * @param \Jaguar\Canvas $canvas
-     * @param string                $file
+     * @param string         $file
      */
     public function testFromFile(Canvas $canvas, $file)
     {
@@ -133,8 +133,8 @@ class CanvasTest extends JaguarTestCase
      * @dataProvider differentCanvasFilesProvider
      *
      * @param \Jaguar\Canvas $canvas
-     * @param string                $file
-     * @param string                $expectedType
+     * @param string         $file
+     * @param string         $expectedType
      */
     public function testFromFileCanLoadDifferentFiles(Canvas $canvas, $file, $expectedType)
     {
@@ -289,7 +289,7 @@ class CanvasTest extends JaguarTestCase
      * @dataProvider canvasAndSpecialMethodsProvider
      *
      * @param \Jaguar\Canvas $canvas
-     * @param array                 $data
+     * @param array          $data
      */
     public function testCall(Canvas $canvas, array $data)
     {

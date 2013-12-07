@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -38,10 +38,10 @@ class RotateActionTest extends AbstractActionTest
 
     /**
      * @dataProvider actionFilesProvider
-     * 
-     * @param string $file
+     *
+     * @param string                      $file
      * @param \Jaguar\Action\RotateAction $action
-     * @param \Jaguar\Dimension $expectedDimension
+     * @param \Jaguar\Dimension           $expectedDimension
      */
     public function testApply($file, RotateAction $action, \Jaguar\Dimension $expectedDimension)
     {

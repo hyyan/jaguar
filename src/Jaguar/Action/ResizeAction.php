@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -24,7 +24,7 @@ class ResizeAction extends AbstractAction
 
     /**
      * Constrcut new Resize Action
-     * 
+     *
      * @param \Jaguar\Dimension $dimension
      */
     public function __construct(Dimension $dimension = null)
@@ -34,20 +34,21 @@ class ResizeAction extends AbstractAction
 
     /**
      * Set dimension
-     * 
+     *
      * @param \Jaguar\Dimension $dimension
-     * 
+     *
      * @return \Jaguar\Action\ResizeAction
      */
     public function setDimension(Dimension $dimension)
     {
         $this->dimension = $dimension;
+
         return $this;
     }
 
     /**
      * Get dimension
-     * 
+     *
      * @return \Jaguar\Dimension
      */
     public function getDimension()

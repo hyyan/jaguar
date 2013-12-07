@@ -68,6 +68,7 @@ abstract class AbstractDrawable implements DrawableInterface
             ));
         }
         $this->doDraw($canvas);
+
         return $this;
     }
 

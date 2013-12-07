@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -26,11 +26,11 @@ class DashedlineStyle implements StyleInterface
 
     /**
      * Constrcut new dashedline style
-     * 
-     * @param integer $fct the first color show time 
-     * @param integer $sct the second color show time
+     *
+     * @param integer                      $fct   the first color show time
+     * @param integer                      $sct   the second color show time
      * @param \Jaguar\Color\ColorInterface $color the second color
-     * 
+     *
      * @throws \InvalidArgumentException if the time <=0
      */
     public function __construct($fct = 1, $sct = 1, ColorInterface $color = null)
@@ -43,20 +43,21 @@ class DashedlineStyle implements StyleInterface
     /**
      * Set second color to use when drawing the dashed line , where by default
      * the colo is transparent
-     * 
+     *
      * @param \Jaguar\Color\ColorInterface $color
-     * 
+     *
      * @return \Jaguar\Drawable\Style\DashedlineStyle
      */
     public function setSecondColor(ColorInterface $color)
     {
         $this->secondColor = $color;
+
         return $this;
     }
 
     /**
      * Get the second color
-     * 
+     *
      * @return \Jaguar\Color\ColorInterface
      */
     public function getSecondColor()
@@ -66,29 +67,30 @@ class DashedlineStyle implements StyleInterface
 
     /**
      * Set the first color show time
-     * 
+     *
      * the color show time is a number which indicates how many time to show
      * the color before starting by showing the second color .
-     * 
-     * for instance : 5 menas will draw five pixels with the first color (the 
+     *
+     * for instance : 5 menas will draw five pixels with the first color (the
      * default drawable color) then draw n pixels using the second color
-     * 
+     *
      * @param integer $time
-     * 
+     *
      * @return \Jaguar\Drawable\Style\DashedlineStyle
-     * 
+     *
      * @throws \InvalidArgumentException if the time <=0
      */
     public function setFirstColorShowTime($time)
     {
         $this->assertShowTime($time);
         $this->fct = $time;
+
         return $this;
     }
 
     /**
      * Get the first color show time
-     * 
+     *
      * @return integer
      */
     public function getFirstColorShowTime()
@@ -98,25 +100,26 @@ class DashedlineStyle implements StyleInterface
 
     /**
      * Set the second color show time
-     * 
+     *
      * @see \Jaguar\Drawable\Style\DashedlineStyle::setFirstColorShowTime
-     * 
+     *
      * @param integer $time
-     * 
+     *
      * @return \Jaguar\Drawable\Style\DashedlineStyle
-     * 
+     *
      * @throws \InvalidArgumentException if the time <=0
      */
     public function setSecondColorShowTime($time)
     {
         $this->assertShowTime($time);
         $this->sct = $time;
+
         return $this;
     }
 
     /**
      * Get the second color show time
-     * 
+     *
      * @return integer
      */
     public function getSecondColorShowTime()
@@ -151,7 +154,7 @@ class DashedlineStyle implements StyleInterface
 
     /**
      * @param type $time
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     private function assertShowTime($time)
