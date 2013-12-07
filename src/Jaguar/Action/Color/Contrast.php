@@ -13,7 +13,7 @@ namespace Jaguar\Action\Color;
 use Jaguar\CanvasInterface;
 use Jaguar\Action\AbstractAction;
 
-class ContrastAction extends AbstractAction
+class Contrast extends AbstractAction
 {
     private $level;
 
@@ -34,7 +34,7 @@ class ContrastAction extends AbstractAction
      *
      * @param integer $level in range(-100,100) where 0 = no change
      *
-     * @return \Jaguar\Action\Color\ContrastAction
+     * @return \Jaguar\Action\Color\Contrast
      *
      * @throws \InvalidArgumentException if invalid level
      */

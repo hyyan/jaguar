@@ -12,8 +12,9 @@ namespace Jaguar\Action\Color;
 
 use Jaguar\Action\AbstractAction;
 use Jaguar\CanvasInterface;
+use Jaguar\Color\RGBColor;
 
-class GrayscaleAction extends AbstractAction
+class Sepia extends AbstractAction
 {
 
     /**
@@ -21,7 +22,11 @@ class GrayscaleAction extends AbstractAction
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        imagefilter($canvas->getHandler(), IMG_FILTER_GRAYSCALE);
+        $grayscale = new Grayscale();
+        $colorize = new Colorize(new RGBColor(100, 50, 0));
+
+        $grayscale->apply($canvas);
+        $colorize->apply($canvas);
     }
 
 }

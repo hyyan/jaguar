@@ -11,16 +11,16 @@
 namespace Jaguar\Tests\Action;
 
 use Jaguar\Action\ActionInterface;
-use Jaguar\Action\CropAction;
+use Jaguar\Action\Crop;
 use Jaguar\Dimension;
 use Jaguar\Box;
 
-class CropActionTest extends AbstractActionTest
+class CropTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new CropAction(new Box(new Dimension(50, 50)));
+        return new Crop(new Box(new Dimension(50, 50)));
     }
 
     /**
@@ -43,11 +43,11 @@ class CropActionTest extends AbstractActionTest
     {
         return array(
             array(
-                new CropAction(new Box(new Dimension(50, 50)))
+                new Crop(new Box(new Dimension(50, 50)))
                 , new Dimension(50, 50)
             ),
             array(
-                new CropAction(new Box(new Dimension(500, 500)))
+                new Crop(new Box(new Dimension(500, 500)))
                 , new Dimension(500, 500)
             )
         );

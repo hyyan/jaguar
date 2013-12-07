@@ -11,20 +11,20 @@
 namespace Jaguar\Tests\Action\Color;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Color\GrayscaleAction;
+use Jaguar\Action\Color\Sepia;
 
-class GrayscaleActionTest extends AbstractActionTest
+class SepiaTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new GrayscaleAction();
+        return new Sepia();
     }
 
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Color\GrayscaleAction'
+                '\Jaguar\Action\Color\Sepia'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

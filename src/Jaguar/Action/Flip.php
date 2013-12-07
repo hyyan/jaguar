@@ -15,7 +15,7 @@ use Jaguar\Dimension;
 use Jaguar\Box;
 use Jaguar\Coordinate;
 
-class FlipAction extends AbstractAction
+class Flip extends AbstractAction
 {
     const FLIP_VERTICAL = "flip.vertical";
     const FLIP_HORIZONTAL = "flip.horizontal";
@@ -39,9 +39,9 @@ class FlipAction extends AbstractAction
     /**
      * Set flip direction
      *
-     * @param string $direction any of FlipAction::FLIP_*
+     * @param string $direction any of Flip::FLIP_*
      *
-     * @return \Jaguar\Action\FlipAction
+     * @return \Jaguar\Action\Flip
      *
      * @throws \InvalidArgumentException
      */

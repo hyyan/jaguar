@@ -11,14 +11,14 @@
 namespace Jaguar\Tests\Action\Color;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Color\ContrastAction;
+use Jaguar\Action\Color\Contrast;
 
-class ContrastActionTest extends AbstractActionTest
+class ContrastTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new ContrastAction();
+        return new Contrast();
     }
 
     /**
@@ -47,7 +47,7 @@ class ContrastActionTest extends AbstractActionTest
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Color\ContrastAction'
+                '\Jaguar\Action\Color\Contrast'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

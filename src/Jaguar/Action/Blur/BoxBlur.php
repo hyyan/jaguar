@@ -12,7 +12,7 @@ namespace Jaguar\Action\Blur;
 
 use Jaguar\Action\AbstractAction;
 use Jaguar\CanvasInterface;
-use Jaguar\Action\ConvolutionAction;
+use Jaguar\Action\Convolution;
 
 class BoxBlur extends AbstractAction
 {
@@ -22,7 +22,7 @@ class BoxBlur extends AbstractAction
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        $con = new ConvolutionAction(array(
+        $con = new Convolution(array(
             array(1 / 9, 1 / 9, 1 / 9),
             array(1 / 9, 1 / 9, 1 / 9),
             array(1 / 9, 1 / 9, 1 / 9)

@@ -12,7 +12,7 @@ namespace Jaguar\Action\Blur;
 
 use Jaguar\CanvasInterface;
 use Jaguar\Action\AbstractAction;
-use Jaguar\Action\ConvolutionAction;
+use Jaguar\Action\Convolution;
 
 class GaussianBlur extends AbstractAction
 {
@@ -27,7 +27,7 @@ class GaussianBlur extends AbstractAction
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        $con = new ConvolutionAction(self::$matrix, 0, 16);
+        $con = new Convolution(self::$matrix, 0, 16);
         $con->apply($canvas);
     }
 

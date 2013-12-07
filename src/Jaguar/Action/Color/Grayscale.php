@@ -13,7 +13,7 @@ namespace Jaguar\Action\Color;
 use Jaguar\Action\AbstractAction;
 use Jaguar\CanvasInterface;
 
-class NegateAction extends AbstractAction
+class Grayscale extends AbstractAction
 {
 
     /**
@@ -21,7 +21,7 @@ class NegateAction extends AbstractAction
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        imagefilter($canvas->getHandler(), IMG_FILTER_NEGATE);
+        imagefilter($canvas->getHandler(), IMG_FILTER_GRAYSCALE);
     }
 
 }

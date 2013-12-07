@@ -15,7 +15,7 @@ use Jaguar\Coordinate;
 use Jaguar\Exception\CanvasEmptyException;
 use Jaguar\Box;
 
-class WatermarkAction extends AbstractAction
+class Watermark extends AbstractAction
 {
     private $watermark;
     private $coordinate;
@@ -37,7 +37,7 @@ class WatermarkAction extends AbstractAction
      *
      * @param \Jaguar\CanvasInterface $watermark
      *
-     * @return \Jaguar\Action\WatermarkAction
+     * @return \Jaguar\Action\Watermark
      *
      * @throws \Jaguar\Exception\CanvasEmptyException
      */
@@ -66,7 +66,7 @@ class WatermarkAction extends AbstractAction
      *
      * @param \Jaguar\Coordinate $coordinate
      *
-     * @return \Jaguar\Action\WatermarkAction
+     * @return \Jaguar\Action\Watermark
      */
     public function setCoordinate(Coordinate $coordinate)
     {
@@ -78,7 +78,7 @@ class WatermarkAction extends AbstractAction
     /**
      * Get watermark position
      *
-     * @return \Jaguar\Action\WatermarkAction
+     * @return \Jaguar\Action\Watermark
      */
     public function getCoordinate()
     {

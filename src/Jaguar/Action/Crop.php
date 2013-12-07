@@ -15,7 +15,7 @@ use Jaguar\Box;
 use Jaguar\Canvas;
 use Jaguar\Dimension;
 
-class CropAction extends AbstractAction
+class Crop extends AbstractAction
 {
     private $box;
 
@@ -34,7 +34,7 @@ class CropAction extends AbstractAction
      *
      * @param \Jaguar\Box $box
      *
-     * @return \Jaguar\Action\CropAction
+     * @return \Jaguar\Action\Crop
      */
     public function setBox(Box $box)
     {

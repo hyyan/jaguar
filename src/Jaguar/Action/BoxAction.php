@@ -16,7 +16,7 @@ use Jaguar\Box;
 /**
  * Box Action
  *
- * box action is a speical action which can execute actions on a canvas
+ * box action is a speical action which can execute actions on a canvas's
  * given area defined by a box  or on the whole canvas except an
  * selected area defined by a box.
  *

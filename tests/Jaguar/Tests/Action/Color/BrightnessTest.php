@@ -11,14 +11,14 @@
 namespace Jaguar\Tests\Action\Color;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Color\GammaAction;
+use Jaguar\Action\Color\Brightness;
 
-class GammaActionTest extends AbstractActionTest
+class BrightnessTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new GammaAction();
+        return new Brightness();
     }
 
     /**
@@ -40,14 +40,14 @@ class GammaActionTest extends AbstractActionTest
     public function levelsProvider()
     {
         return array(
-            array(5), array(6)
+            array(101), array(-101)
         );
     }
 
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Color\GammaAction'
+                '\Jaguar\Action\Color\Brightness'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

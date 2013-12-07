@@ -12,7 +12,7 @@ namespace Jaguar\Action;
 
 use Jaguar\CanvasInterface;
 
-class ConvolutionAction extends AbstractAction
+class Convolution extends AbstractAction
 {
     private $offset;
     private $divisor;
@@ -35,7 +35,7 @@ class ConvolutionAction extends AbstractAction
      *
      * @param float $offset
      *
-     * @return \Jaguar\Action\ConvolutionAction
+     * @return \Jaguar\Action\Convolution
      */
     public function setOffset($offset)
     {
@@ -59,7 +59,7 @@ class ConvolutionAction extends AbstractAction
      *
      * @param float $divisor
      *
-     * @return \Jaguar\Action\ConvolutionAction
+     * @return \Jaguar\Action\Convolution
      */
     public function setDivisor($divisor)
     {
@@ -85,7 +85,7 @@ class ConvolutionAction extends AbstractAction
      *
      * @param array $matrix
      *
-     * @return \Jaguar\Action\ConvolutionAction
+     * @return \Jaguar\Action\Convolution
      *
      * @throws \RuntimeException if not valid matrix
      */

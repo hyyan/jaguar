@@ -14,7 +14,7 @@ use Jaguar\CanvasInterface;
 use Jaguar\Dimension;
 use Jaguar\Box;
 
-class ResizeAction extends AbstractAction
+class Resize extends AbstractAction
 {
     /**
      * New Resource Dimension
@@ -37,7 +37,7 @@ class ResizeAction extends AbstractAction
      *
      * @param \Jaguar\Dimension $dimension
      *
-     * @return \Jaguar\Action\ResizeAction
+     * @return \Jaguar\Action\Resize
      */
     public function setDimension(Dimension $dimension)
     {

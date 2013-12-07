@@ -13,47 +13,45 @@ namespace Jaguar\Action\Color;
 use Jaguar\Action\AbstractAction;
 use Jaguar\CanvasInterface;
 
-class BrightnessAction extends AbstractAction
+class Gamma extends AbstractAction
 {
     private $level;
 
     /**
-     * Constrcut new brightness action
+     * Constrcut new gamma action
      *
-     * @param integer $level
+     * @param float $level
      *
-     * @throws \InvalidArgumentException if invalid level
+     * @throws \InvalidArgumentException
      */
-    public function __construct($level = 0)
+    public function __construct($level = 1.0)
     {
         $this->setLevel($level);
     }
 
     /**
-     * Set brightness level
+     * Set gamma level
      *
-     * @param integer $level in range (-100,100)
+     * @param float $level
      *
-     * @return \Jaguar\Action\Color\BrightnessAction
+     * @return \Jaguar\Action\Color\Gamma
      *
-     * @throws \InvalidArgumentException if invalid level
+     * @throws \InvalidArgumentException
      */
     public function setLevel($level)
     {
-        if ($level < -100 || $level > 100) {
-            throw new \InvalidArgumentException(
-            "Brightness Level Must Be In Range(-100,100)"
-            );
+        if (!($level >= 0.01 && $level <= 4.99)) {
+            throw new \InvalidArgumentException("Gamma Level Must Be In Range(0.01,4.99)");
         }
-        $this->level = $level;
+        $this->level = (float) $level;
 
         return $this;
     }
 
     /**
-     * Get brightness level
+     * Get gamma level
      *
-     * @return integer
+     * @return float
      */
     public function getLevel()
     {
@@ -65,7 +63,7 @@ class BrightnessAction extends AbstractAction
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        imagefilter($canvas->getHandler(), IMG_FILTER_BRIGHTNESS, $this->getLevel());
+        imagegammacorrect($canvas->getHandler(), 1.0, $this->getLevel());
     }
 
 }

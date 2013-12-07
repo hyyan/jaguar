@@ -10,14 +10,14 @@
 
 namespace Jaguar\Tests\Action;
 
-use Jaguar\Action\ConvolutionAction;
+use Jaguar\Action\Convolution;
 
-class ConvolutionActionTest extends AbstractActionTest
+class ConvolutionTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new ConvolutionAction(array(
+        return new Convolution(array(
             array(0, 0, 0), array(0, 0, 0), array(0, 0, 0)
         ));
     }
@@ -27,7 +27,7 @@ class ConvolutionActionTest extends AbstractActionTest
      */
     public function testSetMatrixThrowRuntimeExceptionIfMainArrayItemsAreNotArrays()
     {
-        new ConvolutionAction(array(1, 1, 1));
+        new Convolution(array(1, 1, 1));
     }
 
     /**
@@ -35,7 +35,7 @@ class ConvolutionActionTest extends AbstractActionTest
      */
     public function testSetMatrixThrowRuntimeExceptionIfMainArrayLengthIsLessThanThree()
     {
-        new ConvolutionAction(array(
+        new Convolution(array(
             array(0, 0, 0), array(0, 0, 0)
         ));
     }
@@ -45,7 +45,7 @@ class ConvolutionActionTest extends AbstractActionTest
      */
     public function testSetMatrixThrowRuntimeExceptionIfSubArraysLengthIsLessThanThree()
     {
-        new ConvolutionAction(array(
+        new Convolution(array(
             array(0), array(0), array(0)
         ));
     }
@@ -53,7 +53,7 @@ class ConvolutionActionTest extends AbstractActionTest
     public function testApply()
     {
         $this->assertInstanceOf(
-                'Jaguar\Action\ConvolutionAction', $this->getAction()->apply($this->getCanvas())
+                'Jaguar\Action\Convolution', $this->getAction()->apply($this->getCanvas())
         );
     }
 

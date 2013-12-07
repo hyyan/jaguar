@@ -11,21 +11,21 @@
 namespace Jaguar\Tests\Action\Color;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Color\MultiplyAction;
+use Jaguar\Action\Color\Colorize;
 use Jaguar\Color\RGBColor;
 
-class MulitplyActionTest extends AbstractActionTest
+class ColorizeTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new MultiplyAction(new RGBColor());
+        return new Colorize(new RGBColor());
     }
 
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Color\MultiplyAction'
+                '\Jaguar\Action\Color\Colorize'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

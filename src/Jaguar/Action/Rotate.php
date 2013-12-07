@@ -14,7 +14,7 @@ use Jaguar\CanvasInterface;
 use Jaguar\Color\ColorInterface;
 use Jaguar\Color\TransparentColor;
 
-class RotateAction extends AbstractAction
+class Rotate extends AbstractAction
 {
     private $degree;
     private $color;
@@ -36,7 +36,7 @@ class RotateAction extends AbstractAction
      *
      * @param float $degree
      *
-     * @return \Jaguar\Action\RotateAction
+     * @return \Jaguar\Action\Rotate
      */
     public function setDegree($degree)
     {
@@ -60,7 +60,7 @@ class RotateAction extends AbstractAction
      *
      * @param \Jaguar\Color\ColorInterface $color
      *
-     * @return \Jaguar\Action\RotateAction
+     * @return \Jaguar\Action\Rotate
      */
     public function setBackgroundColor(ColorInterface $color)
     {

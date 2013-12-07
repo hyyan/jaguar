@@ -10,14 +10,14 @@
 
 namespace Jaguar\Tests\Action;
 
-use Jaguar\Action\RotateAction;
+use Jaguar\Action\Rotate;
 
-class RotateActionTest extends AbstractActionTest
+class RotateTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new RotateAction();
+        return new Rotate();
     }
 
     public function actionFilesProvider()
@@ -25,12 +25,12 @@ class RotateActionTest extends AbstractActionTest
         return array(
             array(
                 $this->getFixture('sky.jpg')
-                , new RotateAction(90)
+                , new Rotate(90)
                 , new \Jaguar\Dimension(300, 400)
             ),
             array(
                 $this->getFixture('google.png')
-                , new RotateAction(180)
+                , new Rotate(180)
                 , new \Jaguar\Dimension(538, 190)
             )
         );
@@ -39,16 +39,16 @@ class RotateActionTest extends AbstractActionTest
     /**
      * @dataProvider actionFilesProvider
      *
-     * @param string                      $file
-     * @param \Jaguar\Action\RotateAction $action
-     * @param \Jaguar\Dimension           $expectedDimension
+     * @param string                $file
+     * @param \Jaguar\Action\Rotate $action
+     * @param \Jaguar\Dimension     $expectedDimension
      */
-    public function testApply($file, RotateAction $action, \Jaguar\Dimension $expectedDimension)
+    public function testApply($file, Rotate $action, \Jaguar\Dimension $expectedDimension)
     {
         $canvas = new \Jaguar\Canvas();
         $canvas->fromFile($file);
 
-        $this->assertInstanceOf('\Jaguar\Action\RotateAction', $action->apply($canvas));
+        $this->assertInstanceOf('\Jaguar\Action\Rotate', $action->apply($canvas));
         $this->assertTrue($canvas->getDimension()->equals($expectedDimension));
     }
 

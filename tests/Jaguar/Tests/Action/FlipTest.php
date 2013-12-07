@@ -10,15 +10,15 @@
 
 namespace Jaguar\Tests\Action;
 
-use Jaguar\Action\FlipAction;
+use Jaguar\Action\Flip;
 use Jaguar\Action\ActionInterface;
 
-class FlipActionTest extends AbstractActionTest
+class FlipTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new FlipAction();
+        return new Flip();
     }
 
     /**
@@ -26,7 +26,7 @@ class FlipActionTest extends AbstractActionTest
      */
     public function testSetFlipDirectionThrowInvalidArgumentException()
     {
-        $flip = new FlipAction();
+        $flip = new Flip();
         $flip->setFlipDirection('unsupported direction');
     }
 
@@ -44,9 +44,9 @@ class FlipActionTest extends AbstractActionTest
     public function actionProvider()
     {
         return array(
-            array(new FlipAction(FlipAction::FLIP_HORIZONTAL)),
-            array(new FlipAction(FlipAction::FLIP_VERTICAL)),
-            array(new FlipAction(FlipAction::FLIP_BOTH))
+            array(new Flip(Flip::FLIP_HORIZONTAL)),
+            array(new Flip(Flip::FLIP_VERTICAL)),
+            array(new Flip(Flip::FLIP_BOTH))
         );
     }
 

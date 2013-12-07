@@ -10,11 +10,11 @@
 
 namespace Jaguar\Action\Color;
 
-use Jaguar\CanvasInterface;
 use Jaguar\Action\AbstractAction;
+use Jaguar\CanvasInterface;
 use Jaguar\Color\RGBColor;
 
-class ColorizeAction extends AbstractAction
+class Multiply extends AbstractAction
 {
     private $color;
 
@@ -33,7 +33,7 @@ class ColorizeAction extends AbstractAction
      *
      * @param \Jaguar\Color\RGBColor $color
      *
-     * @return \Jaguar\Action\Color\ColorizeAction
+     * @return \Jaguar\Action\Color\Colorize
      */
     public function setColor(RGBColor $color)
     {
@@ -60,10 +60,10 @@ class ColorizeAction extends AbstractAction
         imagefilter(
                 $canvas->getHandler()
                 , IMG_FILTER_COLORIZE
-                , $this->getColor()->getRed()
-                , $this->getColor()->getGreen()
-                , $this->getColor()->getBlue()
-                , $this->getColor()->getAlpha()
+                , -(255 - $this->getColor()->getRed())
+                , -(255 - $this->getColor()->getGreen())
+                , -(255 - $this->getColor()->getBlue())
+                , -(127 - $this->getColor()->getAlpha())
         );
     }
 

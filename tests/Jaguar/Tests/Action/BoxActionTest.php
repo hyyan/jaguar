@@ -11,7 +11,7 @@
 namespace Jaguar\Tests\Action;
 
 use Jaguar\Action\BoxAction;
-use Jaguar\Action\FlipAction;
+use Jaguar\Action\Flip;
 use Jaguar\Box;
 use Jaguar\Dimension;
 
@@ -20,7 +20,7 @@ class BoxActionTest extends AbstractActionTest
 
     public function getAction()
     {
-        return new BoxAction(new FlipAction(), new Box(new Dimension(50, 50)));
+        return new BoxAction(new Flip(), new Box(new Dimension(50, 50)));
     }
 
     public function testApply()

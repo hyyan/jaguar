@@ -11,21 +11,20 @@
 namespace Jaguar\Tests\Action\Color;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Color\ColorizeAction;
-use Jaguar\Color\RGBColor;
+use Jaguar\Action\Color\Negate;
 
-class ColorizeActionTest extends AbstractActionTest
+class NegateTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new ColorizeAction(new RGBColor());
+        return new Negate();
     }
 
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Color\ColorizeAction'
+                '\Jaguar\Action\Color\Negate'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

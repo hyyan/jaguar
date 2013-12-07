@@ -10,27 +10,27 @@
 
 namespace Jaguar\Tests\Action;
 
-use Jaguar\Action\ResizeAction;
+use Jaguar\Action\Resize;
 use Jaguar\Dimension;
 use Jaguar\Action\ActionInterface;
 
-class ResizeActionTest extends AbstractActionTest
+class ResizeTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new ResizeAction();
+        return new Resize();
     }
 
     public function actionProvider()
     {
         return array(
             array(
-                new ResizeAction(new Dimension(200, 200))
+                new Resize(new Dimension(200, 200))
                 , new Dimension(200, 200)
             ),
             array(
-                new ResizeAction(new Dimension(50, 50))
+                new Resize(new Dimension(50, 50))
                 , new Dimension(50, 50)
             )
         );

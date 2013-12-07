@@ -10,14 +10,14 @@
 
 namespace Jaguar\Tests\Action;
 
-use Jaguar\Action\WatermarkAction;
+use Jaguar\Action\Watermark;
 
-class WatermarkActionTest extends AbstractActionTest
+class WatermarkTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new WatermarkAction($this->getCanvas());
+        return new Watermark($this->getCanvas());
     }
 
     /**
@@ -33,13 +33,13 @@ class WatermarkActionTest extends AbstractActionTest
      */
     public function testSetWatermarkThrowCanvasEmptyException()
     {
-        new WatermarkAction(new \Jaguar\Tests\Mock\EmptyCanvasMock);
+        new Watermark(new \Jaguar\Tests\Mock\EmptyCanvasMock);
     }
 
     public function testApply()
     {
         $canvas = $this->getCanvas();
-        $action = new WatermarkAction($canvas->getCopy());
+        $action = new Watermark($canvas->getCopy());
         $this->assertInstanceOf(
                 '\Jaguar\Action\ActionInterface'
                 , $action->apply($canvas)
