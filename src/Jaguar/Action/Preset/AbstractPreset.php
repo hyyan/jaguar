@@ -25,7 +25,7 @@ abstract class AbstractPreset extends AbstractAction
      */
     public function getOverlayPath($file)
     {
-        return (__DIR__ . '/../../Resources/Overlay/' . $file);
+        return (__DIR__ . '/../../Resources/Preset/' . $file);
     }
 
     /**

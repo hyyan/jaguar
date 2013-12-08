@@ -11,7 +11,7 @@
 namespace Jaguar\Tests\Action;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Preset;
+use Jaguar\Action\Overlay;
 
 class OverlayTest extends AbstractActionTest
 {
@@ -54,7 +54,7 @@ class OverlayTest extends AbstractActionTest
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Preset'
+                '\Jaguar\Action\Overlay'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }
