@@ -99,9 +99,17 @@ class Overlay extends AbstractAction
      */
     protected function doApply(CanvasInterface $canvas)
     {
+
+        $filter = new \Jaguar\Canvas($canvas->getDimension());
+        $filter->paste($this->getOverlay());
+
+        $compine = new \Jaguar\Canvas($canvas->getDimension());
+        $compine->paste($canvas);
+        $compine->paste($filter);
+
         imagecopymerge(
                 $canvas->getHandler()
-                , $this->getOverlay()->getHandler()
+                , $compine->getHandler()
                 , 0
                 , 0
                 , 0
@@ -110,6 +118,9 @@ class Overlay extends AbstractAction
                 , $canvas->getHeight()
                 , $this->getMount()
         );
+
+        $filter->destroy();
+        $compine->destroy();
     }
 
 }
