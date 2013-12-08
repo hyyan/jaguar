@@ -8,16 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Action\Color;
+namespace Jaguar\Action\Blur;
 
+use Jaguar\Action\Smooth;
+use Jaguar\Action\Color\Contrast;
 use Jaguar\Action\AbstractAction;
 use Jaguar\CanvasInterface;
-use Jaguar\Action\Color\Contrast;
-use Jaguar\Action\Color\Brightness;
-use Jaguar\Action\Color\Colorize;
-use Jaguar\Color\RGBColor;
 
-class Antique extends AbstractAction
+class PartialBlur extends AbstractAction
 {
 
     /**
@@ -26,9 +24,10 @@ class Antique extends AbstractAction
     protected function doApply(CanvasInterface $canvas)
     {
         $actions = array(
-            new Brightness(0),
-            new Contrast(30),
-            new Colorize(new RGBColor(75, 50, 25))
+            new SelectiveBlur(),
+            new GaussianBlur(),
+            new Contrast(15),
+            new Smooth(-2)
         );
 
         foreach ($actions as $action) {
