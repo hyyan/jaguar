@@ -11,20 +11,20 @@
 namespace Jaguar\Tests\Action\Overlay;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Overlay\Chrome;
+use Jaguar\Action\Overlay\Canvas;
 
-class ChromeTest extends AbstractActionTest
+class CanvasTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new Chrome();
+        return new Canvas();
     }
 
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Overlay\Chrome'
+                '\Jaguar\Action\Overlay\Canvas'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }
