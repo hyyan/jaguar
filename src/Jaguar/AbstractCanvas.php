@@ -243,7 +243,7 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
 
-        if (!($value = @imagecolorat($this->getHandler(), $x, $y))) {
+        if (false === ($value = @imagecolorat($this->getHandler(), $x, $y))) {
             throw new CanvasException(sprintf(
                     'Faild To Retive The Pixel Color At "%s"', (string) $coordinate
             ));
