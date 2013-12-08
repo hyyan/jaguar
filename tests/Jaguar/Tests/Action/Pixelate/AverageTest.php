@@ -29,16 +29,4 @@ class AverageTest extends AbstractActionTest
         );
     }
 
-    public function testFoo()
-    {
-
-        $canvas = new \Jaguar\Canvas();
-        $canvas->fromFile($this->getFixture('sky.jpg'));
-
-        $action = new Average(4);
-        $action->apply($canvas);
-
-        $canvas->save('c:/wamp/res.png');
-    }
-
 }
