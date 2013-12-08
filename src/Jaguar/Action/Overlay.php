@@ -101,7 +101,7 @@ class Overlay extends AbstractAction
     {
 
         $filter = new \Jaguar\Canvas($canvas->getDimension());
-        $filter->paste($this->getOverlay());
+        $filter->paste($this->getOverlay(),null,new \Jaguar\Box($canvas->getDimension()));
 
         $compine = new \Jaguar\Canvas($canvas->getDimension());
         $compine->paste($canvas);
