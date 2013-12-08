@@ -11,20 +11,20 @@
 namespace Jaguar\Tests\Action\Color;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Color\Boost;
+use Jaguar\Action\Color\Antique;
 
-class BoostTest extends AbstractActionTest
+class AntiqueTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new Boost();
+        return new Antique();
     }
 
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Color\Boost'
+                '\Jaguar\Action\Color\Antique'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

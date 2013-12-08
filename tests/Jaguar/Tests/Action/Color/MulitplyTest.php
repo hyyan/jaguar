@@ -14,7 +14,7 @@ use Jaguar\Tests\Action\AbstractActionTest;
 use Jaguar\Action\Color\Multiply;
 use Jaguar\Color\RGBColor;
 
-class MulitplyActionTest extends AbstractActionTest
+class MulitplyTest extends AbstractActionTest
 {
 
     public function getAction()
