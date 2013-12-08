@@ -23,7 +23,7 @@ class Dreamy extends AbstractOverlay
 
     /**
      * {@inheritdoc}
-     * 
+     *
      * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
     protected function doApply(CanvasInterface $canvas)
@@ -31,14 +31,14 @@ class Dreamy extends AbstractOverlay
 
         $actions = array(
             new Brightness(20),
-            new Contrast(-30),
+            new Contrast(35),
             new Colorize(new RGBColor(60, 0, 35)),
             new Smooth(7),
             new Overlay(
                     $this->getOverlayCanvas('scratch.png'), 10
             ),
             new Overlay(
-                    $this->getOverlayCanvas('vignette.png'), 80
+                    $this->getOverlayCanvas('vignette.png'), 100
             )
         );
 
