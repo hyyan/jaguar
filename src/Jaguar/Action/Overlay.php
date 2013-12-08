@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -20,10 +20,10 @@ class Overlay extends AbstractAction
 
     /**
      * Constrcut new overlay action
-     * 
+     *
      * @param \Jaguar\CanvasInterface $canvas
-     * @param integer $mount in range(0,100)
-     * 
+     * @param integer                 $mount  in range(0,100)
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct(CanvasInterface $overlay, $mount = 10)
@@ -33,20 +33,21 @@ class Overlay extends AbstractAction
 
     /**
      * Set overlay
-     * 
+     *
      * @param \Jaguar\CanvasInterface $canvas
-     * 
+     *
      * @return \Jaguar\Action\Overlay
      */
     public function setOverlay(CanvasInterface $canvas)
     {
         $this->overlay = $canvas;
+
         return $this;
     }
 
     /**
      * Get overlay
-     * 
+     *
      * @return \Jaguar\CanvasInterface
      */
     public function getOverlay()
@@ -56,11 +57,11 @@ class Overlay extends AbstractAction
 
     /**
      * Set overlay mount
-     * 
+     *
      * @param integer $mount in range(0,100)
-     * 
+     *
      * @return \Jaguar\Action\Overlay
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function setMount($mount)
@@ -69,12 +70,13 @@ class Overlay extends AbstractAction
             throw new \InvalidArgumentException('Overlay mount must be in range(0,100)');
         }
         $this->mount = $mount;
+
         return $this;
     }
 
     /**
      * Get overlay mount
-     * 
+     *
      * @return integer
      */
     public function getMount()
@@ -84,7 +86,7 @@ class Overlay extends AbstractAction
 
     /**
      * Disable clone
-     * 
+     *
      * @throws \RuntimeException
      */
     public function __clone()
