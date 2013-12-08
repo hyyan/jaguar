@@ -12,11 +12,9 @@ namespace Jaguar\Action\Overlay;
 
 use Jaguar\Action\AbstractAction;
 use Jaguar\Canvas;
-use Jaguar\Dimension;
 
 abstract class AbstractOverlay extends AbstractAction
 {
-    private $canvas;
 
     /**
      * Get overlay path
@@ -40,10 +38,10 @@ abstract class AbstractOverlay extends AbstractAction
      */
     public function getOverlayCanvas($file)
     {
-        $this->canvas = new Canvas();
-        $this->canvas->fromFile($this->getOverlayPath($file));
+        $canvas = new Canvas();
+        $canvas->fromFile($this->getOverlayPath($file));
 
-        return $this->canvas;
+        return $canvas;
     }
 
 }
