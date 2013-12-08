@@ -23,6 +23,8 @@ class Dreamy extends AbstractOverlay
 
     /**
      * {@inheritdoc}
+     * 
+     * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
     protected function doApply(CanvasInterface $canvas)
     {
