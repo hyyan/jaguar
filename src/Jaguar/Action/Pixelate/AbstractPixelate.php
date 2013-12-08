@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -18,7 +18,7 @@ abstract class AbstractPixelate extends AbstractAction
 
     /**
      * Constrcut new pixelate filter
-     * 
+     *
      * @param integer $size
      */
     public function __construct($size = 0)
@@ -28,20 +28,21 @@ abstract class AbstractPixelate extends AbstractAction
 
     /**
      * Set the block size
-     * 
+     *
      * @param integer $size
-     * 
+     *
      * @return \Jaguar\Action\Pixelate\AbstractPixelate
      */
     public function setBlockSize($size)
     {
         $this->size = (int) abs($size);
+
         return $this;
     }
 
     /**
      * Get the block size
-     * 
+     *
      * @return integer
      */
     public function getBlockSize()
