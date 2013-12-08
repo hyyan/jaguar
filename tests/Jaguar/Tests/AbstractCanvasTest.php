@@ -245,11 +245,11 @@ abstract class AbstractCanvasTest extends JaguarTestCase
     }
 
     /**
-     * @expectedException \Jaguar\Exception\CanvasException
+     * @expectedException \Jaguar\Exception\CanvasEmptyException
      */
-    public function testGetPixelThrowCanvasException()
+    public function testGetPixelThrowCanvasEmptException()
     {
-        $canvas = new CanvasMock();
+        $canvas = new Mock\EmptyCanvasMock();
         $canvas->getPixel(new \Jaguar\Coordinate());
     }
 

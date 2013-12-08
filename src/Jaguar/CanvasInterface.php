@@ -165,7 +165,7 @@ interface CanvasInterface
      * @return \Jaguar\Drawable\Pixel
      *
      * @throws \Jaguar\Exception\InvalidCoordinateException
-     * @throws \Jaguar\Exception\CanvasException
+     * @throws \Jaguar\Exception\CanvasEmptyException
      */
     public function getPixel(Coordinate $coordinate);
 

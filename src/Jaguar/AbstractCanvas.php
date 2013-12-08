@@ -235,6 +235,7 @@ abstract class AbstractCanvas implements CanvasInterface
      */
     public function getPixel(Coordinate $coordinate)
     {
+        $this->assertEmpty();
         $x = $coordinate->getX();
         $y = $coordinate->getY();
         if (($x < 0 || $x > $this->getWidth()) || ($y < 0 || $y > $this->getHeight())) {
@@ -243,14 +244,13 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
 
-        if (false === ($value = @imagecolorat($this->getHandler(), $x, $y))) {
-            throw new CanvasException(sprintf(
-                    'Faild To Retive The Pixel Color At "%s"', (string) $coordinate
-            ));
-        }
-
         $pixel = new Pixel($coordinate);
-        $pixel->setColor(RGBColor::fromValue($value, true));
+        $pixel->setColor(
+                RGBColor::fromValue(
+                        @imagecolorat($this->getHandler(), $x, $y)
+                        , true
+                )
+        );
 
         return $pixel;
     }

@@ -10,10 +10,9 @@
 
 namespace Jaguar\Tests\Action\Pixelate;
 
-use Jaguar\Tests\Action\AbstractActionTest;
 use Jaguar\Action\Pixelate\Average;
 
-class AverageTest extends AbstractActionTest
+class AverageTest extends AbstractPixelateTest
 {
 
     public function getAction()

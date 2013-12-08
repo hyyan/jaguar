@@ -21,7 +21,7 @@ abstract class AbstractPixelate extends AbstractAction
      *
      * @param integer $size
      */
-    public function __construct($size = 0)
+    public function __construct($size = 2)
     {
         $this->setBlockSize($size);
     }
@@ -32,9 +32,14 @@ abstract class AbstractPixelate extends AbstractAction
      * @param integer $size
      *
      * @return \Jaguar\Action\Pixelate\AbstractPixelate
+     *
+     * @throws \InvalidArgumentException
      */
     public function setBlockSize($size)
     {
+        if ($size <= 1) {
+            throw new \InvalidArgumentException("Pixel Size Must Be Greater Than One");
+        }
         $this->size = (int) abs($size);
 
         return $this;

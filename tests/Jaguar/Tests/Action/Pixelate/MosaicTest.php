@@ -10,10 +10,9 @@
 
 namespace Jaguar\Tests\Action\Pixelate;
 
-use Jaguar\Tests\Action\AbstractActionTest;
 use Jaguar\Action\Pixelate\Mosaic;
 
-class MosaicTest extends AbstractActionTest
+class MosaicTest extends AbstractPixelateTest
 {
 
     public function getAction()
