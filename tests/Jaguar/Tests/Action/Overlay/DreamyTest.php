@@ -21,4 +21,12 @@ class DreamyTest extends AbstractActionTest
         return new Dreamy();
     }
 
+    public function testApply()
+    {
+        $this->assertInstanceOf(
+                '\Jaguar\Action\Overlay\Dreamy'
+                , $this->getAction()->apply($this->getCanvas())
+        );
+    }
+
 }
