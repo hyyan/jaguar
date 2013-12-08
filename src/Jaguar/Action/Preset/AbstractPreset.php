@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Action\Overlay;
+namespace Jaguar\Action\Preset;
 
 use Jaguar\Action\AbstractAction;
 use Jaguar\Canvas;
 
-abstract class AbstractOverlay extends AbstractAction
+abstract class AbstractPreset extends AbstractAction
 {
 
     /**

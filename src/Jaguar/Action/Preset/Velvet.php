@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Action\Overlay;
+namespace Jaguar\Action\Preset;
 
 use Jaguar\Action\Color\Brightness;
 use Jaguar\Action\Color\Contrast;
@@ -16,7 +16,7 @@ use Jaguar\Action\Color\Colorize;
 use Jaguar\Action\Overlay;
 use Jaguar\Color\RGBColor;
 
-class Velvet extends AbstractOverlay
+class Velvet extends AbstractPreset
 {
 
     /**

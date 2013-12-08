@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Tests\Action\Overlay;
+namespace Jaguar\Tests\Action\Preset;
 
-use Jaguar\Action\Overlay\Monopin;
+use Jaguar\Action\Preset\Monopin;
 use Jaguar\Tests\Action\AbstractActionTest;
 
 class MonopinTest extends AbstractActionTest
@@ -24,7 +24,7 @@ class MonopinTest extends AbstractActionTest
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Overlay\Monopin'
+                '\Jaguar\Action\Preset\Monopin'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

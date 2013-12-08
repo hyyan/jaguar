@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Action\Overlay;
+namespace Jaguar\Action\Preset;
 
 use Jaguar\CanvasInterface;
 use Jaguar\Action\Color\Brightness;
@@ -17,7 +17,7 @@ use Jaguar\Action\Color\Colorize;
 use Jaguar\Color\RGBColor;
 use Jaguar\Action\Overlay;
 
-class Canvas extends AbstractOverlay
+class Lift extends AbstractPreset
 {
 
     /**
@@ -28,11 +28,11 @@ class Canvas extends AbstractOverlay
     protected function doApply(CanvasInterface $canvas)
     {
         $actions = array(
-            new Brightness(25),
+            new Brightness(50),
             new Contrast(25),
-            new Colorize(new RGBColor(50, 25, 0)),
+            new Colorize(new RGBColor(75, 0, 25)),
             new Overlay(
-                    $this->getOverlayCanvas('canvas.png'), 100
+                    $this->getOverlayCanvas('emulsion.png'), 100
             )
         );
 

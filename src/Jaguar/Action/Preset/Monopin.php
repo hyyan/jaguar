@@ -8,16 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Action\Overlay;
+namespace Jaguar\Action\Preset;
 
-use Jaguar\CanvasInterface;
 use Jaguar\Action\Color\Brightness;
 use Jaguar\Action\Color\Contrast;
-use Jaguar\Action\Color\Colorize;
-use Jaguar\Color\RGBColor;
+use Jaguar\Action\Color\Grayscale;
 use Jaguar\Action\Overlay;
 
-class Lift extends AbstractOverlay
+class Monopin extends AbstractPreset
 {
 
     /**
@@ -25,14 +23,14 @@ class Lift extends AbstractOverlay
      *
      * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
-    protected function doApply(CanvasInterface $canvas)
+    protected function doApply(\Jaguar\CanvasInterface $canvas)
     {
         $actions = array(
-            new Brightness(50),
-            new Contrast(25),
-            new Colorize(new RGBColor(75, 0, 25)),
+            new Grayscale(),
+            new Brightness(-15),
+            new Contrast(15),
             new Overlay(
-                    $this->getOverlayCanvas('emulsion.png'), 100
+                    $this->getOverlayCanvas('vignette.png'), 100
             )
         );
 

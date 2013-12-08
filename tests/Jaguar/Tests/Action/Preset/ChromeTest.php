@@ -8,23 +8,23 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Tests\Action\Overlay;
+namespace Jaguar\Tests\Action\Preset;
 
-use Jaguar\Action\Overlay\Vintage;
 use Jaguar\Tests\Action\AbstractActionTest;
+use Jaguar\Action\Preset\Chrome;
 
-class VintageTest extends AbstractActionTest
+class ChromeTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new Vintage();
+        return new Chrome();
     }
 
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Overlay\Vintage'
+                '\Jaguar\Action\Preset\Chrome'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

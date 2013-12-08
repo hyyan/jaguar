@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Tests\Action\Overlay;
+namespace Jaguar\Tests\Action\Preset;
 
-use Jaguar\Action\Overlay\Dreamy;
+use Jaguar\Action\Preset\Dreamy;
 use Jaguar\Tests\Action\AbstractActionTest;
 
 class DreamyTest extends AbstractActionTest
@@ -24,7 +24,7 @@ class DreamyTest extends AbstractActionTest
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Overlay\Dreamy'
+                '\Jaguar\Action\Preset\Dreamy'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

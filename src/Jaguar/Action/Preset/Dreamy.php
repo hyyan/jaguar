@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Action\Overlay;
+namespace Jaguar\Action\Preset;
 
 use Jaguar\CanvasInterface;
 use Jaguar\Action\Color\Brightness;
@@ -18,7 +18,7 @@ use Jaguar\Color\RGBColor;
 use Jaguar\Action\Smooth;
 use Jaguar\Action\Overlay;
 
-class Dreamy extends AbstractOverlay
+class Dreamy extends AbstractPreset
 {
 
     /**

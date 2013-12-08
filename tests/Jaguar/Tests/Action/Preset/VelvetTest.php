@@ -8,23 +8,23 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Tests\Action\Overlay;
+namespace Jaguar\Tests\Action\Preset;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Overlay\Canvas;
+use Jaguar\Action\Preset\Velvet;
 
-class CanvasTest extends AbstractActionTest
+class VelvetTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new Canvas();
+        return new Velvet();
     }
 
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Overlay\Canvas'
+                '\Jaguar\Action\Preset\Velvet'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }

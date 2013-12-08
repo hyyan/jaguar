@@ -8,15 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Action\Overlay;
+namespace Jaguar\Action\Preset;
 
-use Jaguar\CanvasInterface;
 use Jaguar\Action\Color\Brightness;
 use Jaguar\Action\Color\Contrast;
-use Jaguar\Action\Smooth;
 use Jaguar\Action\Overlay;
 
-class Vintage extends AbstractOverlay
+class Chrome extends AbstractPreset
 {
 
     /**
@@ -24,15 +22,16 @@ class Vintage extends AbstractOverlay
      *
      * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
-    protected function doApply(CanvasInterface $canvas)
+    protected function doApply(\Jaguar\CanvasInterface $canvas)
     {
-
         $actions = array(
             new Brightness(15),
-            new Contrast(25),
-            new Smooth(7),
+            new Contrast(15),
             new Overlay(
-                    $this->getOverlayCanvas('scratch.png'), 7
+                    $this->getOverlayCanvas('noise.png'), 45
+            ),
+            new Overlay(
+                    $this->getOverlayCanvas('vignette.png'), 100
             )
         );
 

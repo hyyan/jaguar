@@ -8,23 +8,23 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Tests\Action\Overlay;
+namespace Jaguar\Tests\Action\Preset;
 
-use Jaguar\Action\Overlay\Lift;
+use Jaguar\Action\Preset\Vintage;
 use Jaguar\Tests\Action\AbstractActionTest;
 
-class LiftTest extends AbstractActionTest
+class VintageTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new Lift();
+        return new Vintage();
     }
 
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Overlay\Lift'
+                '\Jaguar\Action\Preset\Vintage'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }
