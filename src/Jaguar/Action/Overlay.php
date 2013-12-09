@@ -107,6 +107,8 @@ class Overlay extends AbstractAction
         $compine->paste($canvas);
         $compine->paste($filter);
 
+        imagelayereffect($canvas->getHandler(), IMG_EFFECT_OVERLAY);
+
         imagecopymerge(
                 $canvas->getHandler()
                 , $compine->getHandler()
@@ -119,6 +121,7 @@ class Overlay extends AbstractAction
                 , $this->getMount()
         );
 
+        $canvas->alphaBlending(true);
         $filter->destroy();
         $compine->destroy();
     }
