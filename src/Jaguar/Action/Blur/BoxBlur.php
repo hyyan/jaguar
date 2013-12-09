@@ -26,7 +26,7 @@ class BoxBlur extends AbstractAction
             array(1 / 9, 1 / 9, 1 / 9),
             array(1 / 9, 1 / 9, 1 / 9),
             array(1 / 9, 1 / 9, 1 / 9)
-        ), 0, 1.0);
+        ));
         $con->apply($canvas);
     }
 

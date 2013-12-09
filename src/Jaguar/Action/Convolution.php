@@ -22,10 +22,10 @@ class Convolution extends AbstractAction
      * Constrcut new convolution action
      *
      * @param array $matrix
-     * @param float $offset
      * @param float $divisor
+     * @param float $offset
      */
-    public function __construct(array $matrix, $offset = 0.0, $divisor = 1.0)
+    public function __construct(array $matrix, $divisor = 1.0, $offset = 0.0)
     {
         $this->setOffset($offset)->setDivisor($divisor)->setMatrix($matrix);
     }

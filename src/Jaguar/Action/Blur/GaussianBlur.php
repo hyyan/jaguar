@@ -27,7 +27,7 @@ class GaussianBlur extends AbstractAction
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        $con = new Convolution(self::$matrix, 0, 16);
+        $con = new Convolution(self::$matrix, 16);
         $con->apply($canvas);
     }
 
