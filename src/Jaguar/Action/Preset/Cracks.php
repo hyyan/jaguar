@@ -17,11 +17,13 @@ class Cracks extends AbstractPreset
 
     /**
      * {@inheritdoc}
+     *
+     * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
     protected function doApply(\Jaguar\CanvasInterface $canvas)
     {
         $carcks = new Overlay(
-                $this->getOverlayCanvas('cracks.png'), 50
+                $this->getOverlayCanvas('cracks.png'), 100
         );
         $carcks->apply($canvas);
     }

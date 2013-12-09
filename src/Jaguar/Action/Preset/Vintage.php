@@ -29,7 +29,7 @@ class Vintage extends AbstractPreset
 
         $actions = array(
             new Brightness(15),
-            new Contrast(25),
+            new Contrast(10),
             new Smooth(7),
             new Overlay(
                     $this->getOverlayCanvas('scratch.png'), 7

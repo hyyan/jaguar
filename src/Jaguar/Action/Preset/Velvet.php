@@ -28,7 +28,7 @@ class Velvet extends AbstractPreset
     {
         $actions = array(
             new Brightness(5),
-            new Contrast(25),
+            new Contrast(10),
             new Colorize(new RGBColor(0, 45, 65)),
             new Overlay(
                     $this->getOverlayCanvas('noise.png'), 45

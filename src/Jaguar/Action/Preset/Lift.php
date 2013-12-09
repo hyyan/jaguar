@@ -28,8 +28,8 @@ class Lift extends AbstractPreset
     protected function doApply(CanvasInterface $canvas)
     {
         $actions = array(
-            new Brightness(50),
-            new Contrast(25),
+            new Brightness(40),
+            new Contrast(10),
             new Colorize(new RGBColor(75, 0, 25)),
             new Overlay(
                     $this->getOverlayCanvas('emulsion.png'), 100
