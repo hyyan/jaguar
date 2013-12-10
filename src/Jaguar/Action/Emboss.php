@@ -21,10 +21,10 @@ class Emboss extends AbstractAction
     protected function doApply(CanvasInterface $canvas)
     {
         $con = new Convolution(array(
-            array(2, 0, 0)
-            , array(0, -1, 0)
-            , array(0, 0, -1)
-        ), 1.5, 127);
+            array(-2, 0, 0)
+            , array(0, 1, 0)
+            , array(0, 0, 2)
+        ), 1);
         $con->apply($canvas);
     }
 
