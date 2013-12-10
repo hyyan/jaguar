@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -26,12 +26,12 @@ class ThicklineStyle implements StyleInterface
 
     /**
      * Constrcut new Thickline style
-     * 
-     * @param integer $thickness
+     *
+     * @param integer                      $thickness
      * @param \Jaguar\Color\ColorInterface $color
-     * @param integer $st show time
-     * @param integer $ht hide time
-     * 
+     * @param integer                      $st        show time
+     * @param integer                      $ht        hide time
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct($thickness = 2, $show = 1, $hide = 0)
@@ -42,11 +42,11 @@ class ThicklineStyle implements StyleInterface
 
     /**
      * Set thickness
-     * 
+     *
      * @param integer $thickness
-     * 
+     *
      * @return \Jaguar\Drawable\Style\ThicklineStyle
-     * 
+     *
      * @throws \InvalidArgumentException if the thickness <=0
      */
     public function setThickness($thickness)
@@ -57,12 +57,13 @@ class ThicklineStyle implements StyleInterface
             );
         }
         $this->thickness = $thickness;
+
         return $this;
     }
 
     /**
      * Get thickness
-     * 
+     *
      * @return integer
      */
     public function getThickness()
@@ -70,13 +71,12 @@ class ThicklineStyle implements StyleInterface
         return $this->thickness;
     }
 
-
     /**
      * Set interval
-     * 
+     *
      * @param integer $show
      * @param integer $hide
-     * 
+     *
      * @return \Jaguar\Drawable\Style\ThicklineStyle
      */
     public function setInterval($show, $hide)
@@ -96,6 +96,7 @@ class ThicklineStyle implements StyleInterface
 
         $this->show = $show;
         $this->hide = $hide;
+
         return $this;
     }
 
@@ -109,6 +110,7 @@ class ThicklineStyle implements StyleInterface
         );
         $this->canvas->fill($drawable->getColor());
         $style = new Brush($this->canvas, $this->show, $this->hide);
+
         return $style->apply($canvas, $drawable);
     }
 }
