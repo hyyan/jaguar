@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Action\Fancy;
+namespace Jaguar\Action;
 
 use Jaguar\Action\AbstractAction;
 use Jaguar\CanvasInterface;

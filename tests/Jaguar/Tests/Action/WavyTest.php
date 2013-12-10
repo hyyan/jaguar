@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Action\Fancy;
+namespace Jaguar\Tests\Action;
 
 use Jaguar\Tests\Action\AbstractActionTest;
-use Jaguar\Action\Fancy\Wavy;
+use Jaguar\Action\Wavy;
 
 class WavyTest extends AbstractActionTest
 {
@@ -24,7 +24,7 @@ class WavyTest extends AbstractActionTest
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Action\Fancy\Wavy'
+                '\Jaguar\Action\Wavy'
                 , $this->getAction()->apply($this->getCanvas())
         );
     }
