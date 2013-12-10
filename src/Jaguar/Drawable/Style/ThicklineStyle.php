@@ -13,16 +13,13 @@ namespace Jaguar\Drawable\Style;
 use Jaguar\Drawable\StyleInterface;
 use Jaguar\Drawable\AbstractStyledDrawable;
 use Jaguar\CanvasInterface;
-use Jaguar\Color\ColorInterface;
 use Jaguar\Canvas;
 use Jaguar\Drawable\Style\Brush;
 use Jaguar\Dimension;
-use Jaguar\Color\RGBColor;
 
 class ThicklineStyle implements StyleInterface
 {
     private $thickness;
-    private $color;
     private $show;
     private $hide;
     private $canvas;
@@ -37,11 +34,10 @@ class ThicklineStyle implements StyleInterface
      * 
      * @throws \InvalidArgumentException
      */
-    public function __construct($thickness = 2, ColorInterface $color = null, $show = 1, $hide = 0)
+    public function __construct($thickness = 2, $show = 1, $hide = 0)
     {
         $this->setThickness($thickness);
         $this->setInterval($show, $hide);
-        $this->setColor(($color !== null) ? $color : new RGBColor(0, 0, 0));
     }
 
     /**
@@ -74,28 +70,6 @@ class ThicklineStyle implements StyleInterface
         return $this->thickness;
     }
 
-    /**
-     * Set color
-     * 
-     * @param \Jaguar\Color\ColorInterface $color
-     * 
-     * @return \Jaguar\Drawable\Style\ThicklineStyle
-     */
-    public function setColor(ColorInterface $color)
-    {
-        $this->color = $color;
-        return $this;
-    }
-
-    /**
-     * Get color
-     * 
-     * @return \Jaguar\Color\ColorInterface
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
 
     /**
      * Set interval
@@ -133,7 +107,7 @@ class ThicklineStyle implements StyleInterface
         $this->canvas = new Canvas(
                 new Dimension($this->getThickness(), $this->getThickness())
         );
-        $this->canvas->fill($this->getColor());
+        $this->canvas->fill($drawable->getColor());
         $style = new Brush($this->canvas, $this->show, $this->hide);
         return $style->apply($canvas, $drawable);
     }
