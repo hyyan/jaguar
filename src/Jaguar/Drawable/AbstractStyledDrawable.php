@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -35,6 +35,7 @@ abstract class AbstractStyledDrawable extends AbstractDrawable
             );
         }
         $this->thickness = $thickness;
+
         return $this;
     }
 
@@ -59,16 +60,17 @@ abstract class AbstractStyledDrawable extends AbstractDrawable
         }
         @imagesetthickness($canvas->getHandler(), $this->getLineThickness());
         $this->doDraw($canvas, $style);
+
         return $this;
     }
 
     /**
      * @param \Jaguar\Drawable\CanvasInterface $canvas
-     * @param \Jaguar\Drawable\StyleInterface $style
+     * @param \Jaguar\Drawable\StyleInterface  $style
      */
     protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
-        
+
     }
 
 }

@@ -110,7 +110,7 @@ class Canvas extends AbstractCanvas
     /**
      * Add new factory
      *
-     * @param string                       $name    factory name
+     * @param string                $name    factory name
      * @param \Jaguar\CanvasFactory $factory factory instance
      *
      * @return \Jaguar\Canvas
@@ -257,6 +257,16 @@ class Canvas extends AbstractCanvas
         }
 
         return $return;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fromCanvas(CanvasInterface $canvas)
+    {
+        $this->getActiveCanvas()->fromCanvas($canvas);
+
+        return $this;
     }
 
     /**

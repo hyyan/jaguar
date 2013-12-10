@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -18,20 +18,21 @@ abstract class FilledDrawable extends AbstractStyledDrawable
 
     /**
      * Draw filled drawable object
-     * 
-     * @param booleab $boolean true fo filled 
-     * 
+     *
+     * @param booleab $boolean true fo filled
+     *
      * @return \Jaguar\Drawable\FilledDrawable
      */
     public function fill($boolean)
     {
         $this->filled = (boolean) $boolean;
+
         return $this;
     }
 
     /**
      * Is filled
-     * 
+     *
      * @return boolean
      */
     public function isFilled()
@@ -42,7 +43,7 @@ abstract class FilledDrawable extends AbstractStyledDrawable
     /**
      * {@inheritdoc}
      */
-    public function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
+    protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
         parent::doDraw($canvas, $style);
 
@@ -54,16 +55,16 @@ abstract class FilledDrawable extends AbstractStyledDrawable
 
     /**
      * Draw non filled drawable
-     * 
-     * @param \Jaguar\CanvasInterface $canvas
+     *
+     * @param \Jaguar\CanvasInterface         $canvas
      * @param \Jaguar\Drawable\StyleInterface $style
      */
     abstract protected function drawNonFilled(CanvasInterface $canvas, StyleInterface $style = null);
 
     /**
      * Draw filled drawable
-     * 
-     * @param \Jaguar\CanvasInterface $canvas
+     *
+     * @param \Jaguar\CanvasInterface         $canvas
      * @param \Jaguar\Drawable\StyleInterface $style
      */
     abstract protected function drawFilled(CanvasInterface $canvas, StyleInterface $style = null);

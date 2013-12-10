@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -21,9 +21,9 @@ class Polygon extends FilledDrawable
     private $count = 0;
 
     /**
-     * Constrcut new polygon 
-     * 
-     * @param \ArrayObject $coordinates
+     * Constrcut new polygon
+     *
+     * @param \ArrayObject                 $coordinates
      * @param \Jaguar\Color\ColorInterface $color
      */
     public function __construct(\ArrayObject $coordinates = null, ColorInterface $color = null)
@@ -36,36 +36,38 @@ class Polygon extends FilledDrawable
     }
 
     /**
-     * Add new coordinate 
-     * 
+     * Add new coordinate
+     *
      * @param \Jaguar\Coordinate $coordinate
-     * 
-     * @return \Jaguar\Drawable\Polygon 
+     *
+     * @return \Jaguar\Drawable\Polygon
      */
     public function addCoordinate(Coordinate $coordinate)
     {
         $this->coordinates[] = $coordinate;
         $this->setNumber(count($this->coordinates));
+
         return $this;
     }
 
     /**
      * Add an array of coordinates
-     * 
+     *
      * @param \ArrayObject $coordinates
-     * 
-     * @return \Jaguar\Drawable\Polygon 
+     *
+     * @return \Jaguar\Drawable\Polygon
      */
     public function setCoordinate(\ArrayObject $coordinates)
     {
         $this->coordinates = $coordinates;
         $this->setNumber(count($coordinates));
+
         return $this;
     }
 
     /**
      * Get polygon coordinates array
-     * 
+     *
      * @return \ArrayObject
      */
     public function getCoordinates()
@@ -75,11 +77,11 @@ class Polygon extends FilledDrawable
 
     /**
      * Set Polygon coordinates number
-     * 
+     *
      * @param integer $num the number of coordinates which will be drawn
-     * 
-     * @return \Jaguar\Drawable\Polygon 
-     * 
+     *
+     * @return \Jaguar\Drawable\Polygon
+     *
      * @throws \InvalidArgumentException
      * @throws \OutOfBoundsException
      */
@@ -102,12 +104,13 @@ class Polygon extends FilledDrawable
             ));
         }
         $this->count = $num;
+
         return $this;
     }
 
     /**
      * Get ploygon points number
-     * 
+     *
      * @return integer
      */
     public function getNumber()
@@ -147,7 +150,7 @@ class Polygon extends FilledDrawable
 
     /**
      * Returns a string representation for the current Polygon Object
-     * 
+     *
      * @return string
      */
     public function __toString()
@@ -156,6 +159,7 @@ class Polygon extends FilledDrawable
         foreach ($this->getCoordinates() as $coordinate) {
             $result.= sprintf("\n%s ,", (string) $coordinate);
         }
+
         return $result . "}";
     }
 
@@ -189,11 +193,11 @@ class Polygon extends FilledDrawable
     }
 
     /**
-     * 
-     * @param \Jaguar\CanvasInterface $canvas
+     *
+     * @param \Jaguar\CanvasInterface         $canvas
      * @param \Jaguar\Drawable\StyleInterface $style
-     * @param boolean $filled
-     * 
+     * @param boolean                         $filled
+     *
      * @throws \RuntimeException
      * @throws \Jaguar\Exception\DrawableException
      */
@@ -240,7 +244,7 @@ class Polygon extends FilledDrawable
 
     /**
      * Assert Points Array Length
-     * 
+     *
      * @throws \RuntimeException
      */
     private function assertPointsArrayLength()

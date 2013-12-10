@@ -89,9 +89,9 @@ abstract class AbstractCanvas implements CanvasInterface
         // we are ignoring imagepalettetotruecolor function in php5.5
         if (@imageistruecolor($handler)) {
             $this->handler = $handler;
+
             return $this;
         }
-
 
         $dst = @imagecreatetruecolor(
                         @imagesx($handler)
@@ -189,7 +189,8 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
         $this->setHandler($handler);
-        $this->fill(new RGBColor(255, 255, 255));
+        $this->fill(new RGBColor(0, 0, 0, 127));
+
         return $this;
     }
 
@@ -203,6 +204,7 @@ abstract class AbstractCanvas implements CanvasInterface
             throw new CanvasCreationException("Invalid Canvas String");
         }
         $this->setHandler($handler);
+
         return $this;
     }
 
@@ -213,6 +215,7 @@ abstract class AbstractCanvas implements CanvasInterface
     {
         $this->isValidFile($file);
         $this->doLoadFromFile($file);
+
         return $this;
     }
 
@@ -223,6 +226,7 @@ abstract class AbstractCanvas implements CanvasInterface
     {
         $copy = $canvas->getCopy();
         $this->setHandler($copy->getHandler());
+
         return $this;
     }
 
@@ -231,6 +235,7 @@ abstract class AbstractCanvas implements CanvasInterface
      */
     public function getPixel(Coordinate $coordinate)
     {
+        $this->assertEmpty();
         $x = $coordinate->getX();
         $y = $coordinate->getY();
         if (($x < 0 || $x > $this->getWidth()) || ($y < 0 || $y > $this->getHeight())) {
@@ -239,14 +244,14 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
 
-        if (!($value = @imagecolorat($this->getHandler(), $x, $y))) {
-            throw new CanvasException(sprintf(
-                    'Faild To Retive The Pixel Color At "%s"', (string) $coordinate
-            ));
-        }
-
         $pixel = new Pixel($coordinate);
-        $pixel->setColor(RGBColor::fromValue($value, true));
+        $pixel->setColor(
+                RGBColor::fromValue(
+                        @imagecolorat($this->getHandler(), $x, $y)
+                        , true
+                )
+        );
+
         return $pixel;
     }
 
@@ -256,6 +261,7 @@ abstract class AbstractCanvas implements CanvasInterface
     public function draw(DrawableInterface $drawable, StyleInterface $style = null)
     {
         $drawable->draw($this, $style);
+
         return $this;
     }
 
@@ -275,6 +281,9 @@ abstract class AbstractCanvas implements CanvasInterface
         $srcBox = ($srcBox === null) ? new Box($srcDimension) : $srcBox;
         $destBox = ($destBox === null) ? new Box($srcDimension) : $destBox;
 
+//        @imagealphablending($this->getHandler(), false);
+//        @imagesavealpha($this->getHandler(), true);
+
         if (false == @imagecopyresampled(
                         $this->getHandler()
                         , $src->getHandler()
@@ -293,6 +302,8 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
 
+//        @imagealphablending($this->getHandler(), true);
+//        @imagesavealpha($this->getHandler(), false);
         return $this;
     }
 
@@ -340,6 +351,7 @@ abstract class AbstractCanvas implements CanvasInterface
         $clone = clone $this;
         $clone->create($this->getDimension());
         $clone->paste($this);
+
         return $clone;
     }
 
@@ -360,6 +372,7 @@ abstract class AbstractCanvas implements CanvasInterface
             throw new CanvasDestroyingException();
         }
         $this->handler = null;
+
         return $this;
     }
 

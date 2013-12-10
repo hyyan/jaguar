@@ -62,7 +62,7 @@ class Pixel extends AbstractStyledDrawable
     protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
         parent::doDraw($canvas, $style);
-        
+
         $x = $this->getCoordinate()->getX();
         $y = $this->getCoordinate()->getY();
         $isStyle = ($style === null) ? false : true;

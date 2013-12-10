@@ -129,13 +129,13 @@ abstract class AbstractCanvasTest extends JaguarTestCase
     {
         $canvas = $this->getCanvas();
         $copy = $canvas->getCopy();
-        
+
         $canvas->fromCanvas($copy);
- 
+
         $this->assertTrue($canvas->isHandlerSet());
         $this->assertTrue($copy->isHandlerSet());
         $this->assertNotSame($canvas->getHandler(),$copy->getHandler());
-        
+
         $copy->destroy();
         $this->assertNull($copy->getHandler());
     }
@@ -245,11 +245,11 @@ abstract class AbstractCanvasTest extends JaguarTestCase
     }
 
     /**
-     * @expectedException \Jaguar\Exception\CanvasException
+     * @expectedException \Jaguar\Exception\CanvasEmptyException
      */
-    public function testGetPixelThrowCanvasException()
+    public function testGetPixelThrowCanvasEmptException()
     {
-        $canvas = new CanvasMock();
+        $canvas = new Mock\EmptyCanvasMock();
         $canvas->getPixel(new \Jaguar\Coordinate());
     }
 

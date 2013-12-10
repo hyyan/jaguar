@@ -3,7 +3,7 @@
 /*
  * This file is part of the Jaguar package.
  * (c) Hyyan Abo Fakher <tiribthea4hyyan@gmail.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -26,9 +26,9 @@ class Text extends AbstractDrawable
 
     /**
      * Constrcut new text object
-     * 
-     * @param type $string
-     * @param \Jaguar\Coordinate $coordinate
+     *
+     * @param type                         $string
+     * @param \Jaguar\Coordinate           $coordinate
      * @param \Jaguar\Color\ColorInterface $color
      */
     public function __construct($string = null, Coordinate $coordinate = null, ColorInterface$color = null)
@@ -43,20 +43,21 @@ class Text extends AbstractDrawable
 
     /**
      * Set string
-     * 
+     *
      * @param string $string
-     * 
+     *
      * @return \Jaguar\Drawable\Text
      */
     public function setString($string)
     {
         $this->string = (string) $string;
+
         return $this;
     }
 
     /**
      * Get string
-     * 
+     *
      * @return string
      */
     public function getString()
@@ -65,24 +66,25 @@ class Text extends AbstractDrawable
     }
 
     /**
-     * Set Coordinate 
-     * 
-     * The coordinate will define the basepoint of the first character 
-     * (roughly the lower-left corner of the character). 
-     * 
+     * Set Coordinate
+     *
+     * The coordinate will define the basepoint of the first character
+     * (roughly the lower-left corner of the character).
+     *
      * @param \Jaguar\Coordinate $coordinate
-     * 
+     *
      * @return \Jaguar\Drawable\Text
      */
     public function setCoordinate(Coordinate $coordinate)
     {
         $this->coordinate = $coordinate;
+
         return $this;
     }
 
     /**
      * Get coordinate
-     * 
+     *
      * @return \Jaguar\Coordinate
      */
     public function getCoordinate()
@@ -92,20 +94,21 @@ class Text extends AbstractDrawable
 
     /**
      * Set font file
-     * 
+     *
      * @param \Jaguar\Font $font
-     * 
+     *
      * @return \Jaguar\Drawable\Text
      */
     public function setFont(Font $font)
     {
         $this->font = $font;
+
         return $this;
     }
 
     /**
      * Get font file
-     * 
+     *
      * @return \Jaguar\Font
      */
     public function getFont()
@@ -115,20 +118,21 @@ class Text extends AbstractDrawable
 
     /**
      * Set text angle
-     * 
+     *
      * @param float $angle
-     * 
-     * @return \Artist\Draw\Text 
+     *
+     * @return \Artist\Draw\Text
      */
     public function setAngle($angle)
     {
         $this->angle = (float) $angle;
+
         return $this;
     }
 
     /**
      * Get text angle
-     * 
+     *
      * @return float
      */
     public function getAngle()
@@ -138,20 +142,21 @@ class Text extends AbstractDrawable
 
     /**
      * Set the line spacing
-     * 
+     *
      * @param float $spacing
-     * 
-     * @return \Artist\Draw\Text 
+     *
+     * @return \Artist\Draw\Text
      */
     public function setLineSpacing($spacing)
     {
         $this->spacing = (float) $spacing;
+
         return $this;
     }
 
     /**
      * Get line spacing
-     * 
+     *
      * @return float
      */
     public function getLineSpacing()
@@ -231,7 +236,7 @@ class Text extends AbstractDrawable
 
     /**
      * Get string representation for the current text
-     * 
+     *
      * @return string
      */
     public function __toString()

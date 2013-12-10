@@ -19,8 +19,8 @@ class Font extends \SplFileInfo implements EqualsInterface
     /**
      * Create new font object
      *
-     * @param string  $font  font path
-     * @param integer $fontsize  font fontsize
+     * @param string  $font     font path
+     * @param integer $fontsize font fontsize
      *
      * @throws \InvalidArgumentException
      */

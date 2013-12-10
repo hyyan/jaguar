@@ -25,11 +25,11 @@ class Brush implements StyleInterface
 
     /**
      * Constrcut new brush
-     * 
+     *
      * @param \Jaguar\CanvasInterface $canvas
-     * @param integer $show
-     * @param integer $hide
-     * 
+     * @param integer                 $show
+     * @param integer                 $hide
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct(CanvasInterface $canvas, $show = 1, $hide = 0)
@@ -40,11 +40,11 @@ class Brush implements StyleInterface
 
     /**
      * Set show time
-     * 
-     * @param integer $time 
-     * 
+     *
+     * @param integer $time
+     *
      * @return \Jaguar\Drawable\Style\Brush
-     * 
+     *
      * @throws \InvalidArgumentException if the time <=0
      */
     public function setShowTime($time)
@@ -55,12 +55,13 @@ class Brush implements StyleInterface
             );
         }
         $this->st = (int) $time;
+
         return $this;
     }
 
     /**
      * Get show time
-     * 
+     *
      * @return integer
      */
     public function getShowTime()
@@ -70,11 +71,11 @@ class Brush implements StyleInterface
 
     /**
      * Set hide time
-     * 
+     *
      * @param integer $time
-     * 
+     *
      * @return \Jaguar\Drawable\Style\Brush
-     * 
+     *
      * @throws \InvalidArgumentException if the time <0
      */
     public function setHideTime($time)
@@ -85,12 +86,13 @@ class Brush implements StyleInterface
             );
         }
         $this->ht = (int) $time;
+
         return $this;
     }
 
     /**
      * Get hide time
-     * 
+     *
      * @return integer
      */
     public function getHideTime()
@@ -100,12 +102,12 @@ class Brush implements StyleInterface
 
     /**
      * Set show hide interval
-     * 
+     *
      * @param integer $show
      * @param integer $hide
-     * 
+     *
      * @return \Jaguar\Drawable\Style\Brush
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function setInterval($show, $hide)

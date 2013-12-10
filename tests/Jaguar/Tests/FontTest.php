@@ -31,7 +31,7 @@ class FontTest extends JaguarTestCase
         $font2 = new Font($this->getFixture('fonts/arialbi.ttf'));
 
         $this->assertTrue($font->equals($fontClone));
-        
+
         $this->assertFalse($font->equals($font2));
 
         $fontClone->setFontSize(15);
