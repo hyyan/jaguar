@@ -43,7 +43,7 @@ abstract class FilledDrawable extends AbstractStyledDrawable
     /**
      * {@inheritdoc}
      */
-    public function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
+    protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
         parent::doDraw($canvas, $style);
 
