@@ -98,6 +98,13 @@ abstract class AbstractCanvas implements CanvasInterface
                         , @imagesy($handler)
         );
 
+        $transparentIndex = @imagecolortransparent($handler);
+        if (-1 != $transparentIndex) {
+            $color = RGBColor::fromValue($transparentIndex, false);
+            @imagecolortransparent($dst, $color->getValue());
+            @imagefill($dst, 0, 0, $color->getValue());
+        }
+
         @imagealphablending($dst, false);
         @imagesavealpha($dst, true);
 
@@ -281,9 +288,6 @@ abstract class AbstractCanvas implements CanvasInterface
         $srcBox = ($srcBox === null) ? new Box($srcDimension) : $srcBox;
         $destBox = ($destBox === null) ? new Box($srcDimension) : $destBox;
 
-//        @imagealphablending($this->getHandler(), false);
-//        @imagesavealpha($this->getHandler(), true);
-
         if (false == @imagecopyresampled(
                         $this->getHandler()
                         , $src->getHandler()
@@ -302,8 +306,6 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
 
-//        @imagealphablending($this->getHandler(), true);
-//        @imagesavealpha($this->getHandler(), false);
         return $this;
     }
 
