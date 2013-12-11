@@ -26,12 +26,12 @@ abstract class CompressableCanvas extends AbstractCanvas
     /**
      * Constrcut new compressed canvas
      *
-     * @param \Jaguar\Dimension $dimension
+     * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
      * @param integer           $quality   default 75
      */
-    public function __construct(Dimension $dimension = null, $quality = self::QUALITY_HIGH)
+    public function __construct($source = null, $quality = self::QUALITY_HIGH)
     {
-        parent::__construct($dimension);
+        parent::__construct($source);
         $this->setQuality($quality);
     }
 

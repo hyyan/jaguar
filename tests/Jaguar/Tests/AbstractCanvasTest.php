@@ -34,6 +34,31 @@ abstract class AbstractCanvasTest extends JaguarTestCase
     }
 
     /**
+     * Canvas sonstrcutor source argument provider
+     * 
+     * @return array
+     */
+    public function sourceProvider()
+    {
+        return array(
+            array($this->getCanvas()),
+            array($this->getCanvasFile()),
+            array(new Dimension(100, 100))
+        );
+    }
+
+    /**
+     * @dataProvider sourceProvider
+     * 
+     * @param mixed $source
+     */
+    public function testCanvasConstrcutorSourceArgument($source)
+    {
+        $class = get_class($this->getCanvas());
+        new $class($source);
+    }
+
+    /**
      * @expectedException \Jaguar\Exception\CanvasException
      */
     public function testAlphaBlendingThrowCanvasException()
@@ -134,7 +159,7 @@ abstract class AbstractCanvasTest extends JaguarTestCase
 
         $this->assertTrue($canvas->isHandlerSet());
         $this->assertTrue($copy->isHandlerSet());
-        $this->assertNotSame($canvas->getHandler(),$copy->getHandler());
+        $this->assertNotSame($canvas->getHandler(), $copy->getHandler());
 
         $copy->destroy();
         $this->assertNull($copy->getHandler());

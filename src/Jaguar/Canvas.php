@@ -32,17 +32,17 @@ class Canvas extends AbstractCanvas
     /**
      * Constrcut new canvas
      *
-     * @param \Jaguar\Dimension $dimension
+     * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
      * @param string            $factoryName factory name
      *
      * @throws \Jaguar\Exception\InvalidDimensionException
      * @throws \Jaguar\Exception\CanvasCreationException
      */
-    public function __construct(Dimension $dimension = null, $factoryName = self::Format_PNG)
+    public function __construct($source = null, $factoryName = self::Format_PNG)
     {
         $this->__initFactories__();
         $this->setFormat($factoryName);
-        parent::__construct($dimension);
+        parent::__construct($source);
     }
 
     /** init factories */

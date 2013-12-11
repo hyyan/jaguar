@@ -33,15 +33,23 @@ abstract class AbstractCanvas implements CanvasInterface
     /**
      * Constrcut new canvas
      *
-     * @param \Jaguar\Dimension $dimension
+     * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
+     *        the source could be a dimension object to create a new canvas
+     *        , another canvas instance to create from 
+     *        , file path to load canvas from 
+     *        or null to take no action
      *
      * @throws \Jaguar\Exception\InvalidDimensionException
      * @throws \Jaguar\Exception\CanvasCreationException
      */
-    public function __construct(Dimension $dimension = null)
+    public function __construct($source = null)
     {
-        if (null !== $dimension) {
-            $this->create($dimension);
+        if ($source instanceof Dimension) {
+            $this->create($source);
+        } elseif ($source instanceof CanvasInterface) {
+            $this->fromCanvas($source);
+        } elseif (is_string($source) && (is_file($source) && is_readable($source))) {
+            $this->fromFile($source);
         }
     }
 

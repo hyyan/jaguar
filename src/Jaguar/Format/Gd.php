@@ -14,7 +14,6 @@ namespace Jaguar\Format;
 use Jaguar\Exception\CanvasCreationException;
 use Jaguar\Exception\CanvasOutputException;
 use Jaguar\AbstractCanvas;
-use Jaguar\Dimension;
 use Jaguar\Box;
 
 class Gd extends AbstractCanvas
@@ -25,13 +24,13 @@ class Gd extends AbstractCanvas
     /**
      * Constrcut new gd canvas
      *
-     * @param \Jaguar\Dimension $dimension
+     * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
      * @param boolean           $compressed
      * @param integer           $size
      */
-    public function __construct(Dimension $dimension = null, $compressed = true, $size = 0)
+    public function __construct($source = null, $compressed = true, $size = 0)
     {
-        parent::__construct($dimension);
+        parent::__construct($source);
         $this->setCompressed($compressed)->setChunkSize($size);
     }
 

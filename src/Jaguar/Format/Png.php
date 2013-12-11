@@ -34,13 +34,14 @@ class Png extends CompressableCanvas
     /**
      * Constrcut new png canvas
      *
-     * @param \Jaguar\Dimension $dimension
+     * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
      * @param integer           $quality   default 40
      * @param boolean           $saveAlpha default true
      */
     public function __construct(
-    Dimension $dimension = null, $quality = 40, $saveAlpha = true, $filter = self::ALL_FILTERS) {
-        parent::__construct($dimension, $quality);
+    $source = null, $quality = 40, $saveAlpha = true, $filter = self::ALL_FILTERS)
+    {
+        parent::__construct($source, $quality);
         $this->setSaveAlpha($saveAlpha);
         $this->setFilter($filter);
     }
@@ -90,8 +91,7 @@ class Png extends CompressableCanvas
      */
     public function setFilter($filter)
     {
-        $validFilters =
-                self::NO_FILTER |
+        $validFilters = self::NO_FILTER |
                 self::FILTER_NONE | self::FILTER_SUB |
                 self::FILTER_UP | self::FILTER_AVG |
                 self::FILTER_PAETH | self::ALL_FILTERS;
