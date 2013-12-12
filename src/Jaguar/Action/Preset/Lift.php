@@ -32,7 +32,7 @@ class Lift extends AbstractPreset
             new Contrast(10),
             new Colorize(new RGBColor(75, 0, 25)),
             new Overlay(
-                    $this->getOverlayCanvas('emulsion.png'), 100
+                    $this->getOverlayCanvas('emulsion.gd2'), 100
             )
         );
 

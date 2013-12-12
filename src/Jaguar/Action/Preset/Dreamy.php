@@ -35,10 +35,10 @@ class Dreamy extends AbstractPreset
             new Colorize(new RGBColor(60, 0, 35)),
             new Smooth(7),
             new Overlay(
-                    $this->getOverlayCanvas('scratch.png'), 10
+                    $this->getOverlayCanvas('scratch.gd2'), 10
             ),
             new Overlay(
-                    $this->getOverlayCanvas('vignette.png'), 100
+                    $this->getOverlayCanvas('vignette.gd2'), 100
             )
         );
 

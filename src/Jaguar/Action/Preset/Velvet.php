@@ -31,10 +31,10 @@ class Velvet extends AbstractPreset
             new Contrast(10),
             new Colorize(new RGBColor(0, 45, 65)),
             new Overlay(
-                    $this->getOverlayCanvas('noise.png'), 45
+                    $this->getOverlayCanvas('noise.gd2'), 45
             ),
             new Overlay(
-                    $this->getOverlayCanvas('vignette.png'), 100
+                    $this->getOverlayCanvas('vignette.gd2'), 100
             )
         );
 

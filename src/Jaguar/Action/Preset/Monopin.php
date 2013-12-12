@@ -30,7 +30,7 @@ class Monopin extends AbstractPreset
             new Brightness(-15),
             new Contrast(15),
             new Overlay(
-                    $this->getOverlayCanvas('vignette.png'), 100
+                    $this->getOverlayCanvas('vignette.gd2'), 100
             )
         );
 

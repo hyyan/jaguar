@@ -32,7 +32,7 @@ class Canvas extends AbstractPreset
             new Contrast(25),
             new Colorize(new RGBColor(50, 25, 0)),
             new Overlay(
-                    $this->getOverlayCanvas('canvas.png'), 100
+                    $this->getOverlayCanvas('canvas.gd2'), 100
             )
         );
 

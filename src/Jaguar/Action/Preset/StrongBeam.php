@@ -21,7 +21,7 @@ class StrongBeam extends AbstractPreset
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        $action = new Overlay($this->getOverlayCanvas('light/strong-beam.png'), 100);
+        $action = new Overlay($this->getOverlayCanvas('light/strong-beam.gd2'), 100);
         $action->apply($canvas);
     }
 

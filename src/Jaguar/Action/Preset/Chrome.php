@@ -28,10 +28,10 @@ class Chrome extends AbstractPreset
             new Brightness(15),
             new Contrast(15),
             new Overlay(
-                    $this->getOverlayCanvas('noise.png'), 45
+                    $this->getOverlayCanvas('noise.gd2'), 45
             ),
             new Overlay(
-                    $this->getOverlayCanvas('vignette.png'), 100
+                    $this->getOverlayCanvas('vignette.gd2'), 100
             )
         );
 

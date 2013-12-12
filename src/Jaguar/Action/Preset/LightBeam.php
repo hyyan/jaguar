@@ -21,7 +21,7 @@ class LightBeam extends AbstractPreset
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        $action = new Overlay($this->getOverlayCanvas('light/light-beam.png'), 100);
+        $action = new Overlay($this->getOverlayCanvas('light/light-beam.gd2'), 100);
         $action->apply($canvas);
     }
 

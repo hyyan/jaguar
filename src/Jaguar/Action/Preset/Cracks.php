@@ -23,7 +23,7 @@ class Cracks extends AbstractPreset
     protected function doApply(\Jaguar\CanvasInterface $canvas)
     {
         $carcks = new Overlay(
-                $this->getOverlayCanvas('cracks.png'), 100
+                $this->getOverlayCanvas('cracks.gd2'), 100
         );
         $carcks->apply($canvas);
     }
