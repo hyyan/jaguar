@@ -26,7 +26,7 @@ class Overlay extends AbstractAction
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct(CanvasInterface $overlay, $mount = 10)
+    public function __construct(CanvasInterface $overlay, $mount = 100)
     {
         $this->setOverlay($overlay)->setMount($mount);
     }
