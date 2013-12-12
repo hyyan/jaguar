@@ -415,7 +415,9 @@ abstract class AbstractCanvas implements CanvasInterface
     protected function isValidFile($file)
     {
         if (!is_file($file) || !is_readable($file)) {
-            throw new \InvalidArgumentException('File Is Not Readable');
+            throw new \InvalidArgumentException(sprintf(
+                    'File "%s" Is Not Readable', (string) $file
+            ));
         }
     }
 
