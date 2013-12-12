@@ -101,33 +101,28 @@ abstract class AbstractCanvas implements CanvasInterface
             return $this;
         }
 
-        $dst = @imagecreatetruecolor(
+        $dest = @imagecreatetruecolor(
                         @imagesx($handler)
                         , @imagesy($handler)
         );
 
-        $transparentIndex = @imagecolortransparent($handler);
-        if (-1 != $transparentIndex) {
-            $color = RGBColor::fromValue($transparentIndex, false);
-            @imagecolortransparent($dst, $color->getValue());
-            @imagefill($dst, 0, 0, $color->getValue());
-        }
+        $this->preserveAlpha($dest, $handler);
 
-        @imagealphablending($dst, false);
-        @imagesavealpha($dst, true);
+        @imagealphablending($dest, false);
+        @imagesavealpha($dest, true);
 
         @imagecopy(
-                        $dst
+                        $dest
                         , $handler
                         , 0, 0, 0, 0
                         , @imagesx($handler)
                         , @imagesy($handler)
         );
 
-        @imagealphablending($dst, true);
-        @imagesavealpha($dst, false);
+        @imagealphablending($dest, true);
+        @imagesavealpha($dest, false);
 
-        $this->handler = $dst;
+        $this->handler = $dest;
 
         return $this;
     }
@@ -288,13 +283,16 @@ abstract class AbstractCanvas implements CanvasInterface
         $this->assertEmpty();
         if (!$src->isHandlerSet()) {
             throw new CanvasEmptyException(
-            "Could Not Execute Paste - Source Canvas Handler Is Not Set"
+            'Could Not Execute Paste - Source Canvas Handler Is Not Set'
             );
         }
 
         $srcDimension = $src->getDimension();
         $srcBox = ($srcBox === null) ? new Box($srcDimension) : $srcBox;
         $destBox = ($destBox === null) ? new Box($srcDimension) : $destBox;
+
+        $this->preserveAlpha($this->getHandler(), $src->getHandler());
+        $this->preserveAlpha($src->getHandler(), $this->getHandler());
 
         if (false == @imagecopyresampled(
                         $this->getHandler()
@@ -460,4 +458,27 @@ abstract class AbstractCanvas implements CanvasInterface
      * @return array array of properties as key/value
      */
     abstract protected function getToStringProperties();
+
+    /**
+     * Preserve transparent color read from another resource on given resource
+     *
+     * @param resource $dest the resource which the transparent color will be saved to
+     * @param resource $src  the resource which the transparent color will be read from
+     */
+    protected function preserveAlpha($dest, $src)
+    {
+        $transparent = @imagecolortransparent($src);
+        if (-1 != $transparent) {
+            $color = @imagecolorsforindex($src, $transparent);
+            $allocated = @imagecolorallocate(
+                            $dest
+                            , $color['red']
+                            , $color['green']
+                            , $color['blue']
+            );
+            @imagecolortransparent($dest, $allocated);
+            @imagefill($dest, 0, 0, $allocated);
+        }
+    }
+
 }
