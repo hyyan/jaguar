@@ -35,8 +35,8 @@ class Png extends CompressableCanvas
      * Constrcut new png canvas
      *
      * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
-     * @param integer           $quality   default 40
-     * @param boolean           $saveAlpha default true
+     * @param integer                                             $quality   default 40
+     * @param boolean                                             $saveAlpha default true
      */
     public function __construct(
     $source = null, $quality = 40, $saveAlpha = true, $filter = self::ALL_FILTERS)

@@ -31,9 +31,9 @@ class Flip extends AbstractAction
      *
      * @param type $direction
      */
-    public function __construct($direction = null)
+    public function __construct($direction = self::FLIP_HORIZONTAL)
     {
-        $this->setFlipDirection($direction === null ? self::FLIP_HORIZONTAL : $direction);
+        $this->setDirection($direction);
     }
 
     /**
@@ -45,7 +45,7 @@ class Flip extends AbstractAction
      *
      * @throws \InvalidArgumentException
      */
-    public function setFlipDirection($direction)
+    public function setDirection($direction)
     {
         if (!in_array($direction, self::$supportedFlipDirection)) {
             throw new \InvalidArgumentException(sprintf(
@@ -62,7 +62,7 @@ class Flip extends AbstractAction
      *
      * @return string
      */
-    public function getFlipDirection()
+    public function getDirection()
     {
         return $this->flipDirection;
     }
@@ -80,7 +80,7 @@ class Flip extends AbstractAction
         $srcBox = null;
         $destBox = null;
 
-        switch ($this->getFlipDirection()) {
+        switch ($this->getDirection()) {
             case self::FLIP_VERTICAL:
                 $srcBox = new Box(
                         new Dimension($width, - $height)

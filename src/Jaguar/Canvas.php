@@ -33,7 +33,7 @@ class Canvas extends AbstractCanvas
      * Constrcut new canvas
      *
      * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
-     * @param string            $factoryName factory name
+     * @param string                                              $factoryName factory name
      *
      * @throws \Jaguar\Exception\InvalidDimensionException
      * @throws \Jaguar\Exception\CanvasCreationException

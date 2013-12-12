@@ -35,8 +35,8 @@ abstract class AbstractCanvas implements CanvasInterface
      *
      * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
      *        the source could be a dimension object to create a new canvas
-     *        , another canvas instance to create from 
-     *        , file path to load canvas from 
+     *        , another canvas instance to create from
+     *        , file path to load canvas from
      *        or null to take no action
      *
      * @throws \Jaguar\Exception\InvalidDimensionException

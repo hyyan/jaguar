@@ -35,7 +35,7 @@ abstract class AbstractCanvasTest extends JaguarTestCase
 
     /**
      * Canvas sonstrcutor source argument provider
-     * 
+     *
      * @return array
      */
     public function sourceProvider()
@@ -49,7 +49,7 @@ abstract class AbstractCanvasTest extends JaguarTestCase
 
     /**
      * @dataProvider sourceProvider
-     * 
+     *
      * @param mixed $source
      */
     public function testCanvasConstrcutorSourceArgument($source)
