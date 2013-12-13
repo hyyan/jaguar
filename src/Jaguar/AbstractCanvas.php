@@ -293,7 +293,7 @@ abstract class AbstractCanvas implements CanvasInterface
 
         $this->preserveAlpha($this->getHandler(), $src->getHandler());
         $this->preserveAlpha($src->getHandler(), $this->getHandler());
-
+        
         if (false == @imagecopyresampled(
                         $this->getHandler()
                         , $src->getHandler()
@@ -470,11 +470,12 @@ abstract class AbstractCanvas implements CanvasInterface
         $transparent = @imagecolortransparent($src);
         if (-1 != $transparent) {
             $color = @imagecolorsforindex($src, $transparent);
-            $allocated = @imagecolorallocate(
+            $allocated = @imagecolorallocatealpha(
                             $dest
                             , $color['red']
                             , $color['green']
                             , $color['blue']
+                            , $color['alpha']
             );
             @imagecolortransparent($dest, $allocated);
             @imagefill($dest, 0, 0, $allocated);
