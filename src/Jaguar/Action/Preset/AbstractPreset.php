@@ -31,8 +31,7 @@ abstract class AbstractPreset extends AbstractAction
     /**
      * Get overlay canvas
      *
-     * @param \Jaguar\Dimension $dimension
-     * @param string            $file
+     * @param string $file
      *
      * @return \Jaguar\CanvasInterface
      */

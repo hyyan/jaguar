@@ -293,7 +293,7 @@ abstract class AbstractCanvas implements CanvasInterface
 
         $this->preserveAlpha($this->getHandler(), $src->getHandler());
         $this->preserveAlpha($src->getHandler(), $this->getHandler());
-        
+
         if (false == @imagecopyresampled(
                         $this->getHandler()
                         , $src->getHandler()
