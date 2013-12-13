@@ -15,6 +15,7 @@ use Jaguar\Color\RGBColor;
 
 class RGBColorTest extends AbstractColorTest
 {
+
     public function getColor()
     {
         return new RGBColor();
@@ -296,6 +297,42 @@ class RGBColorTest extends AbstractColorTest
             array('#ff0000', new RGBColor(255, 0, 0)),
             array('#fff', new RGBColor(255, 255, 255)),
             array('#000', new RGBColor()),
+        );
+    }
+
+    /**
+     * @dataProvider colorsBelndProvider
+     * 
+     * @param \Jaguar\Color\RGBColor $color1
+     * @param \Jaguar\Color\RGBColor $color2
+     * @param integer $amount
+     * @param \Jaguar\Color\RGBColor $expected
+     */
+    public function testBlend(RGBColor $color1, RGBColor $color2, $amount, RGBColor $expected)
+    {
+        $this->assertTrue($expected->equals(RGBColor::blend($color1, $color2, $amount)));
+    }
+
+    /**
+     * Colors for belnd provider
+     * 
+     * @return array
+     */
+    public function colorsBelndProvider()
+    {
+        return array(
+            array(
+                new RGBColor(230, 0, 0),
+                new RGBColor(128, 0, 0),
+                1.1,
+                new RGBColor(240, 0, 0)
+            ),
+            array(
+                new RGBColor(1, 2, 3),
+                new RGBColor(50, 25, 32),
+                0.4,
+                new RGBColor(21, 11, 15)
+            )
         );
     }
 

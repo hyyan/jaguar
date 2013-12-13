@@ -412,6 +412,25 @@ class RGBColor extends AbstractColor
     }
 
     /**
+     * Blend two colors given an amount
+     *
+     * @param RGBColor $color1
+     * @param RGBColor $color2
+     * @param float          $amount The amount of color2 in color1
+     *
+     * @return RGBColor
+     */
+    public static function blend(RGBColor $color1, RGBColor $color2, $amount)
+    {
+        return new self(
+                min(255, min($color1->getRed(), $color2->getRed()) + round(abs($color2->getRed() - $color1->getRed()) * $amount))
+                , min(255, min($color1->getGreen(), $color2->getGreen()) + round(abs($color2->getGreen() - $color1->getGreen()) * $amount))
+                , min(255, min($color1->getBlue(), $color2->getBlue()) + round(abs($color2->getBlue() - $color1->getBlue()) * $amount))
+                , min(100, min($color1->getAlpha(), $color2->getAlpha()) + round(abs($color2->getAlpha() - $color1->getAlpha()) * $amount))
+        );
+    }
+
+    /**
      * Assert that the given value for the given channel name is valid
      *
      * @param integer $value
