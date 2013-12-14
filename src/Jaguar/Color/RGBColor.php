@@ -416,7 +416,7 @@ class RGBColor extends AbstractColor
      *
      * @param RGBColor $color1
      * @param RGBColor $color2
-     * @param float          $amount The amount of color2 in color1
+     * @param float    $amount The amount of color2 in color1
      *
      * @return RGBColor
      */

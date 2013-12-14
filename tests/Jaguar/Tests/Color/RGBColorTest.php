@@ -302,10 +302,10 @@ class RGBColorTest extends AbstractColorTest
 
     /**
      * @dataProvider colorsBelndProvider
-     * 
+     *
      * @param \Jaguar\Color\RGBColor $color1
      * @param \Jaguar\Color\RGBColor $color2
-     * @param integer $amount
+     * @param integer                $amount
      * @param \Jaguar\Color\RGBColor $expected
      */
     public function testBlend(RGBColor $color1, RGBColor $color2, $amount, RGBColor $expected)
@@ -315,7 +315,7 @@ class RGBColorTest extends AbstractColorTest
 
     /**
      * Colors for belnd provider
-     * 
+     *
      * @return array
      */
     public function colorsBelndProvider()
