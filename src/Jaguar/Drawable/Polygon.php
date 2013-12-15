@@ -59,8 +59,11 @@ class Polygon extends FilledDrawable
      */
     public function setCoordinate(\ArrayObject $coordinates)
     {
-        $this->coordinates = $coordinates;
-        $this->setNumber(count($coordinates));
+        $this->coordinates = new \ArrayObject();
+
+        foreach ($coordinates as $coordinate) {
+            $this->addCoordinate($coordinate);
+        }
 
         return $this;
     }
@@ -135,11 +138,12 @@ class Polygon extends FilledDrawable
             return false;
         }
 
-        $count = count($this->getCoordinates());
+        $Ccount = count($this->getCoordinates());
+
         $cc = $this->getCoordinates();
         $oc = $other->getCoordinates();
 
-        for ($x = 0; $x < $count; $x++) {
+        for ($x = 0; $x < $Ccount; $x++) {
             if (!$cc[$x]->equals($oc[$x])) {
                 return false;
             }
@@ -160,7 +164,7 @@ class Polygon extends FilledDrawable
             $result.= sprintf("\n%s ,", (string) $coordinate);
         }
 
-        return $result . "}";
+        return $result . "\n}";
     }
 
     /**
