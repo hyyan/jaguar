@@ -30,13 +30,13 @@ class Coordinate implements EqualsInterface
     /**
      * Set X Position
      *
-     * @param float $x
+     * @param integer $x
      *
      * @return \Jaguar\Coordinate
      */
     public function setX($x)
     {
-        $this->x = $x;
+        $this->x = (integer) floor($x);
 
         return $this;
     }
@@ -44,7 +44,7 @@ class Coordinate implements EqualsInterface
     /**
      * Get X Position
      *
-     * @return float
+     * @return integer
      */
     public function getX()
     {
@@ -54,13 +54,13 @@ class Coordinate implements EqualsInterface
     /**
      * Set Y Position
      *
-     * @param float $y
+     * @param integer $y
      *
      * @return \Jaguar\Coordinate
      */
     public function setY($y)
     {
-        $this->y = $y;
+        $this->y = (integer) floor($y);
 
         return $this;
     }
@@ -68,7 +68,7 @@ class Coordinate implements EqualsInterface
     /**
      * Get Y position
      *
-     * @return float
+     * @return integer
      */
     public function getY()
     {
@@ -140,8 +140,8 @@ class Coordinate implements EqualsInterface
         }
 
         if (
-                (0 === bccomp($this->getX(), $other->getX())) &&
-                (0 === bccomp($this->getY(), $other->getY()))
+                ($other->getX() == $this->getX()) &&
+                ($other->getY() == $this->getY())
         ) {
             return true;
         }
