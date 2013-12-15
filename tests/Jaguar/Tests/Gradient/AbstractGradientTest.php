@@ -26,7 +26,7 @@ abstract class AbstractGradientTest extends JaguarTestCase
      */
     public function getCanvas()
     {
-        return new Canvas(new Dimension(100, 100));
+        return new Canvas(new Dimension(10,10));
     }
 
     /**
