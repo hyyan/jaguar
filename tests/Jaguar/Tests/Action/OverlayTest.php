@@ -12,13 +12,16 @@ namespace Jaguar\Tests\Action;
 
 use Jaguar\Tests\Action\AbstractActionTest;
 use Jaguar\Action\Overlay;
+use Jaguar\Box;
 
 class OverlayTest extends AbstractActionTest
 {
 
     public function getAction()
     {
-        return new Overlay($this->getCanvas(), 75);
+        $c=$this->getCanvas();
+
+        return new Overlay($c, 75,new Box($c->getDimension()));
     }
 
     /**
