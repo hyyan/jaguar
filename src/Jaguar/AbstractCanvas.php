@@ -92,8 +92,6 @@ abstract class AbstractCanvas implements CanvasInterface
             throw new \InvalidArgumentException('Invalid Gd Handler');
         }
 
-        $this->forceDestory();
-
         // we are ignoring imagepalettetotruecolor function in php5.5
         if (@imageistruecolor($handler)) {
             $this->handler = $handler;
@@ -198,6 +196,7 @@ abstract class AbstractCanvas implements CanvasInterface
                     'Unable To Create The Canvas "%s"', (string) $this
             ));
         }
+        $this->forceDestory();
         $this->setHandler($handler);
         $this->fill(new RGBColor(0, 0, 0, 127));
 
@@ -213,6 +212,7 @@ abstract class AbstractCanvas implements CanvasInterface
         if (!$this->isGdResource($handler)) {
             throw new CanvasCreationException("Invalid Canvas String");
         }
+        $this->forceDestory();
         $this->setHandler($handler);
 
         return $this;
@@ -224,6 +224,7 @@ abstract class AbstractCanvas implements CanvasInterface
     public function fromFile($file)
     {
         $this->isValidFile($file);
+        $this->forceDestory();
         $this->doLoadFromFile($file);
 
         return $this;
@@ -235,6 +236,7 @@ abstract class AbstractCanvas implements CanvasInterface
     public function fromCanvas(CanvasInterface $canvas)
     {
         $copy = $canvas->getCopy();
+        $this->forceDestory();
         $this->setHandler($copy->getHandler());
 
         return $this;
