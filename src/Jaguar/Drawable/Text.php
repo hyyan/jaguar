@@ -15,6 +15,8 @@ use Jaguar\Font;
 use Jaguar\Coordinate;
 use Jaguar\Exception\DrawableException;
 use Jaguar\Color\ColorInterface;
+use Jaguar\Box;
+use Jaguar\Dimension;
 
 class Text extends AbstractDrawable
 {
@@ -38,7 +40,8 @@ class Text extends AbstractDrawable
                 ->setCoordinate($coordinate === null ? new Coordinate() : $coordinate)
                 ->setAngle(0)
                 ->setLineSpacing(1.0)
-                ->setFont(new Font(__DIR__ . '/../Resources/Fonts/arial.ttf'));
+                ->setFont(new Font(__DIR__ . '/../Resources/Fonts/arial.ttf'))
+                ->setFontSize(12);
     }
 
     /**
@@ -121,7 +124,7 @@ class Text extends AbstractDrawable
      *
      * @param float $angle
      *
-     * @return \Artist\Draw\Text
+     * @return \Jaguar\Draw\Text
      */
     public function setAngle($angle)
     {
@@ -145,7 +148,7 @@ class Text extends AbstractDrawable
      *
      * @param float $spacing
      *
-     * @return \Artist\Draw\Text
+     * @return \Jaguar\Draw\Text
      */
     public function setLineSpacing($spacing)
     {
@@ -165,6 +168,65 @@ class Text extends AbstractDrawable
     }
 
     /**
+     * Set font size
+     *
+     * @see \Jaguar\Font::setFontSize
+     *
+     * @param integer $size
+     *
+     * @return \Jaguar\Draw\Text
+     */
+    public function setFontSize($size)
+    {
+        $this->getFont()->setFontSize($size);
+    }
+
+    /**
+     * Get font size
+     *
+     * @see \Jaguar\Font::getFontSize
+     *
+     * @return integer
+     */
+    public function getFontSize()
+    {
+        return $this->getFont()->getFontSize();
+    }
+
+    /**
+     * Get bouding box for the current text object
+     *
+     * @return \Jaguar\Box box which this text fits inside
+     */
+    public function getBoundingBox()
+    {
+        $rect = imageftbbox(
+                $this->getFontSize()
+                , $this->getAngle()
+                , $this->getFont()
+                , $this->getString()
+                , array('linespacing' => $this->getLineSpacing())
+        );
+
+        $minX = min(array($rect[0], $rect[2], $rect[4], $rect[6]));
+        $maxX = max(array($rect[0], $rect[2], $rect[4], $rect[6]));
+        $minY = min(array($rect[1], $rect[3], $rect[5], $rect[7]));
+        $maxY = max(array($rect[1], $rect[3], $rect[5], $rect[7]));
+
+        $dx = abs($this->getCoordinate()->getX() - (abs($minX) - 1));
+        $dy = abs($this->getCoordinate()->getY() - (abs($minY) - 1));
+
+        $width = $maxX - $minX;
+        $height = $maxY - $minY;
+
+        $padding = $this->getFontSize();
+        $dimension = new Dimension(($width + ($padding * 2)), ($height + ($padding * 2)));
+        $coordinate = new Coordinate(($dx - $padding), ($dy - $padding));
+
+        return new Box($dimension, $coordinate);
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function doDraw(CanvasInterface $canvas)
@@ -172,7 +234,7 @@ class Text extends AbstractDrawable
         if (
                 false == @imagefttext(
                         $canvas->getHandler()
-                        , $this->getFont()->getFontSize()
+                        , $this->getFontSize()
                         , $this->getAngle()
                         , $this->getCoordinate()->getX()
                         , $this->getCoordinate()->getY()

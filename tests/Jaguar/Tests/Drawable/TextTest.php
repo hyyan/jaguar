@@ -20,6 +20,11 @@ class TextTest extends AbstractDrawableTest
         return new Text('Jaguar Rocks!');
     }
 
+    public function testGetBoundingBox()
+    {
+        $this->assertInstanceOf('\Jaguar\Box', $this->getDrawable()->getBoundingBox());
+    }
+
     public function testEquals()
     {
         $text = $this->getDrawable();
