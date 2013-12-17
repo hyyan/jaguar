@@ -11,10 +11,8 @@
 
 namespace Jaguar\Drawable;
 
-use Jaguar\CanvasInterface;
 use Jaguar\Color\ColorInterface;
 use Jaguar\Color\RGBColor;
-use Jaguar\Exception\CanvasEmptyException;
 
 abstract class AbstractDrawable implements DrawableInterface
 {
@@ -55,27 +53,6 @@ abstract class AbstractDrawable implements DrawableInterface
     {
         return $this->getColor()->equals($other->getColor());
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function draw(CanvasInterface $canvas)
-    {
-        if (!$canvas->isHandlerSet()) {
-            throw new CanvasEmptyException(sprintf(
-                    'Can Not Draw Drawable (%s) - Canvas Is Empty'
-                    , (string) $this
-            ));
-        }
-        $this->doDraw($canvas);
-
-        return $this;
-    }
-
-    /**
-     * @see \Jaguar\Drawable\AbstractDrawable::draw
-     */
-    abstract protected function doDraw(CanvasInterface $canvas);
 
     /** clone the drawable */
     public function __clone()

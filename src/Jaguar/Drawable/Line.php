@@ -128,8 +128,6 @@ class Line extends AbstractStyledDrawable
     protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
 
-        parent::doDraw($canvas, $style);
-
         $sx = $this->getStart()->getX();
         $sy = $this->getStart()->getY();
         $ex = $this->getEnd()->getX();

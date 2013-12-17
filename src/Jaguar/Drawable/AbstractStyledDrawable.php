@@ -68,9 +68,6 @@ abstract class AbstractStyledDrawable extends AbstractDrawable
      * @param \Jaguar\Drawable\CanvasInterface $canvas
      * @param \Jaguar\Drawable\StyleInterface  $style
      */
-    protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
-    {
-
-    }
+    abstract protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null);
 
 }

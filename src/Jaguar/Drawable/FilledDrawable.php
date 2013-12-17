@@ -45,8 +45,6 @@ abstract class FilledDrawable extends AbstractStyledDrawable
      */
     protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null)
     {
-        parent::doDraw($canvas, $style);
-
         if ($this->isFilled()) {
             $this->drawFilled($canvas, $style);
         }

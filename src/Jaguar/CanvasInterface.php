@@ -16,7 +16,6 @@ use Jaguar\Coordinate;
 use Jaguar\Color\ColorInterface;
 use Jaguar\Dimension;
 use Jaguar\Drawable\DrawableInterface;
-use Jaguar\Drawable\StyleInterface;
 
 interface CanvasInterface
 {
@@ -173,12 +172,12 @@ interface CanvasInterface
      * Draw drawable object on the current canvas
      *
      * @param \Jaguar\Drawable\DrawableInterface $drawable
-     * @param Jaguar\Drawable\StyleInterface     $style
+     * @param mixed                              $style
      *
      * @return \Jaguar\CanvasInterface                self
      * @throws \Jaguar\Exception\CanvasEmptyException
      */
-    public function draw(DrawableInterface $drawable, StyleInterface $style = null);
+    public function draw(DrawableInterface $drawable, $style = null);
 
     /**
      * Merge two canvas together
