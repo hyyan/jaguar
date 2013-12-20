@@ -12,7 +12,6 @@ namespace Jaguar\Drawable\Text;
 
 use Jaguar\CanvasInterface;
 use Jaguar\Drawable\Text;
-use Jaguar\Drawable\TextDrawerInterface;
 use Jaguar\Exception\DrawableException;
 
 class Plain implements TextDrawerInterface
@@ -21,7 +20,7 @@ class Plain implements TextDrawerInterface
     /**
      * {@inheritdoc}
      */
-    public function apply(CanvasInterface $canvas, Text $text)
+    public function draw(CanvasInterface $canvas, Text $text)
     {
 
         if (

@@ -14,7 +14,6 @@ use Jaguar\Color\RGBColor;
 use Jaguar\CanvasInterface;
 use Jaguar\Drawable\Text;
 use Jaguar\Exception\DrawableException;
-use Jaguar\Drawable\TextDrawerInterface;
 
 class Outline implements TextDrawerInterface
 {
@@ -83,7 +82,7 @@ class Outline implements TextDrawerInterface
     /**
      * {@inheritdoc}
      */
-    public function apply(CanvasInterface $canvas, Text $text)
+    public function draw(CanvasInterface $canvas, Text $text)
     {
         $x = $text->getCoordinate()->getX();
         $y = $text->getCoordinate()->getY();

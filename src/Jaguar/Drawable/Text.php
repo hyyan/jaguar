@@ -18,6 +18,7 @@ use Jaguar\Box;
 use Jaguar\Dimension;
 use Jaguar\Drawable\Text\Plain;
 use Jaguar\Exception\CanvasEmptyException;
+use Jaguar\Drawable\Text\TextDrawerInterface;
 
 class Text extends AbstractDrawable
 {
@@ -280,7 +281,7 @@ class Text extends AbstractDrawable
     protected function doDraw(CanvasInterface $canvas, TextDrawerInterface $drawer = null)
     {
         $drawer = ($drawer === null) ? new Plain() : $drawer;
-        $drawer->apply($canvas, $this);
+        $drawer->draw($canvas, $this);
     }
 
     /**

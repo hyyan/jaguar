@@ -44,7 +44,7 @@ abstract class AbstractTextDrawerTest extends JaguarTestCase
      */
     public function testApplyThrowDrawableException()
     {
-        $this->getDrawer()->apply(
+        $this->getDrawer()->draw(
                 new \Jaguar\Tests\Mock\CanvasMock()
                 , $this->getText()
         );
@@ -53,8 +53,8 @@ abstract class AbstractTextDrawerTest extends JaguarTestCase
     public function testApply()
     {
         $this->assertInstanceOf(
-                '\Jaguar\Drawable\TextDrawerInterface'
-                , $this->getDrawer()->apply($this->getCanvas(), $this->getText())
+                '\Jaguar\Drawable\Text\TextDrawerInterface'
+                , $this->getDrawer()->draw($this->getCanvas(), $this->getText())
         );
     }
 

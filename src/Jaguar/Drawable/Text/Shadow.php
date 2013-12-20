@@ -11,7 +11,6 @@
 namespace Jaguar\Drawable\Text;
 
 use Jaguar\Color\RGBColor;
-use Jaguar\Drawable\TextDrawerInterface;
 use Jaguar\CanvasInterface;
 use Jaguar\Drawable\Text;
 use Jaguar\Exception\DrawableException;
@@ -122,7 +121,7 @@ class Shadow implements TextDrawerInterface
     /**
      * {@inheritdoc}
      */
-    public function apply(CanvasInterface $canvas, Text $text)
+    public function draw(CanvasInterface $canvas, Text $text)
     {
 
         // draw shadow

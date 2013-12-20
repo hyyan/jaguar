@@ -8,9 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Jaguar\Drawable;
+namespace Jaguar\Drawable\Text;
 
 use Jaguar\CanvasInterface;
+use Jaguar\Drawable\Text;
 
 interface TextDrawerInterface
 {
@@ -23,7 +24,7 @@ interface TextDrawerInterface
      *
      * @throws \Jaguar\Exception\DrawableException
      *
-     * @return \\Jaguar\Drawable\TextDrawerInterface
+     * @return \Jaguar\Drawable\TextDrawerInterface
      */
-    public function apply(CanvasInterface $canvas, Text $text);
+    public function draw(CanvasInterface $canvas, Text $text);
 }
