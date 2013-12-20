@@ -62,8 +62,8 @@ abstract class AbstractDrawable implements DrawableInterface
 
     /**
      * Get string representation for the current drawable object
-     * 
-     * @return string 
+     *
+     * @return string
      */
     abstract public function __toString();
 }

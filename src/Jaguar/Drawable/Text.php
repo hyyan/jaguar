@@ -51,20 +51,21 @@ class Text extends AbstractDrawable
 
     /**
      * Set text drawer
-     * 
+     *
      * @param \Jaguar\Drawable\Text\TextDrawerInterface $drawer
-     * 
+     *
      * @return \Jaguar\Drawable\Text
      */
     public function setDrawer(TextDrawerInterface $drawer)
     {
         $this->drawer = $drawer;
+
         return $this;
     }
 
     /**
      * Get text drawer
-     * 
+     *
      * @return \Jaguar\Drawable\Text\TextDrawerInterface
      */
     public function getDrawer()
@@ -296,6 +297,7 @@ class Text extends AbstractDrawable
                     'Could Not Draw Text "%s"', (string) $this
             ));
         }
+
         return $this;
     }
 
