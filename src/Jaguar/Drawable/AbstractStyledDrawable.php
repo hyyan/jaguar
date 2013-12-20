@@ -50,6 +50,14 @@ abstract class AbstractStyledDrawable extends AbstractDrawable
     /**
      * {@inheritdoc}
      */
+    public function equals($other)
+    {
+        return parent::equals($other) && ($this->getLineThickness() === $other->getLineThickness());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     final public function draw(CanvasInterface $canvas, StyleInterface $style = null)
     {
         if (!$canvas->isHandlerSet()) {
@@ -69,5 +77,4 @@ abstract class AbstractStyledDrawable extends AbstractDrawable
      * @param \Jaguar\Drawable\StyleInterface  $style
      */
     abstract protected function doDraw(CanvasInterface $canvas, StyleInterface $style = null);
-
 }
