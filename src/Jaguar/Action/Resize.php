@@ -63,8 +63,9 @@ class Resize extends AbstractAction
     {
         $copy = new \Jaguar\Canvas($this->getDimension());
         $copy->paste($canvas, null, new Box($this->getDimension()));
-        $canvas->fromCanvas($copy);
-        $copy->destroy();
+        $canvas->destroy();
+        $canvas->setHandler($copy->getHandler());
+
     }
 
 }

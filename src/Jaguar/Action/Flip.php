@@ -75,7 +75,7 @@ class Flip extends AbstractAction
         $width = $canvas->getWidth();
         $height = $canvas->getHeight();
 
-        $copy = new \Jaguar\Canvas(new Dimension($width, $height));
+        $copy = new \Jaguar\Canvas($canvas->getDimension());
 
         $srcBox = null;
         $destBox = null;
@@ -114,8 +114,9 @@ class Flip extends AbstractAction
         }
 
         $copy->paste($canvas, $srcBox, $destBox);
-        $canvas->fromCanvas($copy);
-        $copy->destroy();
+
+        $canvas->destroy();
+        $canvas->setHandler($copy->getHandler());
     }
 
 }

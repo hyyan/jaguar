@@ -63,8 +63,10 @@ class Crop extends AbstractAction
 
         $new = new Canvas($dimension);
         $new->paste($canvas, new Box($dimension, $coordinate), new Box($dimension));
-        $canvas->fromCanvas($new);
-        $new->destroy();
+
+        $canvas->destroy();
+        $canvas->setHandler($new->getHandler());
+
     }
 
 }
