@@ -100,7 +100,7 @@ class Outline implements TextDrawerInterface
                                 , $text->getFontSize()
                                 , $text->getAngle()
                                 , $xc
-                                , $yc
+                                , $yc + $text->getFontSize()
                                 , $outlineColor
                                 , $text->getFont()
                                 , $text->getString()
@@ -118,7 +118,7 @@ class Outline implements TextDrawerInterface
                         , $text->getFontSize()
                         , $text->getAngle()
                         , $text->getCoordinate()->getX()
-                        , $text->getCoordinate()->getY()
+                        , $text->getCoordinate()->getY() + $text->getFontSize()
                         , $text->getColor()->getValue()
                         , $text->getFont()
                         , $text->getString()

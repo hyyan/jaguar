@@ -25,6 +25,14 @@ class TextTest extends AbstractDrawableTest
         $this->assertInstanceOf('\Jaguar\Box', $this->getDrawable()->getBoundingBox());
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetLineSpacingThrowInvalidArgumentException()
+    {
+        $this->getDrawable()->setLineSpacing(-9);
+    }
+
     public function testEquals()
     {
         $text = $this->getDrawable();

@@ -12,8 +12,8 @@ namespace Jaguar\Drawable\Text;
 
 use Jaguar\CanvasInterface;
 use Jaguar\Drawable\Text;
-use Jaguar\Exception\DrawableException;
 use Jaguar\Drawable\TextDrawerInterface;
+use Jaguar\Exception\DrawableException;
 
 class Plain implements TextDrawerInterface
 {
@@ -23,13 +23,14 @@ class Plain implements TextDrawerInterface
      */
     public function apply(CanvasInterface $canvas, Text $text)
     {
+
         if (
                 false == @imagefttext(
                         $canvas->getHandler()
                         , $text->getFontSize()
                         , $text->getAngle()
                         , $text->getCoordinate()->getX()
-                        , $text->getCoordinate()->getY()
+                        , $text->getCoordinate()->getY() + $text->getFontSize()
                         , $text->getColor()->getValue()
                         , $text->getFont()
                         , $text->getString()

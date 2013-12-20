@@ -129,7 +129,7 @@ class Text extends AbstractDrawable
      */
     public function setAngle($angle)
     {
-        $this->angle = (float) $angle;
+        $this->angle = (float) ($angle);
 
         return $this;
     }
@@ -153,6 +153,12 @@ class Text extends AbstractDrawable
      */
     public function setLineSpacing($spacing)
     {
+        if ($spacing < 0) {
+            throw new \InvalidArgumentException(sprintf(
+                    'Invalid Line Spacing "%s" - Spacing Must Be Greater Than Zero'
+                    , (string) $spacing
+            ));
+        }
         $this->spacing = (float) $spacing;
 
         return $this;
@@ -199,32 +205,49 @@ class Text extends AbstractDrawable
     /**
      * Get bouding box for the current text object
      *
-     * @return \Jaguar\Box box which this text fits inside
+     * @param integer $padding text padding
+     *
+     * @return \Jaguar\Box
      */
-    public function getBoundingBox()
+    public function getBoundingBox($padding = 10)
     {
-        $rect = imageftbbox(
+        $bare = imageftbbox(
                 $this->getFontSize()
-                , $this->getAngle()
+                , 0
                 , $this->getFont()
                 , $this->getString()
                 , array('linespacing' => $this->getLineSpacing())
         );
+
+        $a = deg2rad($this->getAngle());
+        $ca = cos($a);
+        $sa = sin($a);
+        $rect = array();
+        for ($i = 0; $i < 7; $i += 2) {
+            $rect[$i] = round($bare[$i] * $ca + $bare[$i + 1] * $sa);
+            $rect[$i + 1] = round($bare[$i + 1] * $ca - $bare[$i] * $sa);
+        }
 
         $minX = min(array($rect[0], $rect[2], $rect[4], $rect[6]));
         $maxX = max(array($rect[0], $rect[2], $rect[4], $rect[6]));
         $minY = min(array($rect[1], $rect[3], $rect[5], $rect[7]));
         $maxY = max(array($rect[1], $rect[3], $rect[5], $rect[7]));
 
-        $dx = abs($this->getCoordinate()->getX() - (abs($minX) - 1));
-        $dy = abs($this->getCoordinate()->getY() - (abs($minY) - 1));
+        $dx = $this->getCoordinate()->getX() - abs($minX) - 1;
+        $dy = $this->getCoordinate()->getY() - abs($minY) - 1 + $this->getFontSize();
 
         $width = $maxX - $minX;
         $height = $maxY - $minY;
 
-        $padding = $this->getFontSize();
-        $dimension = new Dimension(($width + ($padding * 2)), ($height + ($padding * 2)));
-        $coordinate = new Coordinate(($dx - $padding), ($dy - $padding));
+        $padding = (int) $padding;
+        $dimension = new Dimension(
+                $width + 2 + ($padding * 2)
+                , $height + 2 + ($padding * 2)
+        );
+        $coordinate = new Coordinate(
+                $dx - $padding
+                , $dy - $padding
+        );
 
         return new Box($dimension, $coordinate);
     }
