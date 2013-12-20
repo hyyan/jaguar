@@ -22,8 +22,6 @@ interface TextDrawerInterface
      * @param \Jaguar\CanvasInterface $canvas
      * @param \Jaguar\Drawable\Text   $text
      *
-     * @throws \Jaguar\Exception\DrawableException
-     *
      * @return boolean true on success false otherwise
      */
     public function draw(CanvasInterface $canvas, Text $text);
