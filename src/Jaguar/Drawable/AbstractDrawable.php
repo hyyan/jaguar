@@ -60,4 +60,10 @@ abstract class AbstractDrawable implements DrawableInterface
         $this->color = clone $this->color;
     }
 
+    /**
+     * Get string representation for the current drawable object
+     * 
+     * @return string 
+     */
+    abstract public function __toString();
 }
