@@ -13,7 +13,6 @@ namespace Jaguar\Drawable\Text;
 use Jaguar\Color\RGBColor;
 use Jaguar\CanvasInterface;
 use Jaguar\Drawable\Text;
-use Jaguar\Exception\DrawableException;
 
 class Outline implements TextDrawerInterface
 {
@@ -105,14 +104,10 @@ class Outline implements TextDrawerInterface
                                 , $text->getString()
                                 , array('linespacing' => $text->getLineSpacing())
                 );
-                if (false == $result) {
-                    break;
-                }
             }
         }
 
-        // draw orginal
-        $result = @imagefttext(
+        return (boolean) ($result && @imagefttext(
                         $canvas->getHandler()
                         , $text->getFontSize()
                         , $text->getAngle()
@@ -122,15 +117,7 @@ class Outline implements TextDrawerInterface
                         , $text->getFont()
                         , $text->getString()
                         , array('linespacing' => $text->getLineSpacing())
-        );
-
-        if (false == $result) {
-            throw new DrawableException(sprintf(
-                    'Could Not Draw Outlined Text "%s"', (string) $text
-            ));
-        }
-
-        return $this;
+        ));
     }
 
 }

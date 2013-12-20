@@ -19,6 +19,7 @@ use Jaguar\Dimension;
 use Jaguar\Drawable\Text\Plain;
 use Jaguar\Exception\CanvasEmptyException;
 use Jaguar\Drawable\Text\TextDrawerInterface;
+use Jaguar\Exception\DrawableException;
 
 class Text extends AbstractDrawable
 {
@@ -27,6 +28,7 @@ class Text extends AbstractDrawable
     private $spacing;
     private $string;
     private $coordinate;
+    private $drawer;
 
     /**
      * Constrcut new text object
@@ -43,7 +45,31 @@ class Text extends AbstractDrawable
                 ->setAngle(0)
                 ->setLineSpacing(1.0)
                 ->setFont(new Font(__DIR__ . '/../Resources/Fonts/arial.ttf'))
-                ->setFontSize(12);
+                ->setFontSize(12)
+                ->setDrawer(new Plain());
+    }
+
+    /**
+     * Set text drawer
+     * 
+     * @param \Jaguar\Drawable\Text\TextDrawerInterface $drawer
+     * 
+     * @return \Jaguar\Drawable\Text
+     */
+    public function setDrawer(TextDrawerInterface $drawer)
+    {
+        $this->drawer = $drawer;
+        return $this;
+    }
+
+    /**
+     * Get text drawer
+     * 
+     * @return \Jaguar\Drawable\Text\TextDrawerInterface
+     */
+    public function getDrawer()
+    {
+        return $this->drawer;
     }
 
     /**
@@ -254,15 +280,9 @@ class Text extends AbstractDrawable
     }
 
     /**
-     * Draw text on the given canvas using the given text drawer
-     *
-     * @param \Jaguar\CanvasInterface              $canvas
-     * @param \Jaguar\Drawable\TextDrawerInterface $drawer
-     *
-     * @return \Jaguar\Drawable\Text
-     * @throws CanvasEmptyException
+     * {@inheritdoc}
      */
-    final public function draw(CanvasInterface $canvas, TextDrawerInterface $drawer = null)
+    public function draw(CanvasInterface $canvas)
     {
         if (!$canvas->isHandlerSet()) {
             throw new CanvasEmptyException(sprintf(
@@ -270,18 +290,13 @@ class Text extends AbstractDrawable
                     , (string) $this
             ));
         }
-        $this->doDraw($canvas, $drawer);
 
+        if (false == $this->getDrawer()->draw($canvas, $this)) {
+            throw new DrawableException(sprintf(
+                    'Could Not Draw Text "%s"', (string) $this
+            ));
+        }
         return $this;
-    }
-
-    /**
-     * @see \Jaguar\Drawable\Text::draw
-     */
-    protected function doDraw(CanvasInterface $canvas, TextDrawerInterface $drawer = null)
-    {
-        $drawer = ($drawer === null) ? new Plain() : $drawer;
-        $drawer->draw($canvas, $this);
     }
 
     /**
@@ -320,6 +335,7 @@ class Text extends AbstractDrawable
         parent::__clone();
         $this->font = clone $this->font;
         $this->coordinate = clone $this->coordinate;
+        $this->drawer = clone $this->drawer;
     }
 
     /**

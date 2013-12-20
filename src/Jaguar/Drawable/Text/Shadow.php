@@ -13,7 +13,6 @@ namespace Jaguar\Drawable\Text;
 use Jaguar\Color\RGBColor;
 use Jaguar\CanvasInterface;
 use Jaguar\Drawable\Text;
-use Jaguar\Exception\DrawableException;
 
 class Shadow implements TextDrawerInterface
 {
@@ -125,12 +124,13 @@ class Shadow implements TextDrawerInterface
     {
 
         // draw shadow
-        $result = @imagefttext(
+        return (boolean) (
+                @imagefttext(
                         $canvas->getHandler()
                         , $text->getFontSize()
                         , $text->getAngle()
                         , $text->getCoordinate()->getX() + $this->getXOffset()
-                        , $text->getCoordinate()->getY() + $this->getYOffset()+ $text->getFontSize()
+                        , $text->getCoordinate()->getY() + $this->getYOffset() + $text->getFontSize()
                         , $this->getColor()->getValue()
                         , $text->getFont()
                         , $text->getString()
@@ -140,20 +140,13 @@ class Shadow implements TextDrawerInterface
                         , $text->getFontSize()
                         , $text->getAngle()
                         , $text->getCoordinate()->getX()
-                        , $text->getCoordinate()->getY()+ $text->getFontSize()
+                        , $text->getCoordinate()->getY() + $text->getFontSize()
                         , $text->getColor()->getValue()
                         , $text->getFont()
                         , $text->getString()
                         , array('linespacing' => $text->getLineSpacing())
-        );
-
-        if (false == $result) {
-            throw new DrawableException(sprintf(
-                    'Could Not Draw Text With Shadow "%s"', (string) $text
-            ));
-        }
-
-        return $this;
+                )
+       );
     }
 
 }

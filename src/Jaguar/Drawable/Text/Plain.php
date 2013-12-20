@@ -12,7 +12,6 @@ namespace Jaguar\Drawable\Text;
 
 use Jaguar\CanvasInterface;
 use Jaguar\Drawable\Text;
-use Jaguar\Exception\DrawableException;
 
 class Plain implements TextDrawerInterface
 {
@@ -22,9 +21,7 @@ class Plain implements TextDrawerInterface
      */
     public function draw(CanvasInterface $canvas, Text $text)
     {
-
-        if (
-                false == @imagefttext(
+        return (boolean) @imagefttext(
                         $canvas->getHandler()
                         , $text->getFontSize()
                         , $text->getAngle()
@@ -34,14 +31,7 @@ class Plain implements TextDrawerInterface
                         , $text->getFont()
                         , $text->getString()
                         , array('linespacing' => $text->getLineSpacing())
-                )
-        ) {
-            throw new DrawableException(sprintf(
-                    'Could Not Draw Plain Text "%s"', (string) $text
-            ));
-        }
-
-        return $this;
+        );
     }
 
 }
