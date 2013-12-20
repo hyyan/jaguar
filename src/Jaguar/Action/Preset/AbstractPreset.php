@@ -12,21 +12,10 @@ namespace Jaguar\Action\Preset;
 
 use Jaguar\Action\AbstractAction;
 use Jaguar\Canvas;
+use Jaguar\Util;
 
 abstract class AbstractPreset extends AbstractAction
 {
-
-    /**
-     * Get overlay path
-     *
-     * @param string $file overlay file
-     *
-     * @return string the full path
-     */
-    public function getOverlayPath($file)
-    {
-        return (__DIR__ . '/../../Resources/Preset/' . $file);
-    }
 
     /**
      * Get overlay canvas
@@ -38,7 +27,7 @@ abstract class AbstractPreset extends AbstractAction
     public function getOverlayCanvas($file)
     {
         $canvas = new Canvas();
-        $canvas->fromFile($this->getOverlayPath($file));
+        $canvas->fromFile(Util::getResourcePath('Preset/'.$file));
 
         return $canvas;
     }
