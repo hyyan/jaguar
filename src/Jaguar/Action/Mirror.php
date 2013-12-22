@@ -35,7 +35,7 @@ class Mirror extends AbstractAction
      */
     public function __construct($direction = self::MIRROR_HORIZONTAL)
     {
-        $this->setdirection($direction);
+        $this->setDirection($direction);
     }
 
     /**
@@ -48,7 +48,7 @@ class Mirror extends AbstractAction
      *
      * @throws \InvalidArgumentException
      */
-    public function setdirection($direction)
+    public function setDirection($direction)
     {
         if (!in_array($direction, self::$Supporteddirection)) {
             throw new \InvalidArgumentException(sprintf(
@@ -65,7 +65,7 @@ class Mirror extends AbstractAction
      *
      * @return string
      */
-    public function getdirection()
+    public function getDirection()
     {
         return $this->direction;
     }
