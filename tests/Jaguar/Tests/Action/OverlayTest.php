@@ -19,9 +19,9 @@ class OverlayTest extends AbstractActionTest
 
     public function getAction()
     {
-        $c=$this->getCanvas();
+        $c = $this->getCanvas();
 
-        return new Overlay($c, 75,new Box($c->getDimension()));
+        return new Overlay($c, 75, new Box($c->getDimension()));
     }
 
     /**
@@ -40,7 +40,7 @@ class OverlayTest extends AbstractActionTest
      */
     public function testSetMountThrowInvalieArgumentException($mount)
     {
-        $this->getAction()->setMount($mount);
+        $this->getAction()->setAmount($mount);
     }
 
     /**

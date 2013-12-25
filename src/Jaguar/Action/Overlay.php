@@ -16,7 +16,7 @@ use Jaguar\Box;
 
 class Overlay extends AbstractAction
 {
-    private $mount;
+    private $amount;
     private $overlay;
     private $box;
 
@@ -24,16 +24,16 @@ class Overlay extends AbstractAction
      * construct new overlay action
      *
      * @param \Jaguar\CanvasInterface $canvas
-     * @param integer                 $mount  in range(0,100)
+     * @param integer                 $amount in range(0,100)
      * @param \Jaguar\Box             $box    defulat null which means the size of
      *                         given canvas will be used for the given
      *                         overlay.
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct(CanvasInterface $overlay, $mount = 100, Box $box = null)
+    public function __construct(CanvasInterface $overlay, $amount = 100, Box $box = null)
     {
-        $this->setOverlay($overlay)->setMount($mount);
+        $this->setOverlay($overlay)->setAmount($amount);
         if (!is_null($box)) {
             $this->setBox($box);
         }
@@ -91,32 +91,32 @@ class Overlay extends AbstractAction
     }
 
     /**
-     * Set overlay mount
+     * Set overlay amount
      *
-     * @param integer $mount in range(0,100)
+     * @param integer $amount in range(0,100)
      *
      * @return \Jaguar\Action\Overlay
      *
      * @throws \InvalidArgumentException
      */
-    public function setMount($mount)
+    public function setAmount($amount)
     {
-        if ($mount < 0 || $mount > 100) {
-            throw new \InvalidArgumentException('Overlay mount must be in range(0,100)');
+        if ($amount < 0 || $amount > 100) {
+            throw new \InvalidArgumentException('Overlay amount must be in range(0,100)');
         }
-        $this->mount = $mount;
+        $this->amount = $amount;
 
         return $this;
     }
 
     /**
-     * Get overlay mount
+     * Get overlay amount
      *
      * @return integer
      */
-    public function getMount()
+    public function getAmount()
     {
-        return $this->mount;
+        return $this->amount;
     }
 
     /**
@@ -151,7 +151,7 @@ class Overlay extends AbstractAction
                 , 0
                 , $canvas->getWidth()
                 , $canvas->getHeight()
-                , $this->getMount()
+                , $this->getAmount()
         );
 
         $canvas->alphaBlending(true);
