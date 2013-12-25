@@ -197,7 +197,7 @@ abstract class AbstractCanvas implements CanvasInterface
         }
         $this->forceDestory();
         $this->setHandler($handler);
-        $this->fill(new RGBColor(0, 0, 0, 127));
+        $this->fill(new RGBColor(255, 255, 255, 127));
 
         return $this;
     }
@@ -323,6 +323,7 @@ abstract class AbstractCanvas implements CanvasInterface
     {
         $this->assertEmpty();
         $coordinate = ($coordinate === null) ? new Coordinate() : $coordinate;
+        $this->alphaBlending(false);
         if (
                 false == @imagefill(
                         $this->getHandler()
@@ -336,6 +337,7 @@ abstract class AbstractCanvas implements CanvasInterface
                     , (string) $this, (string) $color
             ));
         }
+        $this->alphaBlending(true);
 
         return $this;
     }
