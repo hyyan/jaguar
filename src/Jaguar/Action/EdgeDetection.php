@@ -28,10 +28,27 @@ class EdgeDetection extends AbstractAction
     const LINE_RIGHT_DIAGONAL = 'line.right';
     const SOBEL_HORIZONTAL = 'sobel.horizontal';
     const SOBEL_VERTICAL = 'sobel.vertical';
+    const PREWITT_HORIZONTAL = 'prewitt.horizontal';
+    const PREWITT_VERTICAL = 'prewitt.vertical';
+    const SCHARR_HORIZONTAL = 'scharr.horizontal';
+    const SCHARR_VERTICAL = 'scharr.vertical';
+    const EMBOSS_NORTH = 'emboss.north';
+    const EMBOSS_NORTH_EAST = 'emboss.north_east';
+    const EMOBOSS_EAST = 'emboss.east';
+    const EMBOSS_SOUTH_EAST = 'emboss.south_east';
+    const EMBOSS_SOUTH = 'emboss.souht';
+    const EMBOSS_SOUTH_WEST = 'emboss.south_west';
+    const EMBOSS_WEST = 'emboss.west';
+    const EMBOSS_NORTH_WEST = 'emboss.north_west';
+    const LAPLACIAN_FILTER1 = 'laplacian_1';
+    const LAPLACIAN_FILTER2 = 'laplacian_2';
+    const LAPLACIAN_FILTER3 = 'laplacian_3';
+    const LAPLACIAN_FILTER4 = 'laplacian_4';
     const FINDEDGE = 'findeedge';
-    const LAPLACIAN = 'laplacian';
 
     private $type;
+    private $divisor;
+    private $offset;
     private static $SUPPORTED_TYPES = array(
         self::GRADIENT_NORTH => array(
             array(-1.0, -2.0, -1.0),
@@ -103,15 +120,90 @@ class EdgeDetection extends AbstractAction
             array(0.0, 0.0, 0.0),
             array(-1.0, -2.0, -1.0)
         ),
+        self::PREWITT_HORIZONTAL => array(
+            array(-1.0, 0.0, 1.0),
+            array(-1.0, 0.0, 1.0),
+            array(-1.0, 0.0, 1.0)
+        ),
+        self::PREWITT_VERTICAL => array(
+            array(1.0, 1.0, 1.0),
+            array(0.0, 0.0, 0.0),
+            array(-1.0, -1.0, -1.0)
+        ),
+        self::SCHARR_HORIZONTAL => array(
+            array(-3.0, 0.0, 3.0),
+            array(-1.0, 0.0, 1.0),
+            array(-3.0, 0.0, 3.0)
+        ),
+        self::SCHARR_VERTICAL => array(
+            array(3.0, 10.0, 3.0),
+            array(0.0, 0.0, 0.0),
+            array(-3.0, -10.0, -3.0)
+        ),
+        self::EMBOSS_NORTH => array(
+            array(0, -1, 0),
+            array(0, 0, 0),
+            array(0, 1, 0),
+        ),
+        self::EMBOSS_NORTH_EAST => array(
+            array(0, 0, -1),
+            array(0, 0, 0),
+            array(1, 0, 0)
+        ),
+        self::EMOBOSS_EAST => array(
+            array(0, 0, 0),
+            array(1, 0, -1),
+            array(0, 0, 0)
+        ),
+        self::EMBOSS_SOUTH_EAST => array(
+            array(1, 0, 0),
+            array(0, 0, 0),
+            array(0, 0, -1)
+        ),
+        self::EMBOSS_SOUTH => array(
+            array(0, 1, 0),
+            array(0, 0, 0),
+            array(0, -1, 0)
+        ),
+        self::EMBOSS_SOUTH_WEST => array(
+            array(0, 0, 1),
+            array(0, 0, 0),
+            array(-1, 0, 0)
+        ),
+        self::EMBOSS_WEST => array(
+            array(0, 0, 0),
+            array(-1, 0, 1),
+            array(0, 0, 0)
+        ),
+        self::EMBOSS_NORTH_WEST => array(
+            array(-1, 0, 0),
+            array(0, 0, 0),
+            array(0, 0, 1)
+        ),
         self::FINDEDGE => array(
             array(-1, -1, -1)
             , array(-2, 8, -1)
             , array(-1, -1, -1)
         ),
-        self::LAPLACIAN => array(
+        self::LAPLACIAN_FILTER1 => array(
             array(0.0, -1.0, 0.0),
             array(-1.0, 4.0, -1.0),
             array(0.0, -1.0, 0.0)
+        ),
+        self::LAPLACIAN_FILTER2 => array(
+            array(0.0, -1.0, 0.0),
+            array(-1.0, 5.0, -1.0),
+            array(0.0, -1.0, 0.0)
+        ),
+        self::LAPLACIAN_FILTER3 => array(
+            array(-1.0, -1.0, -1.0),
+            array(-1.0, 8.0, -1.0),
+            array(-1.0, -1.0, -1.0)
+        ),
+        self::LAPLACIAN_FILTER4 => array(
+            array(1.0, -2.0, 1.0),
+            array(-2.0, 4.0, -2.0),
+            array(1.0, -2.0, 1.0)
         )
     );
 
@@ -119,28 +211,35 @@ class EdgeDetection extends AbstractAction
      * construct new edge detection action
      *
      * @param string $type
+     * @param integer $divisor
+     * @param integer $offset
+     * 
+     * @throws \InvalidArgumentException
      */
-    public function __construct($type = self::GRADIENT_NORTH)
+    public function __construct($type = self::GRADIENT_NORTH, $divisor = 1.0, $offset = 0.0)
     {
-        $this->setType($type);
+        $this->setType($type, $divisor, $offset);
     }
 
     /**
      * Set edge type
      *
      * @param string $type
-     *
-     * @return \Jaguar\Action\EdgeDetection\AbstractEdgeDetection
-     *
+     * @param integer $divisor
+     * @param integer $offset
+     * 
+     * @return \Jaguar\Action\EdgeDetection
+     * 
      * @throws \InvalidArgumentException
      */
-    public function setType($type)
+    public function setType($type, $divisor = 1.0, $offset = 0.0)
     {
         if (!array_key_exists($type, self::$SUPPORTED_TYPES)) {
             throw new \InvalidArgumentException('Invalid Edge Type');
         }
         $this->type = $type;
-
+        $this->divisor = $divisor;
+        $this->offset = $offset;
         return $this;
     }
 
@@ -162,7 +261,8 @@ class EdgeDetection extends AbstractAction
         $matrix = self::$SUPPORTED_TYPES[$this->getType()];
         $con = new Convolution(
                 $matrix
-                , array_sum(array_map('array_sum', $matrix))
+                , $this->divisor
+                , $this->offset
         );
         $con->apply($canvas);
     }
