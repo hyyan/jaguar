@@ -31,7 +31,7 @@ class Text extends AbstractDrawable
     private $drawer;
 
     /**
-     * Constrcut new text object
+     * construct new text object
      *
      * @param type                         $string
      * @param \Jaguar\Coordinate           $coordinate

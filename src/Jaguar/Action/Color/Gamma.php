@@ -18,7 +18,7 @@ class Gamma extends AbstractAction
     private $level;
 
     /**
-     * Constrcut new gamma action
+     * construct new gamma action
      *
      * @param float $level
      *

@@ -25,7 +25,7 @@ class ThicklineStyle implements StyleInterface
     private $canvas;
 
     /**
-     * Constrcut new Thickline style
+     * construct new Thickline style
      *
      * @param integer                      $thickness
      * @param \Jaguar\Color\ColorInterface $color

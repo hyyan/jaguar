@@ -19,7 +19,7 @@ abstract class AbstractDrawable implements DrawableInterface
     private $color;
 
     /**
-     * Constrcut new drawable object
+     * construct new drawable object
      *
      * @param \Jaguar\Color\ColorInterface $color
      */

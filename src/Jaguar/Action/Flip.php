@@ -27,7 +27,7 @@ class Flip extends AbstractAction
     );
 
     /**
-     * Constrcut new flip action
+     * construct new flip action
      *
      * @param type $direction
      */

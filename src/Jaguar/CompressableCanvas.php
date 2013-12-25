@@ -24,7 +24,7 @@ abstract class CompressableCanvas extends AbstractCanvas
     private $quality;
 
     /**
-     * Constrcut new compressed canvas
+     * construct new compressed canvas
      *
      * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
      * @param integer                                             $quality default 90

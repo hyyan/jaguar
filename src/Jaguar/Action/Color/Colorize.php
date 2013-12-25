@@ -19,7 +19,7 @@ class Colorize extends AbstractAction
     private $color;
 
     /**
-     * Constrcut new colorize action
+     * construct new colorize action
      *
      * @param \Jaguar\Color\RGBColor $color
      */

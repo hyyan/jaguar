@@ -25,7 +25,7 @@ class LinearGradient extends AbstractGradient
     );
 
     /**
-     * Constrcut new LinearGradient gradient
+     * construct new LinearGradient gradient
      *
      * @param string                 $type
      * @param \Jaguar\Color\RGBColor $start

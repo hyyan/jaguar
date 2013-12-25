@@ -24,7 +24,7 @@ class Brush implements StyleInterface
     private $brush;
 
     /**
-     * Constrcut new brush
+     * construct new brush
      *
      * @param \Jaguar\CanvasInterface $canvas
      * @param integer                 $show

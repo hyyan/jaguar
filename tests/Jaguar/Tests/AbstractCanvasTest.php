@@ -43,7 +43,13 @@ abstract class AbstractCanvasTest extends JaguarTestCase
         return array(
             array($this->getCanvas()),
             array($this->getCanvasFile()),
-            array(new Dimension(100, 100))
+            array(new Dimension(100, 100)),
+            array(base64_decode(
+                        'iVBORw0KGgoAAAANSUhEUgAAABwAAAASCAMAAAB/2U7WAAAABl'
+                        . 'BMVEUAAAD///+l2Z/dAAAASUlEQVR4XqWQUQoAIAxC2/0vXZDr'
+                        . 'EX4IJTRkb7lobNUStXsB0jIXIAMSsQnWlsV+wULF4Avk9fLq2r'
+                        . '8a5HSE35Q3eO2XP1A1wQkZSgETvDtKdQAAAABJRU5ErkJggg=='
+                ))
         );
     }
 
@@ -52,7 +58,7 @@ abstract class AbstractCanvasTest extends JaguarTestCase
      *
      * @param mixed $source
      */
-    public function testCanvasConstrcutorSourceArgument($source)
+    public function testCanvasconstructorSourceArgument($source)
     {
         $class = get_class($this->getCanvas());
         new $class($source);

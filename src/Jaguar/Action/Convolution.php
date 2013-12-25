@@ -19,7 +19,7 @@ class Convolution extends AbstractAction
     private $matrix;
 
     /**
-     * Constrcut new convolution action
+     * construct new convolution action
      *
      * @param array $matrix
      * @param float $divisor

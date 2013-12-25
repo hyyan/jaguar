@@ -41,7 +41,7 @@ class FontTest extends JaguarTestCase
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testFontConstrcutorThrowInvalidArgumentExceptionOnNonReadableFiles()
+    public function testFontconstructorThrowInvalidArgumentExceptionOnNonReadableFiles()
     {
         new Font('non readable file');
     }

@@ -25,7 +25,7 @@ class DashedlineStyle implements StyleInterface
     private $fct;
 
     /**
-     * Constrcut new dashedline style
+     * construct new dashedline style
      *
      * @param integer                      $fct   the first color show time
      * @param integer                      $sct   the second color show time

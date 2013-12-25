@@ -20,7 +20,7 @@ class Outline implements TextDrawerInterface
     private $color;
 
     /**
-     * Constrcut new outline
+     * construct new outline
      *
      * @param \Jaguar\Color\RGBColor $color
      * @param inetger                $width

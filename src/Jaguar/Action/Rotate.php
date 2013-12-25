@@ -20,7 +20,7 @@ class Rotate extends AbstractAction
     private $color;
 
     /**
-     * Constrcut new rotate action
+     * construct new rotate action
      *
      * @param float                        $degree
      * @param \Jaguar\Color\ColorInterface $color

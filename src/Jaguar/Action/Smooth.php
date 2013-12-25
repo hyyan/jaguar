@@ -17,7 +17,7 @@ class Smooth extends AbstractAction
     private $level;
 
     /**
-     * Constrcut new smooth action
+     * construct new smooth action
      *
      * @param integer $level
      */

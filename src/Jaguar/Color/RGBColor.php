@@ -30,7 +30,7 @@ class RGBColor extends AbstractColor
     private $alpha;
 
     /**
-     * Constrcut new color object
+     * construct new color object
      *
      * @param integer $r red channel
      * @param integer $g green channel

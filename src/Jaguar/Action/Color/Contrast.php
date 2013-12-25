@@ -18,7 +18,7 @@ class Contrast extends AbstractAction
     private $level;
 
     /**
-     * Constrcut new contrast action
+     * construct new contrast action
      *
      * @param integer $level
      *

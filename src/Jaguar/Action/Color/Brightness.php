@@ -18,7 +18,7 @@ class Brightness extends AbstractAction
     private $level;
 
     /**
-     * Constrcut new brightness action
+     * construct new brightness action
      *
      * @param integer $level
      *

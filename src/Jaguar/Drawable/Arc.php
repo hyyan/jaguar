@@ -27,7 +27,7 @@ class Arc extends FilledDrawable
     private $anglesConnectedToCenter;
 
     /**
-     * Constrcut new arc
+     * construct new arc
      *
      * @param \Jaguar\Dimension            $dimension
      * @param \Jaguar\Coordinate           $center

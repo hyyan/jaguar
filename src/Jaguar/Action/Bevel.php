@@ -23,7 +23,7 @@ class Bevel extends AbstractAction
     private $width;
 
     /**
-     * Constrcut new bevel action
+     * construct new bevel action
      *
      * @param integer                      $width
      * @param \Jaguar\Color\ColorInterface $c1

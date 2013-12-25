@@ -20,7 +20,7 @@ class Crop extends AbstractAction
     private $box;
 
     /**
-     * Constrcut new crop action
+     * construct new crop action
      *
      * @param \Jaguar\Box $box
      */

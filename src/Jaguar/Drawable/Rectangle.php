@@ -22,7 +22,7 @@ class Rectangle extends FilledDrawable
     private $coordinate;
 
     /**
-     * Constrcut new rectangle
+     * construct new rectangle
      *
      * @param \Jaguar\Dimension               $size
      * @param \Jaguar\Coordinate              $start

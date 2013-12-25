@@ -32,7 +32,7 @@ class Png extends CompressableCanvas
     private $filter;
 
     /**
-     * Constrcut new png canvas
+     * construct new png canvas
      *
      * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
      * @param integer                                             $quality   default 40

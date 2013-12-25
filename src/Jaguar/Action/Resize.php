@@ -23,7 +23,7 @@ class Resize extends AbstractAction
     private $dimension;
 
     /**
-     * Constrcut new Resize Action
+     * construct new Resize Action
      *
      * @param \Jaguar\Dimension $dimension
      */

@@ -66,13 +66,13 @@ class ImageFileTest extends JaguarTestCase
         );
     }
 
-    public function testConstrcutorThrowInvalidArgumentException()
+    public function testconstructorThrowInvalidArgumentException()
     {
         $this->setExpectedException('\InvalidArgumentException');
         new ImageFile('invalid');
     }
 
-    public function testConstrcutorThrowRuntimeException()
+    public function testconstructorThrowRuntimeException()
     {
         $this->setExpectedException('\RuntimeException');
         new ImageFile($this->getFixture('fonts/arial.ttf'));

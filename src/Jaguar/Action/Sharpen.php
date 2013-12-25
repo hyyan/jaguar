@@ -44,7 +44,7 @@ class Sharpen extends AbstractAction
     );
 
     /**
-     * Constrcut new sharpen action
+     * construct new sharpen action
      *
      * @param string $type
      */

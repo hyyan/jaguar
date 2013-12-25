@@ -20,7 +20,7 @@ abstract class AbstractGradient implements GradientInterface
     private $step;
 
     /**
-     * Constrcut new gradient
+     * construct new gradient
      *
      * @param \Jaguar\Color\RGBColor $start
      * @param \Jaguar\Color\RGBColor $end

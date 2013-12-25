@@ -30,7 +30,7 @@ class Canvas extends AbstractCanvas
     private $activeFactoryName = null;
 
     /**
-     * Constrcut new canvas
+     * construct new canvas
      *
      * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
      * @param string                                              $factoryName factory name

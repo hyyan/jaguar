@@ -17,7 +17,7 @@ class Dimension implements EqualsInterface
     private $height;
 
     /**
-     * Constrcut new dimension object
+     * construct new dimension object
      *
      * @param integereger $width
      * @param integereger $height

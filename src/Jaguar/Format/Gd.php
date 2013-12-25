@@ -22,7 +22,7 @@ class Gd extends AbstractCanvas
     private $GD2chunkSize = 0;
 
     /**
-     * Constrcut new gd canvas
+     * construct new gd canvas
      *
      * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|null $source
      * @param boolean                                             $compressed

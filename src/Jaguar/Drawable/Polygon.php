@@ -21,7 +21,7 @@ class Polygon extends FilledDrawable
     private $count = 0;
 
     /**
-     * Constrcut new polygon
+     * construct new polygon
      *
      * @param \ArrayObject                 $coordinates
      * @param \Jaguar\Color\ColorInterface $color

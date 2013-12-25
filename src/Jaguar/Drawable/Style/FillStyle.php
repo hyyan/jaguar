@@ -22,7 +22,7 @@ class FillStyle implements StyleInterface
     private $pattern;
 
     /**
-     * Constrcut new PatternFill Style
+     * construct new PatternFill Style
      *
      * @param \Jaguar\CanvasInterface $pattern
      */

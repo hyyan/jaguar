@@ -28,7 +28,7 @@ class BoxAction extends AbstractAction
     private $box;
 
     /**
-     * Constrcut an new box action
+     * construct an new box action
      *
      * @param \Jaguar\Action\ActionInterface $action
      * @param \Jaguar\Box                    $box

@@ -116,7 +116,7 @@ class EdgeDetection extends AbstractAction
     );
 
     /**
-     * Constrcut new edge detection action
+     * construct new edge detection action
      *
      * @param string $type
      */

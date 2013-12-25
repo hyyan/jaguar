@@ -21,7 +21,7 @@ class Shadow implements TextDrawerInterface
     private $color;
 
     /**
-     * Constrcut new shadow object
+     * construct new shadow object
      *
      * @param \Jaguar\Color\RGBColor $color
      * @param integer                $x

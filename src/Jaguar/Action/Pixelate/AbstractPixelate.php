@@ -17,7 +17,7 @@ abstract class AbstractPixelate extends AbstractAction
     private $size;
 
     /**
-     * Constrcut new pixelate filter
+     * construct new pixelate filter
      *
      * @param integer $size
      */

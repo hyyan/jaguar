@@ -20,7 +20,7 @@ class Border extends AbstractStyledDrawable
     private $drawer;
 
     /**
-     * Constrcut new border
+     * construct new border
      *
      * @param integer $size border size
      *

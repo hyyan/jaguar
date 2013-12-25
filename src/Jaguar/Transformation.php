@@ -35,7 +35,7 @@ final class Transformation
     private $canvas;
 
     /**
-     * Constrcut new transformation
+     * construct new transformation
      *
      * @param \Jaguar\CanvasInterface $canvas
      */

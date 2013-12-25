@@ -21,7 +21,7 @@ class Overlay extends AbstractAction
     private $box;
 
     /**
-     * Constrcut new overlay action
+     * construct new overlay action
      *
      * @param \Jaguar\CanvasInterface $canvas
      * @param integer                 $mount  in range(0,100)

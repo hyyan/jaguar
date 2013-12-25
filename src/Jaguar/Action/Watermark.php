@@ -21,7 +21,7 @@ class Watermark extends AbstractAction
     private $coordinate;
 
     /**
-     * Constrcut new watermark action
+     * construct new watermark action
      *
      * @param \Jaguar\CanvasInterface $watermark
      * @param \Jaguar\Coordinate      $coordinate

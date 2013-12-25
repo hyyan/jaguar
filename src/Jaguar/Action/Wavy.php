@@ -21,7 +21,7 @@ class Wavy extends AbstractAction
     private $level;
 
     /**
-     * Constrcut new wavy action
+     * construct new wavy action
      *
      * @param integer $level
      */

@@ -26,7 +26,7 @@ class Mirror extends AbstractAction
     );
 
     /**
-     * Constrcut new mirror action
+     * construct new mirror action
      *
      * @param string $direction MirrorAction::MIRROR_VERTICAL Or
      *                          MirrorAction::MIRROR_HORIZONTAL
