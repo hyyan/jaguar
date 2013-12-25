@@ -15,7 +15,7 @@ use Jaguar\Action\Color\Brightness;
 use Jaguar\Action\Color\Contrast;
 use Jaguar\Action\Color\Colorize;
 use Jaguar\Color\RGBColor;
-use Jaguar\Action\Overlay;
+use Jaguar\Transformation;
 
 class Canvas extends AbstractPreset
 {
@@ -27,18 +27,13 @@ class Canvas extends AbstractPreset
      */
     protected function doApply(CanvasInterface $canvas)
     {
-        $actions = array(
-            new Brightness(25),
-            new Contrast(25),
-            new Colorize(new RGBColor(50, 25, 0)),
-            new Overlay(
-                    $this->getOverlayCanvas('canvas.gd2'), 100
-            )
-        );
+        $transformation = new Transformation($canvas);
 
-        foreach ($actions as $action) {
-            $action->apply($canvas);
-        }
+        $transformation
+                ->apply(new Brightness(25))
+                ->apply(new Contrast(25))
+                ->apply(new Colorize(new RGBColor(50, 25, 0)))
+                ->overlay($this->getOverlayCanvas('canvas.gd2'),100);
     }
 
 }
