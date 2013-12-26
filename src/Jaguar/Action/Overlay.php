@@ -137,7 +137,6 @@ class Overlay extends AbstractAction
 
         $box = is_null($this->getBox()) ? new Box($canvas->getDimension()) : $this->getBox();
         $compine = new \Jaguar\Canvas($canvas->getDimension());
-        $compine->paste($canvas);
         $compine->paste($this->getOverlay(), null, $box);
 
         imagelayereffect($canvas->getHandler(), IMG_EFFECT_OVERLAY);
