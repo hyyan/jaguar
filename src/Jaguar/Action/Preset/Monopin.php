@@ -10,10 +10,9 @@
 
 namespace Jaguar\Action\Preset;
 
-use Jaguar\Action\Color\Brightness;
 use Jaguar\Action\Color\Contrast;
 use Jaguar\Action\Color\Grayscale;
-use Jaguar\Action\Overlay;
+use Jaguar\Transformation;
 
 class Monopin extends AbstractPreset
 {
@@ -25,18 +24,10 @@ class Monopin extends AbstractPreset
      */
     protected function doApply(\Jaguar\CanvasInterface $canvas)
     {
-        $actions = array(
-            new Grayscale(),
-            new Brightness(-15),
-            new Contrast(15),
-            new Overlay(
-                    $this->getOverlayCanvas('vignette.gd2'), 100
-            )
-        );
-
-        foreach ($actions as $action) {
-            $action->apply($canvas);
-        }
+        $tranformation = new Transformation($canvas);
+        $tranformation->apply(new Grayscale())
+                ->apply(new Contrast(5))
+                ->overlay($this->getOverlayCanvas('vignette.gd2'), 30);
     }
 
 }
