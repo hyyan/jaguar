@@ -26,7 +26,7 @@ class Chrome extends AbstractPreset
         $transformation->apply(new Brightness(15))
                 ->apply(new Contrast(-15))
                 ->overlay($this->getOverlayCanvas('noise.gd2'), 100)
-                ->overlay($this->getOverlayCanvas('vignette.gd2'), 75);
+                ->overlay($this->getOverlayCanvas('vignette.gd2'), 100);
     }
 
 }
