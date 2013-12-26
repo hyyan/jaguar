@@ -12,32 +12,21 @@ namespace Jaguar\Action\Preset;
 
 use Jaguar\Action\Color\Brightness;
 use Jaguar\Action\Color\Contrast;
-use Jaguar\Action\Overlay;
+use Jaguar\Transformation;
 
 class Chrome extends AbstractPreset
 {
 
     /**
      * {@inheritdoc}
-     *
-     * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
     protected function doApply(\Jaguar\CanvasInterface $canvas)
     {
-        $actions = array(
-            new Brightness(15),
-            new Contrast(15),
-            new Overlay(
-                    $this->getOverlayCanvas('noise.gd2'), 45
-            ),
-            new Overlay(
-                    $this->getOverlayCanvas('vignette.gd2'), 100
-            )
-        );
-
-        foreach ($actions as $action) {
-            $action->apply($canvas);
-        }
+        $transformation = new Transformation($canvas);
+        $transformation->apply(new Brightness(15))
+                ->apply(new Contrast(-15))
+                ->overlay($this->getOverlayCanvas('noise.gd2'), 100)
+                ->overlay($this->getOverlayCanvas('vignette.gd2'), 75);
     }
 
 }

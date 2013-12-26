@@ -22,8 +22,6 @@ class Canvas extends AbstractPreset
 
     /**
      * {@inheritdoc}
-     *
-     * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
     protected function doApply(CanvasInterface $canvas)
     {
@@ -33,7 +31,7 @@ class Canvas extends AbstractPreset
                 ->apply(new Brightness(25))
                 ->apply(new Contrast(25))
                 ->apply(new Colorize(new RGBColor(50, 25, 0)))
-                ->overlay($this->getOverlayCanvas('canvas.gd2'),100);
+                ->overlay($this->getOverlayCanvas('canvas.gd2'), 100);
     }
 
 }
