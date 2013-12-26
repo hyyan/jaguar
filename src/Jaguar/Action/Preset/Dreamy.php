@@ -17,34 +17,23 @@ use Jaguar\Action\Color\Colorize;
 use Jaguar\Color\RGBColor;
 use Jaguar\Action\Smooth;
 use Jaguar\Action\Overlay;
+use Jaguar\Transformation;
 
 class Dreamy extends AbstractPreset
 {
 
     /**
      * {@inheritdoc}
-     *
-     * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
     protected function doApply(CanvasInterface $canvas)
     {
 
-        $actions = array(
-            new Brightness(20),
-            new Contrast(35),
-            new Colorize(new RGBColor(60, 0, 35)),
-            new Smooth(7),
-            new Overlay(
-                    $this->getOverlayCanvas('scratch.gd2'), 10
-            ),
-            new Overlay(
-                    $this->getOverlayCanvas('vignette.gd2'), 100
-            )
-        );
-
-        foreach ($actions as $action) {
-            $action->apply($canvas);
-        }
+        $transformation = new Transformation($canvas);
+        $transformation->apply(new Brightness(20))
+                ->apply(new Contrast(20))
+                ->apply(new Colorize(new RGBColor(60, 0, 35)))
+                ->apply(new Smooth(10))
+                ->overlay($this->getOverlayCanvas('beam.gd2'), 100);
     }
 
 }
