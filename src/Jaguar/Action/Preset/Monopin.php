@@ -19,8 +19,6 @@ class Monopin extends AbstractPreset
 
     /**
      * {@inheritdoc}
-     *
-     * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
     protected function doApply(\Jaguar\CanvasInterface $canvas)
     {

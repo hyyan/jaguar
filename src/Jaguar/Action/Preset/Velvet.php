@@ -13,34 +13,23 @@ namespace Jaguar\Action\Preset;
 use Jaguar\Action\Color\Brightness;
 use Jaguar\Action\Color\Contrast;
 use Jaguar\Action\Color\Colorize;
-use Jaguar\Action\Overlay;
 use Jaguar\Color\RGBColor;
+use Jaguar\Transformation;
 
 class Velvet extends AbstractPreset
 {
 
     /**
      * {@inheritdoc}
-     *
-     * this effect was inspired from Marc Hibbins (http://marchibbins.com/dev/gd)
      */
     protected function doApply(\Jaguar\CanvasInterface $canvas)
     {
-        $actions = array(
-            new Brightness(5),
-            new Contrast(10),
-            new Colorize(new RGBColor(0, 45, 65)),
-            new Overlay(
-                    $this->getOverlayCanvas('noise.gd2'), 45
-            ),
-            new Overlay(
-                    $this->getOverlayCanvas('vignette.gd2'), 100
-            )
-        );
-
-        foreach ($actions as $action) {
-            $action->apply($canvas);
-        }
+        $transformation = new Transformation($canvas);
+        $transformation->apply(new Brightness(5))
+                ->apply(new Contrast(25))
+                ->apply(new Colorize(new RGBColor(0, 45, 65)))
+                ->overlay($this->getOverlayCanvas('noise.gd2'), 45)
+                ->overlay($this->getOverlayCanvas('vignette.gd2'), 50);
     }
 
 }
