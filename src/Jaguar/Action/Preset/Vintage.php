@@ -14,7 +14,7 @@ use Jaguar\CanvasInterface;
 use Jaguar\Action\Color\Brightness;
 use Jaguar\Action\Color\Contrast;
 use Jaguar\Action\Smooth;
-use Jaguar\Action\Overlay;
+use Jaguar\Transformation;
 
 class Vintage extends AbstractPreset
 {
@@ -24,19 +24,11 @@ class Vintage extends AbstractPreset
      */
     protected function doApply(CanvasInterface $canvas)
     {
-
-        $actions = array(
-            new Brightness(15),
-            new Contrast(10),
-            new Smooth(7),
-            new Overlay(
-                    $this->getOverlayCanvas('scratch.gd2'), 7
-            )
-        );
-
-        foreach ($actions as $action) {
-            $action->apply($canvas);
-        }
+        $transformation = new Transformation($canvas);
+        $transformation->apply(new Brightness(15))
+                ->apply(new Contrast(10))
+                ->apply(new Smooth(7))
+                ->overlay($this->getOverlayCanvas('scratch.gd2'), 30);
     }
 
 }
