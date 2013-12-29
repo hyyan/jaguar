@@ -1,4 +1,4 @@
-jaguar
+Jaguar
 ======
 
 [![project status](http://stillmaintained.com/hyyan/jaguar.png)](http://stillmaintained.com/hyyan/jaguar)
