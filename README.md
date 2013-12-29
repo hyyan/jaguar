@@ -2,7 +2,7 @@ jaguar
 ======
 
 [![project status](http://stillmaintained.com/hyyan/jaguar.png)](http://stillmaintained.com/hyyan/jaguar)
-[![Build Status](https://secure.travis-ci.org/hyyan/jaguar.png?branch=master)](http://travis-ci.org/hyyan/jaguar.png)
+[![Build Status](https://travis-ci.org/hyyan/jaguar.png?branch=master)](https://travis-ci.org/hyyan/jaguar)
 
 PHP 5.3 Graphic Library For Image Manipulation And Drawing
 
