@@ -4,7 +4,7 @@ before_script:
   - composer self-update
   - composer install --prefer-source
   
-script: phpunti --stderr
+script: phpunit --stderr
 
 php:
   - 5.3.2
