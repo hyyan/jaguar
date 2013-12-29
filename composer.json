@@ -1,6 +1,6 @@
 {
-    "name": "Jaguar/Jaguar",
-    "description": "Powerful Gd Framework For Drawing And Images And Filters Manipulation.",
+    "name": "hyyan/Jaguar",
+    "description": "PHP 5.3 Graphic Library For Image Manipulation And Drawing.",
     "license": "MIT",
     "authors": [
         {
