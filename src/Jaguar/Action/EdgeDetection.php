@@ -210,10 +210,10 @@ class EdgeDetection extends AbstractAction
     /**
      * construct new edge detection action
      *
-     * @param string $type
+     * @param string  $type
      * @param integer $divisor
      * @param integer $offset
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct($type = self::GRADIENT_NORTH, $divisor = 1.0, $offset = 0.0)
@@ -224,12 +224,12 @@ class EdgeDetection extends AbstractAction
     /**
      * Set edge type
      *
-     * @param string $type
+     * @param string  $type
      * @param integer $divisor
      * @param integer $offset
-     * 
+     *
      * @return \Jaguar\Action\EdgeDetection
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function setType($type, $divisor = 1.0, $offset = 0.0)
@@ -240,6 +240,7 @@ class EdgeDetection extends AbstractAction
         $this->type = $type;
         $this->divisor = $divisor;
         $this->offset = $offset;
+
         return $this;
     }
 
