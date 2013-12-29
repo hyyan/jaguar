@@ -11,7 +11,7 @@ PHP 5.3 Graphic Library For Image Manipulation And Drawing
 The Jaguar library has the following requirements:
 
  - PHP 5.3+
- - Gd Bundle Version (2.0.28 or later is recommended) with freetype support
+ - Gd2 Bundled Version (2.0.28 or later) with freetype support
  
 ## Documentation ##
 
