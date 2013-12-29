@@ -7,7 +7,6 @@ before_script:
 script: phpunit --stderr
 
 php:
-  - 5.3.2
   - 5.3
   - 5.4
   - 5.5
