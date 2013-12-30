@@ -244,7 +244,7 @@ abstract class AbstractCanvas implements CanvasInterface
     /**
      * {@inheritdoc}
      */
-    public function getPixel(Coordinate $coordinate)
+    public function getColorAt(Coordinate $coordinate)
     {
         $this->assertEmpty();
         $x = $coordinate->getX();
@@ -255,15 +255,15 @@ abstract class AbstractCanvas implements CanvasInterface
             ));
         }
 
-        $pixel = new Pixel($coordinate);
-        $pixel->setColor(
-                RGBColor::fromValue(
-                        @imagecolorat($this->getHandler(), $x, $y)
-                        , true
-                )
-        );
+        return @imagecolorat($this->getHandler(), $x, $y);
+    }
 
-        return $pixel;
+    /**
+     * {@inheritdoc}
+     */
+    public function getPixel(Coordinate $coordinate)
+    {
+        return new Pixel($coordinate, RGBColor::fromValue($this->getColorAt($coordinate)));
     }
 
     /**

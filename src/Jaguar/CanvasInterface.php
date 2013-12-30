@@ -169,6 +169,18 @@ interface CanvasInterface
     public function getPixel(Coordinate $coordinate);
 
     /**
+     * Get color at specific coordinate
+     *
+     * @param \Jaguar\Coordinatee $coordinate
+     *
+     * @return integer
+     *
+     * @throws \Jaguar\Exception\InvalidCoordinateException
+     * @throws \Jaguar\Exception\CanvasEmptyException
+     */
+    public function getColorAt(Coordinate $coordinate);
+
+    /**
      * Draw drawable object on the current canvas
      *
      * @param \Jaguar\Drawable\DrawableInterface $drawable

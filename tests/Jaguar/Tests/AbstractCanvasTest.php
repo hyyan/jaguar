@@ -248,20 +248,20 @@ abstract class AbstractCanvasTest extends JaguarTestCase
     }
 
     /**
-     * @dataProvider getPixelCoordinatesProvider
+     * @dataProvider getColorAtCoordinatesProvider
      * @expectedException \Jaguar\Exception\InvalidCoordinateException
      */
-    public function testGetPixelThrowInvalidCoordinateException(\Jaguar\Coordinate $coordinate)
+    public function testGetColorAtThrowInvalidCoordinateException(\Jaguar\Coordinate $coordinate)
     {
         $canvas = new CanvasMock();
-        $canvas->getPixel($coordinate);
+        $canvas->getColorAt($coordinate);
     }
 
     /**
-     * Coordinate provider for testGetPixelThrowInvalidCoordinateException
+     * Coordinate provider for testGetColorAtThrowInvalidCoordinateException
      * @return type
      */
-    public function getPixelCoordinatesProvider()
+    public function getColorAtCoordinatesProvider()
     {
         return array(
             array(new \Jaguar\Coordinate(1000, 1000)),
@@ -272,10 +272,18 @@ abstract class AbstractCanvasTest extends JaguarTestCase
     /**
      * @expectedException \Jaguar\Exception\CanvasEmptyException
      */
-    public function testGetPixelThrowCanvasEmptException()
+    public function testGetColorAtThrowCanvasEmptException()
     {
         $canvas = new Mock\EmptyCanvasMock();
-        $canvas->getPixel(new \Jaguar\Coordinate());
+        $canvas->getColorAt(new \Jaguar\Coordinate());
+    }
+
+    public function testGetColorAt()
+    {
+        $canvas = $this->getCanvas();
+        $this->assertTrue(
+                is_int($canvas->getColorAt(new \Jaguar\Coordinate))
+        );
     }
 
     public function testGetPixel()
