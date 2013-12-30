@@ -75,7 +75,7 @@ class RGBColorTest extends AbstractColorTest
         $c = new RGBColor();
         $nc = new RGBColor(255, 0, 0);
 
-        $c->setRGBColor($nc);
+        $c->setFromRGBColor($nc);
         $getNc = $c->getRGBColor();
 
         $this->assertNotSame($getNc, $nc);
@@ -109,26 +109,18 @@ class RGBColorTest extends AbstractColorTest
         $c->isValidChannelValue(255, 'Unknown Channel');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testDissloveThrowInvalidArgumentException()
-    {
-        $color = new RGBColor(0, 0, 0, 127);
-        $color->dissolve(1);
-    }
-
     public function testDissolve()
     {
         $color = $this->getColor();
         $alpha = $color->getAlpha();
         $string = (string) $color;
 
-        $disslovedRGBColor = $color->dissolve(2);
+        $clone = clone $color;
+        $clone->dissolve(2);
 
-        $this->assertNotSame($color, $disslovedRGBColor);
-        $this->assertEquals(2 + $alpha, $disslovedRGBColor->getAlpha());
-        $this->assertNotEquals($string, (string) $disslovedRGBColor);
+        $this->assertNotSame($color, $clone);
+        $this->assertEquals(2 + $alpha, $clone->getAlpha());
+        $this->assertNotEquals($string, (string) $clone);
     }
 
     /**
@@ -141,7 +133,8 @@ class RGBColorTest extends AbstractColorTest
     public function testBrighter($r, $g, $b)
     {
         $c = new RGBColor($r, $g, $b);
-        $bc = $c->brighter();
+        $clone = clone $c;
+        $bc = $clone->brighter();
 
         $ca = array(
             $c->getRed(),
@@ -172,7 +165,8 @@ class RGBColorTest extends AbstractColorTest
     public function testDarker($r, $g, $b)
     {
         $c = new RGBColor($r, $g, $b);
-        $dc = $c->darker();
+        $clone = clone $c;
+        $dc = $clone->darker();
 
         $ca = array(
             $c->getRed(),
@@ -233,9 +227,10 @@ class RGBColorTest extends AbstractColorTest
      * @param boolean                $hasalpha
      * @param \Jaguar\Color\RGBColor $expected
      */
-    public function testfromValue($rgb, $hasalpha, RGBColor $expected)
+    public function testSetFromValue($rgb, $hasalpha, RGBColor $expected)
     {
-        $this->assertTrue(RGBColor::fromValue($rgb, $hasalpha)->equals($expected));
+        $color = $this->getColor();
+        $this->assertTrue($color->setFromValue($rgb, $hasalpha)->equals($expected));
     }
 
     /**
@@ -257,9 +252,10 @@ class RGBColorTest extends AbstractColorTest
      *
      * @param string $hex
      */
-    public function testFromHexThrowInvalidArgumentException($hex)
+    public function testSetFromHexThrowInvalidArgumentException($hex)
     {
-        RGBColor::fromHex($hex);
+        $color = $this->getColor();
+        $color->setFromHex($hex);
     }
 
     /**
@@ -281,9 +277,10 @@ class RGBColorTest extends AbstractColorTest
      * @param string                 $hex      color in hex format
      * @param \Jaguar\Color\RGBColor $expected
      */
-    public function testFromHex($hex, RGBColor $expected)
+    public function testSetFromHex($hex, RGBColor $expected)
     {
-        $this->assertTrue(RGBColor::fromHex($hex)->equals($expected));
+        $color = $this->getColor();
+        $this->assertTrue($color->setFromHex($hex)->equals($expected));
     }
 
     /**
@@ -310,7 +307,7 @@ class RGBColorTest extends AbstractColorTest
      */
     public function testBlend(RGBColor $color1, RGBColor $color2, $amount, RGBColor $expected)
     {
-        $this->assertTrue($expected->equals(RGBColor::blend($color1, $color2, $amount)));
+        $this->assertTrue($expected->equals($color1->blend($color2, $amount)));
     }
 
     /**

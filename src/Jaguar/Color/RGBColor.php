@@ -108,7 +108,7 @@ class RGBColor extends AbstractColor
     public function setAlpha($alpha)
     {
         $this->assertChannelValue($alpha, self::CHANNEL_ALPHA);
-        $this->alpha = (((integer) $alpha & 0xFF) << 24);
+        $this->alpha = $alpha;
 
         return $this;
     }
@@ -120,7 +120,7 @@ class RGBColor extends AbstractColor
      */
     public function getAlpha()
     {
-        return ($this->getValue() >> 24) & 0xff;
+        return $this->alpha;
     }
 
     /**
@@ -134,7 +134,7 @@ class RGBColor extends AbstractColor
     public function setRed($value)
     {
         $this->assertChannelValue($value, self::CHANNEL_RED);
-        $this->red = (((integer) $value & 0xFF) << 16);
+        $this->red = $value;
 
         return $this;
     }
@@ -146,7 +146,7 @@ class RGBColor extends AbstractColor
      */
     public function getRed()
     {
-        return ($this->getValue() >> 16) & 0xFF;
+        return $this->red;
     }
 
     /**
@@ -160,7 +160,7 @@ class RGBColor extends AbstractColor
     public function setGreen($value)
     {
         $this->assertChannelValue($value, self::CHANNEL_GREEN);
-        $this->green = (((integer) $value & 0xFF) << 8);
+        $this->green = $value;
 
         return $this;
     }
@@ -172,7 +172,7 @@ class RGBColor extends AbstractColor
      */
     public function getGreen()
     {
-        return ($this->getValue() >> 8) & 0xFF;
+        return $this->green;
     }
 
     /**
@@ -186,7 +186,7 @@ class RGBColor extends AbstractColor
     public function setBlue($value)
     {
         $this->assertChannelValue($value, self::CHANNEL_BLUE);
-        $this->blue = (((integer) $value & 0xFF) << 0);
+        $this->blue = $value;
 
         return $this;
     }
@@ -198,7 +198,7 @@ class RGBColor extends AbstractColor
      */
     public function getBlue()
     {
-        return ($this->getValue() >> 0) & 0xFF;
+        return $this->blue;
     }
 
     /**
@@ -208,20 +208,20 @@ class RGBColor extends AbstractColor
      */
     public function getValue()
     {
-        return $this->red |
-                $this->green |
-                $this->blue |
-                $this->alpha;
+        return (((int) $this->getRed() & 0xFF) << 16) |
+                (((int) $this->getGreen() & 0xFF) << 8) |
+                (((int) $this->getBlue() & 0xFF)) |
+                (((int) $this->getAlpha() & 0xFF) << 24);
     }
 
     /**
-     * Set new color
+     * Set color from another color object
      *
      * @param \Jaguar\Color\RGBColor $color
      *
      * @return \Jaguar\Color\RGBColor
      */
-    public function setRGBColor(RGBColor $color)
+    public function setFromRGBColor(RGBColor $color)
     {
         return $this->setRed($color->getRed())
                         ->setGreen($color->getGreen())
@@ -230,7 +230,83 @@ class RGBColor extends AbstractColor
     }
 
     /**
-     * Get new color object which equals to the current one
+     * Set color from array
+     *
+     * @param array $color array with (red,green,blue,alpha) values
+     *
+     * @return \Jaguar\Color\RGBColor
+     */
+    public function setFromArray(array $color)
+    {
+        return $this->setRed($color[0])
+                        ->setGreen($color[1])
+                        ->setBlue($color[2])
+                        ->setAlpha($color[3]);
+    }
+
+    /**
+     * Set color from rgb integer
+     *
+     * @param integer $rgb
+     * @param boolean $hasalpha true if the rgb contains the alpha and false if not
+     *
+     * @return \Jaguar\Color\RGBColor
+     */
+    public function setFromValue($rgb, $hasalpha = true)
+    {
+        $r = ($rgb >> 16) & 0xFF;
+        $g = ($rgb >> 8) & 0xFF;
+        $b = ($rgb >> 0) & 0xFF;
+        if ($hasalpha) {
+            $a = ($rgb >> 24) & 0xff;
+
+            return $this->setRed($r)
+                            ->setGreen($g)
+                            ->setBlue($b)
+                            ->setAlpha($a);
+        }
+
+        return $this->setRed($r)
+                        ->setGreen($g)
+                        ->setBlue($b);
+    }
+
+    private static $HexRegex = '/#([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?\b/';
+
+    /**
+     * Set color  from hex string
+     *
+     * @param string  $hex   color in hex format
+     * @param integer $alpha alpha value
+     *
+     * @return \Jaguar\Color\RGBColor
+     */
+    public function setFromHex($hex, $alpha = 0)
+    {
+        if (!preg_match(self::$HexRegex, $hex)) {
+            throw new \InvalidArgumentException(sprintf(
+                    'Inavlid Hex Color "%s"', $hex
+            ));
+        }
+
+        $ehex = ltrim($hex, '#');
+
+        if (strlen($ehex) === 3) {
+            $ehex = $ehex[0] . $ehex[0] .
+                    $ehex[1] . $ehex[1] .
+                    $ehex[2] . $ehex[2];
+        }
+
+        $color = array_map('hexdec', str_split($ehex, 2));
+
+        return $this->setRed($color[0])
+                        ->setGreen($color[1])
+                        ->setBlue($color[2])
+                        ->setAlpha($alpha);
+    }
+
+    /**
+     * Get new color object which is equal to the current one
      *
      * @return \Jaguar\Color\RGBColor
      */
@@ -245,22 +321,15 @@ class RGBColor extends AbstractColor
     }
 
     /**
-     * Returns a copy of current color, incrementing the alpha channel by the
-     * given amount
+     * incrementing the alpha channel by the given amount
      *
      * @param integer $alpha
      *
      * @return \Jaguar\Color\RGBColor
-     * @throws \InvalidArgumentException
      */
     public function dissolve($alpha)
     {
-        return new self(
-                $this->getRed()
-                , $this->getGreen()
-                , $this->getBlue()
-                , $this->getAlpha() + $alpha
-        );
+        return $this->setAlpha($this->getAlpha() + $alpha);
     }
 
     /**
@@ -291,12 +360,12 @@ class RGBColor extends AbstractColor
         if ($b > 0 && $b < $i)
             $b = $i;
 
-        return new self(
-                min(array((integer) ($r / $shade), 255))
-                , min(array((integer) ($g / $shade), 255))
-                , min(array((integer) ($b / $shade), 255))
-                , $alpha
-        );
+        return $this->setFromArray(array(
+                    min(array((integer) ($r / $shade), 255))
+                    , min(array((integer) ($g / $shade), 255))
+                    , min(array((integer) ($b / $shade), 255))
+                    , $alpha
+        ));
     }
 
     /**
@@ -309,16 +378,34 @@ class RGBColor extends AbstractColor
      */
     public function darker($shade = 0.7)
     {
-        return new self(
-                max(array((integer) $this->getRed() * $shade, 0))
-                , max(array((integer) $this->getGreen() * $shade, 0))
-                , max(array((integer) $this->getBlue() * $shade, 0))
-                , $this->getAlpha()
-        );
+        return $this->setFromArray(array(
+                    max(array((integer) $this->getRed() * $shade, 0))
+                    , max(array((integer) $this->getGreen() * $shade, 0))
+                    , max(array((integer) $this->getBlue() * $shade, 0))
+                    , $this->getAlpha()
+        ));
     }
 
     /**
-     * Returns a gray related to the current color
+     * Blend current color with the given new color and the amount
+     *
+     * @param RGBColor $color  another color
+     * @param float    $amount The amount of curennt color in the given color
+     *
+     * @return \Jaguar\Color\RGBColor
+     */
+    public function blend(RGBColor $color, $amount)
+    {
+        return $this->setFromArray(array(
+                    min(255, min($this->getRed(), $color->getRed()) + round(abs($color->getRed() - $this->getRed()) * $amount))
+                    , min(255, min($this->getGreen(), $color->getGreen()) + round(abs($color->getGreen() - $this->getGreen()) * $amount))
+                    , min(255, min($this->getBlue(), $color->getBlue()) + round(abs($color->getBlue() - $this->getBlue()) * $amount))
+                    , min(100, min($this->getAlpha(), $color->getAlpha()) + round(abs($color->getAlpha() - $this->getAlpha()) * $amount))
+        ));
+    }
+
+    /**
+     * Gray current color
      *
      * @return \Jaguar\Color\RGBColor
      */
@@ -333,7 +420,9 @@ class RGBColor extends AbstractColor
                 )
         );
 
-        return new self($gray, $gray, $gray, $this->getAlpha());
+        return $this->setFromArray(array(
+                    $gray, $gray, $gray, $this->getAlpha()
+        ));
     }
 
     /**
@@ -356,78 +445,39 @@ class RGBColor extends AbstractColor
     }
 
     /**
-     * Return new color object from rgb integer
+     * @see RGBColor::setFromValue
      *
-     * @param integer $rgb
-     * @param boolean $hasalpha true if the rgb contains the alpha and false
-     *                          if not
-     *
-     * @return \Jaguar\Color\RGBColor
-     * @throws InvalidArgumentException
+     * @codeCoverageIgnore
      */
     public static function fromValue($rgb, $hasalpha = true)
     {
-        $r = ($rgb >> 16) & 0xFF;
-        $g = ($rgb >> 8) & 0xFF;
-        $b = ($rgb >> 0) & 0xFF;
-        if ($hasalpha) {
-            $a = ($rgb >> 24) & 0xff;
+        $color = new self();
 
-            return new self($r, $g, $b, $a);
-        }
-
-        return new self($r, $g, $b);
+        return $color->setFromValue($rgb, $hasalpha);
     }
 
-    private static $HexRegex = '/#([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?\b/';
-
     /**
-     * Retuen new color object from hex string
+     * @see RGBColor::setFromHex
      *
-     * @param string  $hex   color int hex format
-     * @param integer $alpha alpha value
-     *
-     * @return \Jaguar\Color\RGBColor
-     * @throws InvalidArgumentException
+     * @codeCoverageIgnore
      */
     public static function fromHex($hex, $alpha = 0)
     {
-        if (!preg_match(self::$HexRegex, $hex)) {
-            throw new \InvalidArgumentException(sprintf(
-                    'Inavlid Hex Color "%s"', $hex
-            ));
-        }
+        $color = new self();
 
-        $ehex = ltrim($hex, '#');
-
-        if (strlen($ehex) === 3) {
-            $ehex = $ehex[0] . $ehex[0] .
-                    $ehex[1] . $ehex[1] .
-                    $ehex[2] . $ehex[2];
-        }
-
-        $color = array_map('hexdec', str_split($ehex, 2));
-
-        return new self($color[0], $color[1], $color[2], $alpha);
+        return $color->setFromHex($hex, $alpha);
     }
 
     /**
-     * Blend two colors given an amount
+     * @see RGBColor::setFromArray
      *
-     * @param RGBColor $color1
-     * @param RGBColor $color2
-     * @param float    $amount The amount of color2 in color1
-     *
-     * @return RGBColor
+     * @codeCoverageIgnore
      */
-    public static function blend(RGBColor $color1, RGBColor $color2, $amount)
+    public static function fromArray(array $color)
     {
-        return new self(
-                min(255, min($color1->getRed(), $color2->getRed()) + round(abs($color2->getRed() - $color1->getRed()) * $amount))
-                , min(255, min($color1->getGreen(), $color2->getGreen()) + round(abs($color2->getGreen() - $color1->getGreen()) * $amount))
-                , min(255, min($color1->getBlue(), $color2->getBlue()) + round(abs($color2->getBlue() - $color1->getBlue()) * $amount))
-                , min(100, min($color1->getAlpha(), $color2->getAlpha()) + round(abs($color2->getAlpha() - $color1->getAlpha()) * $amount))
-        );
+        $color = new self();
+
+        return $color->setFromArray($color);
     }
 
     /**
