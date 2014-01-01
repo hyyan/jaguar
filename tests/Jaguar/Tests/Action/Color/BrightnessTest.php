@@ -21,29 +21,6 @@ class BrightnessTest extends AbstractActionTest
         return new Brightness();
     }
 
-    /**
-     * @dataProvider levelsProvider
-     * @expectedException \InvalidArgumentException
-     *
-     * @param integer $level
-     */
-    public function testSetLevelThrowInvalidArugmentException($level)
-    {
-        $this->getAction()->setLevel($level);
-    }
-
-    /**
-     * Level Provider
-     *
-     * @return array
-     */
-    public function levelsProvider()
-    {
-        return array(
-            array(101), array(-101)
-        );
-    }
-
     public function testApply()
     {
         $this->assertInstanceOf(

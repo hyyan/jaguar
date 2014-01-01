@@ -32,17 +32,12 @@ class Contrast extends AbstractAction
     /**
      * Set contrast level
      *
-     * @param integer $level in range(-100,100) where 0 = no change
+     * @param integer $level
      *
      * @return \Jaguar\Action\Color\Contrast
-     *
-     * @throws \InvalidArgumentException if invalid level
      */
     public function setLevel($level)
     {
-        if ($level < -100 || $level > 100) {
-            throw new \InvalidArgumentException('Contrast Level Must Be In Range(-100,100)');
-        }
         $this->level = $level;
 
         return $this;
