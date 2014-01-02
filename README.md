@@ -14,10 +14,10 @@ The Jaguar library has the following requirements:
  
 ##Fetures##
 
- - Supportes for famous formats (JPEG,PNG,GIF,GD2) and new formats can be added easily [see example](http://jaguar.readthedocs.org/en/latest/usage/Canvas.html#adding-new-foramts)
+ - Supports  for famous formats (JPEG,PNG,GIF,GD2) and new formats can be added easily [see example](http://jaguar.readthedocs.org/en/latest/usage/Canvas.html#adding-new-foramts)
  - Full Drawing API for drawing all kind of shapes from pixels to polygons 
   * Brushes(Styles) supports for drawing complex and creative shapes (Brush,DashlineStyle,FillStyle,ThicklineStyle,...)
-  * Adavnced Texts drawers (Shadow,Outlined,...)
+  * Advanced Texts drawers (Shadow,Outlined,...)
   * Advanced Borders drawers (in,out,fit,...)
  - Gradients Generator (Radial,Linear,Rectangle,Diamnond,...)
  - Actions (filters) framework with about 100 non pixel based actions which are superfast (no for loop) including
