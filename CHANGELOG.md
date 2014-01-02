@@ -10,3 +10,4 @@
 ### 1.1.0 (2014-1-2)
 
     * Added BlackAndWhite Action
+    * Added Posterize Action
