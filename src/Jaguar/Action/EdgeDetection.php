@@ -44,6 +44,7 @@ class EdgeDetection extends AbstractAction
     const LAPLACIAN_FILTER2 = 'laplacian_2';
     const LAPLACIAN_FILTER3 = 'laplacian_3';
     const LAPLACIAN_FILTER4 = 'laplacian_4';
+    const EDGE_Enhance = 'edeg.enhance';
     const FINDEDGE = 'findeedge';
 
     private $type;
@@ -204,6 +205,11 @@ class EdgeDetection extends AbstractAction
             array(1.0, -2.0, 1.0),
             array(-2.0, 4.0, -2.0),
             array(1.0, -2.0, 1.0)
+        ),
+        self::EDGE_Enhance => array(
+            array(0.0, -1.0, 0.0),
+            array(-1.0, 5.0, -1.0),
+            array(0.0, -1.0, 0.0)
         )
     );
 

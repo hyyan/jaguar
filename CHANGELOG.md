@@ -12,3 +12,4 @@
     * Added BlackAndWhite Action
     * Added Posterize Action
     * Added Screen Action
+    * Added EdgeEnhance algorithm for EdgeDetection Action
