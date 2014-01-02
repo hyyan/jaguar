@@ -9,4 +9,4 @@
 
 ### 1.1.0 (2014-1-2)
 
-    * added BlackAndWhite Action
+    * Added BlackAndWhite Action
