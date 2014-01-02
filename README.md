@@ -50,14 +50,11 @@ Installation via composer
 ##Sample Usage#
 
 ```php
-
-
 use Jaguar\Canvas,
     Jaguar\Transformation,
     Jaguar\Dimension,
     Jaguar\Action\Posterize;
     
- 
 $transformation = new Transformation(new Canvas('/path/to/image'));
 $transformation->resize(new Dimension(300,300))
                ->apply(new Posterize(40))
