@@ -13,3 +13,4 @@
     * Added Posterize Action
     * Added Screen Action
     * Added EdgeEnhance algorithm for EdgeDetection Action
+    * Added Hipass Action
