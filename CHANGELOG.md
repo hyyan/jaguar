@@ -6,3 +6,7 @@
   * [RGBColor] 
     - **[BC Breaks]** changed  *setRGBColor* to *setFromRGBColor*
     - added    *setFromArray,setFromValue,setFromHex* methdos
+
+### 1.1.0 (2014-1-2)
+
+    * added BlackAndWhite Action
