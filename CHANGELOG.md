@@ -11,3 +11,4 @@
 
     * Added BlackAndWhite Action
     * Added Posterize Action
+    * Added Screen Action
