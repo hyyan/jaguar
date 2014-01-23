@@ -20,6 +20,7 @@ use Jaguar\Drawable\Text\Plain;
 use Jaguar\Exception\CanvasEmptyException;
 use Jaguar\Drawable\Text\TextDrawerInterface;
 use Jaguar\Exception\DrawableException;
+use Jaguar\Util;
 
 class Text extends AbstractDrawable
 {
@@ -44,7 +45,7 @@ class Text extends AbstractDrawable
                 ->setCoordinate($coordinate === null ? new Coordinate() : $coordinate)
                 ->setAngle(0)
                 ->setLineSpacing(1.0)
-                ->setFont(new Font(__DIR__ . '/../Resources/Fonts/arial.ttf'))
+                ->setFont(new Font(Util::getResourcePath('Fonts/arial.ttf')))
                 ->setFontSize(12)
                 ->setDrawer(new Plain());
     }

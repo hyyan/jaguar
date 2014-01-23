@@ -14,3 +14,7 @@
   * Added Screen Action
   * Added EdgeEnhance algorithm for EdgeDetection Action
   * Added Hipass Action
+
+### 1.2.1 (2014-1-23)
+
+  * Made use of *Util::getResourcePath()* in the Text object
