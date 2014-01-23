@@ -11,8 +11,6 @@
 
 namespace Jaguar;
 
-use Jaguar\Dimension;
-
 class ImageFile extends \SplFileInfo
 {
     private $imageExtension;

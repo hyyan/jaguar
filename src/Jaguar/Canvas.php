@@ -11,7 +11,6 @@
 
 namespace Jaguar;
 
-use Jaguar\Dimension;
 use Jaguar\Exception\CanvasCreationException;
 use Jaguar\Factory\JpegFactory;
 use Jaguar\Factory\GifFactory;

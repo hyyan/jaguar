@@ -11,10 +11,7 @@
 
 namespace Jaguar;
 
-use Jaguar\Box;
-use Jaguar\Coordinate;
 use Jaguar\Color\ColorInterface;
-use Jaguar\Dimension;
 use Jaguar\Drawable\DrawableInterface;
 
 interface CanvasInterface
@@ -90,7 +87,7 @@ interface CanvasInterface
      * Get Copy of the current canvas
      *
      * @return \Jaguar\CanvasInterface return a canvas with a completey
-     *                                        different gd resource
+     *                                 different gd resource
      *
      * @throws \Jaguar\Exception\CanvasEmptyException
      * @throws \Jaguar\Exception\CanvasException
@@ -201,7 +198,7 @@ interface CanvasInterface
      * and at (0,0) coordinate
      *
      * @param \Jaguar\CanvasInterface $src the canvas that should be merged
-     *                                            into current one
+     *                                     into current one
      *
      * @param \Jaguar\Box $srcBox  Box from src canvas
      * @param \Jaguar\Box $destBox Box for the current canvas

@@ -10,7 +10,6 @@
 
 namespace Jaguar\Tests\Action;
 
-use Jaguar\Tests\Action\AbstractActionTest;
 use Jaguar\Action\Wavy;
 
 class WavyTest extends AbstractActionTest

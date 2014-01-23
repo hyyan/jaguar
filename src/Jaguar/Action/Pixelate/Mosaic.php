@@ -10,7 +10,6 @@
 
 namespace Jaguar\Action\Pixelate;
 
-use Jaguar\Action\Pixelate\AbstractPixelate;
 use Jaguar\CanvasInterface;
 
 class Mosaic extends AbstractPixelate

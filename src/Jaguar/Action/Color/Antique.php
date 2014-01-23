@@ -12,9 +12,6 @@ namespace Jaguar\Action\Color;
 
 use Jaguar\Action\AbstractAction;
 use Jaguar\CanvasInterface;
-use Jaguar\Action\Color\Contrast;
-use Jaguar\Action\Color\Brightness;
-use Jaguar\Action\Color\Colorize;
 use Jaguar\Color\RGBColor;
 
 class Antique extends AbstractAction

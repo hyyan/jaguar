@@ -14,7 +14,6 @@ use Jaguar\Drawable\StyleInterface;
 use Jaguar\Drawable\AbstractStyledDrawable;
 use Jaguar\CanvasInterface;
 use Jaguar\Canvas;
-use Jaguar\Drawable\Style\Brush;
 use Jaguar\Dimension;
 
 class ThicklineStyle implements StyleInterface

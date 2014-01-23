@@ -50,10 +50,10 @@ class RGBColor extends AbstractColor
      *
      * @param integer $value
      * @param string  $channel on of the following :
-     *                             - RGBColor::CHANNEL_RED
-     *                             - RGBColor::CHANNEL_GREEN,
-     *                             - RGBColor::CHANNEL_BLUE,
-     *                             - RGBColor::CHANNEL_ALPHA,
+     *                         - RGBColor::CHANNEL_RED
+     *                         - RGBColor::CHANNEL_GREEN,
+     *                         - RGBColor::CHANNEL_BLUE,
+     *                         - RGBColor::CHANNEL_ALPHA,
      *
      * @return boolean
      * @throws \InvalidArgumentException if the channel name is not supported

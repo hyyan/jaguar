@@ -10,7 +10,6 @@
 
 namespace Jaguar\Action;
 
-use Jaguar\Action\AbstractAction;
 use Jaguar\CanvasInterface;
 use Jaguar\Box;
 
@@ -26,8 +25,8 @@ class Overlay extends AbstractAction
      * @param \Jaguar\CanvasInterface $canvas
      * @param integer                 $amount in range(0,100)
      * @param \Jaguar\Box             $box    defulat null which means the size of
-     *                         given canvas will be used for the given
-     *                         overlay.
+     *                                        given canvas will be used for the given
+     *                                        overlay.
      *
      * @throws \InvalidArgumentException
      */

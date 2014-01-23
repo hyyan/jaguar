@@ -59,6 +59,9 @@ class Posterize extends AbstractAction
         return $this->level;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function doApply(CanvasInterface $canvas)
     {
 

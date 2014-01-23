@@ -10,7 +10,6 @@
 
 namespace Jaguar\Action;
 
-use Jaguar\Action\AbstractAction;
 use Jaguar\CanvasInterface;
 use Jaguar\Box;
 use Jaguar\Coordinate;

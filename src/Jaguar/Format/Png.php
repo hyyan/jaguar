@@ -12,7 +12,6 @@
 namespace Jaguar\Format;
 
 use Jaguar\ImageFile;
-use Jaguar\Dimension;
 use Jaguar\Exception\CanvasCreationException;
 use Jaguar\Exception\CanvasOutputException;
 use Jaguar\Exception\CanvasException;

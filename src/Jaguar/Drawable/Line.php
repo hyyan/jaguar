@@ -13,7 +13,6 @@ namespace Jaguar\Drawable;
 
 use Jaguar\Coordinate;
 use Jaguar\CanvasInterface;
-use Jaguar\Drawable\StyleInterface;
 use Jaguar\Exception\DrawableException;
 
 class Line extends AbstractStyledDrawable

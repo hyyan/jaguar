@@ -12,7 +12,6 @@
 namespace Jaguar\Tests;
 
 use Jaguar\Canvas;
-use Jaguar\Tests\JaguarTestCase;
 use Jaguar\Dimension;
 
 class CanvasTest extends JaguarTestCase

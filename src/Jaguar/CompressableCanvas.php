@@ -11,8 +11,6 @@
 
 namespace Jaguar;
 
-use Jaguar\Dimension;
-
 abstract class CompressableCanvas extends AbstractCanvas
 {
     const QUALITY_MAX = 100;

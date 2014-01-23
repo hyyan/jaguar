@@ -13,7 +13,6 @@ namespace Jaguar\Drawable\Border;
 use Jaguar\Drawable\Border;
 use Jaguar\CanvasInterface;
 use Jaguar\Drawable\StyleInterface;
-use Jaguar\Drawable\Border\BorderIn;
 use Jaguar\Box;
 use Jaguar\Coordinate;
 use Jaguar\Canvas;

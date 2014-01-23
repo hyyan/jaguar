@@ -11,7 +11,6 @@
 
 namespace Jaguar\Tests;
 
-use Jaguar\Tests\JaguarTestCase;
 use Jaguar\Tests\Mock\CanvasMock;
 use Jaguar\Dimension;
 use Jaguar\Color\RGBColor;

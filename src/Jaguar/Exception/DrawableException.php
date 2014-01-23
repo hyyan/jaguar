@@ -11,8 +11,6 @@
 
 namespace Jaguar\Exception;
 
-use Jaguar\Exception\JaguarException;
-
 class DrawableException extends JaguarException
 {
 }

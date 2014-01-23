@@ -92,7 +92,7 @@ class BoxAction extends AbstractAction
      * Invert the selection box
      *
      * @param string $boolean true to invert the selection box , false to keep
-     *                         the selection box
+     *                        the selection box
      *
      * @return \Jaguar\Action\BoxAction
      */

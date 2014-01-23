@@ -11,9 +11,6 @@
 
 namespace Jaguar;
 
-use Jaguar\Box;
-use Jaguar\Dimension;
-use Jaguar\Coordinate;
 use Jaguar\Color\ColorInterface;
 use Jaguar\Color\RGBColor;
 use Jaguar\Exception\CanvasEmptyException;
@@ -33,10 +30,10 @@ abstract class AbstractCanvas implements CanvasInterface
      * construct new canvas
      *
      * @param \Jaguar\Dimension|\Jaguar\CanvasInterface|file|string $source
-     *        the source could be a dimension object to create a new canvas
-     *        , another canvas instance to create from
-     *        , file path to load canvas from
-     *        or null to take no action
+     *                                                                      the source could be a dimension object to create a new canvas
+     *                                                                      , another canvas instance to create from
+     *                                                                      , file path to load canvas from
+     *                                                                      or null to take no action
      *
      * @throws \Jaguar\Exception\InvalidDimensionException
      * @throws \Jaguar\Exception\CanvasCreationException
