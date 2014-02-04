@@ -36,7 +36,7 @@ The Jaguar library has the following requirements:
   * ....... 
 (And list goes on) ....
   
-##Instalation##
+##Installation##
 
 Installation via composer
 
