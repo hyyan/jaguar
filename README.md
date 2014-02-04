@@ -13,7 +13,7 @@ The Jaguar library has the following requirements:
  - PHP 5.3+
  - Gd2 Bundled Version (2.0.28 or later) with freetype support
  
-##Fetures##
+##Features##
 
  - Supports  for famous formats (JPEG,PNG,GIF,GD2) and new formats can be added easily [see example](http://jaguar.readthedocs.org/en/latest/usage/Canvas.html#adding-new-foramts)
  - Full Drawing API for drawing all kind of shapes from pixels to polygons 
