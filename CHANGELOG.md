@@ -18,3 +18,7 @@
 ### 1.2.1 (2014-1-23)
 
   * Made use of *Util::getResourcePath()* in the Text object
+
+### 1.3.0 (2014-2-7)
+
+  * Added GraySketchy Action
