@@ -5,7 +5,7 @@ Jaguar
 [![Latest Stable Version](https://poser.pugx.org/hyyan/jaguar/v/stable.png)](https://packagist.org/packages/hyyan/jaguar)
 [![project status](http://stillmaintained.com/hyyan/jaguar.png)](http://stillmaintained.com/hyyan/jaguar)
 
-[![Jaguar Tutorial](http://img.youtube.com/vi/O14EzcWLFmc/maxresdefault.jpg)](http://www.youtube.com/watch?v=O14EzcWLFmc)
+[![Jaguar Tutorial](http://img.youtube.com/vi/O14EzcWLFmc/hqdefault.jpg)](http://www.youtube.com/watch?v=O14EzcWLFmc)
 
 
 PHP 5.3 Graphic Library For Super Fast Image Manipulation And Drawing Using The Gd Library
