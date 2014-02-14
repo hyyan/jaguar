@@ -5,6 +5,9 @@ Jaguar
 [![Latest Stable Version](https://poser.pugx.org/hyyan/jaguar/v/stable.png)](https://packagist.org/packages/hyyan/jaguar)
 [![project status](http://stillmaintained.com/hyyan/jaguar.png)](http://stillmaintained.com/hyyan/jaguar)
 
+[![Jaguar Tutorial](http://img.youtube.com/vi/O14EzcWLFmc/maxresdefault.jpg)](http://www.youtube.com/watch?v=O14EzcWLFmc)
+
+
 PHP 5.3 Graphic Library For Super Fast Image Manipulation And Drawing Using The Gd Library
 
 ##Requirements##
@@ -69,6 +72,8 @@ $transformation->resize(new Dimension(300,300))
 ## Documentation ##
 
  - [Hosted by Read The Docs](http://jaguar.readthedocs.org/)
+ - [Jaguar Tutorial On Youtube](http://www.youtube.com/watch?v=O14EzcWLFmc)
+
  
 ##License##
 
