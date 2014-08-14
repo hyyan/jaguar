@@ -473,11 +473,11 @@ class RGBColor extends AbstractColor
      *
      * @codeCoverageIgnore
      */
-    public static function fromArray(array $color)
+    public static function fromArray(array $array)
     {
         $color = new self();
 
-        return $color->setFromArray($color);
+        return $color->setFromArray($array);
     }
 
     /**
