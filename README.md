@@ -1,9 +1,7 @@
-Jaguar
-======
+# Jaguar
 
 [![Build Status](https://travis-ci.org/hyyan/jaguar.png?branch=master)](https://travis-ci.org/hyyan/jaguar)
 [![Latest Stable Version](https://poser.pugx.org/hyyan/jaguar/v/stable.png)](https://packagist.org/packages/hyyan/jaguar)
-[![project status](http://stillmaintained.com/hyyan/jaguar.png)](http://stillmaintained.com/hyyan/jaguar)
 
 [![Jaguar Tutorial](http://img.youtube.com/vi/O14EzcWLFmc/hqdefault.jpg)](http://www.youtube.com/watch?v=O14EzcWLFmc)
 
@@ -16,7 +14,7 @@ The Jaguar library has the following requirements:
  - PHP 5.3+
  - Gd2 Bundled Version (2.0.28 or later) with freetype support
  
-##Features##
+## Features
 
  - Supports  for famous formats (JPEG,PNG,GIF,GD2) and new formats can be added easily [see example](http://jaguar.readthedocs.org/en/latest/usage/Canvas.html#adding-new-foramts)
  - Full Drawing API for drawing all kind of shapes from pixels to polygons 
@@ -39,7 +37,7 @@ The Jaguar library has the following requirements:
   * ....... 
 (And list goes on) ....
   
-##Installation##
+## Installation
 
 Installation via composer
 
@@ -51,7 +49,7 @@ Installation via composer
 }
 ```
 
-##Sample Usage#
+## Sample Usage
 
 ```php
 use Jaguar\Canvas,
@@ -69,13 +67,13 @@ $transformation->resize(new Dimension(300,300))
 ```
 
 
-## Documentation ##
+## Documentation
 
  - [Hosted by Read The Docs](http://jaguar.readthedocs.org/)
  - [Jaguar Tutorial On Youtube](http://www.youtube.com/watch?v=O14EzcWLFmc)
 
  
-##License##
+## License
 
 Jaguar is open-sourced package licensed under the MIT License.
 
