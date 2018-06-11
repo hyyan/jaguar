@@ -8,7 +8,7 @@
 
 PHP 5.3 Graphic Library For Super Fast Image Manipulation And Drawing Using The Gd Library
 
-##Requirements##
+## Requirements
 
 The Jaguar library has the following requirements:
  - PHP 5.3+
