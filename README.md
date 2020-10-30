@@ -72,7 +72,7 @@ $transformation->resize(new Dimension(300,300))
 
 Jaguar is open-sourced package licensed under the MIT License.
 
-##Contributions##
+## Contributions ##
 
 Your contributions are more than welcome !
 
