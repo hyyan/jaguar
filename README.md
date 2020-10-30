@@ -67,8 +67,6 @@ $transformation->resize(new Dimension(300,300))
 ## Documentation
 
  - [Hosted by Read The Docs](http://jaguar.readthedocs.org/)
- - [Jaguar Tutorial On Youtube](http://www.youtube.com/watch?v=O14EzcWLFmc)
-
  
 ## License
 
